@@ -28,7 +28,7 @@ struct ContentView: View {
         #if os(macOS)
             return t
         #else
-        return t.keyboardType(.numberPad)
+        return t.keyboardType(.numbersAndPunctuation)
         #endif
     }
     

@@ -185,9 +185,9 @@ class RömischeZahl{
         let romanUtterances = textWithSpace.map({t->AVSpeechUtterance in
             let u=AVSpeechUtterance(string: t.lowercased())
             u.voice=voice
-            u.rate=0.2
-            u.preUtteranceDelay=0.6
-            u.postUtteranceDelay=0.5
+            u.rate=0.3
+//            u.preUtteranceDelay=0.2
+            u.postUtteranceDelay=0.2
             return u
         })
 
