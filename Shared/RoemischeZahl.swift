@@ -8,148 +8,220 @@
 import Foundation
 import AVFoundation
 
+protocol AlsRoemischeZahl {
+    var anzahl: Int {get}
+    var dict: [Int:String] {get}
+    var römisch: String {get}
+    
+}
+
+extension AlsRoemischeZahl{
+    var römisch : String{
+        return self.dict[self.anzahl] ?? ""
+    }
+}
+
+protocol AlsArabischeZahl{
+    var arabisch:Int {get}
+    var multiplikator: Int {get}
+    var anzahl: Int {get}
+}
+
+extension AlsArabischeZahl{
+    var arabisch:Int{
+        return self.anzahl * multiplikator
+    }
+}
+
 class RömischeZahl{
+    
+    struct Einser: AlsRoemischeZahl, AlsArabischeZahl {
+        let anzahl:Int
+        let multiplikator:Int = 1
+        
+        let dict=[0:"",
+                  1:"I",
+                  2:"II",
+                  3:"III",
+                  4:"IV",
+                  5:"V",
+                  6:"VI",
+                  7:"VII",
+                  8:"VIII",
+                  9:"IX"
+        ]
+        
+        init(Zahl:Int){
+            let zehner = Zahl / 10
+            let übrigeEinser = Zahl - 10 * zehner
+            anzahl = übrigeEinser / multiplikator
+        }
+        
+        init(römischeZahl:String) {
+            switch römischeZahl {
+            case _ where römischeZahl.range(of: "VIII", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil :
+                self.anzahl=8
+            case _ where römischeZahl.range(of: "VII", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil :
+                self.anzahl=7
+            case _ where römischeZahl.range(of: "VI", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=6
+            case _ where römischeZahl.range(of: "IX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=9
+            case _ where römischeZahl.range(of: "IV", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=4
+            case _ where römischeZahl.range(of: "III", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=3
+            case _ where römischeZahl.range(of: "II", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=2
+            case _ where römischeZahl.range(of: "I", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=1
+            case _ where römischeZahl.range(of: "V", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=5
+            default:
+                self.anzahl=0
+            }
+        }
+    }
+    
+    struct Zehner: AlsRoemischeZahl, AlsArabischeZahl{
+        let anzahl:Int
+        let multiplikator:Int = 10
+        let dict=[0:"",
+                  1:"X",
+                  2:"XX",
+                  3:"XXX",
+                  4:"XL",
+                  5:"L",
+                  6:"LX",
+                  7:"LXX",
+                  8:"LXXX",
+                  9:"XC"
+        ]
+        
+        init(Zahl:Int){
+            let hunderter = Zahl / 100
+            let übrigeZehner = Zahl - 100 * hunderter
+            anzahl = übrigeZehner / multiplikator
+        }
+        
+        init(römischeZahl:String) {
+            switch römischeZahl {
+            case _ where römischeZahl.range(of: "LXXX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil :
+                self.anzahl=8
+            case _ where römischeZahl.range(of: "LXX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil :
+                self.anzahl=7
+            case _ where römischeZahl.range(of: "LX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=6
+            case _ where römischeZahl.range(of: "XC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=9
+            case _ where römischeZahl.range(of: "LX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=4
+            case _ where römischeZahl.range(of: "XXX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=3
+            case _ where römischeZahl.range(of: "XX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=2
+            case _ where römischeZahl.range(of: "X", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=1
+            case _ where römischeZahl.range(of: "L", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=5
+            default:
+                self.anzahl=0
+            }
+        }
+        
+    }
+    
+    
+    struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl {
+        let anzahl:Int
+        let multiplikator:Int = 100
+        
+        let dict=[0:"",
+                  1:"C",
+                  2:"CC",
+                  3:"CCC",
+                  4:"CD",
+                  5:"D",
+                  6:"DC",
+                  7:"DCC",
+                  8:"DCCC",
+                  9:"CM"
+        ]
+        
+        
+        init(Zahl:Int){
+            let tausnder = Zahl / 1000
+            let übrigehunderter = Zahl - 1000 * tausnder
+            anzahl = übrigehunderter / multiplikator
+        }
+        
+        init(römischeZahl:String) {
+            switch römischeZahl {
+            case _ where römischeZahl.range(of: "DCCC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil :
+                self.anzahl=8
+            case _ where römischeZahl.range(of: "DCC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil :
+                self.anzahl=7
+            case _ where römischeZahl.range(of: "DC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=6
+            case _ where römischeZahl.range(of: "CM", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=9
+            case _ where römischeZahl.range(of: "CD", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=4
+            case _ where römischeZahl.range(of: "CCC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=3
+            case _ where römischeZahl.range(of: "CC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=2
+            case _ where römischeZahl.range(of: "C", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=1
+            case _ where römischeZahl.range(of: "D", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+                self.anzahl=5
+            default:
+                self.anzahl=0
+            }
+        }
+    }
+    
+    
+    struct Tausender: AlsArabischeZahl{
+        let anzahl:Int
+        let multiplikator:Int = 1000
+        
+        init(Zahl:Int){
+            let tausnder = Zahl / multiplikator
+            anzahl = tausnder
+        }
+        
+        var römisch : String{
+            switch anzahl {
+            case 0:
+                return ""
+            default:
+                return Array(repeating: "M", count: anzahl).joined()
+            }
+        }
+        
+        init(römischeZahl:String){
+            var gefundeneMs=0
+            for buchstabe in römischeZahl{
+                if buchstabe.lowercased() == "m"{
+                    gefundeneMs+=1
+                }
+                else{
+                    anzahl=0
+                    return
+                }
+            }
+            anzahl=gefundeneMs
+        }
+    }
     
     let synthesizer:AVSpeechSynthesizer=AVSpeechSynthesizer()
     
-    func macheRömischeZahl(aus Zahl:Int)->String{
+    
+    func macheRömischeZahl(aus Zahl:Int)->String?{
         
         guard Zahl > 0 else {
-            return ""
-        }
-        
-        struct Zehner{
-            let anzahl:Int
-            
-            init(Zahl:Int){
-                let hunderter = Zahl / 100
-                let übrigeZehner = Zahl - 100 * hunderter
-                anzahl = übrigeZehner / 10
-            }
-            
-            var römisch : String{
-                switch anzahl {
-                case 0:
-                    return ""
-                case 1:
-                    return "X"
-                case 2:
-                    return "XX"
-                case 3:
-                    return "XXX"
-                case 4:
-                    return "XL"
-                case 5:
-                    return "L"
-                case 6:
-                    return "LX"
-                case 7:
-                    return "LXX"
-                case 8:
-                    return "LXXX"
-                case 9:
-                    return "XC"
-                default:
-                    fatalError()
-                }
-            }
-            
-        }
-        
-        struct Einser {
-            let anzahl:Int
-            
-            init(Zahl:Int){
-                let zehner = Zahl / 10
-                let übrigeEinser = Zahl - 10 * zehner
-                anzahl = übrigeEinser
-            }
-            
-            var römisch : String{
-                switch anzahl {
-                case 0:
-                    return ""
-                case 1:
-                    return "I"
-                case 2:
-                    return "II"
-                case 3:
-                    return "III"
-                case 4:
-                    return "IV"
-                case 5:
-                    return "V"
-                case 6:
-                    return "VI"
-                case 7:
-                    return "VII"
-                case 8:
-                    return "VIII"
-                case 9:
-                    return "IX"
-                default:
-                    fatalError()
-                }
-            }
-            
-        }
-        
-        
-        struct Hunderter {
-            let anzahl:Int
-            
-            init(Zahl:Int){
-                let tausnder = Zahl / 1000
-                let übrigehunderter = Zahl - 1000 * tausnder
-                anzahl = übrigehunderter / 100
-            }
-            
-            var römisch : String{
-                switch anzahl {
-                case 0:
-                    return ""
-                case 1:
-                    return "C"
-                case 2:
-                    return "CC"
-                case 3:
-                    return "CCC"
-                case 4:
-                    return "CD"
-                case 5:
-                    return "D"
-                case 6:
-                    return "DC"
-                case 7:
-                    return "DCC"
-                case 8:
-                    return "DCCC"
-                case 9:
-                    return "CM"
-                default:
-                    fatalError()
-                }
-            }
-            
-        }
-        
-        
-        struct Tausender{
-            let anzahl:Int
-            
-            init(Zahl:Int){
-                let tausnder = Zahl / 1000
-                anzahl = tausnder
-            }
-            
-            var römisch : String{
-                switch anzahl {
-                case 0:
-                    return ""
-                default:
-                    return Array(repeating: "M", count: anzahl).joined()
-                }
-            }
+            return nil
         }
         
         let zehner = Zehner(Zahl: Zahl)
@@ -163,6 +235,32 @@ class RömischeZahl{
         
         return tausender.römisch + hunderterRömisch + zehnerRömisch + einserRömisch
     }
+    
+    
+    func macheZahl(aus römischerZahl:String)->Int?{
+        let romischeZahlBuchstaben="iIvVxXlLcCdDmM"
+        let buchstabenHaufen=CharacterSet(charactersIn: romischeZahlBuchstaben)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: römischerZahl.trimmingCharacters(in: .whitespaces))
+        guard vorhandeneBuchstaben.isSubset(of: buchstabenHaufen) else {
+            return nil
+        }
+        let einser=Einser(römischeZahl: römischerZahl)
+        var restZahl=römischerZahl.replacingOccurrences(of: einser.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
+        let zehner=Zehner(römischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: zehner.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
+        let hunderter=Hunderter(römischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: hunderter.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
+        let tausender=Tausender(römischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: tausender.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
+        
+        if restZahl.count > 0{
+            return nil
+        }
+        
+        
+        return tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
+    }
+    
     
     func utterance(input:String, roman:String)->[AVSpeechUtterance]{
         let locale=AVSpeechSynthesisVoice.currentLanguageCode()

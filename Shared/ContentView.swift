@@ -16,12 +16,16 @@ struct ContentView: View {
     
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $input, onEditingChanged: {_ in}, onCommit: {
-            guard let zahl = Int(input) else{
-                roemisch = ""
-                return
-                
+            if let zahl = Int(input){
+                roemisch = formatter.macheRömischeZahl(aus: zahl) ?? ""
             }
-            roemisch = formatter.macheRömischeZahl(aus: zahl)
+            else if let arabisch = formatter.macheZahl(aus: input){
+                roemisch = String(arabisch)
+            }
+            else{
+                roemisch = ""
+            }
+            
         }).frame(minWidth: nil, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 100, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: nil, maxHeight: nil, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         
@@ -47,6 +51,7 @@ struct ContentView: View {
                         .contextMenu(ContextMenu(menuItems: {
                             Button(action: {
                                 #if os(macOS)
+                                NSPasteboard.general.declareTypes([.string], owner: nil)
                                 NSPasteboard.general.setString(roemisch, forType: .string)
                                 #else
                                 UIPasteboard.general.string=self.roemisch
