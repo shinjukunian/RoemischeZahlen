@@ -269,9 +269,7 @@ class RömischeZahl{
             let lang=Locale.current.languageCode ?? ""
             voice=AVSpeechSynthesisVoice(language: lang)
         }
-
-        let textWithSpace=roman.map({String($0)})//.joined(separator: " \n")
-
+        
         let textZumSprechen = String(format: NSLocalizedString("%@ is:", comment: "utterance string"), input)
 
 
@@ -279,15 +277,28 @@ class RömischeZahl{
         utterance.voice=voice
         utterance.rate=0.35
         utterance.postUtteranceDelay=0.7
-
-        let romanUtterances = textWithSpace.map({t->AVSpeechUtterance in
-            let u=AVSpeechUtterance(string: t.lowercased())
+        let romanUtterances: [AVSpeechUtterance]
+        
+        if Int(roman) != nil{
+            let u=AVSpeechUtterance(string:roman)
             u.voice=voice
-            u.rate=0.2
+            u.rate=0.35
             u.preUtteranceDelay=0.6
-            u.postUtteranceDelay=0.5
-            return u
-        })
+            romanUtterances=[u]
+        }
+        else{
+            let textWithSpace=roman.map({String($0)})//.joined(separator: " \n")
+            romanUtterances = textWithSpace.map({t->AVSpeechUtterance in
+                let u=AVSpeechUtterance(string: t.lowercased())
+                u.voice=voice
+                u.rate=0.2
+                u.preUtteranceDelay=0.6
+                u.postUtteranceDelay=0.5
+                return u
+            })
+        }
+
+        
 
 
         return [utterance] + romanUtterances
