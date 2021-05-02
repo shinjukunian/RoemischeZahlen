@@ -101,6 +101,19 @@ struct Einser: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
             self.anzahl=0
         }
     }
+    
+    init(japanischeZahl:String) {
+        let a=self.arabischJapanischDict
+            .first(where: {_,n in
+                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                    return true
+                }
+                return false
+            })
+        
+        self.anzahl=a?.key ?? 0
+    }
+    
 }
 
 struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl{
@@ -146,7 +159,7 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl{
             self.anzahl=6
         case _ where römischeZahl.range(of: "XC", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
             self.anzahl=9
-        case _ where römischeZahl.range(of: "LX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
+        case _ where römischeZahl.range(of: "XL", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
             self.anzahl=4
         case _ where römischeZahl.range(of: "XXX", options: [.caseInsensitive, .anchored, .backwards], range: nil, locale: nil) != nil:
             self.anzahl=3
@@ -159,6 +172,19 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl{
         default:
             self.anzahl=0
         }
+    }
+    
+    init(japanischeZahl:String) {
+        let a=self.arabischJapanischDict
+            .sorted(by: {$0.0 > $1.0})
+            .first(where: {_,n in
+                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                    return true
+                }
+                return false
+            })
+        
+        self.anzahl=a?.key ?? 0
     }
     
 }
@@ -223,6 +249,19 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
             self.anzahl=0
         }
     }
+    
+    init(japanischeZahl:String) {
+        let a=self.arabischJapanischDict
+            .sorted(by: {$0.0 > $1.0})
+            .first(where: {_,n in
+                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                    return true
+                }
+                return false
+            })
+        
+        self.anzahl=a?.key ?? 0
+    }
 }
 
 
@@ -281,6 +320,7 @@ struct JapanischeTaussender: AlsJapanischeZahl, AlsArabischeZahl{
         let tausnder = restlicheTausender / multiplikator
         anzahl = tausnder
     }
+    
     var japanischMitTausenderEinheiten:String{
         switch anzahl {
         case 1:
@@ -288,6 +328,19 @@ struct JapanischeTaussender: AlsJapanischeZahl, AlsArabischeZahl{
         default:
             return self.japanisch
         }
+    }
+    
+    init(japanischeZahl:String) {
+        let a=self.arabischJapanischDict
+            .sorted(by: {$0.0 > $1.0})
+            .first(where: {_,n in
+                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                    return true
+                }
+                return false
+            })
+        
+        self.anzahl=a?.key ?? 0
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 enum Output: String, CaseIterable, Identifiable{
     case römisch
@@ -27,26 +28,12 @@ struct ContentView: View {
     
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $input, onEditingChanged: {_ in}, onCommit: {
+            self.parse(input: input)
             
-            if let zahl = Int(input){
-                switch outputMode {
-                case .römisch:
-                    output = formatter.macheRömischeZahl(aus: zahl) ?? ""
-                case .japanisch:
-                    output = formatter.macheJapanischeZahl(aus: zahl) ?? ""
-                case .arabisch:
-                    output = input
-                }
-                
-            }
-            else if let arabisch = formatter.macheZahl(aus: input){
-                output = String(arabisch)
-            }
-            else{
-                output = ""
-            }
-            
-        }).frame(minWidth: nil, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 100, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: nil, maxHeight: nil, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }).onReceive(Just(input), perform: {text in
+            self.parse(input: text)
+        })
+        .frame(minWidth: nil, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 100, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: nil, maxHeight: nil, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         
         #if os(macOS)
@@ -109,9 +96,35 @@ struct ContentView: View {
             
         })
         Spacer()
-        
-        
+    
     }
+    
+    
+    func parse(input:String){
+        guard input.isEmpty == false else{
+            output = ""
+            return
+        }
+        
+        if let zahl = Int(input){
+            switch outputMode {
+            case .römisch:
+                output = formatter.macheRömischeZahl(aus: zahl) ?? ""
+            case .japanisch:
+                output = formatter.macheJapanischeZahl(aus: zahl) ?? ""
+            case .arabisch:
+                output = input
+            }
+            
+        }
+        else if let arabisch = formatter.macheZahl(aus: input){
+            output = String(arabisch)
+        }
+        else{
+            output = ""
+        }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

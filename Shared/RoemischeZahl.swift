@@ -11,7 +11,8 @@ import AVFoundation
 class RömischeZahl{
     
     let synthesizer:AVSpeechSynthesizer=AVSpeechSynthesizer()
-    
+    let romischerBuchstabenHaufen=CharacterSet(charactersIn: "iIvVxXlLcCdDmM")
+    let japanischeZahlenBuchstabenHaufen=CharacterSet(charactersIn: "一二三四五六七八九十百千万億")
     
     func macheRömischeZahl(aus Zahl:Int)->String?{
         
@@ -42,21 +43,47 @@ class RömischeZahl{
     }
     
     
-    func macheZahl(aus römischerZahl:String)->Int?{
-        let romischeZahlBuchstaben="iIvVxXlLcCdDmM"
-        let buchstabenHaufen=CharacterSet(charactersIn: romischeZahlBuchstaben)
-        let vorhandeneBuchstaben=CharacterSet(charactersIn: römischerZahl.trimmingCharacters(in: .whitespaces))
-        guard vorhandeneBuchstaben.isSubset(of: buchstabenHaufen) else {
+    
+    func macheZahl(aus text:String)->Int?{
+
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: text.trimmingCharacters(in: .whitespaces))
+        switch vorhandeneBuchstaben {
+        case _ where vorhandeneBuchstaben.isSubset(of: romischerBuchstabenHaufen):
+            return self.macheZahl(römisch: text)
+        case _ where vorhandeneBuchstaben.isSubset(of: japanischeZahlenBuchstabenHaufen):
+            return self.macheZahl(japanisch: text)
+        default:
             return nil
         }
-        let einser=Einser(römischeZahl: römischerZahl)
-        var restZahl=römischerZahl.replacingOccurrences(of: einser.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
+    }
+    
+    func macheZahl(römisch Zahl:String)->Int?{
+        let einser=Einser(römischeZahl: Zahl)
+        var restZahl=Zahl.replacingOccurrences(of: einser.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
         let zehner=Zehner(römischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: zehner.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
         let hunderter=Hunderter(römischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: hunderter.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
         let tausender=Tausender(römischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: tausender.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
+        
+        if restZahl.count > 0{
+            return nil
+        }
+        
+        
+        return tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
+    }
+    
+    fileprivate func macheZahl(japanisch Zahl:String)->Int?{
+        let einser=Einser(japanischeZahl: Zahl)
+        var restZahl=Zahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        let zehner=Zehner(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: zehner.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        let hunderter=Hunderter(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: hunderter.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        let tausender=JapanischeTaussender(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: tausender.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         
         if restZahl.count > 0{
             return nil
