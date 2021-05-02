@@ -86,8 +86,6 @@ struct SpeechOutput{
 
 class ExotischeZahlenFormatter{
     
-    
-    
     let synthesizer:AVSpeechSynthesizer=AVSpeechSynthesizer()
     
     func macheRömischeZahl(aus Zahl:Int)->String?{
@@ -162,13 +160,15 @@ class ExotischeZahlenFormatter{
         restZahl=restZahl.replacingOccurrences(of: tausender.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let zehnTausender=ZehnTausender(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: zehnTausender.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        let hundertMillionen=HundertMillionen(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: hundertMillionen.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         
         if restZahl.count > 0{
             return nil
         }
         
         
-        return zehnTausender.arabisch + tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
+        return hundertMillionen.arabisch + zehnTausender.arabisch + tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
     }
     
     

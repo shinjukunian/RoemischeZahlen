@@ -72,7 +72,7 @@ struct ContentView: View {
                     Text(output).multilineTextAlignment(.center)
                     .lineLimit(1)
                         .fixedSize()
-                        .frame(minWidth: 100, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+                        .frame(minWidth: 100, idealWidth: 100, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
                         .padding()
                         .contextMenu(ContextMenu(menuItems: {
                             Button(action: {
@@ -90,13 +90,6 @@ struct ContentView: View {
                         }))
                     Button(action: {
                         formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
-//                        if Int(output) != nil{
-//
-//                        }
-//                        else{
-//                            formatter.speak(input: ExotischeZahlenFormatter.SpeechOutput(format: .auto, text: input), output: ExotischeZahlenFormatter.SpeechOutput(format: outputMode, text: output))
-//
-//                        }
                         
                     }, label: {
                         Image(systemName: "play.rectangle.fill")
@@ -133,9 +126,13 @@ struct ContentView: View {
                 output = input
             }
             
+            
         }
         else if let arabisch = formatter.macheZahl(aus: input){
-            output = String(arabisch)
+            let f=NumberFormatter()
+            f.numberStyle = .decimal
+            f.maximumFractionDigits=0
+            output = f.string(from: NSNumber(integerLiteral: arabisch)) ?? ""
         }
         else{
             output = ""

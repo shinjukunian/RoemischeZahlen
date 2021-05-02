@@ -15,8 +15,8 @@
 		163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B36263A5AE000E1A69C /* ContentView.swift */; };
 		163C1B62263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
 		163C1B63263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
-		163C1B73263A5BD700E1A69C /* RoemischeZahl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */; };
-		163C1B74263A5BD700E1A69C /* RoemischeZahl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */; };
+		163C1B73263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */; };
+		163C1B74263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */; };
 		163C1B78263A746100E1A69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B7B263A746100E1A69C /* Localizable.strings */; };
 		163C1B79263A746100E1A69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B7B263A746100E1A69C /* Localizable.strings */; };
 		163C1B88263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B86263A799600E1A69C /* InfoPlist.strings */; };
@@ -59,7 +59,7 @@
 		163C1B57263A5AE500E1A69C /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		163C1B5B263A5AE500E1A69C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		163C1B5D263A5AE500E1A69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoemischeZahl.swift; sourceTree = "<group>"; };
+		163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExotischeZahlenFormatter.swift; sourceTree = "<group>"; };
 		163C1B7A263A746100E1A69C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		163C1B7C263A746600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		163C1B7D263A74DE00E1A69C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
 				5A40F9C2263E69F300D6940B /* String+Extensions.swift */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
-				163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */,
+				163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
 			);
 			path = Shared;
@@ -342,7 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */,
-				163C1B73263A5BD700E1A69C /* RoemischeZahl.swift in Sources */,
+				163C1B73263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				163C1B5E263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
@@ -354,7 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A40F9C4263E69F300D6940B /* String+Extensions.swift in Sources */,
-				163C1B74263A5BD700E1A69C /* RoemischeZahl.swift in Sources */,
+				163C1B74263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				163C1B5F263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,

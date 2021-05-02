@@ -411,4 +411,22 @@ struct HundertMillionen: AlsArabischeZahl, AlsJapanischeZahl{
             r+z
         }) + "億"
     }
+    
+    init(japanischeZahl:String) {
+        var restZahl=japanischeZahl.replacingOccurrences(of: "億", with: "")
+        
+        let einser=Einser(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        let zehner=Zehner(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: zehner.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        let hunderter=Hunderter(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: hunderter.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        let tausender=JapanischeTausender(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: tausender.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        
+        let komponenten:[AlsArabischeZahl]=[tausender,hunderter,zehner,einser]
+        self.anzahl=komponenten.reduce(0, {r,z in
+            r+z.arabisch
+        })
+    }
 }
