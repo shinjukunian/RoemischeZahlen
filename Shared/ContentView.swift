@@ -33,7 +33,7 @@ struct ContentView: View {
         }).onReceive(Just(input), perform: {text in
             self.parse(input: text)
         })
-        .frame(minWidth: nil, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 100, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: nil, maxHeight: nil, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(minWidth: 50, idealWidth: 200, maxWidth: 400, minHeight: 15, idealHeight: nil, maxHeight: nil, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         
         #if os(macOS)
@@ -59,53 +59,47 @@ struct ContentView: View {
     
     
     var body: some View {
-        ZStack(content: {
-            
-            VStack(alignment: .center, spacing: 5, content: {
-                picker.onReceive(Just(outputMode), perform: { _ in
-                    self.parse(input: self.input)
-                })
-                HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5, content: {
-                    textField
-                }).padding()
-                HStack(content: {
-                    Text(output).multilineTextAlignment(.center)
-                    .lineLimit(1)
-                        .fixedSize()
-                        .frame(minWidth: 100, idealWidth: 100, maxWidth: nil, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
-                        .padding()
-                        .contextMenu(ContextMenu(menuItems: {
-                            Button(action: {
-                                #if os(macOS)
-                                    NSPasteboard.general.declareTypes([.string], owner: nil)
-                                    NSPasteboard.general.setString(output, forType: .string)
-                                #else
-                                    UIPasteboard.general.string=output
-                                #endif
-                            }, label: {
-                                Text("Copy")
-                            })
-                            .help(Text("Speak"))
-                            
-                        }))
-                    Button(action: {
-                        formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
-                        
-                    }, label: {
-                        Image(systemName: "play.rectangle.fill")
-                    })
-                    .disabled(output.isEmpty)
-                    .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
-                })
-                .padding(.horizontal)
-                Spacer()
-                
+        VStack(alignment: .center, spacing: 5, content: {
+            picker.onReceive(Just(outputMode), perform: { _ in
+                self.parse(input: self.input)
             })
-            .padding(.top)
-            
+            HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5, content: {
+                textField
+            }).padding()
+            HStack(content: {
+                Text(output).multilineTextAlignment(.center)
+                .lineLimit(1)
+                    .fixedSize()
+                    .frame(minWidth: 100, idealWidth: 200, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
+                    .padding()
+                    .contextMenu(ContextMenu(menuItems: {
+                        Button(action: {
+                            #if os(macOS)
+                                NSPasteboard.general.declareTypes([.string], owner: nil)
+                                NSPasteboard.general.setString(output, forType: .string)
+                            #else
+                                UIPasteboard.general.string=output
+                            #endif
+                        }, label: {
+                            Text("Copy")
+                        })
+                        .help(Text("Speak"))
+                        
+                    }))
+                Button(action: {
+                    formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
+                    
+                }, label: {
+                    Image(systemName: "play.rectangle.fill")
+                })
+                .disabled(output.isEmpty)
+                .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
+            })
+            .padding(.horizontal)
+            Spacer()
             
         })
-       
+        .padding(.top)
     
     }
     
