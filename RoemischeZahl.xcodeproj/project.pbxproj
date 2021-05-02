@@ -23,6 +23,8 @@
 		163C1B8B263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B89263A799600E1A69C /* InfoPlist.strings */; };
 		5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
 		5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
+		5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C2263E69F300D6940B /* String+Extensions.swift */; };
+		5A40F9C4263E69F300D6940B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C2263E69F300D6940B /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,7 @@
 		163C1B8D263A79B600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		163C1B8E263A79B600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DezimalZahlen.swift; sourceTree = "<group>"; };
+		5A40F9C2263E69F300D6940B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 				163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
 				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
+				5A40F9C2263E69F300D6940B /* String+Extensions.swift */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
 				163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
@@ -337,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */,
 				163C1B73263A5BD700E1A69C /* RoemischeZahl.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
@@ -348,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A40F9C4263E69F300D6940B /* String+Extensions.swift in Sources */,
 				163C1B74263A5BD700E1A69C /* RoemischeZahl.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,

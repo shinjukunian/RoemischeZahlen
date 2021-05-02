@@ -298,7 +298,7 @@ struct Tausender: AlsArabischeZahl{
     }
 }
 
-struct JapanischeTaussender: AlsJapanischeZahl, AlsArabischeZahl{
+struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl{
     let anzahl:Int
     let multiplikator:Int = 1000
     
@@ -361,13 +361,31 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl{
     var japanisch: String{
         guard anzahl > 0 else {return ""}
         
-        let z:[String]=[JapanischeTaussender(Zahl: anzahl).japanischMitTausenderEinheiten,
+        let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten,
                                    Hunderter(Zahl: anzahl).japanisch,
                                    Zehner(Zahl: anzahl).japanisch,
                                    Einser(Zahl: anzahl).japanisch]
         return z.reduce("", {r, z in
             r+z
         }) + "万"
+    }
+    
+    init(japanischeZahl:String) {
+        var restZahl=japanischeZahl.replacingOccurrences(of: "万", with: "")
+        
+        let einser=Einser(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        let zehner=Zehner(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: zehner.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        let hunderter=Hunderter(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: hunderter.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        let tausender=JapanischeTausender(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: tausender.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
+        
+        let komponenten:[AlsArabischeZahl]=[tausender,hunderter,zehner,einser]
+        self.anzahl=komponenten.reduce(0, {r,z in
+            r+z.arabisch
+        })
     }
 }
 
@@ -385,7 +403,7 @@ struct HundertMillionen: AlsArabischeZahl, AlsJapanischeZahl{
     var japanisch: String{
         guard anzahl > 0 else {return ""}
         
-        let z:[String]=[ZehnTausender(Zahl: anzahl).japanisch, JapanischeTaussender(Zahl: anzahl).japanischMitTausenderEinheiten,
+        let z:[String]=[ZehnTausender(Zahl: anzahl).japanisch, JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten,
                                    Hunderter(Zahl: anzahl).japanisch,
                                    Zehner(Zahl: anzahl).japanisch,
                                    Einser(Zahl: anzahl).japanisch]

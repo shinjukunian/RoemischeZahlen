@@ -24,7 +24,7 @@ struct ContentView: View {
     
     @State var outputMode:Output = Output.römisch
     
-    let formatter=RömischeZahl()
+    let formatter=ExotischeZahlenFormatter()
     
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $input, onEditingChanged: {_ in}, onCommit: {
@@ -43,15 +43,28 @@ struct ContentView: View {
         #endif
     }
     
+    var picker: some View{
+        let p=Picker("Output", selection: $outputMode, content: {
+            Text("Römisch").tag(Output.römisch)
+            Text("Japanisch").tag(Output.japanisch)
+        })
+        #if os(macOS)
+        return p.pickerStyle(InlinePickerStyle())
+        #else
+        return p.pickerStyle(SegmentedPickerStyle()).padding()
+        #endif
+        
+        
+    }
+    
     
     var body: some View {
         ZStack(content: {
             
             VStack(alignment: .center, spacing: 5, content: {
-                Picker("Output", selection: $outputMode, content: {
-                    Text("Römisch").tag(Output.römisch)
-                    Text("Japanisch").tag(Output.japanisch)
-                }).pickerStyle(InlinePickerStyle())
+                picker.onReceive(Just(outputMode), perform: { _ in
+                    self.parse(input: self.input)
+                })
                 HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5, content: {
                     textField
                 }).padding()
@@ -76,26 +89,30 @@ struct ContentView: View {
                             
                         }))
                     Button(action: {
-                        if Int(output) != nil{
-                            formatter.speak(input: input, output: output, format: .arabisch)
-                        }
-                        else{
-                            formatter.speak(input: input, output: output, format: outputMode)
-                        }
+                        formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
+//                        if Int(output) != nil{
+//
+//                        }
+//                        else{
+//                            formatter.speak(input: ExotischeZahlenFormatter.SpeechOutput(format: .auto, text: input), output: ExotischeZahlenFormatter.SpeechOutput(format: outputMode, text: output))
+//
+//                        }
                         
                     }, label: {
                         Image(systemName: "play.rectangle.fill")
-                    }).keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
+                    })
+                    .disabled(output.isEmpty)
+                    .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
                 })
                 .padding(.horizontal)
-                
+                Spacer()
                 
             })
             .padding(.top)
             
             
         })
-        Spacer()
+       
     
     }
     
