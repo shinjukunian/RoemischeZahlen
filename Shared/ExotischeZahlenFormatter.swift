@@ -86,7 +86,7 @@ struct SpeechOutput{
 
 class ExotischeZahlenFormatter{
     
-    let synthesizer:AVSpeechSynthesizer=AVSpeechSynthesizer()
+    lazy var synthesizer:AVSpeechSynthesizer=AVSpeechSynthesizer()
     
     func macheRömischeZahl(aus Zahl:Int)->String?{
         
@@ -185,6 +185,7 @@ class ExotischeZahlenFormatter{
     }
     
     func speak(input:SpeechOutput, output:SpeechOutput){
+        self.synthesizer.stopSpeaking(at: .immediate)
         
         self.utterance(input: input, output: output).forEach({u in
             self.synthesizer.speak(u)

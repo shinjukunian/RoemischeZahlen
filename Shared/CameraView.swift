@@ -16,6 +16,9 @@ struct CameraView: View {
     
     @State var convert:Bool = true
     
+    @State var lastScaleValue: CGFloat = 1.0
+    @State var zoomScale: CGFloat = 1.0
+    
     var body: some View {
         VStack{
             HStack(alignment: .center, spacing: 5.0){
@@ -35,17 +38,29 @@ struct CameraView: View {
             Text(recognizer.state.prompt)
                 .multilineTextAlignment(.center)
             ZStack{
-                PreviewHolder(recognizer: recognizer)
+                PreviewHolder(recognizer: recognizer, zoomScale: $zoomScale)
                     .frame(minWidth: 500, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity, alignment: .center)
                 GeometryReader(content: { geometry in
                     makeOverlay(size: geometry.size, elements: self.textElements)
                         .onReceive(recognizer.$foundElements, perform: { elements in
-                        self.textElements=elements
-                    })
+                            self.textElements=elements
+                        })
                 })
             }
+            .gesture(MagnificationGesture().onChanged { val in
+                let delta = val / self.lastScaleValue
+                self.lastScaleValue = val
+                let newScale = self.zoomScale * delta
+                self.zoomScale = newScale
+                //... anything else e.g. clamping the newScale
+            }.onEnded { val in
+                // without this the next gesture will be broken
+                self.lastScaleValue = 1.0
+            }
+            )
             
-    
+            
+            
         }
     }
     

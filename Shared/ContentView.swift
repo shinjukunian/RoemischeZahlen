@@ -39,7 +39,7 @@ struct ContentView: View {
         #if os(macOS)
             return t
         #else
-        return t.keyboardType(.numberPad)
+        return t.keyboardType(.numbersAndPunctuation)
         #endif
     }
     
@@ -51,7 +51,7 @@ struct ContentView: View {
         #if os(macOS)
         return p.pickerStyle(InlinePickerStyle())
         #else
-        return p.pickerStyle(SegmentedPickerStyle()).padding()
+        return p.pickerStyle(SegmentedPickerStyle()).fixedSize()
         #endif
         
         
@@ -99,7 +99,7 @@ struct ContentView: View {
             Spacer()
             
         })
-        .padding(.top)
+        .padding()
     
     }
     

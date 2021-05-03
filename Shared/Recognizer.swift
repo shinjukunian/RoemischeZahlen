@@ -11,7 +11,8 @@ import AVFoundation
 import CoreImage
 
 protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {
-    var videoAspectRatio:CGFloat {get set}
+    var videoAspectRatio: CGFloat {get set}
+    var textOrientation: CGImagePropertyOrientation {get set}
 }
 
 class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
@@ -76,6 +77,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     @Published var state:SceneStabilityState = .notSteady
     @Published var videoAspectRatio:CGFloat=1
     @Published var foundElements = [TextElement]()
+    
     
     lazy var ciContext:CIContext={
         guard let device=MTLCreateSystemDefaultDevice() else{fatalError()}

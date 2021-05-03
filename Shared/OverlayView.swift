@@ -76,6 +76,7 @@ struct OverlayView: View {
                             .stroke(element.type.strokeColor, lineWidth: 1)
                             .background(Color.white.opacity(0.9))
                         Text(converted)
+                            .foregroundColor(Color.black)
                     }
                     else{
 //                        Text(element.text)
