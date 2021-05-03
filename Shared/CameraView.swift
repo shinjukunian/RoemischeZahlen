@@ -12,7 +12,6 @@ struct CameraView: View {
     
     @StateObject var recognizer=Recognizer()
 
-    @State var sceneStabilityState:String = ""
     var cancelables=Set<AnyCancellable>()
     
     private var sceneStabilityPublisher:AnyPublisher<String,Never>{

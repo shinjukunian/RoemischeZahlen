@@ -144,10 +144,6 @@ class PreviewView: MyView {
         return layer as! AVCaptureVideoPreviewLayer
     }
 
-    override func layout() {
-        super.layout()
-        
-    }
     
     func moveToSuperView(){
         if nil != self.superview {
@@ -165,6 +161,11 @@ class PreviewView: MyView {
         self.moveToSuperView()
     }
     
+    override func layout() {
+        super.layout()
+        
+    }
+    
     #else
     override class var layerClass: AnyClass{
         return AVCaptureVideoPreviewLayer.self
@@ -173,6 +174,10 @@ class PreviewView: MyView {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         self.moveToSuperView()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     #endif

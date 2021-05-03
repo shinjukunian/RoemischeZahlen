@@ -8,6 +8,7 @@
 import Foundation
 import Vision
 import AVFoundation
+import CoreImage
 
 protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {}
 
