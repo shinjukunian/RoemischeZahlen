@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "163C1B43263A5AE500E1A69C"
-               BuildableName = "RoemischeZahl.app"
+               BuildableName = "Roman Numerals.app"
                BlueprintName = "RoemischeZahl (macOS)"
                ReferencedContainer = "container:RoemischeZahl.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "ja"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -56,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "163C1B43263A5AE500E1A69C"
-            BuildableName = "RoemischeZahl.app"
+            BuildableName = "Roman Numerals.app"
             BlueprintName = "RoemischeZahl (macOS)"
             ReferencedContainer = "container:RoemischeZahl.xcodeproj">
          </BuildableReference>
@@ -73,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "163C1B43263A5AE500E1A69C"
-            BuildableName = "RoemischeZahl.app"
+            BuildableName = "Roman Numerals.app"
             BlueprintName = "RoemischeZahl (macOS)"
             ReferencedContainer = "container:RoemischeZahl.xcodeproj">
          </BuildableReference>

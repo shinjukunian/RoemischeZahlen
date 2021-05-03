@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import RoemischeZahl
 
 class Tests_iOS: XCTestCase {
 
@@ -21,6 +22,15 @@ class Tests_iOS: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testArabisch1(){
+        let römisch="MCM"
+        let formatter=RömischeZahl()
+        let arabisch=formatter.macheZahl(aus: römisch)
+        XCTAssert(arabisch == 1900)
+    }
+    
+    
 
     func testExample() throws {
         // UI tests must launch the application that they test.
