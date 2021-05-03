@@ -19,7 +19,7 @@ struct RoemischeZahlApp: App {
                             presentingCamera=true
                         }, label: {
                             Image(systemName: "camera")
-                        }).disabled(true)
+                        })
                     })
                     
                 }).sheet(isPresented: $presentingCamera, onDismiss: {

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import AVFoundation
+import Combine
 
 #if canImport(Appkit)
 import AppKit
@@ -16,8 +17,6 @@ typealias MyView = NSView
 import UIKit
 typealias MyView = UIView
 #endif
-
-
 
 
 #if canImport(AppKit)
@@ -55,7 +54,8 @@ struct PreviewHolder: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> PreviewView {
-        return PreviewView(delegate: recognizer)
+        let p=PreviewView(delegate: recognizer)
+        return p
     }
     
     
@@ -65,18 +65,18 @@ struct PreviewHolder: UIViewRepresentable {
 #endif
 
 
-class PreviewView: MyView {
+class PreviewView: MyView{
     private var captureSession: AVCaptureSession?
     var videoDataOutput = AVCaptureVideoDataOutput()
     let videoDataOutputQueue = DispatchQueue(label: "com.telethon.VideoDataOutputQueue")
 
-    @Published var bufferAspectRatio:CGFloat = 1
-    
     weak var delegate:Recognizing?
     
     init(delegate: Recognizing) {
         self.delegate=delegate
+        
         super.init(frame: .zero)
+        
 
         var allowedAccess = false
         let blocker = DispatchGroup()
@@ -109,7 +109,7 @@ class PreviewView: MyView {
         }
         let session = AVCaptureSession()
         session.beginConfiguration()
-        
+        let bufferAspectRatio:CGFloat
         if videoDevice.supportsSessionPreset(.hd4K3840x2160) {
 //            session.sessionPreset = AVCaptureSession.Preset.hd4K3840x2160
             bufferAspectRatio = 3840.0 / 2160.0
@@ -121,8 +121,13 @@ class PreviewView: MyView {
 //            session.sessionPreset = AVCaptureSession.Preset.hd1920x1080
             bufferAspectRatio = 1280.0 / 720.0
         }
+        else{
+            bufferAspectRatio=1
+        }
         self.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: bufferAspectRatio).isActive=true
-
+        self.delegate?.videoAspectRatio=bufferAspectRatio
+        
+        
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
             session.canAddInput(videoDeviceInput)
             else { return }

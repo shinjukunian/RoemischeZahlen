@@ -24,6 +24,15 @@ enum SceneStabilityState: Equatable, CustomStringConvertible{
             return "Steady"
         }
     }
+    
+    var prompt: String{
+        switch self {
+        case .notSteady:
+            return NSLocalizedString("Hold Steady", comment: "prompt")
+        case .steady:
+            return NSLocalizedString("Detecting...", comment: "prompt")
+        }
+    }
 }
 
 
