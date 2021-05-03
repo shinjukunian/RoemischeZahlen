@@ -57,20 +57,6 @@ struct ContentView: View {
         
     }
     
-    var picker: some View{
-        let p=Picker("Output", selection: $outputMode, content: {
-            Text("Römisch").tag(Output.römisch)
-            Text("Japanisch").tag(Output.japanisch)
-        })
-        #if os(macOS)
-        return p.pickerStyle(InlinePickerStyle())
-        #else
-        return p.pickerStyle(SegmentedPickerStyle()).padding()
-        #endif
-        
-        
-    }
-    
     
     var body: some View {
         VStack(alignment: .center, spacing: 5, content: {
