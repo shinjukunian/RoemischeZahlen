@@ -98,8 +98,8 @@ struct ContentView: View {
             .padding(.horizontal)
             Spacer()
             
-        })
-        .padding()
+        }).padding()
+        
     
     }
     

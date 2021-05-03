@@ -30,7 +30,7 @@ struct RoemischeZahlApp: App {
         return c
         #else
         return NavigationView(content: {
-            c
+            c.navigationBarTitleDisplayMode(.inline)
         })
         #endif
     }
@@ -63,6 +63,7 @@ struct RoemischeZahlApp: App {
             }, content: {
                 cameraView
             })
+            .navigationBarTitleDisplayMode(.inline).navigationTitle("Numerals")
         })
         #endif
     }

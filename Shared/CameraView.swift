@@ -20,10 +20,11 @@ struct CameraView: View {
     @State var zoomScale: CGFloat = 1.0
     
     var body: some View {
-        VStack{
+        VStack(spacing: 5.0){
             HStack(alignment: .center, spacing: 5.0){
                 Toggle("Convert", isOn: $convert)
                     .padding(.trailing)
+                    .fixedSize()
                 
                 Picker("Output", selection: $outputType, content: {
                     Text("Römisch").tag(Output.römisch)
@@ -35,11 +36,9 @@ struct CameraView: View {
                 
             }
             .padding([.top, .leading, .trailing])
-            Text(recognizer.state.prompt)
-                .multilineTextAlignment(.center)
+            
             ZStack{
-                PreviewHolder(recognizer: recognizer, zoomScale: $zoomScale)
-                    .frame(minWidth: 500, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity, alignment: .center)
+                previewView
                 GeometryReader(content: { geometry in
                     makeOverlay(size: geometry.size, elements: self.textElements)
                         .onReceive(recognizer.$foundElements, perform: { elements in
@@ -47,21 +46,33 @@ struct CameraView: View {
                         })
                 })
             }
+            .overlay(Text(recognizer.state.prompt), alignment: .top)
             .gesture(MagnificationGesture().onChanged { val in
                 let delta = val / self.lastScaleValue
                 self.lastScaleValue = val
                 let newScale = self.zoomScale * delta
                 self.zoomScale = newScale
-                //... anything else e.g. clamping the newScale
+                
             }.onEnded { val in
-                // without this the next gesture will be broken
+                
                 self.lastScaleValue = 1.0
             }
             )
-            
+            Spacer()
             
             
         }
+    }
+    
+    var previewView:some View{
+        let h=PreviewHolder(recognizer: recognizer, zoomScale: $zoomScale)
+        let width=CGFloat(700)
+        #if os(macOS)
+        return h.frame(minWidth: width, maxWidth: .infinity, minHeight: width/recognizer.videoAspectRatio, maxHeight: .infinity, alignment: .center)
+        #else
+        return h
+        #endif
+            
     }
     
     
