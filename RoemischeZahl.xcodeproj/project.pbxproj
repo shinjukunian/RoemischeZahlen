@@ -15,12 +15,24 @@
 		163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B36263A5AE000E1A69C /* ContentView.swift */; };
 		163C1B62263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
 		163C1B63263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
-		163C1B73263A5BD700E1A69C /* RoemischeZahl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */; };
-		163C1B74263A5BD700E1A69C /* RoemischeZahl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */; };
+		163C1B73263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */; };
+		163C1B74263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */; };
 		163C1B78263A746100E1A69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B7B263A746100E1A69C /* Localizable.strings */; };
 		163C1B79263A746100E1A69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B7B263A746100E1A69C /* Localizable.strings */; };
 		163C1B88263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B86263A799600E1A69C /* InfoPlist.strings */; };
 		163C1B8B263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B89263A799600E1A69C /* InfoPlist.strings */; };
+		5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
+		5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
+		5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C2263E69F300D6940B /* String+Extensions.swift */; };
+		5A40F9C4263E69F300D6940B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C2263E69F300D6940B /* String+Extensions.swift */; };
+		5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C8263E75D000D6940B /* CameraView.swift */; };
+		5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C8263E75D000D6940B /* CameraView.swift */; };
+		5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
+		5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
+		5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
+		5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
+		5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB7263E873000C3DE62 /* Recognizer.swift */; };
+		5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB7263E873000C3DE62 /* Recognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +67,7 @@
 		163C1B57263A5AE500E1A69C /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		163C1B5B263A5AE500E1A69C /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		163C1B5D263A5AE500E1A69C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoemischeZahl.swift; sourceTree = "<group>"; };
+		163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExotischeZahlenFormatter.swift; sourceTree = "<group>"; };
 		163C1B7A263A746100E1A69C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		163C1B7C263A746600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		163C1B7D263A74DE00E1A69C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -64,6 +76,12 @@
 		163C1B8C263A799C00E1A69C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		163C1B8D263A79B600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		163C1B8E263A79B600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DezimalZahlen.swift; sourceTree = "<group>"; };
+		5A40F9C2263E69F300D6940B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		5A40F9CB263E765200D6940B /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		5A606FB4263E86B700C3DE62 /* SceneStability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneStability.swift; sourceTree = "<group>"; };
+		5A606FB7263E873000C3DE62 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +131,16 @@
 		163C1B34263A5AE000E1A69C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
 				163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
+				5A40F9C8263E75D000D6940B /* CameraView.swift */,
+				5A40F9CB263E765200D6940B /* PreviewView.swift */,
+				5A606FB7263E873000C3DE62 /* Recognizer.swift */,
+				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
+				5A40F9C2263E69F300D6940B /* String+Extensions.swift */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
-				163C1B72263A5BD700E1A69C /* RoemischeZahl.swift */,
+				163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
 			);
 			path = Shared;
@@ -333,8 +357,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				163C1B73263A5BD700E1A69C /* RoemischeZahl.swift in Sources */,
+				5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */,
+				163C1B73263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
+				5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */,
+				5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
+				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
+				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
+				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				163C1B5E263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,8 +373,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				163C1B74263A5BD700E1A69C /* RoemischeZahl.swift in Sources */,
+				5A40F9C4263E69F300D6940B /* String+Extensions.swift in Sources */,
+				163C1B74263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
+				5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */,
+				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
+				5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */,
+				5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */,
+				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				163C1B5F263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -552,7 +588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -577,7 +613,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -601,7 +637,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -622,7 +658,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -644,7 +680,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -668,7 +704,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -690,7 +726,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PHL7FJVM2S;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
