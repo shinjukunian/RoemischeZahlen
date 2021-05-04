@@ -54,9 +54,11 @@ struct OverlayView: View {
     @State var outputType = OutputType.highlight
     
     var body: some View {
-        makeView().onTapGesture {
-            
-        }
+        makeView()
+            .contentShape(Rectangle()) 
+            .onTapGesture(perform: {
+            print("tap")
+        })
     }
     
     

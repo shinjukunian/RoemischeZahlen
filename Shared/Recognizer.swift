@@ -67,7 +67,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                 return ExotischeZahlenFormatter().macheJapanischeZahl(aus: number)
             case .arabicNumber(let number) where output == .römisch:
                 return ExotischeZahlenFormatter().macheRömischeZahl(aus: number)
-            case .japaneseNumber(let number) where output == .arabisch, .romanNumeral(let number) where output == .arabisch:
+            case .japaneseNumber(let number), .romanNumeral(let number):
                 return String(number)
             default:
                 return nil
@@ -111,11 +111,19 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     }
     
     var defaultRegionOfInterest:CGRect{
-        CGRect(x: 0.25, y: 0.7, width: 0.5, height: 0.2)
+        switch self.textOrientation {
+        case .left, .right:
+            return CGRect(x: 0.25, y: 0.8, width: 0.5, height: 0.1)
+        default:
+            return CGRect(x: 0.15, y: 0.7, width: 0.7, height: 0.2)
+        }
     }
     
     override init() {
         super.init()
+        request.recognitionLevel = .fast
+        request.usesLanguageCorrection = false
+//        request.recognitionLanguages=["zh-Hant", "en"]
     }
     
     func recognizeTextHandler(request: VNRequest, error: Error?) {
@@ -161,12 +169,6 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         let state=self.assessStability(sampleBuffer: sampleBuffer)
         
         if state == .steady, let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer){
-            // Configure for running in real-time.
-            request.recognitionLevel = .fast
-            // Language correction won't help recognizing phone numbers. It also
-            // makes recognition slower.
-            request.usesLanguageCorrection = false
-            // Only run on the region of interest for maximum speed.
             
             request.regionOfInterest = regionOfInterest
             

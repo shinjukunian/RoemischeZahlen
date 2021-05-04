@@ -19,7 +19,13 @@ struct CameraView: View {
     @State var lastScaleValue: CGFloat = 1.0
     @State var zoomScale: CGFloat = 1.0
     
+    #if os(macOS)
     @State var useROI: Bool = false
+    #else
+    @State var useROI: Bool = true
+    #endif
+    
+    @State var selectedTextElement:Recognizer.TextElement?
     
     var body: some View {
         VStack(spacing: 5.0){
