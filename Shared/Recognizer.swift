@@ -9,6 +9,7 @@ import Foundation
 import Vision
 import AVFoundation
 import CoreImage
+import SwiftUI
 
 protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {
     var videoAspectRatio: CGFloat {get set}
@@ -34,7 +35,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                         let japanisch=ExotischeZahlenFormatter().macheZahl(aus: text){
                     self = .japaneseNumber(number: japanisch)
                 }
-                else if let number=Int(text){
+                else if let number=NumberFormatter().number(from: text)?.intValue{
                     self = .arabicNumber(number: number)
                 }
                 else{
@@ -74,10 +75,13 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         }
     }
     
+    static let fullAreaROI:CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+    
     @Published var state:SceneStabilityState = .notSteady
     @Published var videoAspectRatio:CGFloat=1
     @Published var foundElements = [TextElement]()
     
+    var regionOfInterest = Recognizer.fullAreaROI
     
     lazy var ciContext:CIContext={
         guard let device=MTLCreateSystemDefaultDevice() else{fatalError()}
@@ -95,7 +99,20 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     var currentlyAnalyzedPixelBuffer: CVPixelBuffer?
     var currentFrame=0
     
-    var regionOfInterest = CGRect(x: 0, y: 0, width: 1, height: 1)
+    var useROI:Bool = true{
+        didSet{
+            if useROI {
+                self.regionOfInterest = defaultRegionOfInterest
+            }
+            else{
+                self.regionOfInterest = Recognizer.fullAreaROI
+            }
+        }
+    }
+    
+    var defaultRegionOfInterest:CGRect{
+        CGRect(x: 0.25, y: 0.7, width: 0.5, height: 0.2)
+    }
     
     override init() {
         super.init()
@@ -119,7 +136,18 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                       let text=s else{
                     return
                 }
-                elements.append(TextElement(text: text, rect: rect))
+                if self.useROI{
+                    let convertedX=self.regionOfInterest.minX+self.regionOfInterest.width*rect.minX
+                    let convertedY=self.regionOfInterest.minY+self.regionOfInterest.height*rect.minY
+                    let convertedWidth=self.regionOfInterest.width * rect.width
+                    let convertedHeight=self.regionOfInterest.height * rect.height
+                    let convertedRect=CGRect(x: convertedX, y: convertedY, width: convertedWidth, height: convertedHeight)
+                    elements.append(TextElement(text: text, rect: convertedRect))
+                }
+                else{
+                    elements.append(TextElement(text: text, rect: rect))
+                }
+                
             })
             
         }

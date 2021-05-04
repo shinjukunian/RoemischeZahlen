@@ -29,6 +29,8 @@
 		5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C8263E75D000D6940B /* CameraView.swift */; };
 		5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
 		5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
+		5A54F3A126411F58009D6882 /* ROIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54F3A026411F58009D6882 /* ROIView.swift */; };
+		5A54F3A226411F58009D6882 /* ROIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54F3A026411F58009D6882 /* ROIView.swift */; };
 		5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
 		5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
 		5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB7263E873000C3DE62 /* Recognizer.swift */; };
@@ -82,6 +84,7 @@
 		5A40F9C2263E69F300D6940B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5A40F9CB263E765200D6940B /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		5A54F3A026411F58009D6882 /* ROIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROIView.swift; sourceTree = "<group>"; };
 		5A606FB4263E86B700C3DE62 /* SceneStability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneStability.swift; sourceTree = "<group>"; };
 		5A606FB7263E873000C3DE62 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
@@ -138,6 +141,7 @@
 				163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
 				5A40F9C8263E75D000D6940B /* CameraView.swift */,
+				5A54F3A026411F58009D6882 /* ROIView.swift */,
 				5A40F9CB263E765200D6940B /* PreviewView.swift */,
 				5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */,
 				5A606FB7263E873000C3DE62 /* Recognizer.swift */,
@@ -367,6 +371,7 @@
 				5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
+				5A54F3A126411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				163C1B5E263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
@@ -384,6 +389,7 @@
 				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */,
+				5A54F3A226411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				163C1B5F263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,

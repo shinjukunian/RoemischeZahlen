@@ -19,12 +19,23 @@ struct CameraView: View {
     @State var lastScaleValue: CGFloat = 1.0
     @State var zoomScale: CGFloat = 1.0
     
+    @State var useROI: Bool = false
+    
     var body: some View {
         VStack(spacing: 5.0){
             HStack(alignment: .center, spacing: 5.0){
-                Toggle("Convert", isOn: $convert)
-                    .padding(.trailing)
-                    .fixedSize()
+                VStack{
+                    Toggle("Convert", isOn: $convert)
+                        .padding(.trailing)
+                        .fixedSize()
+                    Toggle("Use ROI", isOn: $useROI)
+                        .padding(.trailing)
+                        .fixedSize().onChange(of: useROI, perform: { value in
+                            recognizer.useROI=value
+                        })
+                    
+                }
+                
                 
                 Picker("Output", selection: $outputType, content: {
                     Text("Römisch").tag(Output.römisch)
@@ -98,8 +109,12 @@ struct CameraView: View {
             output = .highlight
         }
         
+        
         return GeometryReader(content: { geometry in
-//            Rectangle().fill(Color.blue.opacity(0.2))
+            if self.useROI{
+                ROIView(roiRect: recognizer.defaultRegionOfInterest)
+            }
+            
             ForEach(elements, id: \.rect, content: {element in
                 let width=geometry.size.width * element.rect.width
                 let height=geometry.size.height * element.rect.height
