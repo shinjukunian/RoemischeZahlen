@@ -44,10 +44,11 @@ struct ContentView: View {
     }
     
     var picker: some View{
-        let p=Picker("Output", selection: $outputMode, content: {
+        let p=Picker(selection: $outputMode, label: Text("Output"), content: {
             Text("Römisch").tag(Output.römisch)
             Text("Japanisch").tag(Output.japanisch)
         })
+       
         #if os(macOS)
         return p.pickerStyle(InlinePickerStyle())
         #else
@@ -74,12 +75,7 @@ struct ContentView: View {
                     .padding()
                     .contextMenu(ContextMenu(menuItems: {
                         Button(action: {
-                            #if os(macOS)
-                                NSPasteboard.general.declareTypes([.string], owner: nil)
-                                NSPasteboard.general.setString(output, forType: .string)
-                            #else
-                                UIPasteboard.general.string=output
-                            #endif
+                            putOnPasteBoard()
                         }, label: {
                             Text("Copy")
                         })
@@ -94,6 +90,16 @@ struct ContentView: View {
                 })
                 .disabled(output.isEmpty)
                 .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
+                Button(action: {
+                    putOnPasteBoard()
+                    
+                }, label: {
+                    Image(systemName: "arrow.right.doc.on.clipboard")
+                })
+                .disabled(output.isEmpty)
+                .help(Text("Copy"))
+//                 .keyboardShortcut(KeyEquivalent("c"), modifiers: [.command])
+                
             })
             .padding(.horizontal)
             Spacer()
@@ -101,6 +107,15 @@ struct ContentView: View {
         }).padding()
         
     
+    }
+    
+    func putOnPasteBoard(){
+        #if os(macOS)
+            NSPasteboard.general.declareTypes([.string], owner: nil)
+            NSPasteboard.general.setString(output, forType: .string)
+        #else
+            UIPasteboard.general.string=output
+        #endif
     }
     
     

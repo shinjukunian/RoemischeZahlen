@@ -31,19 +31,24 @@ struct CameraView: View {
         VStack(spacing: 5.0){
             HStack(alignment: .center, spacing: 5.0){
                 VStack{
-                    Toggle("Convert", isOn: $convert)
-                        .padding(.trailing)
-                        .fixedSize()
-                    Toggle("Use ROI", isOn: $useROI)
-                        .padding(.trailing)
-                        .fixedSize().onChange(of: useROI, perform: { value in
-                            recognizer.useROI=value
-                        })
+                    Toggle(isOn: $convert){
+                        Text("Convert")
+                    }.padding(.trailing)
+                    .fixedSize()
+                    
+                    Toggle(isOn: $useROI){
+                        Text("Use ROI")
+                    }
+                    .padding(.trailing)
+                    .fixedSize()
+                    .onReceive(Just(useROI), perform: { value in
+                        recognizer.useROI=value
+                    })
+                    
                     
                 }
                 
-                
-                Picker("Output", selection: $outputType, content: {
+                Picker(selection: $outputType, label: Text("Output"), content: {
                     Text("Römisch").tag(Output.römisch)
                     Text("Japanisch").tag(Output.japanisch)
                 })
