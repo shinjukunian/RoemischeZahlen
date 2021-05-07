@@ -73,8 +73,7 @@ struct CameraView: View {
             }.onEnded { val in
                 
                 self.lastScaleValue = 1.0
-            }
-            )
+            })
             Spacer()
             
             
