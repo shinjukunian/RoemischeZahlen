@@ -72,7 +72,7 @@ struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .japanisch:
+        case .japanisch, .japanisch_bank:
             let u=AVSpeechUtterance(string:self.text)
             u.voice=self.format.voice
             u.rate=0.35
@@ -116,11 +116,24 @@ class ExotischeZahlenFormatter{
         })
     }
     
+    func macheJapanischeBankZahl(aus Zahl:Int)->String?{
+        guard Zahl > 0, Zahl < 100_000_000 else {
+            return nil
+        }
+        let z:[AlsJapanischeBankZahl]=[ZehnTausender(Zahl: Zahl),
+                                       JapanischeTausender(Zahl: Zahl),
+                                       Hunderter(Zahl: Zahl),
+                                       Zehner(Zahl: Zahl),
+                                       Einser(Zahl: Zahl)]
+        return z.reduce("", {r, z in
+            r+z.japanisch_Bank
+        })
+    }
+    
     
     
     func macheZahl(aus text:String)->Int?{
 
-        
         switch text {
         case _ where text.potenzielleRömischeZahl:
             return self.macheZahl(römisch: text)
@@ -152,14 +165,19 @@ class ExotischeZahlenFormatter{
     fileprivate func macheZahl(japanisch Zahl:String)->Int?{
         let einser=Einser(japanischeZahl: Zahl)
         var restZahl=Zahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        restZahl=Zahl.replacingOccurrences(of: einser.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let zehner=Zehner(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: zehner.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        restZahl=restZahl.replacingOccurrences(of: zehner.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let hunderter=Hunderter(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: hunderter.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        restZahl=restZahl.replacingOccurrences(of: hunderter.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let tausender=JapanischeTausender(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: tausender.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        restZahl=restZahl.replacingOccurrences(of: tausender.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let zehnTausender=ZehnTausender(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: zehnTausender.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        restZahl=restZahl.replacingOccurrences(of: zehnTausender.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let hundertMillionen=HundertMillionen(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: hundertMillionen.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         

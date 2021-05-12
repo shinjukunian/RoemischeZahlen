@@ -12,6 +12,7 @@ enum Output: String, CaseIterable, Identifiable{
     case römisch
     case japanisch
     case arabisch
+    case japanisch_bank
     
     var id: String { self.rawValue }
 }
@@ -33,7 +34,7 @@ struct ContentView: View {
         }).onReceive(Just(input), perform: {text in
             self.parse(input: text)
         })
-        .frame(minWidth: 50, idealWidth: 200, maxWidth: 400, minHeight: 15, idealHeight: nil, maxHeight: nil, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(minWidth: 50, idealWidth: 200, maxWidth: 400, minHeight: 15, idealHeight: nil, maxHeight: nil, alignment: .center)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         
         #if os(macOS)
@@ -47,6 +48,7 @@ struct ContentView: View {
         let p=Picker(selection: $outputMode, label: Text("Output"), content: {
             Text("Römisch").tag(Output.römisch)
             Text("Japanisch").tag(Output.japanisch)
+            Text("Japanisch (大字)").tag(Output.japanisch_bank)
         })
        
         #if os(macOS)
@@ -133,6 +135,8 @@ struct ContentView: View {
                 output = formatter.macheJapanischeZahl(aus: zahl) ?? ""
             case .arabisch:
                 output = input
+            case .japanisch_bank:
+                output = formatter.macheJapanischeBankZahl(aus: zahl) ?? ""
             }
             
             

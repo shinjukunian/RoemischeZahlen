@@ -43,7 +43,18 @@ extension AlsJapanischeZahl{
     }
 }
 
-struct Einser: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
+protocol AlsJapanischeBankZahl: AlsJapanischeZahl {
+    var arabischJapanischBankDict: [Int:String] {get}
+    var japanisch_Bank:String {get}
+}
+
+extension AlsJapanischeBankZahl{
+    var japanisch_Bank:String{
+        return self.arabischJapanischBankDict[self.anzahl] ?? ""
+    }
+}
+
+struct Einser: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl {
     let anzahl:Int
     let multiplikator:Int = 1
     
@@ -70,6 +81,19 @@ struct Einser: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
                                  8:"八",
                                  9:"九",
     ]
+    
+    let arabischJapanischBankDict: [Int : String] = [0:"",
+                                                    1:"壱",
+                                                    2:"弐",
+                                                    3:"参",
+                                                    4:"肆",
+                                                    5:"伍",
+                                                    6:"陸",
+                                                    7:"漆",
+                                                    8:"捌",
+                                                    9:"玖",
+    ]
+    
     
     init(Zahl:Int){
         let zehner = Zahl / 10
@@ -103,20 +127,24 @@ struct Einser: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
     }
     
     init(japanischeZahl:String) {
-        let a=self.arabischJapanischDict
-            .first(where: {_,n in
-                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                    return true
-                }
-                return false
-            })
+        let a=[self.arabischJapanischDict,
+               self.arabischJapanischBankDict]
+            .compactMap {
+                $0.sorted(by: {$0.0 > $1.0})
+                    .first(where: {_,n in
+                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                            return true
+                        }
+                        return false
+                    })
+            }
         
-        self.anzahl=a?.key ?? 0
+        self.anzahl=a.first?.key ?? 0
     }
     
 }
 
-struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl{
+struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
     let anzahl:Int
     let multiplikator:Int = 10
     let arabischRömischDict=[0:"",
@@ -141,6 +169,18 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl{
                                  7:"七十",
                                  8:"八十",
                                  9:"九十",
+    ]
+    
+    let arabischJapanischBankDict: [Int : String] = [0:"",
+                                                    1:"拾",
+                                                    2:"弐拾",
+                                                    3:"参拾",
+                                                    4:"肆拾",
+                                                    5:"伍拾",
+                                                    6:"陸拾",
+                                                    7:"漆拾",
+                                                    8:"捌拾",
+                                                    9:"玖拾",
     ]
     
     init(Zahl:Int){
@@ -175,22 +215,25 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl{
     }
     
     init(japanischeZahl:String) {
-        let a=self.arabischJapanischDict
-            .sorted(by: {$0.0 > $1.0})
-            .first(where: {_,n in
-                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                    return true
-                }
-                return false
-            })
+        let a=[self.arabischJapanischDict,
+               self.arabischJapanischBankDict]
+            .compactMap {
+                $0.sorted(by: {$0.0 > $1.0})
+                    .first(where: {_,n in
+                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                            return true
+                        }
+                        return false
+                    })
+            }
         
-        self.anzahl=a?.key ?? 0
+        self.anzahl=a.first?.key ?? 0
     }
     
 }
 
 
-struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
+struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl {
     let anzahl:Int
     let multiplikator:Int = 100
     
@@ -216,6 +259,18 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
                                  7:"七百",
                                  8:"八百",
                                  9:"九百",
+    ]
+    
+    let arabischJapanischBankDict: [Int : String] = [0:"",
+                                                    1:"陌",
+                                                    2:"弐陌",
+                                                    3:"参陌",
+                                                    4:"肆陌",
+                                                    5:"伍陌",
+                                                    6:"陸陌",
+                                                    7:"漆陌",
+                                                    8:"捌陌",
+                                                    9:"玖陌",
     ]
     
     
@@ -251,16 +306,19 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl {
     }
     
     init(japanischeZahl:String) {
-        let a=self.arabischJapanischDict
-            .sorted(by: {$0.0 > $1.0})
-            .first(where: {_,n in
-                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                    return true
-                }
-                return false
-            })
+        let a=[self.arabischJapanischDict,
+               self.arabischJapanischBankDict]
+            .compactMap {
+                $0.sorted(by: {$0.0 > $1.0})
+                    .first(where: {_,n in
+                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                            return true
+                        }
+                        return false
+                    })
+            }
         
-        self.anzahl=a?.key ?? 0
+        self.anzahl=a.first?.key ?? 0
     }
 }
 
@@ -298,9 +356,11 @@ struct Tausender: AlsArabischeZahl{
     }
 }
 
-struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl{
+struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl{
     let anzahl:Int
     let multiplikator:Int = 1000
+    
+    
     
     let arabischJapanischDict = [0:"",
                                  1:"千",
@@ -312,6 +372,18 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl{
                                  7:"七千",
                                  8:"八千",
                                  9:"九千",
+    ]
+    
+    let arabischJapanischBankDict: [Int : String] = [0:"",
+                                                     1:"阡",
+                                                     2:"弐阡",
+                                                     3:"参阡",
+                                                     4:"肆阡",
+                                                     5:"伍阡",
+                                                     6:"陸阡",
+                                                     7:"漆阡",
+                                                     8:"捌阡",
+                                                     9:"玖阡",
     ]
     
     init(Zahl:Int){
@@ -330,26 +402,39 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl{
         }
     }
     
+    var japanischMitTausenderEinheiten_Bank:String{
+        switch anzahl {
+        case 1:
+            return "阡阡"
+        default:
+            return self.japanisch
+        }
+    }
+    
     init(japanischeZahl:String) {
-        let a=self.arabischJapanischDict
-            .sorted(by: {$0.0 > $1.0})
-            .first(where: {_,n in
-                if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                    return true
-                }
-                return false
-            })
+        let a=[self.arabischJapanischDict,
+               self.arabischJapanischBankDict]
+            .compactMap {
+                $0.sorted(by: {$0.0 > $1.0})
+                    .first(where: {_,n in
+                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
+                            return true
+                        }
+                        return false
+                    })
+            }
         
-        self.anzahl=a?.key ?? 0
+        self.anzahl=a.first?.key ?? 0
     }
 }
 
 
-struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl{
+struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
     let anzahl:Int
     let multiplikator:Int = 10000
     
     let arabischJapanischDict = [Int:String]()
+    var arabischJapanischBankDict = [Int : String]()
     
     init(Zahl:Int){
         let hundertMillionen = Zahl / (multiplikator*100_000_000)
@@ -370,8 +455,22 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl{
         }) + "万"
     }
     
+    
+    var japanisch_Bank: String{
+        guard anzahl > 0 else {return ""}
+        
+        let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten,
+                                   Hunderter(Zahl: anzahl).japanisch,
+                                   Zehner(Zahl: anzahl).japanisch,
+                                   Einser(Zahl: anzahl).japanisch]
+        return z.reduce("", {r, z in
+            r+z
+        }) + "萬"
+    }
+    
     init(japanischeZahl:String) {
         var restZahl=japanischeZahl.replacingOccurrences(of: "万", with: "")
+        restZahl=japanischeZahl.replacingOccurrences(of: "萬", with: "")
         
         let einser=Einser(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
