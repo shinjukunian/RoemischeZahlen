@@ -1,11 +1,23 @@
-/* utterance text */
-"%@ is:" = "%@は：";
-
 /* (No Comment) */
 "Copy" = "コピー";
 
+/* prompt */
+"Detecting..." = "検出中";
+
+/* No comment provided by engineer. */
+"Dismiss" = "終了";
+
+/* prompt */
+"Hold Steady" = "固定してください";
+
+/* utterance string */
+"is:" = "わ";
+
 /* (No Comment) */
 "Number" = "数字";
+
+/* No comment provided by engineer. */
+"Output" = "変換";
 
 /* Localizable.strings
   RoemischeZahl
@@ -15,4 +27,7 @@
 
 /* (No Comment) */
 "Speak" = "発音";
+
+/* No comment provided by engineer. */
+"Use ROI" = "ROIを使用する";
 

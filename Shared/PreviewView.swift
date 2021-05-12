@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import AVFoundation
+import Combine
 
 #if canImport(Appkit)
 import AppKit
@@ -18,24 +19,24 @@ typealias MyView = UIView
 #endif
 
 
-
-
 #if canImport(AppKit)
 struct PreviewHolder: NSViewRepresentable {
     
     let recognizer:Recognizer
     
-    init(recognizer:Recognizer) {
+    @Binding var zoomLevel:CGFloat
+    
+    init(recognizer:Recognizer, zoomScale:Binding<CGFloat>) {
         self.recognizer=recognizer
+        self._zoomLevel=zoomScale
     }
-    
-    
+
     func makeNSView(context: NSViewRepresentableContext<PreviewHolder>) -> PreviewView {
         return PreviewView(delegate: self.recognizer)
     }
 
     func updateNSView(_ uiView: PreviewView, context: NSViewRepresentableContext<PreviewHolder>) {
-        
+        uiView.zoomLevel=zoomLevel
     }
 
     typealias NSViewType = PreviewView
@@ -46,16 +47,20 @@ struct PreviewHolder: UIViewRepresentable {
 
     let recognizer:Recognizer
     
-    init(recognizer:Recognizer) {
+    @Binding var zoomLevel:CGFloat
+    
+    init(recognizer:Recognizer, zoomScale:Binding<CGFloat>) {
         self.recognizer=recognizer
+        self._zoomLevel=zoomScale
     }
 
     func updateUIView(_ uiView: PreviewView, context: Context) {
-        
+        uiView.zoomLevel=zoomLevel
     }
     
     func makeUIView(context: Context) -> PreviewView {
-        return PreviewView(delegate: recognizer)
+        let p=PreviewView(delegate: recognizer)
+        return p
     }
     
     
@@ -65,18 +70,38 @@ struct PreviewHolder: UIViewRepresentable {
 #endif
 
 
-class PreviewView: MyView {
+class PreviewView: MyView{
     private var captureSession: AVCaptureSession?
     var videoDataOutput = AVCaptureVideoDataOutput()
     let videoDataOutputQueue = DispatchQueue(label: "com.telethon.VideoDataOutputQueue")
 
-    @Published var bufferAspectRatio:CGFloat = 1
+    var zoomLevel:CGFloat = 2{
+        didSet{
+            do {
+                #if os(iOS)
+                guard let device=(captureSession?.inputs.first as? AVCaptureDeviceInput)?.device
+                else {
+                    return
+                }
+                try device.lockForConfiguration()
+                device.videoZoomFactor = max(min(zoomLevel,device.maxAvailableVideoZoomFactor),1)
+                device.autoFocusRangeRestriction = .near
+                device.unlockForConfiguration()
+                #endif
+            } catch {
+                print("Could not set zoom level due to error: \(error)")
+                return
+            }
+        }
+    }
     
     weak var delegate:Recognizing?
     
     init(delegate: Recognizing) {
         self.delegate=delegate
+
         super.init(frame: .zero)
+        
 
         var allowedAccess = false
         let blocker = DispatchGroup()
@@ -109,7 +134,7 @@ class PreviewView: MyView {
         }
         let session = AVCaptureSession()
         session.beginConfiguration()
-        
+        let bufferAspectRatio:CGFloat
         if videoDevice.supportsSessionPreset(.hd4K3840x2160) {
 //            session.sessionPreset = AVCaptureSession.Preset.hd4K3840x2160
             bufferAspectRatio = 3840.0 / 2160.0
@@ -121,8 +146,15 @@ class PreviewView: MyView {
 //            session.sessionPreset = AVCaptureSession.Preset.hd1920x1080
             bufferAspectRatio = 1280.0 / 720.0
         }
-        self.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: bufferAspectRatio).isActive=true
-
+        else{
+            bufferAspectRatio=1
+        }
+        
+        
+        
+        
+        
+        
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
             session.canAddInput(videoDeviceInput)
             else { return }
@@ -132,7 +164,33 @@ class PreviewView: MyView {
         if session.canAddOutput(videoDataOutput) {
             session.addOutput(videoDataOutput)
         }
+
         session.commitConfiguration()
+        
+        #if os(macOS)
+        self.delegate?.videoAspectRatio=bufferAspectRatio
+        #else
+        
+        let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
+        
+        switch orientation {
+        case .landscapeLeft:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.up
+        case .landscapeRight:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.down
+        case .portraitUpsideDown:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.left
+            self.delegate?.videoAspectRatio=1/bufferAspectRatio
+        default:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.right
+            self.delegate?.videoAspectRatio=1/bufferAspectRatio
+        }
+        let l=self.zoomLevel
+        self.zoomLevel=l
+        
+        #endif
+        
+        
         self.captureSession = session
     }
 

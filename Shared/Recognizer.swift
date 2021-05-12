@@ -9,12 +9,79 @@ import Foundation
 import Vision
 import AVFoundation
 import CoreImage
+import SwiftUI
 
-protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {}
+protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {
+    var videoAspectRatio: CGFloat {get set}
+    var textOrientation: CGImagePropertyOrientation {get set}
+}
 
 class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     
+    struct TextElement: Equatable, Identifiable{
+        
+        enum TextElementType:Equatable {
+            case arabicNumber(number:Int)
+            case romanNumeral(number:Int)
+            case japaneseNumber(number:Int)
+            case other
+            
+            init(text:String) {
+                if text.potenzielleRömischeZahl,
+                   let römisch=ExotischeZahlenFormatter().macheZahl(römisch: text){
+                    self = .romanNumeral(number: römisch)
+                }
+                else if text.potenzielleJapanischeZahl,
+                        let japanisch=ExotischeZahlenFormatter().macheZahl(aus: text){
+                    self = .japaneseNumber(number: japanisch)
+                }
+                else if let number=NumberFormatter().number(from: text)?.intValue{
+                    self = .arabicNumber(number: number)
+                }
+                else{
+                    self = .other
+                }
+            }
+        }
+        
+        typealias ID = CGRect
+        
+        let rect:CGRect
+        let text:String
+        let type: TextElementType
+        
+        var id: CGRect{
+            return self.rect
+        }
+    
+        init(text:String, rect:CGRect) {
+            self.text=text
+            self.rect=rect
+            self.type = TextElementType(text: text)
+        }
+        
+        func convert(output:Output)->String?{
+            
+            switch self.type {
+            case .arabicNumber(let number) where output == .japanisch:
+                return ExotischeZahlenFormatter().macheJapanischeZahl(aus: number)
+            case .arabicNumber(let number) where output == .römisch:
+                return ExotischeZahlenFormatter().macheRömischeZahl(aus: number)
+            case .japaneseNumber(let number), .romanNumeral(let number):
+                return String(number)
+            default:
+                return nil
+            }
+        }
+    }
+    
+    static let fullAreaROI:CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+    
     @Published var state:SceneStabilityState = .notSteady
+    @Published var videoAspectRatio:CGFloat=1
+    @Published var foundElements = [TextElement]()
+    
+    var regionOfInterest = Recognizer.fullAreaROI
     
     lazy var ciContext:CIContext={
         guard let device=MTLCreateSystemDefaultDevice() else{fatalError()}
@@ -32,16 +99,34 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     var currentlyAnalyzedPixelBuffer: CVPixelBuffer?
     var currentFrame=0
     
-    var regionOfInterest = CGRect(x: 0, y: 0, width: 1, height: 1)
+    var useROI:Bool = true{
+        didSet{
+            if useROI {
+                self.regionOfInterest = defaultRegionOfInterest
+            }
+            else{
+                self.regionOfInterest = Recognizer.fullAreaROI
+            }
+        }
+    }
+    
+    var defaultRegionOfInterest:CGRect{
+        switch self.textOrientation {
+        case .left, .right:
+            return CGRect(x: 0.25, y: 0.8, width: 0.5, height: 0.1)
+        default:
+            return CGRect(x: 0.15, y: 0.7, width: 0.7, height: 0.2)
+        }
+    }
     
     override init() {
         super.init()
+        request.recognitionLevel = .fast
+        request.usesLanguageCorrection = false
+//        request.recognitionLanguages=["zh-Hant", "en"]
     }
     
     func recognizeTextHandler(request: VNRequest, error: Error?) {
-        var numbers = [String]()
-        var redBoxes = [CGRect]() // Shows all recognized text lines
-        var greenBoxes = [CGRect]() // Shows words that might be serials
         
         guard let results = request.results as? [VNRecognizedTextObservation] else {
             return
@@ -49,36 +134,34 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         
         let maximumCandidates = 1
         
+        var elements=[TextElement]()
         for visionResult in results {
             guard let candidate = visionResult.topCandidates(maximumCandidates).first else { continue }
             
-            print(candidate.string)
             
+            candidate.string.enumerateSubstrings(in: candidate.string.startIndex..<candidate.string.endIndex, options: [.byWords], {s, r1, _, _ in
+                guard let rect=try? candidate.boundingBox(for: r1)?.boundingBox,
+                      let text=s else{
+                    return
+                }
+                if self.useROI{
+                    let convertedX=self.regionOfInterest.minX+self.regionOfInterest.width*rect.minX
+                    let convertedY=self.regionOfInterest.minY+self.regionOfInterest.height*rect.minY
+                    let convertedWidth=self.regionOfInterest.width * rect.width
+                    let convertedHeight=self.regionOfInterest.height * rect.height
+                    let convertedRect=CGRect(x: convertedX, y: convertedY, width: convertedWidth, height: convertedHeight)
+                    elements.append(TextElement(text: text, rect: convertedRect))
+                }
+                else{
+                    elements.append(TextElement(text: text, rect: rect))
+                }
+                
+            })
             
-//            if let result = candidate.string.extractPhoneNumber() {
-//                let (range, number) = result
-//                // Number may not cover full visionResult. Extract bounding box
-//                // of substring.
-//                if let box = try? candidate.boundingBox(for: range)?.boundingBox {
-//                    numbers.append(number)
-//                    greenBoxes.append(box)
-//                    numberIsSubstring = !(range.lowerBound == candidate.string.startIndex && range.upperBound == candidate.string.endIndex)
-//                }
-//            }
-//            if numberIsSubstring {
-//                redBoxes.append(visionResult.boundingBox)
-//            }
         }
-        
-        // Log any found numbers.
-//        numberTracker.logFrame(strings: numbers)
-//        show(boxGroups: [(color: UIColor.red.cgColor, boxes: redBoxes), (color: UIColor.green.cgColor, boxes: greenBoxes)])
-//
-//        // Check if we have any temporally stable numbers.
-//        if let sureNumber = numberTracker.getStableString() {
-//            showString(string: sureNumber)
-//            numberTracker.reset(string: sureNumber)
-//        }
+        DispatchQueue.main.async {
+            self.foundElements=elements
+        }
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -86,12 +169,6 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         let state=self.assessStability(sampleBuffer: sampleBuffer)
         
         if state == .steady, let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer){
-            // Configure for running in real-time.
-            request.recognitionLevel = .fast
-            // Language correction won't help recognizing phone numbers. It also
-            // makes recognition slower.
-            request.usesLanguageCorrection = false
-            // Only run on the region of interest for maximum speed.
             
             request.regionOfInterest = regionOfInterest
             

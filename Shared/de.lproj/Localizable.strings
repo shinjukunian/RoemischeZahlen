@@ -1,11 +1,26 @@
-/* utterance text */
-"%@ is:" = "%@ ist:";
+/* No comment provided by engineer. */
+"Convert" = "Umwandeln";
 
 /* (No Comment) */
 "Copy" = "Kopieren";
 
+/* prompt */
+"Detecting..." = "Erkenne...";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Fertig";
+
+/* prompt */
+"Hold Steady" = "Bitte still halten";
+
+/* utterance string */
+"is:" = "ist:";
+
 /* (No Comment) */
 "Number" = "Zahl";
+
+/* No comment provided by engineer. */
+"Output" = "Format";
 
 /* Localizable.strings
   RoemischeZahl
@@ -15,4 +30,7 @@
 
 /* (No Comment) */
 "Speak" = "Sprechen";
+
+/* No comment provided by engineer. */
+"Use ROI" = "ROI benutzen";
 

@@ -9,35 +9,68 @@ import SwiftUI
 
 @main
 struct RoemischeZahlApp: App {
+    
     @State private var presentingCamera = false
+        
+    
+    var cameraView:some View{
+        
+        let c=CameraView()
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction, content: {
+                    Button(action: {
+                        presentingCamera=false
+                    }, label: {
+                        Text("Dismiss")
+                        
+                    })
+                })
+            }
+        #if os(macOS)
+        return c
+        #else
+        return NavigationView(content: {
+            c.navigationBarTitleDisplayMode(.inline)
+        })
+        #endif
+    }
+    
+    var textInputView:some View{
+        ContentView()
+            .toolbar(content: {
+                ToolbarItem(placement: .automatic, content: {
+                    Button(action: {
+                        presentingCamera=true
+                    }, label: {
+                        Image(systemName: "camera")
+                    })
+                })
+            })
+    }
+    
+    @ViewBuilder func makeTextInputView()-> some View{
+        let t=textInputView
+        #if os(macOS)
+        t.sheet(isPresented: $presentingCamera, onDismiss: {
+            
+        }, content: {
+            cameraView
+        })
+        #else
+        NavigationView(content: {
+            t.fullScreenCover(isPresented: $presentingCamera, onDismiss: {
+                
+            }, content: {
+                cameraView
+            })
+            .navigationBarTitleDisplayMode(.inline).navigationTitle("Numerals")
+        })
+        #endif
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .toolbar(content: {
-                    ToolbarItem(placement: .automatic, content: {
-                        Button(action: {
-                            presentingCamera=true
-                        }, label: {
-                            Image(systemName: "camera")
-                        }).disabled(true)
-                    })
-                    
-                }).sheet(isPresented: $presentingCamera, onDismiss: {
-                    
-                }, content: {
-                    CameraView()
-                        .toolbar {
-                            ToolbarItem(placement: .automatic, content: {
-                                Button(action: {
-                                    presentingCamera=false
-                                }, label: {
-                                    Text("Dismiss")
-                                    
-                                })
-                            })
-                        }
-                    
-                })
+            makeTextInputView()
         }
     }
 }
