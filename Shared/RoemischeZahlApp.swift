@@ -68,9 +68,23 @@ struct RoemischeZahlApp: App {
         #endif
     }
     
-    var body: some Scene {
-        WindowGroup {
+    var windowScene:some Scene{
+        let w=WindowGroup{
             makeTextInputView()
         }
+        #if os(macOS)
+        return w
+            .windowToolbarStyle(UnifiedWindowToolbarStyle())
+            .windowStyle(HiddenTitleBarWindowStyle())
+        #else
+        return w
+        #endif
+    }
+        
+    
+    var body: some Scene {
+       windowScene
+       
+
     }
 }
