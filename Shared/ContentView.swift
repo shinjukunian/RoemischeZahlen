@@ -34,7 +34,6 @@ struct ContentView: View {
         }).onReceive(Just(input), perform: {text in
             self.parse(input: text)
         })
-        .frame(minWidth: 50, idealWidth: 200, maxWidth: 400, minHeight: 15, idealHeight: nil, maxHeight: nil, alignment: .center)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         
         #if os(macOS)
@@ -49,7 +48,7 @@ struct ContentView: View {
             Text("Römisch").tag(Output.römisch)
             Text("Japanisch").tag(Output.japanisch)
             Text("Japanisch (大字)").tag(Output.japanisch_bank)
-        })
+        }).fixedSize()
        
         #if os(macOS)
         return p.pickerStyle(InlinePickerStyle())
@@ -62,53 +61,66 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack(alignment: .center, spacing: 5, content: {
-            picker.onReceive(Just(outputMode), perform: { _ in
-                self.parse(input: self.input)
-            })
-            HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 5, content: {
-                textField
-            }).padding()
-            HStack(content: {
-                Text(output).multilineTextAlignment(.center)
-                .lineLimit(1)
-                    .fixedSize()
-                    .frame(minWidth: 100, idealWidth: 200, maxWidth: 500, minHeight: nil, idealHeight: nil, maxHeight: nil, alignment: .center)
-                    .padding()
-                    .contextMenu(ContextMenu(menuItems: {
-                        Button(action: {
-                            putOnPasteBoard()
-                        }, label: {
-                            Text("Copy")
-                        })
-                        .help(Text("Speak"))
+        VStack{
+            GroupBox{
+                VStack(alignment: .center, spacing: 9.0, content: {
+                    picker.onReceive(Just(outputMode), perform: { _ in
+                        self.parse(input: self.input)
+                    })
+                    Divider()
+                    HStack(alignment: .center){
                         
-                    }))
-                Button(action: {
-                    formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
+                        VStack{
+                            textField
+                            Text(output)
+                                .multilineTextAlignment(.center)
+                                .lineLimit(1)
+                                .contextMenu(ContextMenu(menuItems: {
+                                    Button(action: {
+                                        putOnPasteBoard()
+                                    }, label: {
+                                        Text("Copy")
+                                    })
+                                    .help(Text("Speak"))
+                                    
+                                }))
+                        }.frame(maxWidth:300)
+                        
+                        VStack(spacing: 8.0, content: {
+                            Button(action: {
+                                formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
+                                
+                            }, label: {
+                                Image(systemName: "play.rectangle.fill")
+                            })
+                            .disabled(output.isEmpty)
+                            .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
+                            
+                            Button(action: {
+                                putOnPasteBoard()
+                                
+                            }, label: {
+                                Image(systemName: "arrow.right.doc.on.clipboard")
+                            })
+                            .disabled(output.isEmpty)
+                            .help(Text("Copy"))
+                            .keyboardShortcut(KeyEquivalent("c"), modifiers: [.command])
+                            
+                        })
+                    }
                     
-                }, label: {
-                    Image(systemName: "play.rectangle.fill")
-                })
-                .disabled(output.isEmpty)
-                .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
-                Button(action: {
-                    putOnPasteBoard()
                     
-                }, label: {
-                    Image(systemName: "arrow.right.doc.on.clipboard")
+
                 })
-                .disabled(output.isEmpty)
-                .help(Text("Copy"))
-//                 .keyboardShortcut(KeyEquivalent("c"), modifiers: [.command])
-                
-            })
-            .padding(.horizontal)
-            Spacer()
+            }
             
-        }).padding()
+            .padding(.all)
+            
+            Spacer()
+        }
         
-    
+        
+        
     }
     
     func putOnPasteBoard(){

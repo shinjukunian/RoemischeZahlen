@@ -459,10 +459,10 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
     var japanisch_Bank: String{
         guard anzahl > 0 else {return ""}
         
-        let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten,
-                                   Hunderter(Zahl: anzahl).japanisch,
-                                   Zehner(Zahl: anzahl).japanisch,
-                                   Einser(Zahl: anzahl).japanisch]
+        let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten_Bank,
+                                   Hunderter(Zahl: anzahl).japanisch_Bank,
+                                   Zehner(Zahl: anzahl).japanisch_Bank,
+                                   Einser(Zahl: anzahl).japanisch_Bank]
         return z.reduce("", {r, z in
             r+z
         }) + "萬"

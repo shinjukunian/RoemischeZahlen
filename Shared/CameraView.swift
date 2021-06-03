@@ -81,7 +81,6 @@ struct CameraView: View {
             })
             Spacer()
             
-            
         }
     }
     
