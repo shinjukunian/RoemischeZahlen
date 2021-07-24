@@ -90,7 +90,7 @@ class ExotischeZahlenFormatter{
     
     func macheRömischeZahl(aus Zahl:Int)->String?{
         
-        guard Zahl > 0 else {
+        guard Zahl > 0, Zahl < 1_000_000_000 else {
             return nil
         }
         

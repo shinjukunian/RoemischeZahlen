@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Roman_Numerals
+@testable import Roman_Numerals
 
 class Tests_macOS: XCTestCase {
 
@@ -24,13 +24,13 @@ class Tests_macOS: XCTestCase {
     }
     
 
-    func testExample() throws {
+    func testLargeRoman() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let number=10_000
+        let formatter=Roman_Numerals.ExotischeZahlenFormatter()
+        let roemisch=try! XCTUnwrap(formatter.macheRömischeZahl(aus: number))
+        
+        XCTAssert(roemisch.isEmpty == false)
     }
 
     func testLaunchPerformance() throws {

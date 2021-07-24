@@ -336,8 +336,39 @@ struct Tausender: AlsArabischeZahl{
         switch anzahl {
         case 0:
             return ""
-        default:
+        case 1...3:
             return Array(repeating: "M", count: anzahl).joined()
+        
+        default:
+            let zehner = Zehner(Zahl: anzahl)
+            let einser = Einser(Zahl: anzahl)
+            let hunderter = Hunderter(Zahl: anzahl)
+            
+            let tausender = Tausender(Zahl: anzahl)
+            let millions:String
+            
+            if tausender.anzahl > 0{
+                let milZehner = Zehner(Zahl: tausender.anzahl)
+                let milEinser = Einser(Zahl: tausender.anzahl)
+                let milHunderter = Hunderter(Zahl: tausender.anzahl)
+                let mil = milHunderter.römisch + milZehner.römisch + milEinser.römisch
+                let overbar=Unicode.Scalar(0x033F)!
+                let overbarMillions=mil.map({c in
+                    return String(c) + String(overbar)
+                })
+                millions = overbarMillions.joined()
+
+            }
+            else{
+                millions = ""
+            }
+            
+            let roemischeTausender = hunderter.römisch + zehner.römisch + einser.römisch
+            let overbar=Unicode.Scalar(0x0305)!
+            let overbarTausender=roemischeTausender.map({c in
+                return String(c) + String(overbar)
+            })
+            return millions + overbarTausender.joined()
         }
     }
     
