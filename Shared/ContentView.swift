@@ -26,9 +26,9 @@ struct ContentView: View {
     
     var picker: some View{
         let p=Picker(selection: $holder.outputMode, label: Text("Output"), content: {
-            Text("Römisch").tag(Output.römisch)
-            Text("Japanisch").tag(Output.japanisch)
-            Text("Japanisch (大字)").tag(Output.japanisch_bank)
+            Text("Roman").tag(Output.römisch)
+            Text("Japanese").tag(Output.japanisch)
+            Text("Japanese (大字)").tag(Output.japanisch_bank)
             
         }).fixedSize()
         
@@ -102,7 +102,7 @@ struct ContentView: View {
 //            catch let error{
 //                print(error.localizedDescription)
 //            }
-//            
+//
 //        })
         
     }
