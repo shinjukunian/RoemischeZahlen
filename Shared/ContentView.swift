@@ -60,7 +60,6 @@ struct ContentView: View {
         return p.pickerStyle(SegmentedPickerStyle()).fixedSize()
         #endif
         
-        
     }
     
     
@@ -77,7 +76,7 @@ struct ContentView: View {
                     VStack(alignment: .center, spacing: 12.0){
                         
                         VStack(spacing: 12.0){
-                            textField
+                            textField.padding(.horizontal)
                             GroupBox{
                                 Text(output)
                                     .font(.title)
@@ -90,7 +89,6 @@ struct ContentView: View {
                                         }, label: {
                                             Text("Copy")
                                         })
-                                        .help(Text("Speak"))
                                         
                                     }))
                             }
@@ -107,6 +105,7 @@ struct ContentView: View {
                             })
                             .disabled(output.isEmpty)
                             .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
+                            .help(Text("Speak"))
                             
                             Button(action: {
                                 putOnPasteBoard()
@@ -125,12 +124,11 @@ struct ContentView: View {
 
                 })
             }
-            
             .padding(.all)
             .fixedSize()
-//            #if os(macOS)
+            #if !os(macOS)
             Spacer()
-//            #endif
+            #endif
         }
         
         
@@ -184,5 +182,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            
     }
 }

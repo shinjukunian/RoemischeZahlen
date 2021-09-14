@@ -12,10 +12,14 @@ struct SettingsView: View {
     
     var body: some View {
         Form(content: {
-            Toggle(isOn: $daijiComplete, label: {
-                Text("Complete Daiji Conversion")
-                    .help(Text("Convert all characters to Daiji. This usage is archaic."))
-            })
+            VStack{
+                Toggle(isOn: $daijiComplete, label: {
+                    Text("Convert all characters to  Daiji")
+                        .help(Text("Convert all characters to Daiji. This usage is archaic."))
+                })
+                    
+            }
+           
         })
         .padding()
     }
