@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import RoemischeZahl
+
 
 class Tests_iOS: XCTestCase {
 

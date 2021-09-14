@@ -10,7 +10,7 @@ import CoreGraphics
 
 extension String{
     var potenzielleRömischeZahl:Bool{
-        let romischerBuchstabenHaufen=CharacterSet(charactersIn: "iIvVxXlLcCdDmM")
+        let romischerBuchstabenHaufen=CharacterSet(charactersIn: "iIvVxXlLcCdDmMD̅L̅V̅X̅")
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: romischerBuchstabenHaufen)
     }

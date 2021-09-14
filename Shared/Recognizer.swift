@@ -63,7 +63,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         func convert(output:Output)->String?{
             
             switch self.type {
-            case .arabicNumber(let number) where output == .japanisch:
+            case .arabicNumber(let number) where output == .japanisch || output == .japanisch_bank:
                 return ExotischeZahlenFormatter().macheJapanischeZahl(aus: number)
             case .arabicNumber(let number) where output == .römisch:
                 return ExotischeZahlenFormatter().macheRömischeZahl(aus: number)

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Roman_Numerals
+
 
 class Tests_macOS: XCTestCase {
 
@@ -24,21 +24,21 @@ class Tests_macOS: XCTestCase {
     }
     
 
-    func testLargeRoman() throws {
-        // UI tests must launch the application that they test.
-        let number=10_000
-        let formatter=Roman_Numerals.ExotischeZahlenFormatter()
-        let roemisch=try! XCTUnwrap(formatter.macheRömischeZahl(aus: number))
-        
-        XCTAssert(roemisch.isEmpty == false)
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLargeRoman() throws {
+//        // UI tests must launch the application that they test.
+//        let number=10_000
+//        let formatter=Roman_Numerals.ExotischeZahlenFormatter()
+//        let roemisch=try! XCTUnwrap(formatter.macheRömischeZahl(aus: number))
+//        
+//        XCTAssert(roemisch.isEmpty == false)
+//    }
+//
+//    func testLaunchPerformance() throws {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTApplicationLaunchMetric()]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

@@ -37,6 +37,24 @@
 		5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB7263E873000C3DE62 /* Recognizer.swift */; };
 		5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */; };
 		5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */; };
+		5A7658DD26F0709F00F034AE /* Einer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658DC26F0709F00F034AE /* Einer.swift */; };
+		5A7658DE26F0709F00F034AE /* Einer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658DC26F0709F00F034AE /* Einer.swift */; };
+		5A7658E026F070B200F034AE /* Zehner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658DF26F070B200F034AE /* Zehner.swift */; };
+		5A7658E126F070B200F034AE /* Zehner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658DF26F070B200F034AE /* Zehner.swift */; };
+		5A7658E326F070DE00F034AE /* Hunderter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658E226F070DE00F034AE /* Hunderter.swift */; };
+		5A7658E426F070DE00F034AE /* Hunderter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658E226F070DE00F034AE /* Hunderter.swift */; };
+		5A7658E626F070EE00F034AE /* Tausender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658E526F070EE00F034AE /* Tausender.swift */; };
+		5A7658E726F070EE00F034AE /* Tausender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658E526F070EE00F034AE /* Tausender.swift */; };
+		5A7658E926F0710F00F034AE /* ZehnTausender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658E826F0710F00F034AE /* ZehnTausender.swift */; };
+		5A7658EA26F0710F00F034AE /* ZehnTausender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658E826F0710F00F034AE /* ZehnTausender.swift */; };
+		5A7658ED26F0712900F034AE /* HunderMillionen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658EC26F0712900F034AE /* HunderMillionen.swift */; };
+		5A7658EE26F0712900F034AE /* HunderMillionen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658EC26F0712900F034AE /* HunderMillionen.swift */; };
+		5A7E095B26F07515006BFB31 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095A26F07515006BFB31 /* UserDefaults.swift */; };
+		5A7E095C26F07515006BFB31 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095A26F07515006BFB31 /* UserDefaults.swift */; };
+		5A7E095E26F07935006BFB31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095D26F07934006BFB31 /* SettingsView.swift */; };
+		5A7E095F26F07C5A006BFB31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095D26F07934006BFB31 /* SettingsView.swift */; };
+		5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */; };
+		5A7E096226F09A6E006BFB31 /* ConversionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +106,15 @@
 		5A606FB4263E86B700C3DE62 /* SceneStability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneStability.swift; sourceTree = "<group>"; };
 		5A606FB7263E873000C3DE62 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		5A7658DC26F0709F00F034AE /* Einer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Einer.swift; sourceTree = "<group>"; };
+		5A7658DF26F070B200F034AE /* Zehner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zehner.swift; sourceTree = "<group>"; };
+		5A7658E226F070DE00F034AE /* Hunderter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hunderter.swift; sourceTree = "<group>"; };
+		5A7658E526F070EE00F034AE /* Tausender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tausender.swift; sourceTree = "<group>"; };
+		5A7658E826F0710F00F034AE /* ZehnTausender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZehnTausender.swift; sourceTree = "<group>"; };
+		5A7658EC26F0712900F034AE /* HunderMillionen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunderMillionen.swift; sourceTree = "<group>"; };
+		5A7E095A26F07515006BFB31 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		5A7E095D26F07934006BFB31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHolder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,16 +164,20 @@
 		163C1B34263A5AE000E1A69C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */,
 				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
 				163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
+				5A7E095A26F07515006BFB31 /* UserDefaults.swift */,
 				5A40F9C8263E75D000D6940B /* CameraView.swift */,
 				5A54F3A026411F58009D6882 /* ROIView.swift */,
 				5A40F9CB263E765200D6940B /* PreviewView.swift */,
 				5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */,
 				5A606FB7263E873000C3DE62 /* Recognizer.swift */,
 				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
+				5A7658DB26F0707C00F034AE /* Zahlen */,
 				5A40F9C2263E69F300D6940B /* String+Extensions.swift */,
+				5A7E095D26F07934006BFB31 /* SettingsView.swift */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
 				163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
@@ -200,6 +231,19 @@
 				163C1B5D263A5AE500E1A69C /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		5A7658DB26F0707C00F034AE /* Zahlen */ = {
+			isa = PBXGroup;
+			children = (
+				5A7658DC26F0709F00F034AE /* Einer.swift */,
+				5A7658DF26F070B200F034AE /* Zehner.swift */,
+				5A7658E226F070DE00F034AE /* Hunderter.swift */,
+				5A7658E526F070EE00F034AE /* Tausender.swift */,
+				5A7658E826F0710F00F034AE /* ZehnTausender.swift */,
+				5A7658EC26F0712900F034AE /* HunderMillionen.swift */,
+			);
+			path = Zahlen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,13 +413,22 @@
 				163C1B73263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
 				5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */,
 				5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */,
+				5A7658E626F070EE00F034AE /* Tausender.swift in Sources */,
+				5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
+				5A7658DD26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
+				5A7658E026F070B200F034AE /* Zehner.swift in Sources */,
 				5A54F3A126411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
+				5A7658ED26F0712900F034AE /* HunderMillionen.swift in Sources */,
 				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
+				5A7658E326F070DE00F034AE /* Hunderter.swift in Sources */,
+				5A7E095B26F07515006BFB31 /* UserDefaults.swift in Sources */,
 				163C1B5E263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
+				5A7658E926F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
+				5A7E095F26F07C5A006BFB31 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,13 +440,22 @@
 				163C1B74263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
 				5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */,
 				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
+				5A7658E726F070EE00F034AE /* Tausender.swift in Sources */,
+				5A7E096226F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
+				5A7658DE26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */,
+				5A7658E126F070B200F034AE /* Zehner.swift in Sources */,
 				5A54F3A226411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */,
+				5A7658EE26F0712900F034AE /* HunderMillionen.swift in Sources */,
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
+				5A7658E426F070DE00F034AE /* Hunderter.swift in Sources */,
+				5A7E095C26F07515006BFB31 /* UserDefaults.swift in Sources */,
 				163C1B5F263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
+				5A7658EA26F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
+				5A7E095E26F07935006BFB31 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,7 +687,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DVQ96RL2KL;
@@ -650,7 +712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DVQ96RL2KL;

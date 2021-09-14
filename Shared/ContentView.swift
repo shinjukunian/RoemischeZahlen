@@ -8,32 +8,12 @@
 import SwiftUI
 import Combine
 
-enum Output: String, CaseIterable, Identifiable{
-    case römisch
-    case japanisch
-    case arabisch
-    case japanisch_bank
-    
-    var id: String { self.rawValue }
-}
-
-
 struct ContentView: View {
     
-    @State var input:String = ""
-    @State var output:String = ""
-    
-    @State var outputMode:Output = Output.römisch
-    
-    let formatter=ExotischeZahlenFormatter()
+    @ObservedObject var holder:NumeralConversionHolder
     
     var textField:some View{
-        let t=TextField(LocalizedStringKey("Number"), text: $input, onEditingChanged: {_ in}, onCommit: {
-            self.parse(input: input)
-            
-        }).onReceive(Just(input), perform: {text in
-            self.parse(input: text)
-        })
+        let t=TextField(LocalizedStringKey("Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         
         #if os(macOS)
@@ -44,18 +24,18 @@ struct ContentView: View {
     }
     
     var picker: some View{
-        let p=Picker(selection: $outputMode, label: Text("Output"), content: {
-            Text("Römisch").tag(Output.römisch)
-            Text("Japanisch").tag(Output.japanisch)
-            Text("Japanisch (大字)").tag(Output.japanisch_bank)
+        let p=Picker(selection: $holder.outputMode, label: Text("Output"), content: {
+            Text("Roman").tag(Output.römisch)
+            Text("Japanese").tag(Output.japanisch)
+            Text("Japanese (大字)").tag(Output.japanisch_bank)
+            
         }).fixedSize()
-       
+        
         #if os(macOS)
         return p.pickerStyle(InlinePickerStyle())
         #else
         return p.pickerStyle(SegmentedPickerStyle()).fixedSize()
         #endif
-        
         
     }
     
@@ -63,16 +43,19 @@ struct ContentView: View {
     var body: some View {
         VStack{
             GroupBox{
-                VStack(alignment: .center, spacing: 9.0, content: {
-                    picker.onReceive(Just(outputMode), perform: { _ in
-                        self.parse(input: self.input)
-                    })
-                    Divider()
-                    HStack(alignment: .center){
-                        
-                        VStack{
-                            textField
-                            Text(output)
+                VStack(alignment: .center, spacing: 12, content: {
+                    picker
+                })
+                
+                
+                VStack(alignment: .center, spacing: 12.0){
+                    
+                    VStack(spacing: 12.0){
+                        textField.padding(.horizontal)
+                        GroupBox{
+                            Text(holder.output)
+                                .font(.title)
+                                .fontWeight(.bold)
                                 .multilineTextAlignment(.center)
                                 .lineLimit(1)
                                 .contextMenu(ContextMenu(menuItems: {
@@ -81,93 +64,91 @@ struct ContentView: View {
                                     }, label: {
                                         Text("Copy")
                                     })
-                                    .help(Text("Speak"))
+                                    .disabled(holder.isValid == false)
                                     
                                 }))
-                        }.frame(maxWidth:300)
+                        }
                         
-                        VStack(spacing: 8.0, content: {
-                            Button(action: {
-                                formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
-                                
-                            }, label: {
-                                Image(systemName: "play.rectangle.fill")
-                            })
-                            .disabled(output.isEmpty)
-                            .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
-                            
-                            Button(action: {
-                                putOnPasteBoard()
-                                
-                            }, label: {
-                                Image(systemName: "arrow.right.doc.on.clipboard")
-                            })
-                            .disabled(output.isEmpty)
-                            .help(Text("Copy"))
-                            .keyboardShortcut(KeyEquivalent("c"), modifiers: [.command])
-                            
-                        })
+                        
                     }
                     
-                    
-
-                })
+                    buttons
+                }
             }
             
             .padding(.all)
-            
+            .fixedSize()
+            #if !os(macOS)
             Spacer()
+            #endif
+            
         }
+        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.isValid, { activity in
+            activity.isEligibleForHandoff = true
+            do{
+                activity.title = self.holder.input
+                try activity.setTypedPayload(holder.info)
+
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+        })
+        .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
+            print("restoring \(userActivity.activityType)34")
+            do{
+                let payload=try userActivity.typedPayload(NumeralConversionHolder.ConversionInfo.self)
+                holder.info=payload
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+            
+        })
         
-        
+    }
+    
+    @ViewBuilder
+    var buttons:some View{
+        HStack(spacing: 16, content: {
+            Button(action: {
+                holder.speak()
+            }, label: {
+                Image(systemName: "play.rectangle.fill")
+            })
+            .disabled(holder.input.isEmpty)
+            .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
+            .help(Text("Speak"))
+            
+            Button(action: {
+                putOnPasteBoard()
+                
+            }, label: {
+                Image(systemName: "arrow.right.doc.on.clipboard")
+            })
+            .disabled(holder.input.isEmpty)
+            .help(Text("Copy"))
+            .keyboardShortcut(KeyEquivalent("c"), modifiers: [.command])
+            
+        })
         
     }
     
     func putOnPasteBoard(){
         #if os(macOS)
             NSPasteboard.general.declareTypes([.string], owner: nil)
-            NSPasteboard.general.setString(output, forType: .string)
+        NSPasteboard.general.setString(holder.output, forType: .string)
         #else
-            UIPasteboard.general.string=output
+        UIPasteboard.general.string=holder.output
         #endif
     }
     
-    
-    func parse(input:String){
-        guard input.isEmpty == false else{
-            output = ""
-            return
-        }
-        
-        if let zahl = Int(input){
-            switch outputMode {
-            case .römisch:
-                output = formatter.macheRömischeZahl(aus: zahl) ?? ""
-            case .japanisch:
-                output = formatter.macheJapanischeZahl(aus: zahl) ?? ""
-            case .arabisch:
-                output = input
-            case .japanisch_bank:
-                output = formatter.macheJapanischeBankZahl(aus: zahl) ?? ""
-            }
-            
-            
-        }
-        else if let arabisch = formatter.macheZahl(aus: input){
-            let f=NumberFormatter()
-            f.numberStyle = .decimal
-            f.maximumFractionDigits=0
-            output = f.string(from: NSNumber(integerLiteral: arabisch)) ?? ""
-        }
-        else{
-            output = ""
-        }
-    }
     
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(holder: NumeralConversionHolder())
+            
     }
 }
