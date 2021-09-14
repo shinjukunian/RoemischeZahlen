@@ -53,6 +53,8 @@
 		5A7E095C26F07515006BFB31 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095A26F07515006BFB31 /* UserDefaults.swift */; };
 		5A7E095E26F07935006BFB31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095D26F07934006BFB31 /* SettingsView.swift */; };
 		5A7E095F26F07C5A006BFB31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095D26F07934006BFB31 /* SettingsView.swift */; };
+		5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */; };
+		5A7E096226F09A6E006BFB31 /* ConversionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,7 @@
 		5A7658EC26F0712900F034AE /* HunderMillionen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunderMillionen.swift; sourceTree = "<group>"; };
 		5A7E095A26F07515006BFB31 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		5A7E095D26F07934006BFB31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHolder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +164,7 @@
 		163C1B34263A5AE000E1A69C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */,
 				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
 				163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
@@ -410,6 +414,7 @@
 				5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */,
 				5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */,
 				5A7658E626F070EE00F034AE /* Tausender.swift in Sources */,
+				5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A7658DD26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
@@ -436,6 +441,7 @@
 				5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */,
 				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
 				5A7658E726F070EE00F034AE /* Tausender.swift in Sources */,
+				5A7E096226F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A7658DE26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */,

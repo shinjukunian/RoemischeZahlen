@@ -26,5 +26,9 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow Numerals to access the camera to scan characters</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.mihomaus.RoemischeZahl.conversionActivity</string>
+	</array>
 </dict>
 </plist>

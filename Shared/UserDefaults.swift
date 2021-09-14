@@ -13,3 +13,12 @@ extension UserDefaults{
         static let daijiCompleteKey = "daijiCompleteKey"
     }
 }
+
+
+extension NSUserActivity{
+    enum ActivityTypes{
+        static let conversionActivity = "com.mihomaus.RoemischeZahl.conversionActivity"
+    }
+    
+    
+}

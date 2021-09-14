@@ -36,7 +36,7 @@ struct RoemischeZahlApp: App {
     }
     
     var textInputView:some View{
-        ContentView()
+        ContentView(holder: NumeralConversionHolder())
             .toolbar(content: {
                 ToolbarItem(placement: .automatic, content: {
                     Button(action: {
@@ -65,6 +65,7 @@ struct RoemischeZahlApp: App {
         }, content: {
             cameraView
         })
+        
         #else
         NavigationView(content: {
             t.fullScreenCover(isPresented: $presentingCamera, onDismiss: {
