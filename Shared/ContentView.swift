@@ -12,7 +12,6 @@ struct ContentView: View {
     
     @ObservedObject var holder:NumeralConversionHolder
     
-    
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -84,26 +83,28 @@ struct ContentView: View {
             #endif
             
         }
-//        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.isValid, { activity in
-//            activity.isEligibleForHandoff = true
-//            do{
-//                try activity.setTypedPayload(holder.info)
-//
-//            }
-//            catch let error{
-//                print(error.localizedDescription)
-//            }
-//        })
-//        .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
-//            do{
-//                let payload=try userActivity.typedPayload(NumeralConversionHolder.ConversionInfo.self)
-//                self.holder.info=payload
-//            }
-//            catch let error{
-//                print(error.localizedDescription)
-//            }
-//
-//        })
+        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.isValid, { activity in
+            activity.isEligibleForHandoff = true
+            do{
+                activity.title = self.holder.input
+                try activity.setTypedPayload(holder.info)
+
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+        })
+        .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
+            print("restoring \(userActivity.activityType)34")
+            do{
+                let payload=try userActivity.typedPayload(NumeralConversionHolder.ConversionInfo.self)
+                holder.info=payload
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+            
+        })
         
     }
     

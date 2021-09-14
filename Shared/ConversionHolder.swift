@@ -37,7 +37,6 @@ class NumeralConversionHolder:ObservableObject{
 
     @Published var outputMode:Output = Output(rawValue: UserDefaults().string(forKey: UserDefaults.Keys.outPutModeKey) ?? "") ?? .römisch{
         didSet{
-            UserDefaults().set(outputMode.rawValue, forKey: UserDefaults.Keys.outPutModeKey)
             parse()
         }
     }

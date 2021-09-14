@@ -36,7 +36,9 @@ struct RoemischeZahlApp: App {
     }
     
     var textInputView:some View{
-        ContentView(holder: NumeralConversionHolder())
+        let holder=NumeralConversionHolder()
+        return ContentView(holder: holder)
+            
             .toolbar(content: {
                 ToolbarItem(placement: .automatic, content: {
                     Button(action: {

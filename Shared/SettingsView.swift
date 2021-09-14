@@ -10,18 +10,37 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage(UserDefaults.Keys.daijiCompleteKey) var daijiComplete = false
     
+    @AppStorage(UserDefaults.Keys.outPutModeKey) var outputMode = Output.römisch
+    
     var body: some View {
         Form(content: {
-            VStack{
-                Toggle(isOn: $daijiComplete, label: {
-                    Text("Convert all characters to  Daiji")
-                        .help(Text("Convert all characters to Daiji. This usage is archaic."))
-                })
-                    
-            }
-           
+            
+            Toggle(isOn: $daijiComplete, label: {
+                Text("Convert all characters to  Daiji")
+                    .help(Text("Convert all characters to Daiji. This usage is archaic."))
+            })
+            
+            picker
+            
+            
+            
         })
         .padding()
+        
+    }
+    
+    
+    var picker: some View{
+        let p=Picker(selection: $outputMode, label: Text("Output Format"), content: {
+            Text("Roman").tag(Output.römisch)
+            Text("Japanese").tag(Output.japanisch)
+            Text("Japanese (大字)").tag(Output.japanisch_bank)
+        })
+        #if os(macOS)
+        return p.fixedSize()
+        #else
+        return p
+        #endif
     }
 }
 
