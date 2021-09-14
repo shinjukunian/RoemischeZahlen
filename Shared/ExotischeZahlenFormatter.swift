@@ -95,7 +95,7 @@ class ExotischeZahlenFormatter{
         }
         
         let zehner = Zehner(Zahl: Zahl)
-        let einser = Einser(Zahl: Zahl)
+        let einser = Einer(Zahl: Zahl)
         let hunderter = Hunderter(Zahl: Zahl)
         let tausender = Tausender(Zahl: Zahl)
         
@@ -110,13 +110,13 @@ class ExotischeZahlenFormatter{
         guard Zahl > 0 else {
             return nil
         }
-        let z:[AlsJapanischeZahl]=[HundertMillionen(Zahl: Zahl), ZehnTausender(Zahl: Zahl), JapanischeTausender(Zahl: Zahl), Hunderter(Zahl: Zahl), Zehner(Zahl: Zahl),Einser(Zahl: Zahl)]
+        let z:[AlsJapanischeZahl]=[HundertMillionen(Zahl: Zahl), ZehnTausender(Zahl: Zahl), JapanischeTausender(Zahl: Zahl), Hunderter(Zahl: Zahl), Zehner(Zahl: Zahl),Einer(Zahl: Zahl)]
         return z.reduce("", {r, z in
             r+z.japanisch
         })
     }
     
-    func macheJapanischeBankZahl(aus Zahl:Int)->String?{
+    func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
         guard Zahl > 0, Zahl < 100_000_000 else {
             return nil
         }
@@ -124,10 +124,19 @@ class ExotischeZahlenFormatter{
                                        JapanischeTausender(Zahl: Zahl),
                                        Hunderter(Zahl: Zahl),
                                        Zehner(Zahl: Zahl),
-                                       Einser(Zahl: Zahl)]
-        return z.reduce("", {r, z in
-            r+z.japanisch_Bank
-        })
+                                       Einer(Zahl: Zahl)]
+        if einfach{
+            return z.reduce("", {r, z in
+                r+z.japanisch_Bank_einfach
+            })
+        }
+        else{
+            return z.reduce("", {r, z in
+                r+z.japanisch_Bank
+            })
+        }
+        
+       
     }
     
     
@@ -145,7 +154,7 @@ class ExotischeZahlenFormatter{
     }
     
     func macheZahl(römisch Zahl:String)->Int?{
-        let einser=Einser(römischeZahl: Zahl)
+        let einser=Einer(römischeZahl: Zahl)
         var restZahl=Zahl.replacingOccurrences(of: einser.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
         let zehner=Zehner(römischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: zehner.römisch, with: "", options: [.backwards, .caseInsensitive, .anchored], range: nil)
@@ -163,7 +172,7 @@ class ExotischeZahlenFormatter{
     }
     
     fileprivate func macheZahl(japanisch Zahl:String)->Int?{
-        let einser=Einser(japanischeZahl: Zahl)
+        let einser=Einer(japanischeZahl: Zahl)
         var restZahl=Zahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         restZahl=restZahl.replacingOccurrences(of: einser.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let zehner=Zehner(japanischeZahl: restZahl)

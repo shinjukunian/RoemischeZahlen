@@ -11,13 +11,13 @@ import SwiftUI
 struct RoemischeZahlApp: App {
     
     @State private var presentingCamera = false
-        
+    @State private var presentSettings = false
     
     var cameraView:some View{
         
         let c=CameraView()
             .toolbar {
-                ToolbarItem(placement: .cancellationAction, content: {
+                ToolbarItem(placement: .confirmationAction, content: {
                     Button(action: {
                         presentingCamera=false
                     }, label: {
@@ -45,6 +45,15 @@ struct RoemischeZahlApp: App {
                         Image(systemName: "camera")
                     })
                 })
+                #if !os(macOS)
+                ToolbarItem(placement: .navigationBarLeading, content: {
+                    Button(action: {
+                        presentSettings=true
+                    }, label: {
+                        Image(systemName: "gearshape.2")
+                    })
+                })
+                #endif
             })
     }
     
@@ -63,7 +72,22 @@ struct RoemischeZahlApp: App {
             }, content: {
                 cameraView
             })
-            .navigationBarTitleDisplayMode(.inline).navigationTitle("Numerals")
+            .sheet(isPresented: $presentSettings, content: {
+                NavigationView{
+                    SettingsView().toolbar(content: {
+                        ToolbarItem(placement: .confirmationAction, content: {
+                            Button(action: {
+                                presentSettings.toggle()
+                            }, label: {
+                                Text("Done")
+                            })
+                        })
+                    })
+                    .navigationBarTitle(Text("Settings"), displayMode: .inline)
+                }
+                
+            })
+            .navigationBarTitleDisplayMode(.inline).navigationTitle(Text("Numerals"))
         })
         #endif
     }
@@ -83,8 +107,13 @@ struct RoemischeZahlApp: App {
         
     
     var body: some Scene {
-       windowScene
-       
-
+        windowScene
+        
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }
+        #endif
+        
     }
 }

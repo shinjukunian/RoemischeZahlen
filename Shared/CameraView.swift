@@ -12,7 +12,7 @@ struct CameraView: View {
     
     @StateObject var recognizer=Recognizer()
     @State var textElements=[Recognizer.TextElement]()
-    @State var outputType:Output = .japanisch
+    @AppStorage(UserDefaults.Keys.outPutModeKey) var outputType:Output = .japanisch
     
     @State var convert:Bool = true
     

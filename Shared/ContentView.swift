@@ -13,7 +13,6 @@ enum Output: String, CaseIterable, Identifiable{
     case japanisch
     case arabisch
     case japanisch_bank
-    
     var id: String { self.rawValue }
 }
 
@@ -23,9 +22,13 @@ struct ContentView: View {
     @State var input:String = ""
     @State var output:String = ""
     
-    @State var outputMode:Output = Output.römisch
+    @AppStorage(UserDefaults.Keys.outPutModeKey) var outputMode:Output = Output.römisch
+    
+    @AppStorage(UserDefaults.Keys.daijiCompleteKey) var daijiComplete = false
     
     let formatter=ExotischeZahlenFormatter()
+    
+    let noValidNumber=NSLocalizedString("Conversion not possible.", comment: "")
     
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $input, onEditingChanged: {_ in}, onCommit: {
@@ -48,8 +51,9 @@ struct ContentView: View {
             Text("Römisch").tag(Output.römisch)
             Text("Japanisch").tag(Output.japanisch)
             Text("Japanisch (大字)").tag(Output.japanisch_bank)
+            
         }).fixedSize()
-       
+        
         #if os(macOS)
         return p.pickerStyle(InlinePickerStyle())
         #else
@@ -63,30 +67,38 @@ struct ContentView: View {
     var body: some View {
         VStack{
             GroupBox{
-                VStack(alignment: .center, spacing: 9.0, content: {
-                    picker.onReceive(Just(outputMode), perform: { _ in
+                VStack(alignment: .center, spacing: 12, content: {
+                    picker
+                        .onReceive(Just(outputMode), perform: { _ in
                         self.parse(input: self.input)
                     })
+                    
                     Divider()
-                    HStack(alignment: .center){
+                    VStack(alignment: .center, spacing: 12.0){
                         
-                        VStack{
+                        VStack(spacing: 12.0){
                             textField
-                            Text(output)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(1)
-                                .contextMenu(ContextMenu(menuItems: {
-                                    Button(action: {
-                                        putOnPasteBoard()
-                                    }, label: {
-                                        Text("Copy")
-                                    })
-                                    .help(Text("Speak"))
-                                    
-                                }))
-                        }.frame(maxWidth:300)
+                            GroupBox{
+                                Text(output)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(1)
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        Button(action: {
+                                            putOnPasteBoard()
+                                        }, label: {
+                                            Text("Copy")
+                                        })
+                                        .help(Text("Speak"))
+                                        
+                                    }))
+                            }
+                            
+                            
+                        }
                         
-                        VStack(spacing: 8.0, content: {
+                        HStack(spacing: 16, content: {
                             Button(action: {
                                 formatter.speak(input: SpeechOutput(text: input), output: SpeechOutput(text: output))
                                 
@@ -115,9 +127,12 @@ struct ContentView: View {
             }
             
             .padding(.all)
-            
+            .fixedSize()
+//            #if os(macOS)
             Spacer()
+//            #endif
         }
+        
         
         
         
@@ -135,20 +150,20 @@ struct ContentView: View {
     
     func parse(input:String){
         guard input.isEmpty == false else{
-            output = ""
+            output = NSLocalizedString("No Input", comment: "")
             return
         }
         
         if let zahl = Int(input){
             switch outputMode {
             case .römisch:
-                output = formatter.macheRömischeZahl(aus: zahl) ?? ""
+                output = formatter.macheRömischeZahl(aus: zahl) ?? noValidNumber
             case .japanisch:
-                output = formatter.macheJapanischeZahl(aus: zahl) ?? ""
+                output = formatter.macheJapanischeZahl(aus: zahl) ?? noValidNumber
             case .arabisch:
                 output = input
             case .japanisch_bank:
-                output = formatter.macheJapanischeBankZahl(aus: zahl) ?? ""
+                output = formatter.macheJapanischeBankZahl(aus: zahl, einfach: !daijiComplete) ?? noValidNumber
             }
             
             
@@ -157,10 +172,10 @@ struct ContentView: View {
             let f=NumberFormatter()
             f.numberStyle = .decimal
             f.maximumFractionDigits=0
-            output = f.string(from: NSNumber(integerLiteral: arabisch)) ?? ""
+            output = f.string(from: NSNumber(integerLiteral: arabisch)) ?? noValidNumber
         }
         else{
-            output = ""
+            output = noValidNumber
         }
     }
     
