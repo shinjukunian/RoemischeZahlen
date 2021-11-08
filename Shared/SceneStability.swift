@@ -116,7 +116,7 @@ extension SceneStability{
         previousPixelBuffer = pixelBuffer
             
         if let results = registrationRequest.results {
-            if let alignmentObservation = results.first as? VNImageTranslationAlignmentObservation {
+            if let alignmentObservation = results.first {
                 let alignmentTransform = alignmentObservation.alignmentTransform
                 self.recordTransposition(CGPoint(x: alignmentTransform.tx, y: alignmentTransform.ty))
             }

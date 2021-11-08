@@ -61,9 +61,9 @@ struct SpeechOutput{
             outputUtterances = textWithSpace.map({t->AVSpeechUtterance in
                 let u=AVSpeechUtterance(string: t.lowercased())
                 u.voice=self.format.voice
-                u.rate=0.2
-                u.preUtteranceDelay=0.6
-                u.postUtteranceDelay=0.5
+                u.rate=0.3
+                u.preUtteranceDelay=0.2
+                u.postUtteranceDelay=0
                 return u
             })
         case .arabisch:
@@ -205,8 +205,8 @@ class ExotischeZahlenFormatter{
         let textZumSprechen=NSLocalizedString("is:", comment: "utterance string")
         let u2 = AVSpeechUtterance(string: String(textZumSprechen))
         u2.voice=Output.arabisch.voice
-        u2.rate=0.35
-        u2.postUtteranceDelay=0.7
+        u2.rate=AVSpeechUtteranceDefaultSpeechRate
+        u2.postUtteranceDelay=0.1
         
         return input.utterances + [u2] + output.utterances
     }

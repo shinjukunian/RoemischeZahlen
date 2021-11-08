@@ -11,11 +11,12 @@ import Combine
 struct ContentView: View {
     
     @ObservedObject var holder:NumeralConversionHolder
-    
+    @FocusState private var textFieldIsFocused: Bool
+
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-        
+        .focused($textFieldIsFocused)
         #if os(macOS)
             return t
         #else
@@ -52,22 +53,39 @@ struct ContentView: View {
                     
                     VStack(spacing: 12.0){
                         textField.padding(.horizontal)
-                        GroupBox{
-                            Text(holder.output)
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(1)
-                                .contextMenu(ContextMenu(menuItems: {
-                                    Button(action: {
-                                        putOnPasteBoard()
-                                    }, label: {
-                                        Text("Copy")
-                                    })
-                                    .disabled(holder.isValid == false)
-                                    
-                                }))
+                        
+                        
+                        if holder.formattedNumericInput != nil{
+                            GroupBox{
+                                Text(holder.formattedNumericInput!)
+                                    .font(.headline)
+                                    .multilineTextAlignment(.center)
+                            }
                         }
+                        else{
+                            EmptyView()
+                        }
+                        
+                        
+                        
+                        GroupBox{
+                                Text(holder.formattedOutout)
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(1)
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        Button(action: {
+                                            putOnPasteBoard()
+                                        }, label: {
+                                            Text("Copy")
+                                        })
+                                        .disabled(holder.isValid == false)
+                                        
+                                    }))
+                            }
+                            
+                        
                         
                         
                     }
@@ -105,6 +123,9 @@ struct ContentView: View {
             }
             
         })
+        .onAppear(perform:{
+            textFieldIsFocused=true
+        })
         
     }
     
@@ -139,7 +160,7 @@ struct ContentView: View {
             NSPasteboard.general.declareTypes([.string], owner: nil)
         NSPasteboard.general.setString(holder.output, forType: .string)
         #else
-        UIPasteboard.general.string=holder.output
+        UIPasteboard.general.string=holder.formattedOutout
         #endif
     }
     
@@ -148,7 +169,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(holder: NumeralConversionHolder())
+        Group {
+            ContentView(holder: NumeralConversionHolder())
+            
+        }
             
     }
 }

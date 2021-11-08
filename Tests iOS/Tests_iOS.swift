@@ -23,12 +23,12 @@ class Tests_iOS: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testArabisch1(){
-        let römisch="MCM"
-        let formatter=RömischeZahl()
-        let arabisch=formatter.macheZahl(aus: römisch)
-        XCTAssert(arabisch == 1900)
-    }
+//    func testArabisch1(){
+//        let römisch="MCM"
+//        let formatter=RömischeZahl()
+//        let arabisch=formatter.macheZahl(aus: römisch)
+//        XCTAssert(arabisch == 1900)
+//    }
     
     
 
