@@ -11,12 +11,13 @@ import Combine
 struct ContentView: View {
     
     @ObservedObject var holder:NumeralConversionHolder
-    @FocusState private var textFieldIsFocused: Bool
+    
+//    @FocusState private var textFieldIsFocused: Bool
 
     var textField:some View{
         let t=TextField(LocalizedStringKey("Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-        .focused($textFieldIsFocused)
+//        .focused($textFieldIsFocused)
         #if os(macOS)
             return t
         #else
@@ -124,7 +125,7 @@ struct ContentView: View {
             
         })
         .onAppear(perform:{
-            textFieldIsFocused=true
+//            textFieldIsFocused=true
         })
         
     }
