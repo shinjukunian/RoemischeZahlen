@@ -18,8 +18,8 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
     var arabischJapanischBankDict_einfach = [Int : String]()
     
     init(Zahl:Int){
-        let hundertMillionen = Zahl / (multiplikator*100_000_000)
-        let restlicheZehnTausender = Zahl - hundertMillionen * (multiplikator*100_000_000)
+        let hundertMillionen = Zahl / 100_000_000
+        let restlicheZehnTausender = Zahl - hundertMillionen * 100_000_000
         let zehnTausender = restlicheZehnTausender / multiplikator
         anzahl = zehnTausender
     }

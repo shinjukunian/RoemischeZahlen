@@ -117,10 +117,11 @@ class ExotischeZahlenFormatter{
     }
     
     func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
-        guard Zahl > 0, Zahl < 100_000_000 else {
+        guard Zahl > 0, Zahl < 100_000_000_000 else {
             return nil
         }
-        let z:[AlsJapanischeBankZahl]=[ZehnTausender(Zahl: Zahl),
+        let z:[AlsJapanischeBankZahl]=[HundertMillionen(Zahl: Zahl),
+                                       ZehnTausender(Zahl: Zahl),
                                        JapanischeTausender(Zahl: Zahl),
                                        Hunderter(Zahl: Zahl),
                                        Zehner(Zahl: Zahl),
