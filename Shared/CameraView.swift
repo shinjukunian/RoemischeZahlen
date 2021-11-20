@@ -49,8 +49,8 @@ struct CameraView: View {
                 }
                 
                 Picker(selection: $outputType, label: Text("Output"), content: {
-                    Text("Römisch").tag(Output.römisch)
-                    Text("Japanisch").tag(Output.japanisch)
+                    Text("Roman").tag(Output.römisch)
+                    Text("Japanese").tag(Output.japanisch)
                 })
                 .pickerStyle(SegmentedPickerStyle())
                 .disabled(convert == false)

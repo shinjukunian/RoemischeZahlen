@@ -31,7 +31,18 @@ class NumeralConversionHolder:ObservableObject{
         }
     }
     
+    @Published var numericInput:Int? = nil{
+        didSet{
+            guard let numericInput = numericInput else{formattedNumericInput = nil; return}
+            formattedNumericInput = spellOutFormatter.string(from: NSNumber.init(value: numericInput))
+        }
+    }
+    
+    @Published var formattedNumericInput:String?
+    
+    @Published var formattedOutout:String
     @Published var output:String
+    
     
     @AppStorage(UserDefaults.Keys.daijiCompleteKey) var daijiComplete = false
 
@@ -43,6 +54,20 @@ class NumeralConversionHolder:ObservableObject{
     
     @Published var isValid:Bool = false
     
+    lazy var integerFormatter:NumberFormatter = {
+        let f=NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits=0
+        return f
+    }()
+    
+    lazy var spellOutFormatter: NumberFormatter = {
+        let f=NumberFormatter()
+        f.numberStyle = .spellOut
+        f.formattingContext = .standalone
+        return f
+    }()
+    
     let formatter=ExotischeZahlenFormatter()
     
     let noValidNumber=NSLocalizedString("Conversion not possible.", comment: "")
@@ -50,7 +75,8 @@ class NumeralConversionHolder:ObservableObject{
     
     
     init() {
-        self.output=noInput
+        self.formattedOutout = noInput
+        self.output = noInput
     }
     
     
@@ -67,35 +93,41 @@ class NumeralConversionHolder:ObservableObject{
     
     func parse(){
         guard input.isEmpty == false else{
-            output = NSLocalizedString("No Input", comment: "")
+            formattedOutout = NSLocalizedString("No Input", comment: "")
             self.isValid=false
+            self.numericInput=nil
             return
         }
         
         if let zahl = Int(input){
             switch outputMode {
             case .römisch:
-                output = formatter.macheRömischeZahl(aus: zahl) ?? noValidNumber
+                formattedOutout = formatter.macheRömischeZahl(aus: zahl) ?? noValidNumber
+                output = formattedOutout
             case .japanisch:
-                output = formatter.macheJapanischeZahl(aus: zahl) ?? noValidNumber
+                formattedOutout = formatter.macheJapanischeZahl(aus: zahl) ?? noValidNumber
+                output = formattedOutout
             case .arabisch:
-                output = input
+                formattedOutout = input
+                output = formattedOutout
             case .japanisch_bank:
-                output = formatter.macheJapanischeBankZahl(aus: zahl, einfach: !daijiComplete) ?? noValidNumber
+                formattedOutout = formatter.macheJapanischeBankZahl(aus: zahl, einfach: !daijiComplete) ?? noValidNumber
+                output = formattedOutout
             }
-            
+            numericInput=zahl
             
         }
         else if let arabisch = formatter.macheZahl(aus: input){
-            let f=NumberFormatter()
-            f.numberStyle = .decimal
-            f.maximumFractionDigits=0
-            output = f.string(from: NSNumber(integerLiteral: arabisch)) ?? noValidNumber
+            
+            formattedOutout = integerFormatter.string(from: NSNumber(integerLiteral: arabisch)) ?? noValidNumber
+            output = String(arabisch)
+            numericInput=arabisch
         }
         else{
-            output = noValidNumber
+            numericInput=nil
+            formattedOutout = noValidNumber
         }
-        self.isValid = output != noValidNumber
+        self.isValid = formattedOutout != noValidNumber
     }
     
     func speak(){

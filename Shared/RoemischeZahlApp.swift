@@ -90,7 +90,7 @@ struct RoemischeZahlApp: App {
                 }
                 
             })
-            .navigationBarTitleDisplayMode(.inline).navigationTitle(Text("Numerals"))
+            .navigationBarTitleDisplayMode(.inline).navigationTitle(Text("LXII"))
         })
         #endif
     }

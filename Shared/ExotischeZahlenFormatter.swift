@@ -61,9 +61,9 @@ struct SpeechOutput{
             outputUtterances = textWithSpace.map({t->AVSpeechUtterance in
                 let u=AVSpeechUtterance(string: t.lowercased())
                 u.voice=self.format.voice
-                u.rate=0.2
-                u.preUtteranceDelay=0.6
-                u.postUtteranceDelay=0.5
+                u.rate=0.3
+                u.preUtteranceDelay=0.2
+                u.postUtteranceDelay=0
                 return u
             })
         case .arabisch:
@@ -117,10 +117,11 @@ class ExotischeZahlenFormatter{
     }
     
     func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
-        guard Zahl > 0, Zahl < 100_000_000 else {
+        guard Zahl > 0, Zahl < 100_000_000_000 else {
             return nil
         }
-        let z:[AlsJapanischeBankZahl]=[ZehnTausender(Zahl: Zahl),
+        let z:[AlsJapanischeBankZahl]=[HundertMillionen(Zahl: Zahl),
+                                       ZehnTausender(Zahl: Zahl),
                                        JapanischeTausender(Zahl: Zahl),
                                        Hunderter(Zahl: Zahl),
                                        Zehner(Zahl: Zahl),
@@ -205,8 +206,8 @@ class ExotischeZahlenFormatter{
         let textZumSprechen=NSLocalizedString("is:", comment: "utterance string")
         let u2 = AVSpeechUtterance(string: String(textZumSprechen))
         u2.voice=Output.arabisch.voice
-        u2.rate=0.35
-        u2.postUtteranceDelay=0.7
+        u2.rate=AVSpeechUtteranceDefaultSpeechRate
+        u2.postUtteranceDelay=0.1
         
         return input.utterances + [u2] + output.utterances
     }
