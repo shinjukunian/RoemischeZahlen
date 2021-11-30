@@ -127,7 +127,6 @@ struct ContentView: View {
         .onAppear(perform:{
 //            textFieldIsFocused=true
         })
-        
     }
     
     @ViewBuilder

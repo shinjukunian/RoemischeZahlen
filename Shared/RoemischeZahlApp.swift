@@ -60,39 +60,44 @@ struct RoemischeZahlApp: App {
     }
     
     @ViewBuilder func makeTextInputView()-> some View{
+        
         let t=textInputView
-        #if os(macOS)
+        
+#if os(macOS)
         t.sheet(isPresented: $presentingCamera, onDismiss: {
             
         }, content: {
             cameraView
         })
         
-        #else
+#else
         NavigationView(content: {
             t.fullScreenCover(isPresented: $presentingCamera, onDismiss: {
                 
             }, content: {
                 cameraView
             })
-            .sheet(isPresented: $presentSettings, content: {
-                NavigationView{
-                    SettingsView().toolbar(content: {
-                        ToolbarItem(placement: .confirmationAction, content: {
-                            Button(action: {
-                                presentSettings.toggle()
-                            }, label: {
-                                Text("Done")
+                .sheet(isPresented: $presentSettings, content: {
+                    NavigationView{
+                        SettingsView().toolbar(content: {
+                            ToolbarItem(placement: .confirmationAction, content: {
+                                Button(action: {
+                                    presentSettings.toggle()
+                                }, label: {
+                                    Text("Done")
+                                })
                             })
                         })
-                    })
-                    .navigationBarTitle(Text("Settings"), displayMode: .inline)
-                }
+                            .navigationBarTitle(Text("Settings"), displayMode: .inline)
+                            .navigationViewStyle(.stack)
+                    }
+                    
+                })
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(Text("XLII"))
                 
-            })
-            .navigationBarTitleDisplayMode(.inline).navigationTitle(Text("XLII"))
-        })
-        #endif
+        }).navigationViewStyle(.stack)
+#endif
     }
     
     var windowScene:some Scene{
