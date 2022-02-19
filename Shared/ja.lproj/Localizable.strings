@@ -1,3 +1,15 @@
+/* No comment provided by engineer. */
+"Conversion not possible." = "変換できません";
+
+/* No comment provided by engineer. */
+"Convert" = "変換";
+
+/* No comment provided by engineer. */
+"Convert all characters to  Daiji" = "全て大事に変換する";
+
+/* No comment provided by engineer. */
+"Convert all characters to Daiji. This usage is archaic." = "全て大事に変換する。一般的ではありません。";
+
 /* (No Comment) */
 "Copy" = "コピー";
 
@@ -7,11 +19,23 @@
 /* No comment provided by engineer. */
 "Dismiss" = "終了";
 
+/* No comment provided by engineer. */
+"Done" = "完了";
+
 /* prompt */
 "Hold Steady" = "固定してください";
 
 /* utterance string */
 "is:" = "わ";
+
+/* No comment provided by engineer. */
+"Japanese" = "日本語";
+
+/* No comment provided by engineer. */
+"Japanese (大字)" = "日本語（大字）";
+
+/* No comment provided by engineer. */
+"No Input" = "空欄";
 
 /* (No Comment) */
 "Number" = "数字";
@@ -19,11 +43,20 @@
 /* No comment provided by engineer. */
 "Output" = "変換";
 
+/* No comment provided by engineer. */
+"Output Format" = "変換書式";
+
+/* No comment provided by engineer. */
+"Roman" = "ローマ数字";
+
 /* Localizable.strings
   RoemischeZahl
 
   Created by Miho on 2021/04/29. */
 "Roman Numerals" = "ローマ数字";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
 
 /* (No Comment) */
 "Speak" = "発音";
@@ -31,3 +64,7 @@
 /* No comment provided by engineer. */
 "Use ROI" = "ROIを使用する";
 
+/* No comment provided by engineer. */
+"XLII" = "XLII";
+
+"Enter Number" = "数字を入力";

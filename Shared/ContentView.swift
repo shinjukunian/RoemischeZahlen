@@ -11,17 +11,19 @@ import Combine
 struct ContentView: View {
     
     @ObservedObject var holder:NumeralConversionHolder
-    
-//    @FocusState private var textFieldIsFocused: Bool
-
+#if os(iOS)
+    @FocusState private var textFieldIsFocused: Bool
+#endif
     var textField:some View{
-        let t=TextField(LocalizedStringKey("Number"), text: $holder.input)
+        let t=TextField(LocalizedStringKey("Enter Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-//        .focused($textFieldIsFocused)
+       
         #if os(macOS)
-            return t
+        return t
         #else
-        return t.keyboardType(.numbersAndPunctuation)
+            return t
+            .focused($textFieldIsFocused)
+            .keyboardType(.numbersAndPunctuation)
         #endif
     }
     
@@ -43,25 +45,34 @@ struct ContentView: View {
     
     
     var body: some View {
+        
         VStack{
             GroupBox{
-                VStack(alignment: .center, spacing: 12, content: {
-                    picker
-                })
                 
+                picker
+                #if os(iOS)
+                Spacer(minLength: 15)
+                #endif
                 
                 VStack(alignment: .center, spacing: 12.0){
                     
-                    VStack(spacing: 12.0){
+                    
+                    
+                    VStack(alignment: .center, spacing: 12.0){
+                        
+                        
+                        
                         textField.padding(.horizontal)
                         
                         
                         if holder.formattedNumericInput != nil{
-                            GroupBox{
-                                Text(holder.formattedNumericInput!)
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                            }
+                                GroupBox{
+                                    Text(holder.formattedNumericInput!)
+                                        .font(.headline)
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(4)
+                                        
+                                }
                         }
                         else{
                             EmptyView()
@@ -74,7 +85,7 @@ struct ContentView: View {
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .multilineTextAlignment(.center)
-                                    .lineLimit(1)
+                                    .lineLimit(4)
                                     .contextMenu(ContextMenu(menuItems: {
                                         Button(action: {
                                             putOnPasteBoard()
@@ -85,20 +96,18 @@ struct ContentView: View {
                                         
                                     }))
                             }
-                            
-                        
-                        
-                        
+
                     }
                     
                     buttons
                 }
             }
-            
             .padding(.all)
-            .fixedSize()
-            #if !os(macOS)
+            .fixedSize(horizontal: false, vertical: true)
+            #if os(iOS)
             Spacer()
+            #else
+                
             #endif
             
         }
@@ -114,7 +123,7 @@ struct ContentView: View {
             }
         })
         .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
-            print("restoring \(userActivity.activityType)34")
+            print("restoring \(userActivity.activityType)")
             do{
                 let payload=try userActivity.typedPayload(NumeralConversionHolder.ConversionInfo.self)
                 holder.info=payload
@@ -125,7 +134,10 @@ struct ContentView: View {
             
         })
         .onAppear(perform:{
-//            textFieldIsFocused=true
+#if os(iOS)
+            textFieldIsFocused=true
+#endif
+            
         })
     }
     

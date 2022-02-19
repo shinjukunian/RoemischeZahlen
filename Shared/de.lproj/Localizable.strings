@@ -1,5 +1,14 @@
 /* No comment provided by engineer. */
+"Conversion not possible." = "Umwandlung nicht möglich";
+
+/* No comment provided by engineer. */
 "Convert" = "Umwandeln";
+
+/* No comment provided by engineer. */
+"Convert all characters to  Daiji" = "Alle Zeichen in Daiji umwandeln";
+
+/* No comment provided by engineer. */
+"Convert all characters to Daiji. This usage is archaic." = "Alle Zeichen in Daiji umwandeln. Diese Schreibweise ist veraltet.";
 
 /* (No Comment) */
 "Copy" = "Kopieren";
@@ -10,11 +19,20 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Fertig";
 
+/* No comment provided by engineer. */
+"Done" = "Fertig";
+
 /* prompt */
 "Hold Steady" = "Bitte still halten";
 
 /* utterance string */
 "is:" = "ist:";
+
+/* No comment provided by engineer. */
+"Japanese" = "Japanisch";
+
+/* No comment provided by engineer. */
+"Japanese (大字)" = "Japanisch (大字)";
 
 /* (No Comment) */
 "Number" = "Zahl";
@@ -22,15 +40,26 @@
 /* No comment provided by engineer. */
 "Output" = "Format";
 
+/* No comment provided by engineer. */
+"Roman" = "Römisch";
+
 /* Localizable.strings
   RoemischeZahl
 
   Created by Miho on 2021/04/29. */
 "Roman Numerals" = "Römische Zahlen";
 
+/* No comment provided by engineer. */
+"Settings" = "Einstellungen";
+
 /* (No Comment) */
 "Speak" = "Sprechen";
 
 /* No comment provided by engineer. */
 "Use ROI" = "ROI benutzen";
+
+/* No comment provided by engineer. */
+"XLII" = "XLII";
+
+"Enter Number" = "Zahl eingeben";
 

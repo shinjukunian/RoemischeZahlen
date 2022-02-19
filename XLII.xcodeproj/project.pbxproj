@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		163C1B51263A5AE500E1A69C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B50263A5AE500E1A69C /* Tests_iOS.swift */; };
 		163C1B5C263A5AE500E1A69C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B5B263A5AE500E1A69C /* Tests_macOS.swift */; };
-		163C1B5E263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */; };
-		163C1B5F263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */; };
+		163C1B5E263A5AE500E1A69C /* XLIIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B35263A5AE000E1A69C /* XLIIApp.swift */; };
+		163C1B5F263A5AE500E1A69C /* XLIIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B35263A5AE000E1A69C /* XLIIApp.swift */; };
 		163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B36263A5AE000E1A69C /* ContentView.swift */; };
 		163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B36263A5AE000E1A69C /* ContentView.swift */; };
 		163C1B62263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
@@ -75,7 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoemischeZahlApp.swift; sourceTree = "<group>"; };
+		163C1B35263A5AE000E1A69C /* XLIIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIIApp.swift; sourceTree = "<group>"; };
 		163C1B36263A5AE000E1A69C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		163C1B37263A5AE500E1A69C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		163C1B3C263A5AE500E1A69C /* XLII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLII.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,7 +166,7 @@
 			children = (
 				5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */,
 				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
-				163C1B35263A5AE000E1A69C /* RoemischeZahlApp.swift */,
+				163C1B35263A5AE000E1A69C /* XLIIApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
 				5A7E095A26F07515006BFB31 /* UserDefaults.swift */,
 				5A40F9C8263E75D000D6940B /* CameraView.swift */,
@@ -249,9 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		163C1B3B263A5AE500E1A69C /* RoemischeZahl (iOS) */ = {
+		163C1B3B263A5AE500E1A69C /* XLII (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 163C1B66263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "RoemischeZahl (iOS)" */;
+			buildConfigurationList = 163C1B66263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "XLII (iOS)" */;
 			buildPhases = (
 				163C1B38263A5AE500E1A69C /* Sources */,
 				163C1B39263A5AE500E1A69C /* Frameworks */,
@@ -261,14 +261,14 @@
 			);
 			dependencies = (
 			);
-			name = "RoemischeZahl (iOS)";
+			name = "XLII (iOS)";
 			productName = "RoemischeZahl (iOS)";
 			productReference = 163C1B3C263A5AE500E1A69C /* XLII.app */;
 			productType = "com.apple.product-type.application";
 		};
-		163C1B43263A5AE500E1A69C /* RoemischeZahl (macOS) */ = {
+		163C1B43263A5AE500E1A69C /* XLII (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 163C1B69263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "RoemischeZahl (macOS)" */;
+			buildConfigurationList = 163C1B69263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "XLII (macOS)" */;
 			buildPhases = (
 				163C1B40263A5AE500E1A69C /* Sources */,
 				163C1B41263A5AE500E1A69C /* Frameworks */,
@@ -278,7 +278,7 @@
 			);
 			dependencies = (
 			);
-			name = "RoemischeZahl (macOS)";
+			name = "XLII (macOS)";
 			productName = "RoemischeZahl (macOS)";
 			productReference = 163C1B44263A5AE500E1A69C /* XLII.app */;
 			productType = "com.apple.product-type.application";
@@ -344,13 +344,12 @@
 					};
 				};
 			};
-			buildConfigurationList = 163C1B33263A5ADF00E1A69C /* Build configuration list for PBXProject "RoemischeZahl" */;
+			buildConfigurationList = 163C1B33263A5ADF00E1A69C /* Build configuration list for PBXProject "XLII" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				de,
 				ja,
 			);
@@ -359,8 +358,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				163C1B3B263A5AE500E1A69C /* RoemischeZahl (iOS) */,
-				163C1B43263A5AE500E1A69C /* RoemischeZahl (macOS) */,
+				163C1B3B263A5AE500E1A69C /* XLII (iOS) */,
+				163C1B43263A5AE500E1A69C /* XLII (macOS) */,
 				163C1B4B263A5AE500E1A69C /* Tests iOS */,
 				163C1B56263A5AE500E1A69C /* Tests macOS */,
 			);
@@ -425,7 +424,7 @@
 				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				5A7658E326F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095B26F07515006BFB31 /* UserDefaults.swift in Sources */,
-				163C1B5E263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
+				163C1B5E263A5AE500E1A69C /* XLIIApp.swift in Sources */,
 				5A7658E926F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
 				5A7E095F26F07C5A006BFB31 /* SettingsView.swift in Sources */,
@@ -452,7 +451,7 @@
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				5A7658E426F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095C26F07515006BFB31 /* UserDefaults.swift in Sources */,
-				163C1B5F263A5AE500E1A69C /* RoemischeZahlApp.swift in Sources */,
+				163C1B5F263A5AE500E1A69C /* XLIIApp.swift in Sources */,
 				5A7658EA26F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
 				5A7E095E26F07935006BFB31 /* SettingsView.swift in Sources */,
@@ -480,12 +479,12 @@
 /* Begin PBXTargetDependency section */
 		163C1B4E263A5AE500E1A69C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 163C1B3B263A5AE500E1A69C /* RoemischeZahl (iOS) */;
+			target = 163C1B3B263A5AE500E1A69C /* XLII (iOS) */;
 			targetProxy = 163C1B4D263A5AE500E1A69C /* PBXContainerItemProxy */;
 		};
 		163C1B59263A5AE500E1A69C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 163C1B43263A5AE500E1A69C /* RoemischeZahl (macOS) */;
+			target = 163C1B43263A5AE500E1A69C /* XLII (macOS) */;
 			targetProxy = 163C1B58263A5AE500E1A69C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -823,7 +822,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		163C1B33263A5ADF00E1A69C /* Build configuration list for PBXProject "RoemischeZahl" */ = {
+		163C1B33263A5ADF00E1A69C /* Build configuration list for PBXProject "XLII" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				163C1B64263A5AE500E1A69C /* Debug */,
@@ -832,7 +831,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		163C1B66263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "RoemischeZahl (iOS)" */ = {
+		163C1B66263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "XLII (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				163C1B67263A5AE500E1A69C /* Debug */,
@@ -841,7 +840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		163C1B69263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "RoemischeZahl (macOS)" */ = {
+		163C1B69263A5AE500E1A69C /* Build configuration list for PBXNativeTarget "XLII (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				163C1B6A263A5AE500E1A69C /* Debug */,

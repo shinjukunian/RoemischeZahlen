@@ -26,7 +26,7 @@
 	<string>Allow XLII to access the camera to scan characters.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>com.mihomaus.RoemischeZahl.conversionActivity</string>
+		<string>com.mihomaus.XLII.conversionActivity</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -37,10 +37,10 @@
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UIImageName</key>
-		<string>LaunchImage</string>
 		<key>UIColorName</key>
 		<string>BackgroundBlue</string>
+		<key>UIImageName</key>
+		<string>LaunchImage</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<true/>
 	</dict>

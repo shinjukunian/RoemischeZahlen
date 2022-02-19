@@ -1,5 +1,5 @@
 //
-//  RoemischeZahlApp.swift
+//  XLIIApp.swift
 //  Shared
 //
 //  Created by Miho on 2021/04/29.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct RoemischeZahlApp: App {
+struct XLIIApp: App {
     
     @State private var presentingCamera = false
     @State private var presentSettings = false
@@ -64,7 +64,8 @@ struct RoemischeZahlApp: App {
         let t=textInputView
         
 #if os(macOS)
-        t.sheet(isPresented: $presentingCamera, onDismiss: {
+        t//.frame(maxWidth: 400, maxHeight: .infinity)
+        .sheet(isPresented: $presentingCamera, onDismiss: {
             
         }, content: {
             cameraView
