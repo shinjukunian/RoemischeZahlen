@@ -72,7 +72,7 @@ struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian:
+        case .babylonian, .aegean, .sangi:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
@@ -162,6 +162,42 @@ class ExotischeZahlenFormatter{
             r+z.babylonisch
         })
             .trimmingPrefix(while: {$0 == "␣"})
+        return String(text)
+    }
+    
+    func macheAegaeischeZahl(aus Zahl:Int)->String?{
+        guard Zahl > 0, Zahl < 100_000 else {
+            return nil
+        }
+        
+        let z:[AlsAegaeischeZahl]=[ZehnTausender(Zahl: Zahl),
+                                   Tausender(Zahl: Zahl),
+                                   Hunderter(Zahl: Zahl),
+                                   Zehner(Zahl: Zahl),
+                                   Einer(Zahl: Zahl)
+        ]
+        
+        let text = z.reduce("", {r, z in
+            r+z.aegean
+        })
+        return String(text)
+    }
+    
+    func macheSangiZahl(aus Zahl:Int)->String?{
+        guard Zahl > 0, Zahl < 100_000 else {
+            return nil
+        }
+        
+        let z:[AlsSangiZahl]=[ZehnTausender(Zahl: Zahl),
+                                   Tausender(Zahl: Zahl),
+                                   Hunderter(Zahl: Zahl),
+                                   Zehner(Zahl: Zahl),
+                                   Einer(Zahl: Zahl)
+        ]
+        
+        let text = z.reduce("", {r, z in
+            r+z.sangi
+        }).trimmingPrefix(while: {$0 == " "})
         return String(text)
     }
     

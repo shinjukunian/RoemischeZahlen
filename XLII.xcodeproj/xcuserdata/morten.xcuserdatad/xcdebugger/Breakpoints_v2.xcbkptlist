@@ -299,8 +299,8 @@
             filePath = "Shared/ExotischeZahlenFormatter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "macheZahl(r&#xf6;misch:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -315,8 +315,8 @@
             filePath = "Shared/ExotischeZahlenFormatter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "macheZahl(japanisch:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -379,8 +379,8 @@
             filePath = "Shared/ExotischeZahlenFormatter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "utterance(input:output:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -411,8 +411,8 @@
             filePath = "Shared/Zahlen/ZehnTausender.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "init(Zahl:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -443,8 +443,8 @@
             filePath = "Shared/ExotischeZahlenFormatter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "speak(input:output:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -511,6 +511,22 @@
             endingLineNumber = "161"
             landmarkName = "macheBabylonischeZahl(aus:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5377E961-73E4-4641-81E5-B46E5ACB4DE9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/OutputSelectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

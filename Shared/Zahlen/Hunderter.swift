@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl {
+struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl {
     let anzahl:Int
     let multiplikator:Int = 100
     
@@ -59,6 +59,29 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
                                                              9:"九百",
     ]
     
+    let arabischAegeanDict: [Int : String] = [0:"",
+                                              1:"𐄙",
+                                              2:"𐄚",
+                                              3:"𐄛",
+                                              4:"𐄜",
+                                              5:"𐄝",
+                                              6:"𐄞",
+                                              7:"𐄟",
+                                              8:"𐄠",
+                                              9:"𐄡"
+    ]
+    
+    let arabischSangiDict: [Int : String] = [0:" ",
+                                             1:"𝍠",
+                                             2:"𝍡",
+                                             3:"𝍢",
+                                             4:"𝍣",
+                                             5:"𝍤",
+                                             6:"𝍥",
+                                             7:"𝍦",
+                                             8:"𝍧",
+                                             9:"𝍨"
+   ]
     
     init(Zahl:Int){
         let tausnder = Zahl / 1000

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Einer: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsBabylonischeZahl {
+struct Einer: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsBabylonischeZahl, AlsAegaeischeZahl, AlsSangiZahl {
     let anzahl:Int
     let multiplikator:Int = 1
     
@@ -71,6 +71,30 @@ struct Einer: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanisc
                                                    9:"𒐝"
         
     ]
+    
+    let arabischAegeanDict: [Int : String] = [0:"",
+                                              1:"𐄇",
+                                              2:"𐄈",
+                                              3:"𐄉",
+                                              4:"𐄊",
+                                              5:"𐄋",
+                                              6:"𐄌",
+                                              7:"𐄍",
+                                              8:"𐄎",
+                                              9:"𐄏"
+    ]
+    
+    let arabischSangiDict: [Int : String] = [0:"",
+                                             1:"𝍠",
+                                             2:"𝍡",
+                                             3:"𝍢",
+                                             4:"𝍣",
+                                             5:"𝍤",
+                                             6:"𝍥",
+                                             7:"𝍦",
+                                             8:"𝍧",
+                                             9:"𝍨"
+   ]
     
     
     init(Zahl:Int){

@@ -10,10 +10,21 @@ import Algorithms
 
 struct OutputSelectionView: View {
     
+    struct OutputSelectionViewSection{
+        let title:String
+        let outputs:[Output]
+        
+        static let builtinTitle = NSLocalizedString("XLII", comment: "")
+        static let systemTitle = NSLocalizedString("System", comment: "")
+    }
+    
     @ObservedObject var holder:ConversionInputHolder
     @Environment(\.dismiss) var dismiss
 
     @State var selection:Set<Output> = Set<Output>()
+    
+    @State var searchText:String = ""
+    @State var displayInputs:[OutputSelectionViewSection] = [OutputSelectionViewSection]()
     
     init(holder:ConversionInputHolder){
         self.holder=holder
@@ -21,14 +32,15 @@ struct OutputSelectionView: View {
     }
     
     var availableBuiltinOutputs:[Output]  {
-        return [.römisch,.japanisch,.japanisch_bank, .babylonian]
+        return Output.builtin
     }
     
     var availableLocalizedOutputs:[Output]{
         let current=Locale.current
         return Locale.availableIdentifiers
-            .filter({$0 != "ja_JP"})
+            .filter({$0.hasPrefix("ja") == false })
             .map({Locale(identifier: $0)})
+            .filter({$0.languageCode != nil})
             .uniqued(on: {$0.languageCode ?? ""})
             .sorted(by: {l1,l2 in
                 guard let language1=current.localizedString(forLanguageCode: l1.languageCode ?? ""),
@@ -40,19 +52,21 @@ struct OutputSelectionView: View {
                 
             })
             .map({Output.localized(locale: $0)})
-        
     }
+    
+    
     
     var body: some View {
         
         NavigationView{
             List(selection: $selection){
                 
-                self.section(outPuts: availableBuiltinOutputs, title: NSLocalizedString("XLII", comment: ""))
-                
-                self.section(outPuts: availableLocalizedOutputs, title: NSLocalizedString("System", comment: ""))
+                ForEach(displayInputs, id: \.outputs, content: {list in
+                    self.section(outPuts: list.outputs, title: list.title)
+                })
                
             }
+            .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
             
             .navigationTitle(Text("Output Selection"))
             .toolbar(content: {
@@ -68,6 +82,22 @@ struct OutputSelectionView: View {
             #endif
             .onAppear(perform: {
                 self.selection=Set(holder.outputs)
+                self.displayInputs = [
+                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltinOutputs),
+                        OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableLocalizedOutputs)
+                ]
+            })
+            .onSubmit(of: .search, {
+                
+            })
+            .onChange(of: searchText, perform: {text in
+                let availableSystem=availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+                let availableBuiltin=availableBuiltinOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+                
+                self.displayInputs = [
+                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltin), OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableSystem)
+                    
+                ].filter({$0.outputs.isEmpty == false})
             })
         }
         

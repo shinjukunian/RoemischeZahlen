@@ -12,15 +12,40 @@ protocol AlsRoemischeZahl {
     var arabischRömischDict: [Int:String] {get}
     var römisch: String {get}
 }
+
 protocol AlsBabylonischeZahl {
     var anzahl: Int {get}
     var arabischBabylonischDict: [Int:String] {get}
     var babylonisch: String {get}
 }
 
+protocol AlsAegaeischeZahl {
+    var anzahl: Int {get}
+    var arabischAegeanDict: [Int:String] {get}
+    var aegean: String {get}
+}
+
+protocol AlsSangiZahl {
+    var anzahl: Int {get}
+    var arabischSangiDict: [Int:String] {get}
+    var sangi: String {get}
+}
+
 extension AlsRoemischeZahl{
     var römisch : String{
         return self.arabischRömischDict[self.anzahl] ?? ""
+    }
+}
+
+extension AlsAegaeischeZahl{
+    var aegean: String{
+        return self.arabischAegeanDict[self.anzahl] ?? ""
+    }
+}
+
+extension AlsSangiZahl{
+    var sangi: String{
+        return self.arabischSangiDict[self.anzahl] ?? ""
     }
 }
 

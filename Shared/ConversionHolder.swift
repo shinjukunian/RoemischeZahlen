@@ -51,6 +51,10 @@ class NumeralConversionHolder{
             formattedOutput = formatter.macheJapanischeBankZahl(aus: zahl, einfach: false) ?? noValidNumber
         case .babylonian:
             formattedOutput = formatter.macheBabylonischeZahl(aus: zahl) ?? noValidNumber
+        case .aegean:
+            formattedOutput = formatter.macheAegaeischeZahl(aus: zahl) ?? noValidNumber
+        case .sangi:
+            formattedOutput = formatter.macheSangiZahl(aus: zahl) ?? noValidNumber
         case .localized(let locale):
             localizedSpellOutFormatter.locale=locale
             formattedOutput = localizedSpellOutFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber

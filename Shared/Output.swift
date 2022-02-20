@@ -36,6 +36,8 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
     case arabisch
     case japanisch_bank
     case babylonian
+    case aegean
+    case sangi
     
     case localized(locale:Locale)
     
@@ -53,6 +55,10 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
             self = .japanisch_bank
         case "babylonian":
             self = .babylonian
+        case "aegean":
+            self = .aegean
+        case "sangi":
+            self = .sangi
         default:
             let components=rawValue.split(separator: "|")
             guard rawValue.hasPrefix("localized") ,
@@ -86,6 +92,10 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
             return "babylonian"
         case .localized(let locale):
             return "localized|\(locale.identifier)"
+        case .aegean:
+            return "aegean"
+        case .sangi:
+            return "sangi"
         }
     }
     
@@ -96,7 +106,7 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
     
     func hash(into hasher: inout Hasher) {
         switch self {
-        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian:
+        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi:
             hasher.combine(rawValue)
         case .localized(_):
             hasher.combine(rawValue)
@@ -110,11 +120,15 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         case .japanisch:
             return NSLocalizedString("Japanese", comment: "Japanese Numeral Output")
         case .arabisch:
-            return NSLocalizedString("Arabic Numeral", comment: "Arabic Numeral Output")
+            return NSLocalizedString("Arabic Numerals", comment: "Arabic Numeral Output")
         case .japanisch_bank:
             return NSLocalizedString("Japanese (大字)", comment: "Arabic Numeral Output")
         case .babylonian:
             return NSLocalizedString("Babylonian Cuneiform", comment: "Arabic Numeral Output")
+        case .aegean:
+            return NSLocalizedString("Aegean", comment: "Aegean Output")
+        case .sangi:
+            return NSLocalizedString("Counting Rods (籌)", comment: "Aegean Output")
         case .localized(let locale):
             if let language=locale.languageCode{
                 return Locale.current.localizedString(forLanguageCode: language) ?? locale.identifier
@@ -125,5 +139,6 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         }
     }
     
+    static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .babylonian, .aegean, .sangi]
     
 }
