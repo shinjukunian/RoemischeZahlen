@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,16 @@
 		5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
 		5A54F3A126411F58009D6882 /* ROIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54F3A026411F58009D6882 /* ROIView.swift */; };
 		5A54F3A226411F58009D6882 /* ROIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54F3A026411F58009D6882 /* ROIView.swift */; };
+		5A5AE97F27C1E8840020A0FA /* ConversionInputHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */; };
+		5A5AE98027C1E8840020A0FA /* ConversionInputHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */; };
+		5A5AE98227C1EEC10020A0FA /* NumericalConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */; };
+		5A5AE98327C1EEC10020A0FA /* NumericalConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */; };
+		5A5AE98527C207570020A0FA /* OutputSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98427C207570020A0FA /* OutputSelectionView.swift */; };
+		5A5AE98627C207570020A0FA /* OutputSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98427C207570020A0FA /* OutputSelectionView.swift */; };
+		5A5AE98927C20F190020A0FA /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5A5AE98827C20F190020A0FA /* Algorithms */; };
+		5A5AE98C27C20F220020A0FA /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5A5AE98B27C20F220020A0FA /* Algorithms */; };
+		5A5AE98E27C228E30020A0FA /* Babylonisch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98D27C228E30020A0FA /* Babylonisch.swift */; };
+		5A5AE98F27C228E30020A0FA /* Babylonisch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98D27C228E30020A0FA /* Babylonisch.swift */; };
 		5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
 		5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
 		5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB7263E873000C3DE62 /* Recognizer.swift */; };
@@ -51,10 +61,10 @@
 		5A7658EE26F0712900F034AE /* HunderMillionen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7658EC26F0712900F034AE /* HunderMillionen.swift */; };
 		5A7E095B26F07515006BFB31 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095A26F07515006BFB31 /* UserDefaults.swift */; };
 		5A7E095C26F07515006BFB31 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095A26F07515006BFB31 /* UserDefaults.swift */; };
-		5A7E095E26F07935006BFB31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095D26F07934006BFB31 /* SettingsView.swift */; };
-		5A7E095F26F07C5A006BFB31 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E095D26F07934006BFB31 /* SettingsView.swift */; };
 		5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */; };
 		5A7E096226F09A6E006BFB31 /* ConversionHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */; };
+		5AA6131027C1D6CF008E3C6C /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6130F27C1D6CF008E3C6C /* Output.swift */; };
+		5AA6131127C1D6CF008E3C6C /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6130F27C1D6CF008E3C6C /* Output.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +113,10 @@
 		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5A40F9CB263E765200D6940B /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		5A54F3A026411F58009D6882 /* ROIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROIView.swift; sourceTree = "<group>"; };
+		5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionInputHolder.swift; sourceTree = "<group>"; };
+		5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericalConversionView.swift; sourceTree = "<group>"; };
+		5A5AE98427C207570020A0FA /* OutputSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSelectionView.swift; sourceTree = "<group>"; };
+		5A5AE98D27C228E30020A0FA /* Babylonisch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Babylonisch.swift; sourceTree = "<group>"; };
 		5A606FB4263E86B700C3DE62 /* SceneStability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneStability.swift; sourceTree = "<group>"; };
 		5A606FB7263E873000C3DE62 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
@@ -113,8 +127,8 @@
 		5A7658E826F0710F00F034AE /* ZehnTausender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZehnTausender.swift; sourceTree = "<group>"; };
 		5A7658EC26F0712900F034AE /* HunderMillionen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunderMillionen.swift; sourceTree = "<group>"; };
 		5A7E095A26F07515006BFB31 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		5A7E095D26F07934006BFB31 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionHolder.swift; sourceTree = "<group>"; };
+		5AA6130F27C1D6CF008E3C6C /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A5AE98927C20F190020A0FA /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A5AE98C27C20F220020A0FA /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +174,7 @@
 				163C1B4F263A5AE500E1A69C /* Tests iOS */,
 				163C1B5A263A5AE500E1A69C /* Tests macOS */,
 				163C1B3D263A5AE500E1A69C /* Products */,
+				5A5AE98A27C20F220020A0FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,9 +182,13 @@
 			isa = PBXGroup;
 			children = (
 				5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */,
+				5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */,
+				5AA6130F27C1D6CF008E3C6C /* Output.swift */,
 				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
 				163C1B35263A5AE000E1A69C /* XLIIApp.swift */,
 				163C1B36263A5AE000E1A69C /* ContentView.swift */,
+				5A5AE98427C207570020A0FA /* OutputSelectionView.swift */,
+				5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */,
 				5A7E095A26F07515006BFB31 /* UserDefaults.swift */,
 				5A40F9C8263E75D000D6940B /* CameraView.swift */,
 				5A54F3A026411F58009D6882 /* ROIView.swift */,
@@ -177,7 +198,6 @@
 				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
 				5A7658DB26F0707C00F034AE /* Zahlen */,
 				5A40F9C2263E69F300D6940B /* String+Extensions.swift */,
-				5A7E095D26F07934006BFB31 /* SettingsView.swift */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
 				163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
@@ -233,6 +253,13 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		5A5AE98A27C20F220020A0FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5A7658DB26F0707C00F034AE /* Zahlen */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +269,7 @@
 				5A7658E526F070EE00F034AE /* Tausender.swift */,
 				5A7658E826F0710F00F034AE /* ZehnTausender.swift */,
 				5A7658EC26F0712900F034AE /* HunderMillionen.swift */,
+				5A5AE98D27C228E30020A0FA /* Babylonisch.swift */,
 			);
 			path = Zahlen;
 			sourceTree = "<group>";
@@ -262,6 +290,9 @@
 			dependencies = (
 			);
 			name = "XLII (iOS)";
+			packageProductDependencies = (
+				5A5AE98827C20F190020A0FA /* Algorithms */,
+			);
 			productName = "RoemischeZahl (iOS)";
 			productReference = 163C1B3C263A5AE500E1A69C /* XLII.app */;
 			productType = "com.apple.product-type.application";
@@ -279,6 +310,9 @@
 			dependencies = (
 			);
 			name = "XLII (macOS)";
+			packageProductDependencies = (
+				5A5AE98B27C20F220020A0FA /* Algorithms */,
+			);
 			productName = "RoemischeZahl (macOS)";
 			productReference = 163C1B44263A5AE500E1A69C /* XLII.app */;
 			productType = "com.apple.product-type.application";
@@ -354,6 +388,9 @@
 				ja,
 			);
 			mainGroup = 163C1B2F263A5ADF00E1A69C;
+			packageReferences = (
+				5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = 163C1B3D263A5AE500E1A69C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -418,16 +455,20 @@
 				5A7658DD26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
 				5A7658E026F070B200F034AE /* Zehner.swift in Sources */,
+				5AA6131027C1D6CF008E3C6C /* Output.swift in Sources */,
 				5A54F3A126411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A7658ED26F0712900F034AE /* HunderMillionen.swift in Sources */,
+				5A5AE98E27C228E30020A0FA /* Babylonisch.swift in Sources */,
 				5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */,
+				5A5AE98227C1EEC10020A0FA /* NumericalConversionView.swift in Sources */,
 				5A7658E326F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095B26F07515006BFB31 /* UserDefaults.swift in Sources */,
 				163C1B5E263A5AE500E1A69C /* XLIIApp.swift in Sources */,
 				5A7658E926F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
-				5A7E095F26F07C5A006BFB31 /* SettingsView.swift in Sources */,
+				5A5AE97F27C1E8840020A0FA /* ConversionInputHolder.swift in Sources */,
+				5A5AE98527C207570020A0FA /* OutputSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,16 +486,20 @@
 				5A7658DE26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */,
 				5A7658E126F070B200F034AE /* Zehner.swift in Sources */,
+				5AA6131127C1D6CF008E3C6C /* Output.swift in Sources */,
 				5A54F3A226411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A7658EE26F0712900F034AE /* HunderMillionen.swift in Sources */,
+				5A5AE98F27C228E30020A0FA /* Babylonisch.swift in Sources */,
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
+				5A5AE98327C1EEC10020A0FA /* NumericalConversionView.swift in Sources */,
 				5A7658E426F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095C26F07515006BFB31 /* UserDefaults.swift in Sources */,
 				163C1B5F263A5AE500E1A69C /* XLIIApp.swift in Sources */,
 				5A7658EA26F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
-				5A7E095E26F07935006BFB31 /* SettingsView.swift in Sources */,
+				5A5AE98027C1E8840020A0FA /* ConversionInputHolder.swift in Sources */,
+				5A5AE98627C207570020A0FA /* OutputSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,7 +742,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mihomaus.RoemischeZahl;
 				PRODUCT_NAME = XLII;
 				SDKROOT = macosx;
@@ -722,7 +767,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mihomaus.RoemischeZahl;
 				PRODUCT_NAME = XLII;
 				SDKROOT = macosx;
@@ -737,7 +782,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -745,10 +790,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mihomaus.Tests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "RoemischeZahl (iOS)";
+				TEST_TARGET_NAME = "XLII (iOS)";
 			};
 			name = Debug;
 		};
@@ -759,7 +805,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DVQ96RL2KL;
 				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,10 +813,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mihomaus.Tests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "RoemischeZahl (iOS)";
+				TEST_TARGET_NAME = "XLII (iOS)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -791,9 +838,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mihomaus.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "RoemischeZahl (macOS)";
+				TEST_TARGET_NAME = "XLII (macOS)";
 			};
 			name = Debug;
 		};
@@ -813,9 +861,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mihomaus.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "RoemischeZahl (macOS)";
+				TEST_TARGET_NAME = "XLII (macOS)";
 			};
 			name = Release;
 		};
@@ -868,6 +917,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A5AE98827C20F190020A0FA /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		5A5AE98B27C20F220020A0FA /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 163C1B30263A5ADF00E1A69C /* Project object */;
 }

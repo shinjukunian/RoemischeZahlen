@@ -11,6 +11,14 @@ import AVFoundation
 extension Output{
     var voice:AVSpeechSynthesisVoice?{
         switch self {
+        case .localized(let locale):
+            if let language=locale.languageCode{
+                return AVSpeechSynthesisVoice(language: language)
+            }
+            else{
+               return nil
+            }
+           
         case .japanisch:
             return AVSpeechSynthesisVoice(language: "ja")
         default:
@@ -37,20 +45,6 @@ struct SpeechOutput{
         self.format=format
     }
     
-    init(text:String) {
-        switch text {
-        case _ where text.potenzielleRömischeZahl:
-            self.format = .römisch
-        case _ where text.potenzielleJapanischeZahl:
-            self.format = .japanisch
-        case _ where Int(text) != nil:
-            self.format = .arabisch
-        default:
-            self.format = .arabisch
-        }
-        
-        self.text=text
-    }
     
     var utterances:[AVSpeechUtterance]{
         let outputUtterances: [AVSpeechUtterance]
@@ -72,12 +66,14 @@ struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .japanisch, .japanisch_bank:
+        case .japanisch, .japanisch_bank, .localized(_):
             let u=AVSpeechUtterance(string:self.text)
             u.voice=self.format.voice
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
+        case .babylonian:
+            outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
     }
@@ -85,6 +81,17 @@ struct SpeechOutput{
 }
 
 class ExotischeZahlenFormatter{
+    
+    struct NumericalOutput{
+        
+        enum InputLocale{
+            case roman
+            case japanese
+        }
+        
+        let value:Int
+        let locale:InputLocale
+    }
     
     lazy var synthesizer:AVSpeechSynthesizer=AVSpeechSynthesizer()
     
@@ -140,18 +147,40 @@ class ExotischeZahlenFormatter{
        
     }
     
+    func macheBabylonischeZahl(aus Zahl:Int)->String?{
+        guard Zahl > 0, Zahl < 3600*60 else {
+            return nil
+        }
+        let z:[AlsBabylonischeZahl]=[Sechsunddreissigtausender(Zahl: Zahl),
+                                     DreitausendSechshunderter(Zahl: Zahl),
+                                     Sechshunderter(Zahl: Zahl),
+                                     Sechziger(Zahl: Zahl),
+                                     BabylonischeZehner(Zahl: Zahl),
+                                     Einer(Zahl: Zahl)]
+        
+        let text = z.reduce("", {r, z in
+            r+z.babylonisch
+        })
+            .trimmingPrefix(while: {$0 == "␣"})
+        return String(text)
+    }
     
     
-    func macheZahl(aus text:String)->Int?{
-
+    
+    func macheZahl(aus text:String)->NumericalOutput?{
         switch text {
         case _ where text.potenzielleRömischeZahl:
-            return self.macheZahl(römisch: text)
+            if let zahl = self.macheZahl(römisch: text){
+                return NumericalOutput(value: zahl, locale: .roman)
+            }
         case _ where text.potenzielleJapanischeZahl:
-            return self.macheZahl(japanisch: text)
+            if let zahl=self.macheZahl(japanisch: text){
+                return NumericalOutput(value: zahl, locale: .japanese)
+            }
         default:
             return nil
         }
+        return nil
     }
     
     func macheZahl(römisch Zahl:String)->Int?{
@@ -201,8 +230,7 @@ class ExotischeZahlenFormatter{
     
     
     func utterance(input:SpeechOutput, output:SpeechOutput)->[AVSpeechUtterance]{
-        
-        
+    
         let textZumSprechen=NSLocalizedString("is:", comment: "utterance string")
         let u2 = AVSpeechUtterance(string: String(textZumSprechen))
         u2.voice=Output.arabisch.voice

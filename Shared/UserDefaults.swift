@@ -9,7 +9,7 @@ import Foundation
 
 extension UserDefaults{
     enum Keys {
-        static let outPutModeKey = "outPutModeKey"
+        static let outPutModesKey = "outPutModesKey"
         static let daijiCompleteKey = "daijiCompleteKey"
     }
 }

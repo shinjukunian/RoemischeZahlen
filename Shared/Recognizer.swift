@@ -33,7 +33,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                 }
                 else if text.potenzielleJapanischeZahl,
                         let japanisch=ExotischeZahlenFormatter().macheZahl(aus: text){
-                    self = .japaneseNumber(number: japanisch)
+                    self = .japaneseNumber(number: japanisch.value)
                 }
                 else if let number=NumberFormatter().number(from: text)?.intValue{
                     self = .arabicNumber(number: number)

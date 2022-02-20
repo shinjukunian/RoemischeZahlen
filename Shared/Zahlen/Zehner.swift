@@ -58,6 +58,8 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanis
                                                              9:"九拾",
                                 ]
     
+    
+    
     init(Zahl:Int){
         let hunderter = Zahl / 100
         let übrigeZehner = Zahl - 100 * hunderter

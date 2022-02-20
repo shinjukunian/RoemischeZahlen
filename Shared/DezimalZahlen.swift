@@ -12,10 +12,21 @@ protocol AlsRoemischeZahl {
     var arabischRömischDict: [Int:String] {get}
     var römisch: String {get}
 }
+protocol AlsBabylonischeZahl {
+    var anzahl: Int {get}
+    var arabischBabylonischDict: [Int:String] {get}
+    var babylonisch: String {get}
+}
 
 extension AlsRoemischeZahl{
     var römisch : String{
         return self.arabischRömischDict[self.anzahl] ?? ""
+    }
+}
+
+extension AlsBabylonischeZahl{
+    var babylonisch:String{
+        return self.arabischBabylonischDict[self.anzahl] ?? ""
     }
 }
 

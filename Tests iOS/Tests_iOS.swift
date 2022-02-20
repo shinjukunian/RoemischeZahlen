@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+@testable import XLII
 
 class Tests_iOS: XCTestCase {
 
@@ -29,6 +29,13 @@ class Tests_iOS: XCTestCase {
 //        let arabisch=formatter.macheZahl(aus: römisch)
 //        XCTAssert(arabisch == 1900)
 //    }
+    
+    func testBabylonisch(){
+        let formatter=ExotischeZahlenFormatter()
+        let number=5
+        let babylonian=formatter.macheBabylonischeZahl(aus: number)
+        XCTAssert(babylonian == "")
+    }
     
     
 

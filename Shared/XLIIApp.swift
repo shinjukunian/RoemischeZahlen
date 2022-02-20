@@ -36,7 +36,7 @@ struct XLIIApp: App {
     }
     
     var textInputView:some View{
-        let holder=NumeralConversionHolder()
+        let holder=ConversionInputHolder()
         return ContentView(holder: holder)
             
             .toolbar(content: {
@@ -47,15 +47,7 @@ struct XLIIApp: App {
                         Image(systemName: "camera")
                     })
                 })
-                #if !os(macOS)
-                ToolbarItem(placement: .navigationBarLeading, content: {
-                    Button(action: {
-                        presentSettings=true
-                    }, label: {
-                        Image(systemName: "gearshape.2")
-                    })
-                })
-                #endif
+                
             })
     }
     
@@ -78,22 +70,6 @@ struct XLIIApp: App {
             }, content: {
                 cameraView
             })
-                .sheet(isPresented: $presentSettings, content: {
-                    NavigationView{
-                        SettingsView().toolbar(content: {
-                            ToolbarItem(placement: .confirmationAction, content: {
-                                Button(action: {
-                                    presentSettings.toggle()
-                                }, label: {
-                                    Text("Done")
-                                })
-                            })
-                        })
-                            .navigationBarTitle(Text("Settings"), displayMode: .inline)
-                            .navigationViewStyle(.stack)
-                    }
-                    
-                })
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle(Text("XLII"))
                 
@@ -118,11 +94,11 @@ struct XLIIApp: App {
     var body: some Scene {
         windowScene
         
-        #if os(macOS)
-        Settings {
-            SettingsView()
-        }
-        #endif
+//        #if os(macOS)
+//        Settings {
+//            SettingsView()
+//        }
+//        #endif
         
     }
 }
