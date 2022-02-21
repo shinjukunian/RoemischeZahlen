@@ -62,6 +62,8 @@ class NumeralConversionHolder{
         case .localized(let locale):
             localizedSpellOutFormatter.locale=locale
             formattedOutput = localizedSpellOutFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber
+        case .numeric(let base):
+            formattedOutput = String(zahl, radix: base, uppercase: true)
         }
         
     }

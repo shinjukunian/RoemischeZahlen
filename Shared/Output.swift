@@ -23,10 +23,14 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
     case hieroglyph
     case suzhou
     
+    case numeric(base:Int)
+    
     case localized(locale:Locale)
     
-    static let currentLoale = Output.localized(locale: Locale.current)
+    static let currentLocale = Output.localized(locale: Locale.current)
     static let dragType = "com.mihomaus.xlii.outputType"
+
+    static let numericTypes:[Output] = [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]
     static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph]
     
     init?(rawValue: String) {
@@ -49,13 +53,21 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
             self = .hieroglyph
         case "suzhou":
             self = .suzhou
-        default:
+        case _ where rawValue.hasPrefix("numeric_base"):
             let components=rawValue.split(separator: "|")
-            guard rawValue.hasPrefix("localized") ,
-                  components.count == 2
+            guard components.count == 2,
+                  let base=Int(components[1])
+            else {return nil}
+            
+            self = .numeric(base: base)
+        case _ where rawValue.hasPrefix("localized"):
+            let components=rawValue.split(separator: "|")
+            guard components.count == 2
             else {return nil}
             let locale=Locale(identifier: String(components[1]))
             self = .localized(locale: locale)
+        default:
+            return nil
         }
     }
     
@@ -96,6 +108,8 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
             return "hieroglyph"
         case .suzhou:
             return "suzhou"
+        case .numeric(let base):
+            return "numeric_base|\(base)"
         }
     }
     
@@ -108,7 +122,7 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         switch self {
         case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou:
             hasher.combine(rawValue)
-        case .localized(_):
+        case .localized(_), .numeric(_):
             hasher.combine(rawValue)
         }
     }
@@ -139,6 +153,19 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
             }
             else{
                 return Locale.current.localizedString(forIdentifier: locale.identifier) ?? locale.identifier
+            }
+        case .numeric(let base):
+            switch base{
+            case 2:
+                return NSLocalizedString("Binary", comment: "binary number")
+            case 8:
+                return NSLocalizedString("Octal", comment: "Octal number")
+            case 10:
+                return NSLocalizedString("Decimal", comment: "decimal number")
+            case 16:
+                return NSLocalizedString("Hexadecimal", comment: "Hexadecimal number")
+            default:
+                return String(format: NSLocalizedString("Numeric Base %i", comment: "Other base"), base)
             }
         }
     }

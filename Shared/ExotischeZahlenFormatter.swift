@@ -50,7 +50,7 @@ struct SpeechOutput{
         let outputUtterances: [AVSpeechUtterance]
         
         switch self.format {
-        case .römisch:
+        case .römisch, .numeric(_):
             let textWithSpace=self.text.map({String($0)})
             outputUtterances = textWithSpace.map({t->AVSpeechUtterance in
                 let u=AVSpeechUtterance(string: t.lowercased())

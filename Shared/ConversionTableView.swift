@@ -72,7 +72,7 @@ struct ConversionTableView_Previews: PreviewProvider {
     static var previews: some View {
         let holder=ConversionInputHolder()
         holder.input=""
-        return ConversionTableView(holder: holder, displayItems:  [.currentLoale, .localized(locale: Locale(identifier: "el_GR"))] + holder.outputs)
+        return ConversionTableView(holder: holder, displayItems:  [.currentLocale, .localized(locale: Locale(identifier: "el_GR"))] + holder.outputs)
     }
 }
 

@@ -16,6 +16,7 @@ struct OutputSelectionView: View {
         
         static let builtinTitle = NSLocalizedString("XLII", comment: "")
         static let systemTitle = NSLocalizedString("System", comment: "")
+        static let numericTitle = NSLocalizedString("Numeric", comment: "")
     }
     
     @ObservedObject var holder:ConversionInputHolder
@@ -29,10 +30,6 @@ struct OutputSelectionView: View {
     init(holder:ConversionInputHolder){
         self.holder=holder
         self.selection=Set(holder.outputs)
-    }
-    
-    var availableBuiltinOutputs:[Output]  {
-        return Output.builtin
     }
     
     var availableLocalizedOutputs:[Output]{
@@ -83,8 +80,10 @@ struct OutputSelectionView: View {
             .onAppear(perform: {
                 self.selection=Set(holder.outputs)
                 self.displayInputs = [
-                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltinOutputs),
+                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
+                    OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
                         OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableLocalizedOutputs)
+                    
                 ]
             })
             .onSubmit(of: .search, {
@@ -92,10 +91,12 @@ struct OutputSelectionView: View {
             })
             .onChange(of: searchText, perform: {text in
                 let availableSystem=availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-                let availableBuiltin=availableBuiltinOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+                let availableBuiltin=Output.builtin.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+                let availableNumeric=Output.numericTypes.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
                 
                 self.displayInputs = [
-                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltin), OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableSystem)
+                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltin),
+                    OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: availableNumeric),OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableSystem)
                     
                 ].filter({$0.outputs.isEmpty == false})
             })

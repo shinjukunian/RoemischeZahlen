@@ -17,7 +17,8 @@ struct ContentView: View {
 #endif
     
     @State var showLanguageSelection = false
-
+    @State var showSettings = false
+    
     var textField:some View{
         let t=TextField(LocalizedStringKey("Enter Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -38,32 +39,24 @@ struct ContentView: View {
             GroupBox{
                 VStack{
                     textField.padding(.horizontal)
+                    OutputView(holder: holder)
                     
-                    switch holder.inputType{
-                    case .empty:
-                        EmptyView()
-                    case .invalid:
-                        Divider().background(Color.accentColor)
-                        GroupBox{
-                            Text("The input could not be parsed.")
-                        }
-                    case .textual(let output):
-                        Text(verbatim: output.description).font(.caption2)
-                        Divider().background(Color.accentColor)
-                        let validOutputs=holder.outputs.filter({$0 != output})
-                        let items=[Output.arabisch, Output.currentLoale] + validOutputs
-                        ConversionTableView(holder: holder, displayItems: items)
-                    case .arabic:
-                        Divider().background(Color.accentColor)
-                        let items=[Output.currentLoale] + holder.outputs
-                        ConversionTableView(holder: holder, displayItems: items)
-                    }
                     Spacer()
-                    Button(action: {
-                        showLanguageSelection=true
-                    }, label: {
-                        Image(systemName: "plus.rectangle")
-                    }).disabled(holder.numericInput == nil)
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            showLanguageSelection=true
+                        }, label: {
+                            Image(systemName: "plus.rectangle")
+                        }).disabled(holder.numericInput == nil)
+                        Spacer()
+                        Button(action: {
+                            showSettings=true
+                        }, label: {
+                            Image(systemName: "gearshape.2")
+                        }).disabled(holder.numericInput == nil)
+                    }
+                    
                     
                 }
                 
@@ -109,6 +102,10 @@ struct ContentView: View {
         .sheet(isPresented: $showLanguageSelection, onDismiss: {}, content: {
             OutputSelectionView(holder: holder)
         })
+        .sheet(isPresented: $showSettings, content: {
+            Settings()
+        })
+        
         
     }
     
@@ -118,7 +115,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let holder=ConversionInputHolder()
-        holder.input="mm"
+        holder.input="10"
         return ContentView(holder: holder)
     }
 }
