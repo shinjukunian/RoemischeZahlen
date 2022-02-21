@@ -6,26 +6,8 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
-struct OutputPreference:RawRepresentable{
-    
-    typealias RawValue = String
-    
-    let outputs:[Output]
-    
-    init?(rawValue: String) {
-        let values=rawValue.split(separator: "%").compactMap({Output(rawValue: String($0))})
-        self.outputs=values
-    }
-    
-    init(outputs:[Output]){
-        self.outputs=outputs
-    }
-    
-    var rawValue: String{
-        return self.outputs.map({$0.rawValue}).joined(separator: "%")
-    }
-}
 
 enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, CustomStringConvertible{
     
@@ -44,6 +26,8 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
     case localized(locale:Locale)
     
     static let currentLoale = Output.localized(locale: Locale.current)
+    static let dragType = "com.mihomaus.xlii.outputType"
+    static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph]
     
     init?(rawValue: String) {
         switch rawValue{
@@ -153,6 +137,27 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         }
     }
     
-    static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph]
     
+    
+}
+
+
+struct OutputPreference:RawRepresentable{
+    
+    typealias RawValue = String
+    
+    let outputs:[Output]
+    
+    init?(rawValue: String) {
+        let values=rawValue.split(separator: "%").compactMap({Output(rawValue: String($0))})
+        self.outputs=values
+    }
+    
+    init(outputs:[Output]){
+        self.outputs=outputs
+    }
+    
+    var rawValue: String{
+        return self.outputs.map({$0.rawValue}).joined(separator: "%")
+    }
 }

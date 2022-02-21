@@ -18,6 +18,8 @@ struct ContentView: View {
     
     @State var showLanguageSelection = false
     
+    
+    
     var textField:some View{
         let t=TextField(LocalizedStringKey("Enter Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -47,21 +49,12 @@ struct ContentView: View {
                             Text("The input could not be parsed.")
                         }
                     case .textual(let output):
-                        
-                        let validOutput=holder.outputs.filter({$0 != output})
-                        ScrollView{
-                            ForEach([Output.arabisch, Output.currentLoale] + validOutput, content: {outPut in
-                                NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: holder.numericInput!, outputMode: outPut)))
-                            })
-                        }
-                        
+                        let validOutputs=holder.outputs.filter({$0 != output})
+                        let items=[Output.arabisch, Output.currentLoale] + validOutputs
+                        ConversionTableView(holder: holder, displayItems: items)
                     case .arabic:
-                        ScrollView{
-                            ForEach([Output.currentLoale] + holder.outputs, content: {outPut in
-                                NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: holder.numericInput!, outputMode: outPut)))
-                            })
-                        }
-                        
+                        let items=[Output.currentLoale] + holder.outputs
+                        ConversionTableView(holder: holder, displayItems: items)
                     }
                     Spacer()
                     Button(action: {
@@ -116,7 +109,8 @@ struct ContentView: View {
         })
         
     }
- 
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -128,3 +122,6 @@ struct ContentView_Previews: PreviewProvider {
             
     }
 }
+
+
+

@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "35559300-A1B0-4FC5-9A4E-B862B2DB4ABC",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:XLII.xcodeproj",
+      "identifier" : "163C1B43263A5AE500E1A69C",
+      "name" : "XLII (macOS)"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:XLII.xcodeproj",
+        "identifier" : "5A34FAB427C33AF0002D58E0",
+        "name" : "XLIITests"
+      }
+    }
+  ],
+  "version" : 1
+}

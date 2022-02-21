@@ -32,25 +32,11 @@ struct NumericalConversionView: View {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .lineLimit(6)
-                    .contextMenu(menuItems: {
-                        Button(action: {
-                            holder.speak()
-                        }, label: {
-                            Label(title: {Text("Speak")}, icon: {Image(systemName: "play.rectangle.fill")})
-                        })
-                        Button(action: {
-                                #if os(macOS)
-                                NSPasteboard.general.declareTypes([.string], owner: nil)
-                                NSPasteboard.general.setString(holder.formattedOutput, forType: .string)
-                                #else
-                                UIPasteboard.general.string=holder.formattedOutput
-                                #endif
-                            
-                        }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
-                    })
+                    
             }
         }
         .padding(.horizontal)
+        
         
             
     }

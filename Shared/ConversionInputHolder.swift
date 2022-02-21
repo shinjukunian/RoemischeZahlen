@@ -27,13 +27,15 @@ class ConversionInputHolder:ObservableObject {
     
     @Published var inputType = InputType.empty
     
-    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference = OutputPreference(outputs: [.römisch, .japanisch, .japanisch_bank])
+    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference = OutputPreference(outputs: [.currentLoale, .römisch, .japanisch, .suzhou, .hieroglyph, .babylonian])
     
     @Published var outputs:[Output] = [.japanisch,.römisch]{
         didSet{
             outputPreference=OutputPreference(outputs: outputs)
         }
     }
+    
+   
     
     lazy var integerFormatter:NumberFormatter = {
         let f=NumberFormatter()
