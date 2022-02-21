@@ -17,9 +17,7 @@ struct ContentView: View {
 #endif
     
     @State var showLanguageSelection = false
-    
-    
-    
+
     var textField:some View{
         let t=TextField(LocalizedStringKey("Enter Number"), text: $holder.input)
         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -40,19 +38,23 @@ struct ContentView: View {
             GroupBox{
                 VStack{
                     textField.padding(.horizontal)
-                    Divider().background(Color.accentColor)
+                    
                     switch holder.inputType{
                     case .empty:
                         EmptyView()
                     case .invalid:
+                        Divider().background(Color.accentColor)
                         GroupBox{
                             Text("The input could not be parsed.")
                         }
                     case .textual(let output):
+                        Text(verbatim: output.description).font(.caption2)
+                        Divider().background(Color.accentColor)
                         let validOutputs=holder.outputs.filter({$0 != output})
                         let items=[Output.arabisch, Output.currentLoale] + validOutputs
                         ConversionTableView(holder: holder, displayItems: items)
                     case .arabic:
+                        Divider().background(Color.accentColor)
                         let items=[Output.currentLoale] + holder.outputs
                         ConversionTableView(holder: holder, displayItems: items)
                     }
@@ -115,11 +117,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ContentView(holder: ConversionInputHolder())
-            
-        }
-            
+        let holder=ConversionInputHolder()
+        holder.input="mm"
+        return ContentView(holder: holder)
     }
 }
 

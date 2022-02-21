@@ -140,6 +140,7 @@
 		5A606FB4263E86B700C3DE62 /* SceneStability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneStability.swift; sourceTree = "<group>"; };
 		5A606FB7263E873000C3DE62 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		5A68E5B827C3744900D5BC40 /* XLII (iOS).xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "XLII (iOS).xctestplan"; sourceTree = "<group>"; };
 		5A7658DC26F0709F00F034AE /* Einer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Einer.swift; sourceTree = "<group>"; };
 		5A7658DF26F070B200F034AE /* Zehner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zehner.swift; sourceTree = "<group>"; };
 		5A7658E226F070DE00F034AE /* Hunderter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hunderter.swift; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 			children = (
 				5A34FABE27C33B2C002D58E0 /* XLII (macOS).xctestplan */,
 				5A34FAB727C33AF0002D58E0 /* XLIITests.swift */,
+				5A68E5B827C3744900D5BC40 /* XLII (iOS).xctestplan */,
 			);
 			path = XLIITests;
 			sourceTree = "<group>";

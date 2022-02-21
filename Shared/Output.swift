@@ -65,6 +65,12 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
             self = .japanisch
         case .roman:
             self = .römisch
+        case .suzhou:
+            self = .suzhou
+        case .hieroglyph:
+            self = .hieroglyph
+        case .aegean:
+            self = .aegean
         }
     }
     

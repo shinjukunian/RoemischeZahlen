@@ -8,45 +8,9 @@
 import Foundation
 
 
-struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHieroglyphenZahl{
+struct Tausender: AlsArabischeZahl{
     let anzahl:Int
     let multiplikator:Int = 1000
-    
-    let arabischAegeanDict: [Int : String] = [0:"",
-                                              1:"𐄢",
-                                              2:"𐄣",
-                                              3:"𐄤",
-                                              4:"𐄥",
-                                              5:"𐄦",
-                                              6:"𐄧",
-                                              7:"𐄨",
-                                              8:"𐄩",
-                                              9:"𐄪"
-    ]
-    
-    let arabischSangiDict: [Int : String] = [0:" ",
-                                             1:"𝍩",
-                                             2:"𝍪",
-                                             3:"𝍫",
-                                             4:"𝍬",
-                                             5:"𝍭",
-                                             6:"𝍮",
-                                             7:"𝍯",
-                                             8:"𝍰",
-                                             9:"𝍱"
-    ]
-    
-    let arabischHieroglyphenDict: [Int : String] = [0:"",
-                                                    1:"𓆼",
-                                                    2:"𓆽",
-                                                    3:"𓆾",
-                                                    4:"𓆿",
-                                                    5:"𓇀",
-                                                    6:"𓇁",
-                                                    7:"𓇂",
-                                                    8:"𓇃",
-                                                    9:"𓇄"
-    ]
     
     init(Zahl:Int){
         let tausnder = Zahl / multiplikator
@@ -106,10 +70,11 @@ struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHierogly
         }
         anzahl=gefundeneMs
     }
+    
 }
 
 
-struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl{
+struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl{
     
     let anzahl:Int
     let multiplikator:Int = 1000
@@ -148,6 +113,30 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
                                                              7:"七千",
                                                              8:"八千",
                                                              9:"九千",
+    ]
+    
+    let arabischAegeanDict: [Int : String] = [0:"",
+                                              1:"𐄢",
+                                              2:"𐄣",
+                                              3:"𐄤",
+                                              4:"𐄥",
+                                              5:"𐄦",
+                                              6:"𐄧",
+                                              7:"𐄨",
+                                              8:"𐄩",
+                                              9:"𐄪"
+    ]
+    
+    let arabischSangiDict: [Int : String] = [0:" ",
+                                             1:"𝍩",
+                                             2:"𝍪",
+                                             3:"𝍫",
+                                             4:"𝍬",
+                                             5:"𝍭",
+                                             6:"𝍮",
+                                             7:"𝍯",
+                                             8:"𝍰",
+                                             9:"𝍱"
     ]
     
     init(Zahl:Int){
@@ -198,5 +187,18 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
             }
         
         self.anzahl=a.first?.key ?? 0
+    }
+    
+    init?(aegeanNumber:String){
+        if let a=self.arabischAegeanDict
+            .first(where: {_,n in
+                return n == aegeanNumber
+            }){
+            self.anzahl=a.key * multiplikator
+        }
+        else{
+            return nil
+        }
+        
     }
 }

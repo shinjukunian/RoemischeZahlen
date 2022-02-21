@@ -142,4 +142,30 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanis
         self.anzahl=a.first?.key ?? 0
     }
     
+    init?(hieroglyph:String){
+        if let a=self.arabischHieroglyphenDict
+            .first(where: {_,n in
+                return n == hieroglyph
+            }){
+            self.anzahl=a.key * multiplikator
+        }
+        else{
+            return nil
+        }
+        
+    }
+    
+    init?(aegeanNumber:String){
+        if let a=self.arabischAegeanDict
+            .first(where: {_,n in
+                return n == aegeanNumber
+            }){
+            self.anzahl=a.key * multiplikator
+        }
+        else{
+            return nil
+        }
+        
+    }
+    
 }

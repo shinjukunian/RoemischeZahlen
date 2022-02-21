@@ -105,4 +105,17 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
             r+z.arabisch
         })
     }
+    
+    init?(aegeanNumber:String){
+        if let a=self.arabischAegeanDict
+            .first(where: {_,n in
+                return n == aegeanNumber
+            }){
+            self.anzahl=a.key * multiplikator
+        }
+        else{
+            return nil
+        }
+        
+    }
 }

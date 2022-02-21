@@ -20,6 +20,28 @@ extension String{
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: japanischeZahlenBuchstabenHaufen)
     }
+    
+    var potenzielleSuzhouZahl:Bool{
+        let suzhou=CharacterSet(charactersIn: "〇〡〢〣〤〥〦〧〨〩一二三")
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: suzhou)
+    }
+    
+    var potenzielleHieroglypheZahl:Bool{
+        let start=Unicode.Scalar.init(0x13000)!
+        let end=Unicode.Scalar(0x1342F)!
+        let hieroglyphs=CharacterSet(charactersIn: start...end)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: hieroglyphs)
+    }
+    
+    var potenziellAegaeischeZahl:Bool{
+        let start=Unicode.Scalar.init(0x10100)!
+        let end=Unicode.Scalar(0x10133)!
+        let aegean=CharacterSet(charactersIn: start...end)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: aegean)
+    }
 }
 
 

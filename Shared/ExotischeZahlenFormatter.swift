@@ -16,9 +16,9 @@ extension Output{
                 return AVSpeechSynthesisVoice(language: language)
             }
             else{
-               return nil
+                return nil
             }
-           
+            
         case .japanisch:
             return AVSpeechSynthesisVoice(language: "ja")
         default:
@@ -87,6 +87,9 @@ class ExotischeZahlenFormatter{
         enum InputLocale{
             case roman
             case japanese
+            case suzhou
+            case hieroglyph
+            case aegean
         }
         
         let value:Int
@@ -154,39 +157,11 @@ class ExotischeZahlenFormatter{
     }
     
     func macheBabylonischeZahl(aus Zahl:Int)->String?{
-        guard Zahl > 0, Zahl < 3600*60 else {
-            return nil
-        }
-        let z:[AlsBabylonischeZahl]=[Sechsunddreissigtausender(Zahl: Zahl),
-                                     DreitausendSechshunderter(Zahl: Zahl),
-                                     Sechshunderter(Zahl: Zahl),
-                                     Sechziger(Zahl: Zahl),
-                                     BabylonischeZehner(Zahl: Zahl),
-                                     Einer(Zahl: Zahl)]
-        
-        let text = z.reduce("", {r, z in
-            r+z.babylonisch
-        })
-            .trimmingPrefix(while: {$0 == "␣"})
-        return String(text)
+        return BabylonischeZahl(Zahl: Zahl).babylonisch
     }
     
     func macheAegaeischeZahl(aus Zahl:Int)->String?{
-        guard Zahl > 0, Zahl < 100_000 else {
-            return nil
-        }
-        
-        let z:[AlsAegaeischeZahl]=[ZehnTausender(Zahl: Zahl),
-                                   Tausender(Zahl: Zahl),
-                                   Hunderter(Zahl: Zahl),
-                                   Zehner(Zahl: Zahl),
-                                   Einer(Zahl: Zahl)
-        ]
-        
-        let text = z.reduce("", {r, z in
-            r+z.aegean
-        })
-        return String(text)
+        return AegeanZahl(number: Zahl)?.aegean
     }
     
     func macheSangiZahl(aus Zahl:Int)->String?{
@@ -195,10 +170,10 @@ class ExotischeZahlenFormatter{
         }
         
         let z:[AlsSangiZahl]=[ZehnTausender(Zahl: Zahl),
-                                   Tausender(Zahl: Zahl),
-                                   Hunderter(Zahl: Zahl),
-                                   Zehner(Zahl: Zahl),
-                                   Einer(Zahl: Zahl)
+                              JapanischeTausender(Zahl: Zahl),
+                              Hunderter(Zahl: Zahl),
+                              Zehner(Zahl: Zahl),
+                              Einer(Zahl: Zahl)
         ]
         
         let text = z.reduce("", {r, z in
@@ -208,23 +183,7 @@ class ExotischeZahlenFormatter{
     }
     
     func macheHieroglyphenZahl(aus Zahl:Int)->String?{
-        guard Zahl > 0, Zahl < 10_000_000 else {
-            return nil
-        }
-        
-        let z:[AlsHieroglyphenZahl]=[Millionen_Hieroglyphen(Zahl: Zahl),
-                                     HundertTausender_Hieroglyphen(Zahl: Zahl),
-                                     Zehntausender_Hieroglyphen(Zahl: Zahl),
-                                     Tausender(Zahl: Zahl),
-                                     Hunderter(Zahl: Zahl),
-                                     Zehner(Zahl: Zahl),
-                                     Einer(Zahl: Zahl)
-        ]
-        
-        let text = z.reduce("", {r, z in
-            r+z.hieroglyphe
-        })
-        return String(text)
+        return HieroglyphenZahl(Zahl: Zahl)?.hieroglyph
     }
     
     
@@ -238,6 +197,18 @@ class ExotischeZahlenFormatter{
         case _ where text.potenzielleJapanischeZahl:
             if let zahl=self.macheZahl(japanisch: text){
                 return NumericalOutput(value: zahl, locale: .japanese)
+            }
+        case _ where text.potenzielleSuzhouZahl:
+            if let zahl=SuzhouZahl(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .suzhou)
+            }
+        case _ where text.potenzielleHieroglypheZahl:
+            if let zahl=HieroglyphenZahl(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .hieroglyph)
+            }
+        case _ where text.potenziellAegaeischeZahl:
+            if let zahl=AegeanZahl(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .aegean)
             }
         default:
             return nil
@@ -292,7 +263,7 @@ class ExotischeZahlenFormatter{
     
     
     func utterance(input:SpeechOutput, output:SpeechOutput)->[AVSpeechUtterance]{
-    
+        
         let textZumSprechen=NSLocalizedString("is:", comment: "utterance string")
         let u2 = AVSpeechUtterance(string: String(textZumSprechen))
         u2.voice=Output.arabisch.voice

@@ -87,7 +87,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
                                                     1:"𓍢",
                                                     2:"𓍣",
                                                     3:"𓍤",
-                                                    4:"𓍦",
+                                                    4:"𓍥",
                                                     5:"𓍦",
                                                     6:"𓍧",
                                                     7:"𓍨",
@@ -140,5 +140,31 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
             }
         
         self.anzahl=a.first?.key ?? 0
+    }
+    
+    init?(hieroglyph:String){
+        if let a=self.arabischHieroglyphenDict
+            .first(where: {_,n in
+                return n == hieroglyph
+            }){
+            self.anzahl=a.key * multiplikator
+        }
+        else{
+            return nil
+        }
+        
+    }
+    
+    init?(aegeanNumber:String){
+        if let a=self.arabischAegeanDict
+            .first(where: {_,n in
+                return n == aegeanNumber
+            }){
+            self.anzahl=a.key * multiplikator
+        }
+        else{
+            return nil
+        }
+        
     }
 }

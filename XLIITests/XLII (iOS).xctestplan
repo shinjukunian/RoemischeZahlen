@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "B0762CBB-D587-446A-9783-0CB2C7F3DD64",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:XLII.xcodeproj",
+      "identifier" : "163C1B3B263A5AE500E1A69C",
+      "name" : "XLII (iOS)"
+    }
+  },
+  "testTargets" : [
+    {
+      "enabled" : false,
+      "target" : {
+        "containerPath" : "container:XLII.xcodeproj",
+        "identifier" : "163C1B4B263A5AE500E1A69C",
+        "name" : "Tests iOS"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:XLII.xcodeproj",
+        "identifier" : "5A34FAB427C33AF0002D58E0",
+        "name" : "XLIITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -24,6 +24,7 @@ protocol AlsBabylonischeZahl: AlsZahl {
 protocol AlsAegaeischeZahl: AlsZahl {
     var arabischAegeanDict: [Int:String] {get}
     var aegean: String {get}
+    init?(aegeanNumber:String)
 }
 
 protocol AlsSangiZahl: AlsZahl {
@@ -34,6 +35,7 @@ protocol AlsSangiZahl: AlsZahl {
 protocol AlsHieroglyphenZahl: AlsZahl {
     var arabischHieroglyphenDict: [Int:String] {get}
     var hieroglyphe: String {get}
+    init?(hieroglyph:String)
 }
 
 

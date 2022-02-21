@@ -65,7 +65,8 @@ class ConversionInputHolder:ObservableObject {
             self.inputType = .arabic
             
         }
-        else if let arabisch = formatter.macheZahl(aus: input), let output=Output(output: arabisch){
+        else if let arabisch = formatter.macheZahl(aus: input),
+                    let output=Output(output: arabisch){
             numericInput=arabisch.value
             self.inputType = .textual(output: output)
         }

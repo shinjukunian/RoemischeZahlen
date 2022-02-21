@@ -11,7 +11,10 @@ struct SuzhouZahl:AlsSuzhouZahl{
     
     var suzhou: String = ""
     
+    var arabic:Int = 0
+    
     init(Zahl:Int){
+        arabic=Zahl
         let stringNumber=String(Zahl)
         var suzhouString=""
         var vertical:Bool=true
@@ -42,4 +45,28 @@ struct SuzhouZahl:AlsSuzhouZahl{
         suzhou=suzhouString
     }
     
+    init?(string:String) {
+        guard string.potenzielleSuzhouZahl else{
+            return nil
+        }
+        suzhou=string
+        var lookupTable = [String:Int]()
+        for item in arabischSuzhouDict{
+            lookupTable[item.value]=item.key
+        }
+        for item in alternativArabischSuzhouDict{
+            lookupTable[item.value]=item.key
+        }
+        var decimal=1
+        for char in string.reversed(){
+            let number=(lookupTable[String(char)] ?? 0) * decimal
+            arabic+=number
+            decimal*=10
+        }
+        
+    }
+    
 }
+
+
+

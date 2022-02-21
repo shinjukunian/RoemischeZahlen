@@ -7,33 +7,11 @@
 
 import Foundation
 
-struct BabylonischeZehner:AlsBabylonischeZahl{
-    let anzahl:Int
-    let multiplikator:Int = 10
+struct BabylonischeZahl{
+    let arabisch:Int
+    let babylonisch:String
     
-    let arabischBabylonischDict: [Int : String] = [0:"",
-                                                   1:"𒌋",
-                                                   2:"《",
-                                                   3:"𒌍",
-                                                   4:"𒐏",
-                                                   5:"𒐐",
-    ]
-    
-    init(Zahl:Int){
-        let sechziger = Zahl / 60
-        let ubrigeZehner = Zahl - 60 * sechziger
-        anzahl = ubrigeZehner / multiplikator
-    }
-}
-
-
-
-struct Sechziger:AlsBabylonischeZahl{
-    
-    let anzahl:Int
-    let multiplikator:Int = 60
-    
-    let arabischBabylonischDict: [Int : String] = [0:"␣",
+    let arabischBabylonischDict_ones: [Int : String] = [0:"␣",
                                                    1:"𒐕",
                                                    2:"𒐖",
                                                    3:"𒐗",
@@ -43,21 +21,9 @@ struct Sechziger:AlsBabylonischeZahl{
                                                    7:"𒐛",
                                                    8:"𒐜",
                                                    9:"𒐝"
-        
     ]
     
-    init(Zahl:Int){
-        let dreitausendSechsHunderter = Zahl / 600
-        let ubrigeSechziger = Zahl - 600 * dreitausendSechsHunderter
-        anzahl = ubrigeSechziger / multiplikator
-    }
-}
-
-struct Sechshunderter: AlsBabylonischeZahl{
-    let anzahl:Int
-    let multiplikator:Int = 600
-    
-    let arabischBabylonischDict: [Int : String] = [0:"",
+    let arabischBabylonischDict_tens: [Int : String] = [0:"",
                                                    1:"𒌋",
                                                    2:"《",
                                                    3:"𒌍",
@@ -66,54 +32,26 @@ struct Sechshunderter: AlsBabylonischeZahl{
     ]
     
     init(Zahl:Int){
-        let dreitausendSechsHunderter = Zahl / 3600
-        let ubrigeSechziger = Zahl - 3600 * dreitausendSechsHunderter
-        anzahl = ubrigeSechziger / multiplikator
-    }
-}
-
-
-struct DreitausendSechshunderter:AlsBabylonischeZahl{
-    
-    let anzahl:Int
-    let multiplikator:Int = 3600
-    
-    let arabischBabylonischDict: [Int : String] = [0:"␣",
-                                                   1:"𒐕",
-                                                   2:"𒐖",
-                                                   3:"𒐗",
-                                                   4:"𒐘",
-                                                   5:"𒐙",
-                                                   6:"𒐚",
-                                                   7:"𒐛",
-                                                   8:"𒐜",
-                                                   9:"𒐝"
+        self.arabisch=Zahl
         
-    ]
-    
-    init(Zahl:Int){
-        let larger = Zahl / (3600*10)
-        let remainder = Zahl - (3600*10) * larger
-        anzahl = remainder / multiplikator
-    }
-}
-
-struct Sechsunddreissigtausender:AlsBabylonischeZahl{
-    
-    let anzahl:Int
-    let multiplikator:Int = 36000
-    
-    let arabischBabylonischDict: [Int : String] = [0:"",
-                                                   1:"𒌋",
-                                                   2:"《",
-                                                   3:"𒌍",
-                                                   4:"𒐏",
-                                                   5:"𒐐",
-    ]
-    
-    init(Zahl:Int){
-        let larger = Zahl / (3600*60)
-        let remainder = Zahl - (3600*60) * larger
-        anzahl = remainder / multiplikator
+        let multiplicator=60
+        var babylonisch = [String]()
+        var number=Zahl
+        
+        while (number > 0){
+            let div=number.quotientAndRemainder(dividingBy: multiplicator)
+            let remainder=div.remainder
+            
+            let decimalFraction=(remainder).quotientAndRemainder(dividingBy: 10)
+            let ones=arabischBabylonischDict_ones[decimalFraction.remainder] ?? ""
+            let tens=arabischBabylonischDict_tens[decimalFraction.quotient] ?? ""
+            let text = tens + ones
+            babylonisch.append(text)
+            
+            number /= multiplicator
+            
+        }
+        
+        self.babylonisch=babylonisch.reversed().joined(separator: " ")
     }
 }
