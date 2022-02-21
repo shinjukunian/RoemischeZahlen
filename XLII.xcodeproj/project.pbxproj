@@ -21,6 +21,10 @@
 		163C1B79263A746100E1A69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B7B263A746100E1A69C /* Localizable.strings */; };
 		163C1B88263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B86263A799600E1A69C /* InfoPlist.strings */; };
 		163C1B8B263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B89263A799600E1A69C /* InfoPlist.strings */; };
+		5A34FAAC27C3190D002D58E0 /* Hieroglyphen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAB27C3190D002D58E0 /* Hieroglyphen.swift */; };
+		5A34FAAD27C3190D002D58E0 /* Hieroglyphen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAB27C3190D002D58E0 /* Hieroglyphen.swift */; };
+		5A34FAAF27C3299D002D58E0 /* Suzhou.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAE27C3299D002D58E0 /* Suzhou.swift */; };
+		5A34FAB027C3299D002D58E0 /* Suzhou.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAE27C3299D002D58E0 /* Suzhou.swift */; };
 		5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
 		5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
 		5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C2263E69F300D6940B /* String+Extensions.swift */; };
@@ -108,6 +112,8 @@
 		163C1B8C263A799C00E1A69C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		163C1B8D263A79B600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		163C1B8E263A79B600E1A69C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A34FAAB27C3190D002D58E0 /* Hieroglyphen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hieroglyphen.swift; sourceTree = "<group>"; };
+		5A34FAAE27C3299D002D58E0 /* Suzhou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suzhou.swift; sourceTree = "<group>"; };
 		5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DezimalZahlen.swift; sourceTree = "<group>"; };
 		5A40F9C2263E69F300D6940B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -268,8 +274,10 @@
 				5A7658E226F070DE00F034AE /* Hunderter.swift */,
 				5A7658E526F070EE00F034AE /* Tausender.swift */,
 				5A7658E826F0710F00F034AE /* ZehnTausender.swift */,
+				5A34FAAB27C3190D002D58E0 /* Hieroglyphen.swift */,
 				5A7658EC26F0712900F034AE /* HunderMillionen.swift */,
 				5A5AE98D27C228E30020A0FA /* Babylonisch.swift */,
+				5A34FAAE27C3299D002D58E0 /* Suzhou.swift */,
 			);
 			path = Zahlen;
 			sourceTree = "<group>";
@@ -452,11 +460,13 @@
 				5A7658E626F070EE00F034AE /* Tausender.swift in Sources */,
 				5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
+				5A34FAAF27C3299D002D58E0 /* Suzhou.swift in Sources */,
 				5A7658DD26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
 				5A7658E026F070B200F034AE /* Zehner.swift in Sources */,
 				5AA6131027C1D6CF008E3C6C /* Output.swift in Sources */,
 				5A54F3A126411F58009D6882 /* ROIView.swift in Sources */,
+				5A34FAAC27C3190D002D58E0 /* Hieroglyphen.swift in Sources */,
 				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A7658ED26F0712900F034AE /* HunderMillionen.swift in Sources */,
 				5A5AE98E27C228E30020A0FA /* Babylonisch.swift in Sources */,
@@ -483,11 +493,13 @@
 				5A7658E726F070EE00F034AE /* Tausender.swift in Sources */,
 				5A7E096226F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */,
+				5A34FAB027C3299D002D58E0 /* Suzhou.swift in Sources */,
 				5A7658DE26F0709F00F034AE /* Einer.swift in Sources */,
 				5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */,
 				5A7658E126F070B200F034AE /* Zehner.swift in Sources */,
 				5AA6131127C1D6CF008E3C6C /* Output.swift in Sources */,
 				5A54F3A226411F58009D6882 /* ROIView.swift in Sources */,
+				5A34FAAD27C3190D002D58E0 /* Hieroglyphen.swift in Sources */,
 				5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A7658EE26F0712900F034AE /* HunderMillionen.swift in Sources */,
 				5A5AE98F27C228E30020A0FA /* Babylonisch.swift in Sources */,

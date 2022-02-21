@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl {
+struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHieroglyphenZahl {
     let anzahl:Int
     let multiplikator:Int = 100
     
     let arabischRömischDict=[0:"",
-              1:"C",
-              2:"CC",
-              3:"CCC",
-              4:"CD",
-              5:"D",
-              6:"DC",
-              7:"DCC",
-              8:"DCCC",
-              9:"CM"
+                             1:"C",
+                             2:"CC",
+                             3:"CCC",
+                             4:"CD",
+                             5:"D",
+                             6:"DC",
+                             7:"DCC",
+                             8:"DCCC",
+                             9:"CM"
     ]
     
     let arabischJapanischDict = [0:"",
@@ -36,15 +36,15 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
     ]
     
     let arabischJapanischBankDict: [Int : String] = [0:"",
-                                                    1:"陌",
-                                                    2:"弐陌",
-                                                    3:"参陌",
-                                                    4:"肆陌",
-                                                    5:"伍陌",
-                                                    6:"陸陌",
-                                                    7:"漆陌",
-                                                    8:"捌陌",
-                                                    9:"玖陌",
+                                                     1:"陌",
+                                                     2:"弐陌",
+                                                     3:"参陌",
+                                                     4:"肆陌",
+                                                     5:"伍陌",
+                                                     6:"陸陌",
+                                                     7:"漆陌",
+                                                     8:"捌陌",
+                                                     9:"玖陌",
     ]
     
     var arabischJapanischBankDict_einfach: [Int : String] = [0:"",
@@ -81,7 +81,19 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
                                              7:"𝍦",
                                              8:"𝍧",
                                              9:"𝍨"
-   ]
+    ]
+    
+    let arabischHieroglyphenDict: [Int : String] = [0:"",
+                                                    1:"𓍢",
+                                                    2:"𓍣",
+                                                    3:"𓍤",
+                                                    4:"𓍦",
+                                                    5:"𓍦",
+                                                    6:"𓍧",
+                                                    7:"𓍨",
+                                                    8:"𓍩",
+                                                    9:"𓍪"
+    ]
     
     init(Zahl:Int){
         let tausnder = Zahl / 1000

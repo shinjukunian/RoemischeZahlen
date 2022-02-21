@@ -72,7 +72,7 @@ struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian, .aegean, .sangi:
+        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
@@ -123,6 +123,14 @@ class ExotischeZahlenFormatter{
         })
     }
     
+    func macheSuzhouZahl(aus Zahl:Int)->String?{
+        guard Zahl > 0 else {
+            return nil
+        }
+        let suzhou=SuzhouZahl(Zahl: Zahl)
+        return suzhou.suzhou
+    }
+    
     func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
         guard Zahl > 0, Zahl < 100_000_000_000 else {
             return nil
@@ -143,8 +151,6 @@ class ExotischeZahlenFormatter{
                 r+z.japanisch_Bank
             })
         }
-        
-       
     }
     
     func macheBabylonischeZahl(aus Zahl:Int)->String?{
@@ -198,6 +204,26 @@ class ExotischeZahlenFormatter{
         let text = z.reduce("", {r, z in
             r+z.sangi
         }).trimmingPrefix(while: {$0 == " "})
+        return String(text)
+    }
+    
+    func macheHieroglyphenZahl(aus Zahl:Int)->String?{
+        guard Zahl > 0, Zahl < 10_000_000 else {
+            return nil
+        }
+        
+        let z:[AlsHieroglyphenZahl]=[Millionen_Hieroglyphen(Zahl: Zahl),
+                                     HundertTausender_Hieroglyphen(Zahl: Zahl),
+                                     Zehntausender_Hieroglyphen(Zahl: Zahl),
+                                     Tausender(Zahl: Zahl),
+                                     Hunderter(Zahl: Zahl),
+                                     Zehner(Zahl: Zahl),
+                                     Einer(Zahl: Zahl)
+        ]
+        
+        let text = z.reduce("", {r, z in
+            r+z.hieroglyphe
+        })
         return String(text)
     }
     

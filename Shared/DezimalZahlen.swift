@@ -7,28 +7,62 @@
 
 import Foundation
 
-protocol AlsRoemischeZahl {
+protocol AlsZahl {
     var anzahl: Int {get}
+}
+
+protocol AlsRoemischeZahl: AlsZahl {
     var arabischRömischDict: [Int:String] {get}
     var römisch: String {get}
 }
 
-protocol AlsBabylonischeZahl {
-    var anzahl: Int {get}
+protocol AlsBabylonischeZahl: AlsZahl {
     var arabischBabylonischDict: [Int:String] {get}
     var babylonisch: String {get}
 }
 
-protocol AlsAegaeischeZahl {
-    var anzahl: Int {get}
+protocol AlsAegaeischeZahl: AlsZahl {
     var arabischAegeanDict: [Int:String] {get}
     var aegean: String {get}
 }
 
-protocol AlsSangiZahl {
-    var anzahl: Int {get}
+protocol AlsSangiZahl: AlsZahl {
     var arabischSangiDict: [Int:String] {get}
     var sangi: String {get}
+}
+
+protocol AlsHieroglyphenZahl: AlsZahl {
+    var arabischHieroglyphenDict: [Int:String] {get}
+    var hieroglyphe: String {get}
+}
+
+
+protocol AlsSuzhouZahl {
+    var arabischSuzhouDict: [Int:String] {get}
+    var alternativArabischSuzhouDict:[Int:String] {get}
+    var suzhou: String {get}
+}
+
+extension AlsSuzhouZahl{
+    var arabischSuzhouDict: [Int : String] { [0:"〇",
+                                              1:"〡",
+                                              2:"〢",
+                                              3:"〣",
+                                              4:"〤",
+                                              5:"〥",
+                                              6:"〦",
+                                              7:"〧",
+                                              8:"〨",
+                                              9:"〩"]
+    }
+    
+    var alternativArabischSuzhouDict: [Int : String] { [1:"一", 2:"二", 3:"三"] }
+}
+
+extension AlsHieroglyphenZahl{
+    var hieroglyphe : String{
+        return self.arabischHieroglyphenDict[self.anzahl] ?? ""
+    }
 }
 
 extension AlsRoemischeZahl{
@@ -67,8 +101,7 @@ extension AlsArabischeZahl{
     }
 }
 
-protocol AlsJapanischeZahl {
-    var anzahl: Int {get}
+protocol AlsJapanischeZahl: AlsZahl {
     var arabischJapanischDict: [Int:String] {get}
     var japanisch: String {get}
 }

@@ -48,13 +48,17 @@ class NumeralConversionHolder{
         case .arabisch:
             formattedOutput = String(zahl)
         case .japanisch_bank:
-            formattedOutput = formatter.macheJapanischeBankZahl(aus: zahl, einfach: false) ?? noValidNumber
+            formattedOutput = formatter.macheJapanischeBankZahl(aus: zahl, einfach: true) ?? noValidNumber
         case .babylonian:
             formattedOutput = formatter.macheBabylonischeZahl(aus: zahl) ?? noValidNumber
         case .aegean:
             formattedOutput = formatter.macheAegaeischeZahl(aus: zahl) ?? noValidNumber
         case .sangi:
             formattedOutput = formatter.macheSangiZahl(aus: zahl) ?? noValidNumber
+        case .hieroglyph:
+            formattedOutput = formatter.macheHieroglyphenZahl(aus: zahl) ?? noValidNumber
+        case .suzhou:
+            formattedOutput = formatter.macheSuzhouZahl(aus: zahl) ?? noValidNumber
         case .localized(let locale):
             localizedSpellOutFormatter.locale=locale
             formattedOutput = localizedSpellOutFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber

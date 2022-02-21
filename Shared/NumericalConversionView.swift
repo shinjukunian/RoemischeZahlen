@@ -29,9 +29,9 @@ struct NumericalConversionView: View {
                 
                 Divider()
                 Text(holder.formattedOutput)
-                    .font(.title2)
+                    .font(.largeTitle)
                     .multilineTextAlignment(.center)
-                    .lineLimit(4)
+                    .lineLimit(6)
                     .contextMenu(menuItems: {
                         Button(action: {
                             holder.speak()
@@ -58,6 +58,6 @@ struct NumericalConversionView: View {
 
 struct NumericalConversionView_Previews: PreviewProvider {
     static var previews: some View {
-        NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: 42, outputMode: .römisch)))
+        NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: 42, outputMode: .sangi)))
     }
 }

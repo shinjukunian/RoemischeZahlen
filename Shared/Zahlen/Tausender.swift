@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl{
+struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHieroglyphenZahl{
     let anzahl:Int
     let multiplikator:Int = 1000
     
@@ -34,7 +34,19 @@ struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl{
                                              7:"𝍯",
                                              8:"𝍰",
                                              9:"𝍱"
-   ]
+    ]
+    
+    let arabischHieroglyphenDict: [Int : String] = [0:"",
+                                                    1:"𓆼",
+                                                    2:"𓆽",
+                                                    3:"𓆾",
+                                                    4:"𓆿",
+                                                    5:"𓇀",
+                                                    6:"𓇁",
+                                                    7:"𓇂",
+                                                    8:"𓇃",
+                                                    9:"𓇄"
+    ]
     
     init(Zahl:Int){
         let tausnder = Zahl / multiplikator
@@ -47,7 +59,7 @@ struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl{
             return ""
         case 1...3:
             return Array(repeating: "M", count: anzahl).joined()
-        
+            
         default:
             let zehner = Zehner(Zahl: anzahl)
             let einser = Einer(Zahl: anzahl)
@@ -66,7 +78,7 @@ struct Tausender: AlsArabischeZahl, AlsAegaeischeZahl, AlsSangiZahl{
                     return String(c) + String(overbar)
                 })
                 millions = overbarMillions.joined()
-
+                
             }
             else{
                 millions = ""
@@ -136,7 +148,7 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
                                                              7:"七千",
                                                              8:"八千",
                                                              9:"九千",
-                                ]
+    ]
     
     init(Zahl:Int){
         let zehnTausender = Zahl / (multiplikator*10)

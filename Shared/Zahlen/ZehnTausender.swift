@@ -39,7 +39,9 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
                                              7:"𝍦",
                                              8:"𝍧",
                                              9:"𝍨"
-   ]
+    ]
+    
+    
     
     init(Zahl:Int){
         let hundertMillionen = Zahl / 100_000_000
@@ -52,9 +54,9 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
         guard anzahl > 0 else {return ""}
         
         let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten,
-                                   Hunderter(Zahl: anzahl).japanisch,
-                                   Zehner(Zahl: anzahl).japanisch,
-                                   Einer(Zahl: anzahl).japanisch]
+                        Hunderter(Zahl: anzahl).japanisch,
+                        Zehner(Zahl: anzahl).japanisch,
+                        Einer(Zahl: anzahl).japanisch]
         return z.reduce("", {r, z in
             r+z
         }) + "万"
@@ -65,9 +67,9 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
         guard anzahl > 0 else {return ""}
         
         let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten_Bank,
-                                   Hunderter(Zahl: anzahl).japanisch_Bank,
-                                   Zehner(Zahl: anzahl).japanisch_Bank,
-                                   Einer(Zahl: anzahl).japanisch_Bank]
+                        Hunderter(Zahl: anzahl).japanisch_Bank,
+                        Zehner(Zahl: anzahl).japanisch_Bank,
+                        Einer(Zahl: anzahl).japanisch_Bank]
         return z.reduce("", {r, z in
             r+z
         }) + "萬"
@@ -77,9 +79,9 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
         guard anzahl > 0 else {return ""}
         
         let z:[String]=[JapanischeTausender(Zahl: anzahl).japanischMitTausenderEinheiten_Bank_einfach,
-                                   Hunderter(Zahl: anzahl).japanisch_Bank_einfach,
-                                   Zehner(Zahl: anzahl).japanisch_Bank_einfach,
-                                   Einer(Zahl: anzahl).japanisch_Bank_einfach]
+                        Hunderter(Zahl: anzahl).japanisch_Bank_einfach,
+                        Zehner(Zahl: anzahl).japanisch_Bank_einfach,
+                        Einer(Zahl: anzahl).japanisch_Bank_einfach]
         return z.reduce("", {r, z in
             r+z
         }) + "万"
