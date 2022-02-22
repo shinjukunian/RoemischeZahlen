@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 extension UserDefaults{
     enum Keys {
@@ -31,5 +32,14 @@ public extension Bundle{
     }
     var build:String{
         return self.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
+    }
+}
+
+extension CGRect:Hashable{
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(origin.x)
+        hasher.combine(origin.y)
+        hasher.combine(size.width)
+        hasher.combine(size.height)
     }
 }

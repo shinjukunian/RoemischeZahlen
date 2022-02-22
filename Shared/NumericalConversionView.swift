@@ -34,8 +34,8 @@ struct NumericalConversionView: View {
                     .lineLimit(6)
                     
             }
-        }
-        .padding(.horizontal)
+        }.groupBoxStyle(ConversionCardBoxStyle())
+        
         
         
             
@@ -44,6 +44,23 @@ struct NumericalConversionView: View {
 
 struct NumericalConversionView_Previews: PreviewProvider {
     static var previews: some View {
-        NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: 42, outputMode: .sangi)))
+        NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: 4, outputMode: .sangi)))
+    }
+}
+
+
+
+
+struct ConversionCardBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .leading) {
+            configuration.label
+            configuration.content
+        }
+        .padding()
+        #if os(iOS)
+        .background(Color(uiColor: .systemBackground))
+        #endif
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }

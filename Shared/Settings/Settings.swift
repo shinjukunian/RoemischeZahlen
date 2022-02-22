@@ -11,7 +11,7 @@ import SwiftUI
 import MessageUI
 #endif
 
-struct Settings: View {
+struct SettingsView: View {
     
     @AppStorage(UserDefaults.Keys.daijiCompleteKey) var daijiForAll:Bool = false
     @Environment(\.dismiss) var dismiss
@@ -23,7 +23,7 @@ struct Settings: View {
                 Section(content: {
                     Toggle(isOn: $daijiForAll, label: {Text("Convert all characters to  Daiji")})
                         .help(Text("Convert all characters to Daiji. This usage is archaic."))
-                        
+                    
                     Toggle(isOn: $otherBases, label: {Text("Allow bases other than 10 for numeric input")})
                         .help(Text("Parse numeric input for other bases, e.g. binary or hexadecimal."))
                     
@@ -34,33 +34,37 @@ struct Settings: View {
 #if os(iOS)
                 Section(content: {
                     NavigationLink(destination: {
-                       
+                        
                         MailView(result: .constant(nil))
                         
                     }, label: {
                         Text("Feedback")
                     })
-
+                    
                     .disabled(!MFMailComposeViewController.canSendMail())
-
+                    
                 }, header: {
                     Text("Feedback")
                 })
 #endif
-            }.navigationTitle(Text("Settings"))
-                .toolbar(content: {
-                    ToolbarItem(placement: .confirmationAction, content: {
-                        Button(action: {
-                            dismiss()
-                        }, label: {Text("Done")})
-                    })
+            }
+            .navigationTitle(Text("Settings"))
+            #if os(iOS)
+            .navigationViewStyle(.stack)
+            #endif
+            .toolbar(content: {
+                ToolbarItem(placement: .confirmationAction, content: {
+                    Button(action: {
+                        dismiss()
+                    }, label: {Text("Done")})
                 })
+            })
         }
     }
 }
 
-struct Settings_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        SettingsView()
     }
 }

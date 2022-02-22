@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 extension String{
     var potenzielleRömischeZahl:Bool{
@@ -44,12 +43,3 @@ extension String{
     }
 }
 
-
-extension CGRect:Hashable{
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(origin.x)
-        hasher.combine(origin.y)
-        hasher.combine(size.width)
-        hasher.combine(size.height)
-    }
-}

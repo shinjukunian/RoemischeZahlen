@@ -14,10 +14,11 @@ struct OutputView: View {
 
     var body: some View {
         contentView
+            
             .onChange(of: holder.inputType, perform: {input in
                 switch input{
                 case .numeric(let results):
-                    self.selectedBase =  results.first?.base ?? .decimal
+                    self.selectedBase =  (results.first(where: {$0.base == .decimal})?.base ?? results.first?.base) ?? .decimal
                 default:
                     break
                 }
@@ -54,6 +55,7 @@ struct OutputView: View {
         case .arabic:
             Divider().background(Color.accentColor)
             let items=[Output.currentLocale] + holder.outputs
+            
             ConversionTableView(holder: holder, displayItems: items)
         case .numeric(let results):
             if results.count > 1{

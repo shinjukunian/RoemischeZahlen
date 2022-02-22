@@ -21,7 +21,8 @@ struct OutputSelectionView: View {
     
     @ObservedObject var holder:ConversionInputHolder
     @Environment(\.dismiss) var dismiss
-
+    @Environment(\.isPresented) var isPresented
+    
     @State var selection:Set<Output> = Set<Output>()
     
     @State var searchText:String = ""
@@ -37,7 +38,7 @@ struct OutputSelectionView: View {
         return Locale.availableIdentifiers
             .filter({$0.hasPrefix("ja") == false })
             .map({Locale(identifier: $0)})
-            .filter({$0.languageCode != nil})
+            .filter({$0.languageCode != nil || $0 != current})
             .uniqued(on: {$0.languageCode ?? ""})
             .sorted(by: {l1,l2 in
                 guard let language1=current.localizedString(forLanguageCode: l1.languageCode ?? ""),
@@ -55,52 +56,62 @@ struct OutputSelectionView: View {
     
     var body: some View {
         
-        NavigationView{
-            List(selection: $selection){
-                
-                ForEach(displayInputs, id: \.outputs, content: {list in
-                    self.section(outPuts: list.outputs, title: list.title)
-                })
-               
-            }
-            .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
+        
+        List(selection: $selection){
             
-            .navigationTitle(Text("Output Selection"))
-            .toolbar(content: {
-                ToolbarItem(placement: .confirmationAction, content: {
+            ForEach(displayInputs, id: \.outputs, content: {list in
+                self.section(outPuts: list.outputs, title: list.title)
+            })
+            
+        }
+        .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
+        
+        
+        .toolbar(content: {
+            
+            ToolbarItem(placement: .confirmationAction, content: {
+                if isPresented{
                     Button(action: {
-                        holder.outputs=Array(selection)
                         dismiss()
                     }, label: {Text("Done")})
-                })
+                }
+                else{
+                    EmptyView()
+                }
             })
-            #if os(iOS)
-            .environment(\.editMode, .constant(.active))
-            #endif
-            .onAppear(perform: {
-                self.selection=Set(holder.outputs)
-                self.displayInputs = [
-                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
-                    OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
-                        OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableLocalizedOutputs)
-                    
-                ]
-            })
-            .onSubmit(of: .search, {
+
+        })
+        .onChange(of: selection, perform: {selection in
+            holder.outputs=Array(selection)
+        })
+        .background(.thinMaterial)
+#if os(iOS)
+        .environment(\.editMode, .constant(.active))
+#endif
+        .onAppear(perform: {
+            self.selection=Set(holder.outputs)
+            self.displayInputs = [
+                OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
+                OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
+                OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableLocalizedOutputs)
                 
-            })
-            .onChange(of: searchText, perform: {text in
-                let availableSystem=availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-                let availableBuiltin=Output.builtin.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-                let availableNumeric=Output.numericTypes.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+            ]
+        })
+        .onSubmit(of: .search, {
+            
+        })
+        .onChange(of: searchText, perform: {text in
+            let availableSystem=availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+            let availableBuiltin=Output.builtin.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+            let availableNumeric=Output.numericTypes.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+            
+            self.displayInputs = [
+                OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltin),
+                OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: availableNumeric),OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableSystem)
                 
-                self.displayInputs = [
-                    OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltin),
-                    OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: availableNumeric),OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableSystem)
-                    
-                ].filter({$0.outputs.isEmpty == false})
-            })
-        }
+            ].filter({$0.outputs.isEmpty == false})
+        })
+        
         
     }
     

@@ -22,6 +22,8 @@ struct ConversionTableView: View {
                     NumericalConversionView(holder: hh)
                         .onDrag({
                             let provider=NSItemProvider(item: nil, typeIdentifier: Output.dragType)
+                            provider.registerObject(hh.formattedOutput as NSString, visibility: .all)
+                            
                             draggedItem = outPut
                             return provider
                         })

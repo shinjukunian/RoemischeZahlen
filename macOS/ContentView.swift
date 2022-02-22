@@ -64,7 +64,6 @@ struct ContentView: View {
                 
             }
             .padding(.all)
-//            .fixedSize(horizontal: false, vertical: true)
             #if os(iOS)
             Spacer()
             #else
@@ -103,7 +102,7 @@ struct ContentView: View {
             OutputSelectionView(holder: holder)
         })
         .sheet(isPresented: $showSettings, content: {
-            Settings()
+            SettingsView()
         })
         
         
@@ -115,7 +114,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let holder=ConversionInputHolder()
-        holder.input="10"
+        holder.input="m"
         return ContentView(holder: holder)
     }
 }

@@ -73,9 +73,9 @@ class ConversionInputHolder:ObservableObject {
     
     @Published var inputType = InputType.empty
     
-    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference = OutputPreference(outputs: [.currentLocale, .römisch, .japanisch, .suzhou, .hieroglyph, .babylonian])
+    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference = OutputPreference(outputs: [.römisch, .japanisch, .suzhou, .hieroglyph, .babylonian])
     
-    @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = false
+    @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
     
     @Published var outputs:[Output] = [.japanisch,.römisch]{
         didSet{

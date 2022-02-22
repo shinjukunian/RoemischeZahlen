@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import UniformTypeIdentifiers
-
 
 enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, CustomStringConvertible{
     

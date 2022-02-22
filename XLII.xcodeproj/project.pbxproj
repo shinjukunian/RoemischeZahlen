@@ -10,8 +10,6 @@
 		163C1B51263A5AE500E1A69C /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B50263A5AE500E1A69C /* Tests_iOS.swift */; };
 		163C1B5C263A5AE500E1A69C /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B5B263A5AE500E1A69C /* Tests_macOS.swift */; };
 		163C1B5E263A5AE500E1A69C /* XLIIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B35263A5AE000E1A69C /* XLIIApp.swift */; };
-		163C1B5F263A5AE500E1A69C /* XLIIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B35263A5AE000E1A69C /* XLIIApp.swift */; };
-		163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B36263A5AE000E1A69C /* ContentView.swift */; };
 		163C1B61263A5AE500E1A69C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163C1B36263A5AE000E1A69C /* ContentView.swift */; };
 		163C1B62263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
 		163C1B63263A5AE500E1A69C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B37263A5AE500E1A69C /* Assets.xcassets */; };
@@ -28,6 +26,10 @@
 		5A34FAB827C33AF0002D58E0 /* XLIITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAB727C33AF0002D58E0 /* XLIITests.swift */; };
 		5A34FAC327C34B69002D58E0 /* ConversionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAC227C34B69002D58E0 /* ConversionTableView.swift */; };
 		5A34FAC427C34B69002D58E0 /* ConversionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAC227C34B69002D58E0 /* ConversionTableView.swift */; };
+		5A3D33D627C466ED00C7C27F /* XLIIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D33D527C466E500C7C27F /* XLIIApp.swift */; };
+		5A3D33D827C4672B00C7C27F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D33D727C4672B00C7C27F /* ContentView.swift */; };
+		5A3D33DA27C4678900C7C27F /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D33D927C4678900C7C27F /* InputView.swift */; };
+		5A3D33DB27C4678900C7C27F /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3D33D927C4678900C7C27F /* InputView.swift */; };
 		5A40F9C0263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
 		5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */; };
 		5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C2263E69F300D6940B /* String+Extensions.swift */; };
@@ -133,6 +135,9 @@
 		5A34FAB727C33AF0002D58E0 /* XLIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIITests.swift; sourceTree = "<group>"; };
 		5A34FABE27C33B2C002D58E0 /* XLII (macOS).xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "XLII (macOS).xctestplan"; sourceTree = "<group>"; };
 		5A34FAC227C34B69002D58E0 /* ConversionTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversionTableView.swift; sourceTree = "<group>"; };
+		5A3D33D527C466E500C7C27F /* XLIIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIIApp.swift; sourceTree = "<group>"; };
+		5A3D33D727C4672B00C7C27F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5A3D33D927C4678900C7C27F /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DezimalZahlen.swift; sourceTree = "<group>"; };
 		5A40F9C2263E69F300D6940B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -222,20 +227,13 @@
 				5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */,
 				5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */,
 				5AA6130F27C1D6CF008E3C6C /* Output.swift */,
-				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
-				163C1B35263A5AE000E1A69C /* XLIIApp.swift */,
-				163C1B36263A5AE000E1A69C /* ContentView.swift */,
+				5A3D33D927C4678900C7C27F /* InputView.swift */,
 				5A871E6A27C3C277006606CD /* OutputView.swift */,
 				5A5AE98427C207570020A0FA /* OutputSelectionView.swift */,
 				5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */,
 				5A34FAC227C34B69002D58E0 /* ConversionTableView.swift */,
 				5A7E095A26F07515006BFB31 /* Extensions.swift */,
-				5A40F9C8263E75D000D6940B /* CameraView.swift */,
-				5A54F3A026411F58009D6882 /* ROIView.swift */,
-				5A40F9CB263E765200D6940B /* PreviewView.swift */,
-				5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */,
-				5A606FB7263E873000C3DE62 /* Recognizer.swift */,
-				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
+				5A3D33DC27C4679A00C7C27F /* Camera */,
 				5A7658DB26F0707C00F034AE /* Zahlen */,
 				5A40F9C2263E69F300D6940B /* String+Extensions.swift */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
@@ -260,6 +258,8 @@
 		163C1B3E263A5AE500E1A69C /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				5A3D33D727C4672B00C7C27F /* ContentView.swift */,
+				163C1B35263A5AE000E1A69C /* XLIIApp.swift */,
 				163C1B3F263A5AE500E1A69C /* Info.plist */,
 				163C1B86263A799600E1A69C /* InfoPlist.strings */,
 			);
@@ -269,6 +269,8 @@
 		163C1B45263A5AE500E1A69C /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				163C1B36263A5AE000E1A69C /* ContentView.swift */,
+				5A3D33D527C466E500C7C27F /* XLIIApp.swift */,
 				163C1B46263A5AE500E1A69C /* Info.plist */,
 				163C1B89263A799600E1A69C /* InfoPlist.strings */,
 				163C1B47263A5AE500E1A69C /* macOS.entitlements */,
@@ -304,6 +306,19 @@
 			path = XLIITests;
 			sourceTree = "<group>";
 		};
+		5A3D33DC27C4679A00C7C27F /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				5A606FB4263E86B700C3DE62 /* SceneStability.swift */,
+				5A40F9C8263E75D000D6940B /* CameraView.swift */,
+				5A54F3A026411F58009D6882 /* ROIView.swift */,
+				5A40F9CB263E765200D6940B /* PreviewView.swift */,
+				5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */,
+				5A606FB7263E873000C3DE62 /* Recognizer.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		5A5AE98A27C20F220020A0FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +338,7 @@
 		5A7658DB26F0707C00F034AE /* Zahlen */ = {
 			isa = PBXGroup;
 			children = (
+				5A40F9BF263E45C800D6940B /* DezimalZahlen.swift */,
 				5A7658DC26F0709F00F034AE /* Einer.swift */,
 				5A7658DF26F070B200F034AE /* Zehner.swift */,
 				5A7658E226F070DE00F034AE /* Hunderter.swift */,
@@ -538,16 +554,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A40F9C3263E69F300D6940B /* String+Extensions.swift in Sources */,
+				5A3D33DA27C4678900C7C27F /* InputView.swift in Sources */,
 				163C1B73263A5BD700E1A69C /* ExotischeZahlenFormatter.swift in Sources */,
 				5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */,
 				5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */,
 				5A7658E626F070EE00F034AE /* Tausender.swift in Sources */,
 				5A871E6B27C3C277006606CD /* OutputView.swift in Sources */,
 				5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
-				163C1B60263A5AE500E1A69C /* ContentView.swift in Sources */,
 				5A34FAAF27C3299D002D58E0 /* Suzhou.swift in Sources */,
 				5A7658DD26F0709F00F034AE /* Einer.swift in Sources */,
 				5A68E5BE27C3AE2C00D5BC40 /* MailController.swift in Sources */,
+				5A3D33D827C4672B00C7C27F /* ContentView.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
 				5A7658E026F070B200F034AE /* Zehner.swift in Sources */,
 				5AA6131027C1D6CF008E3C6C /* Output.swift in Sources */,
@@ -594,13 +611,14 @@
 				5A34FAC427C34B69002D58E0 /* ConversionTableView.swift in Sources */,
 				5A5AE98F27C228E30020A0FA /* Babylonisch.swift in Sources */,
 				5A68E5BC27C3AB5800D5BC40 /* Settings.swift in Sources */,
+				5A3D33D627C466ED00C7C27F /* XLIIApp.swift in Sources */,
 				5A40F9C1263E45C800D6940B /* DezimalZahlen.swift in Sources */,
 				5A5AE98327C1EEC10020A0FA /* NumericalConversionView.swift in Sources */,
 				5A7658E426F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095C26F07515006BFB31 /* Extensions.swift in Sources */,
-				163C1B5F263A5AE500E1A69C /* XLIIApp.swift in Sources */,
 				5A7658EA26F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
+				5A3D33DB27C4678900C7C27F /* InputView.swift in Sources */,
 				5A5AE98027C1E8840020A0FA /* ConversionInputHolder.swift in Sources */,
 				5A5AE98627C207570020A0FA /* OutputSelectionView.swift in Sources */,
 			);

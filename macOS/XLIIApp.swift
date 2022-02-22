@@ -94,11 +94,11 @@ struct XLIIApp: App {
     var body: some Scene {
         windowScene
         
-//        #if os(macOS)
-//        Settings {
-//            SettingsView()
-//        }
-//        #endif
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }
+        #endif
         
     }
 }
