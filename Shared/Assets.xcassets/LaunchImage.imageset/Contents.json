@@ -2,7 +2,11 @@
   "images" : [
     {
       "filename" : "launchIncon.pdf",
-      "idiom" : "universal"
+      "idiom" : "iphone"
+    },
+    {
+      "filename" : "launchIncon-1.pdf",
+      "idiom" : "ipad"
     }
   ],
   "info" : {
