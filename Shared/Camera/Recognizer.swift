@@ -19,7 +19,7 @@ protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {
 class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     
     struct TextElement: Equatable, Identifiable{
-        
+       
         enum TextElementType:Equatable {
             case arabicNumber(number:Int)
             case romanNumeral(number:Int)
@@ -49,6 +49,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         let rect:CGRect
         let text:String
         let type: TextElementType
+        let formatter=ExotischeZahlenFormatter()
         
         var id: CGRect{
             return self.rect
@@ -60,18 +61,49 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
             self.type = TextElementType(text: text)
         }
         
+        
+        
+        static func == (lhs: Recognizer.TextElement, rhs: Recognizer.TextElement) -> Bool {
+            return lhs.rect == rhs.rect
+        }
+        
+        
         func convert(output:Output)->String?{
             
-            switch self.type {
-            case .arabicNumber(let number) where output == .japanisch || output == .japanisch_bank:
-                return ExotischeZahlenFormatter().macheJapanischeZahl(aus: number)
-            case .arabicNumber(let number) where output == .römisch:
-                return ExotischeZahlenFormatter().macheRömischeZahl(aus: number)
-            case .japaneseNumber(let number), .romanNumeral(let number):
-                return String(number)
-            default:
+            switch type {
+            case .arabicNumber(let number), .romanNumeral(let number), .japaneseNumber(let number):
+                switch output {
+                case .römisch:
+                    return formatter.macheRömischeZahl(aus: number)
+                case .japanisch:
+                    return formatter.macheJapanischeZahl(aus: number)
+                case .arabisch:
+                    return String(number)
+                case .japanisch_bank:
+                    return formatter.macheJapanischeBankZahl(aus: number, einfach: true)
+                case .babylonian:
+                    return formatter.macheBabylonischeZahl(aus: number)
+                case .aegean:
+                    return formatter.macheAegaeischeZahl(aus: number)
+                case .sangi:
+                    return formatter.macheSangiZahl(aus: number)
+                case .hieroglyph:
+                    return formatter.macheHieroglyphenZahl(aus: number)
+                case .suzhou:
+                    return formatter.macheSuzhouZahl(aus: number)
+                case .numeric(let base):
+                    return String(number, radix: base)
+                case .localized(let locale):
+                    let f=NumberFormatter()
+                    f.numberStyle = .spellOut
+                    f.formattingContext = .standalone
+                    f.locale=locale
+                    return f.string(from: NSNumber(value: number))
+                }
+            case .other:
                 return nil
             }
+            
         }
     }
     

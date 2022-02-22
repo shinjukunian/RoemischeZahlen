@@ -15,7 +15,7 @@ struct SettingsView: View {
     
     @AppStorage(UserDefaults.Keys.daijiCompleteKey) var daijiForAll:Bool = false
     @Environment(\.dismiss) var dismiss
-    @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = false
+    @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
     
     @Environment(\.openURL) var openURL
     

@@ -31,7 +31,7 @@ class NumeralConversionHolder{
     let noInput = NSLocalizedString("No Input", comment: "")
     
     
-     let info:ConversionInfo
+    let info:ConversionInfo
     
     init(info:ConversionInfo){
         self.info=info

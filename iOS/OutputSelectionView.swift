@@ -17,11 +17,15 @@ struct OutputSelectionView: View {
         static let builtinTitle = NSLocalizedString("XLII", comment: "")
         static let systemTitle = NSLocalizedString("System", comment: "")
         static let numericTitle = NSLocalizedString("Numeric", comment: "")
+        
+        static let titles:[String] = [OutputSelectionViewSection.builtinTitle, OutputSelectionViewSection.numericTitle, OutputSelectionViewSection.systemTitle]
     }
     
     @ObservedObject var holder:ConversionInputHolder
     @Environment(\.dismiss) var dismiss
     @Environment(\.isPresented) var isPresented
+    
+    @State var showSelected:Bool = false
     
     @State var selection:Set<Output> = Set<Output>()
     
@@ -33,11 +37,18 @@ struct OutputSelectionView: View {
         self.selection=Set(holder.outputs)
     }
     
-    
+    var availableDisplayOutputs:[OutputSelectionViewSection]{
+         return
+        [OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
+            OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
+            OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: Output.availableLocalizedOutputs)
+         ]
+    }
     
     
     var body: some View {
         
+
         
         List(selection: $selection){
             
@@ -51,7 +62,6 @@ struct OutputSelectionView: View {
             holder.outputs=Array(selection)
         })
         
-
         .toolbar(content: {
             
             ToolbarItem(placement: .confirmationAction, content: {
@@ -64,32 +74,44 @@ struct OutputSelectionView: View {
                     EmptyView()
                 }
             })
-
+            
+            ToolbarItem(placement: .automatic, content: {
+                Toggle(isOn: $showSelected, label: {
+                    Label(title: {Text("Show Selected")}, icon: {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                    })
+                })
+            })
+            
         })
+        
         .environment(\.editMode, .constant(.active))
-
         .onAppear(perform: {
             self.selection=Set(holder.outputs)
-            self.displayInputs = [
-                OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
-                OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
-                OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: Output.availableLocalizedOutputs)
-                
-            ]
+            self.displayInputs=availableDisplayOutputs
         })
         .onSubmit(of: .search, {
             
         })
         .onChange(of: searchText, perform: {text in
-            let availableSystem=Output.availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-            let availableBuiltin=Output.builtin.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-            let availableNumeric=Output.numericTypes.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
             
-            self.displayInputs = [
-                OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: availableBuiltin),
-                OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: availableNumeric),OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableSystem)
-                
-            ].filter({$0.outputs.isEmpty == false})
+            self.displayInputs = zip([Output.builtin,Output.numericTypes,Output.availableLocalizedOutputs], OutputSelectionViewSection.titles).map({(outputs, title)in
+                let filtered=outputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+                return OutputSelectionViewSection(title: title, outputs: filtered)
+            })
+            .filter({$0.outputs.isEmpty == false})
+            
+        })
+        .onChange(of: showSelected, perform: {showSelected in
+            if showSelected{
+                self.displayInputs = zip(availableDisplayOutputs,OutputSelectionViewSection.titles) .map{(list,title) in
+                    let filtered=list.outputs.filter({holder.outputs.contains($0)})
+                    return OutputSelectionViewSection(title: title, outputs: filtered)
+                }
+            }
+            else{
+                self.displayInputs=availableDisplayOutputs
+            }
         })
         
         

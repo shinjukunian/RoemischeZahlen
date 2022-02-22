@@ -11,32 +11,6 @@ import SwiftUI
 struct XLIIApp: App {
     
     @State private var presentingCamera = false
-   
-    
-    var cameraView:some View{
-        
-        let c=CameraView()
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction, content: {
-                    Button(action: {
-                        presentingCamera=false
-                    }, label: {
-                        Text("Dismiss")
-                        
-                    })
-                })
-            }
-        #if os(macOS)
-        return c
-        #else
-        return NavigationView(content: {
-            c.navigationBarTitleDisplayMode(.inline)
-        })
-        #endif
-    }
-    
-
-    
 
     var body: some Scene {
         WindowGroup{
@@ -53,10 +27,10 @@ struct XLIIApp: App {
                 .sheet(isPresented: $presentingCamera, onDismiss: {
                     
                 }, content: {
-                    cameraView
+                    CameraView()
                 })
         }
-        .windowToolbarStyle(.unified(showsTitle: true))
+        .windowToolbarStyle(.unifiedCompact(showsTitle: true))
         .windowStyle(.titleBar)
         
         

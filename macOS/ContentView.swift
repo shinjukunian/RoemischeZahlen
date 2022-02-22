@@ -10,19 +10,40 @@ import Combine
 
 struct ContentView: View {
     @ObservedObject var holder:ConversionInputHolder
+    @AppStorage(UserDefaults.Keys.showSideBarKey) var showSideBar:Bool = true
     
     var body: some View{
         HSplitView{
-            InputView(holder: holder)
-                .toolbar(content: {
-                    
-                }).frame(minWidth:200)
-                .padding(.top)
-                .edgesIgnoringSafeArea([.bottom])
+            ZStack{
+                
+                    List{}.listStyle(.sidebar)
+                InputView(holder: holder)
+                    .toolbar(content: {
+                        
+                    }).frame(minWidth:250, idealWidth: 250, maxWidth: 350)
+                    .padding(.top)
+                    .edgesIgnoringSafeArea([.bottom])
+            }
             
-            OutputSelectionView(holder: holder)
-                .frame(minWidth:200)
-        }
+            if showSideBar {
+                
+                    OutputSelectionView(holder: holder)
+                        .frame(minWidth:200, maxWidth: 400)
+                
+                
+            }
+        }.toolbar(content: {
+            ToolbarItem(placement: .status, content: {
+                Button(action: {
+                    withAnimation{
+                        showSideBar.toggle()
+            
+                    }
+                }, label: {
+                    Image(systemName: "sidebar.right")
+                })
+            })
+        })
     }
     
 }

@@ -59,7 +59,6 @@ struct ConversionTableView: View {
                         })
                         
                 })
-                
             }
         }
         else{

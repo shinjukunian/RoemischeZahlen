@@ -10,6 +10,8 @@ import SwiftUI
 struct NumericalConversionView: View {
     
     let holder:NumeralConversionHolder
+    @State var isHovering:Bool = false
+    @State var isHoveringOnButton = false
     
     var body: some View {
         GroupBox{
@@ -21,10 +23,19 @@ struct NumericalConversionView: View {
                     Button(action: {
                         holder.speak()
                     }, label: {
-                        Image(systemName: "play")
+                        if isHoveringOnButton{
+                            Image(systemName: "play.fill")
+                        }
+                        else{
+                            Image(systemName: "play")
+                        }
+                        
                     })
                     .help(Text("Speak"))
                     .buttonStyle(.borderless)
+                    .onHover(perform: {h in
+                        isHoveringOnButton=h
+                    })
                 }
                 
                 Divider()
@@ -34,7 +45,10 @@ struct NumericalConversionView: View {
                     .lineLimit(6)
                     
             }
-        }.groupBoxStyle(ConversionCardBoxStyle())
+        }.groupBoxStyle(ConversionCardBoxStyle(isHovering: isHovering))
+        .onHover(perform: {hovering in
+            isHovering = hovering
+        })
         
         
         
@@ -52,6 +66,9 @@ struct NumericalConversionView_Previews: PreviewProvider {
 
 
 struct ConversionCardBoxStyle: GroupBoxStyle {
+    
+    let isHovering:Bool
+    
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
             configuration.label
@@ -59,11 +76,18 @@ struct ConversionCardBoxStyle: GroupBoxStyle {
         }
         .padding()
         #if os(iOS)
-        .background(Color(uiColor: .systemBackground))
+        .background(Color(uiColor: .secondarySystemGroupedBackground))
         #else
         .background(Color.init(nsColor: .controlBackgroundColor))
         #endif
-        
+        .overlay(content:{
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .stroke(Color.accentColor, lineWidth: isHovering ? 3 : 0)
+                
+        })
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        
+        
+        
     }
 }

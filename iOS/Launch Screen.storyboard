@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20036.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20018.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,20 +13,23 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="wwj-9M-5p9">
-                                <rect key="frame" x="10" y="10" width="300" height="460"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="ZLD-rR-QZi">
+                                <rect key="frame" x="10" y="256" width="394" height="394"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZLD-rR-QZi" secondAttribute="height" multiplier="1:1" id="uYU-Av-edY"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" name="BackgroundBlue"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wwj-9M-5p9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="10" id="461-PJ-QZd"/>
-                            <constraint firstItem="wwj-9M-5p9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="10" id="Q0L-cS-CfY"/>
-                            <constraint firstItem="wwj-9M-5p9" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="lLq-ro-Qgl"/>
-                            <constraint firstItem="wwj-9M-5p9" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="sWx-63-vlY"/>
+                            <constraint firstItem="ZLD-rR-QZi" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="NC5-4X-mQV"/>
+                            <constraint firstItem="ZLD-rR-QZi" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="Nh6-oD-dPc"/>
+                            <constraint firstItem="ZLD-rR-QZi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="10" id="dAa-du-O19"/>
+                            <constraint firstItem="ZLD-rR-QZi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="10" id="nFA-EZ-IHv"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,12 +40,12 @@
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
-        <image name="Image" width="1024" height="1024"/>
+        <image name="LaunchImage" width="1024" height="1024"/>
         <namedColor name="AccentColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="BackgroundBlue">
-            <color red="0.071000002324581146" green="0.046999998390674591" blue="0.2669999897480011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

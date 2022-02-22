@@ -16,9 +16,29 @@ struct ContentView: View {
     
     @Environment(\.horizontalSizeClass) var horizontalSize:UserInterfaceSizeClass?
     
+    @AppStorage(UserDefaults.Keys.showSideBarKey) var showSideBar:Bool = true
+    
     var body: some View {
         content
-            .background(Color(uiColor: .secondarySystemBackground))
+            .background(Color(uiColor: .systemGroupedBackground))
+            .toolbar(content: {
+                
+                ToolbarItem(placement: .navigationBarTrailing, content: {
+                    if horizontalSize == .regular{
+                        Button(action: {
+                            withAnimation{
+                                showSideBar.toggle()
+                            }
+                        }, label: {
+                            Label(title: {Text("Show Sidebar")}, icon: {Image(systemName: "sidebar.right")})
+                        })
+                    }
+                    else{
+                        EmptyView()
+                    }
+                })
+                
+            })
             .sheet(isPresented: $showSettings, content: {
                 NavigationView{
                     SettingsView()  
@@ -37,16 +57,15 @@ struct ContentView: View {
         Button(action: {
             showSettings=true
         }, label: {
-            Image(systemName: "gearshape.2")
+            Label(title: {Text("Show Settings")}, icon: {Image(systemName: "gearshape.2")})
         }).disabled(holder.numericInput == nil)
     }
     
     @ViewBuilder
     var content: some View{
-        if horizontalSize == .regular{
+        if horizontalSize == .regular && showSideBar == true{
             
             HStack{
-//                Rectangle().frame(width:0).background(.ultraThinMaterial)
                 InputView(holder: holder)
                     .toolbar(content: {
                         ToolbarItem(placement: .navigationBarTrailing, content: {
@@ -76,6 +95,7 @@ struct ContentView: View {
                     })
                     
                 })
+                .padding(.top)
                 .sheet(isPresented: $showLanguageSelection, onDismiss: {}, content: {
                     NavigationView{
                         OutputSelectionView(holder: holder)
@@ -92,6 +112,6 @@ struct ContentView_Previews: PreviewProvider {
         let holder=ConversionInputHolder()
         holder.input="m"
         return ContentView(holder: holder)
-            .previewInterfaceOrientation(.landscapeLeft)
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

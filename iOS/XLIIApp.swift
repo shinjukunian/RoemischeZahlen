@@ -13,22 +13,6 @@ struct XLIIApp: App {
     @State private var presentingCamera = false
     @State private var presentSettings = false
     
-    var cameraView:some View{
-        
-        let c=CameraView()
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction, content: {
-                    Button(action: {
-                        presentingCamera=false
-                    }, label: {
-                        Text("Dismiss")
-                        
-                    })
-                })
-            }
-        
-        return c
-    }
     
     
     var body: some Scene {
@@ -39,7 +23,7 @@ struct XLIIApp: App {
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationTitle(Text("XLII"))
                     .fullScreenCover(isPresented: $presentingCamera, content: {
-                        cameraView
+                        CameraView()
                     })
                     .toolbar(content: {
                         ToolbarItem(placement: .primaryAction, content: {

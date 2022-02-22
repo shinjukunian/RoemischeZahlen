@@ -17,72 +17,97 @@ struct CameraView: View {
     @State var convert:Bool = true
     
     @State var lastScaleValue: CGFloat = 1.0
-    @State var zoomScale: CGFloat = 1.0
+    @State var zoomScale: CGFloat = 4.0
     
     #if os(macOS)
-    @State var useROI: Bool = false
+    @State var useROI: Bool = true
     #else
     @State var useROI: Bool = true
     #endif
     
+    @Environment(\.dismiss) var dismiss
+    
     @State var selectedTextElement:Recognizer.TextElement?
     
     var body: some View {
-        VStack(spacing: 5.0){
-            HStack(alignment: .center, spacing: 5.0){
-                VStack{
-                    Toggle(isOn: $convert){
-                        Text("Convert")
-                    }.padding(.trailing)
-                    .fixedSize()
-                    
-                    Toggle(isOn: $useROI){
-                        Text("Use ROI")
-                    }
-                    .padding(.trailing)
-                    .fixedSize()
-                    .onReceive(Just(useROI), perform: { value in
-                        recognizer.useROI=value
+        
+        ZStack{
+            previewView
+            GeometryReader(content: { geometry in
+                makeOverlay(size: geometry.size, elements: self.textElements)
+                    .onReceive(recognizer.$foundElements, perform: { elements in
+                        self.textElements=elements
                     })
-                    
-                    
-                }
-                
-                Picker(selection: $outputType, label: Text("Output"), content: {
-                    Text("Roman").tag(Output.römisch)
-                    Text("Japanese").tag(Output.japanisch)
-                })
-                .pickerStyle(SegmentedPickerStyle())
-                .disabled(convert == false)
-                .fixedSize()
-                
-            }
-            .padding([.top, .leading, .trailing])
-            
-            ZStack{
-                previewView
-                GeometryReader(content: { geometry in
-                    makeOverlay(size: geometry.size, elements: self.textElements)
-                        .onReceive(recognizer.$foundElements, perform: { elements in
-                            self.textElements=elements
-                        })
-                })
-            }
-            .overlay(Text(recognizer.state.prompt), alignment: .top)
-            .gesture(MagnificationGesture().onChanged { val in
-                let delta = val / self.lastScaleValue
-                self.lastScaleValue = val
-                let newScale = self.zoomScale * delta
-                self.zoomScale = newScale
-                
-            }.onEnded { val in
-                
-                self.lastScaleValue = 1.0
             })
-            Spacer()
-            
         }
+        .ignoresSafeArea()
+        .overlay(alignment: .top, content: {
+            Text(recognizer.state.prompt)
+                .padding(3)
+                .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .padding(.top, 5)
+        })
+        .overlay(alignment: .bottom, content: {
+            controls
+                .fixedSize(horizontal: false, vertical: true)
+                .padding()
+                .background(.ultraThinMaterial)
+        })
+        .gesture(MagnificationGesture().onChanged { val in
+            let delta = val / self.lastScaleValue
+            self.lastScaleValue = val
+            let newScale = self.zoomScale * delta
+            self.zoomScale = newScale
+            
+        }.onEnded { val in
+            self.lastScaleValue = 1.0
+        })
+        .onAppear{
+            recognizer.useROI=useROI
+        }
+ 
     }
+    
+    var controls: some View{
+        HStack(alignment: .center, spacing: 12){
+            VStack{
+                Toggle(isOn: $convert){
+                    Text("Convert")
+                }.fixedSize()
+//#if os(macOS)
+                Toggle(isOn: $useROI){
+                    Text("Use ROI")
+                }.fixedSize()
+//#endif
+                
+            }
+            
+            Picker(selection: $outputType, label: Text("Output"), content: {
+                ForEach(Output.builtin + Output.numericTypes, id: \.self, content: {output in
+                    Text(verbatim: output.description)
+                        .lineLimit(3)
+                        .tag(output)
+                })
+            })
+            .pickerStyle(.menu)
+            .disabled(convert == false)
+            .fixedSize(horizontal: true, vertical: true)
+            Spacer()
+
+            Button(role: .cancel, action: {
+                dismiss()
+            }, label: {
+                Text("Dismis")
+            }).buttonStyle(.bordered)
+
+
+        }.onChange(of: useROI, perform: {useROI in
+            recognizer.useROI=useROI
+        })
+        
+    }
+    
     
     var previewView:some View{
         let h=PreviewHolder(recognizer: recognizer, zoomScale: $zoomScale)

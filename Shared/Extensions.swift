@@ -7,12 +7,14 @@
 
 import Foundation
 import CoreGraphics
+import SwiftUI
 
 extension UserDefaults{
     enum Keys {
         static let outPutModesKey = "outPutModesKey"
         static let daijiCompleteKey = "daijiCompleteKey"
         static let allowBasesBesides10Key = "allowBasesBesides10Key"
+        static let showSideBarKey = "showSideBarKey"
     }
 }
 
@@ -41,5 +43,15 @@ extension CGRect:Hashable{
         hasher.combine(origin.y)
         hasher.combine(size.width)
         hasher.combine(size.height)
+    }
+}
+
+extension FocusedValues {
+    var conversionItem: Binding<NumeralConversionHolder>? {
+        get { self[NumeralConversionHolderKey.self] }
+        set { self[NumeralConversionHolderKey.self] = newValue }
+    }
+    private struct NumeralConversionHolderKey: FocusedValueKey {
+        typealias Value = Binding<NumeralConversionHolder>
     }
 }

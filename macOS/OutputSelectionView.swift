@@ -19,6 +19,8 @@ struct OutputSelectionView: View {
         Output.builtin + Output.numericTypes + Output.availableLocalizedOutputs
     }
     
+    @Environment(\.undoManager) var undoManager
+    
     @State private var sortOrder = [
         KeyPathComparator(\Output.description, comparator: .localizedStandard, order: .forward)
     ]
@@ -30,6 +32,11 @@ struct OutputSelectionView: View {
             HStack(alignment: .center){
                 Spacer()
                 Button(action: {
+                    let selected=holder.outputs
+                    undoManager?.registerUndo(withTarget: holder, handler: {holder in
+                        holder.outputs=selected
+                    })
+                    
                     holder.outputs.removeAll()
                 }, label: {
                     Text("Deselect All")
@@ -40,7 +47,8 @@ struct OutputSelectionView: View {
                 }).toggleStyle(.button)
                 Spacer()
                 
-            }.padding(.vertical, 8.0)
+            }.controlSize(.mini)
+            .padding(.vertical, 6.0)
                 .onChange(of: showSelected, perform: {showSelected in
                     if showSelected{
                         outputs=availableOutputs.filter({holder.outputs.contains($0)})

@@ -10,6 +10,15 @@ import SwiftUI
 
 class ConversionInputHolder:ObservableObject {
     
+    struct Payload: Equatable,Codable,Hashable,Identifiable{
+        let text:String
+        let numeric:Int
+        
+        var id: String{
+            return text
+        }
+    }
+    
     struct NumericParsingResult: Equatable,Hashable,Identifiable{
         var id: String{
             return "\(value)_base\(base)"
@@ -82,8 +91,6 @@ class ConversionInputHolder:ObservableObject {
             outputPreference=OutputPreference(outputs: outputs)
         }
     }
-    
-   
     
     lazy var integerFormatter:NumberFormatter = {
         let f=NumberFormatter()

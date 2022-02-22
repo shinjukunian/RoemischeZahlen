@@ -57,22 +57,22 @@ struct OverlayView: View {
         makeView()
             .contentShape(Rectangle()) 
             .onTapGesture(perform: {
-            print("tap")
+                print("tap")
         })
     }
     
-    
-    func makeView()-> AnyView{
+    @ViewBuilder
+    func makeView()-> some View{
         switch self.outputType {
         case .highlight:
-            return AnyView(ZStack(content: {
+            ZStack(content: {
                 Rectangle()
                     .stroke(element.type.strokeColor, lineWidth: 1)
                     .background(element.type.fillColor)
-            }))
+            })
             
         case .transform(let output):
-            return AnyView(
+           
                 ZStack(content: {
                     
                     if let converted=self.element.convert(output: output){
@@ -81,17 +81,18 @@ struct OverlayView: View {
                             .background(Color.white.opacity(0.9))
                         Text(converted)
                             .foregroundColor(Color.black)
+                            .fontWeight(.heavy)
                     }
                     else{
-//                        Text(element.text)
+                        Text(element.text)
                     }
                     
                 })
-            )
+            
             
             
         case .none:
-            return AnyView(ZStack(content: {}))
+             EmptyView()
         }
     }
     

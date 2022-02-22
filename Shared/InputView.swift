@@ -10,23 +10,30 @@ import SwiftUI
 struct InputView: View {
     
     @ObservedObject var holder:ConversionInputHolder
+
     @FocusState private var textFieldIsFocused: Bool
+    @Namespace var mainNamespace
     
     var body: some View {
         
         VStack{
             textField
             OutputView(holder: holder)
-            
             Spacer()
             
-        }.padding(.horizontal)
-        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.inputType != .invalid, { activity in
+        }
+        .padding(.horizontal)
+        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: [ConversionInputHolder.InputType.empty, .invalid].contains(holder.inputType) == false , { activity in
             activity.isEligibleForHandoff = true
+            
             do{
                 activity.title = self.holder.input
-                try activity.setTypedPayload(holder.input)
-                
+                try activity.setTypedPayload(ConversionInputHolder.Payload(text: self.holder.input, numeric: self.holder.numericInput ?? 0))
+                activity.needsSave=true
+                activity.becomeCurrent()
+                #if DEBUG
+                print("saving user activity \(activity.title ?? "")")
+                #endif
             }
             catch let error{
                 print(error.localizedDescription)
@@ -35,8 +42,8 @@ struct InputView: View {
         .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
             print("restoring \(userActivity.activityType)")
             do{
-                let payload=try userActivity.typedPayload(String.self)
-                holder.input=payload
+                let payload=try userActivity.typedPayload(ConversionInputHolder.Payload.self)
+                holder.input=payload.text
             }
             catch let error{
                 print(error.localizedDescription)
@@ -44,9 +51,7 @@ struct InputView: View {
             
         })
         .onAppear(perform:{
-#if os(iOS)
             textFieldIsFocused=true
-#endif
         })
         
         
@@ -56,15 +61,20 @@ struct InputView: View {
     
     var textField:some View{
         let t=TextField(LocalizedStringKey("Enter Number"), text: $holder.input)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-       
-        #if os(macOS)
-        return t
-        #else
-            return t
+            .textFieldStyle(.roundedBorder)
+            
             .focused($textFieldIsFocused)
+            
+#if os(macOS)
+        return t
+            .prefersDefaultFocus(in: mainNamespace)
+#else
+        return t
             .keyboardType(.numbersAndPunctuation)
-        #endif
+            .overlay(
+                RoundedRectangle(cornerRadius: 6, style: .continuous)
+                    .stroke(textFieldIsFocused ? Color.accentColor : .clear, lineWidth: 0.75))
+#endif
     }
 }
 

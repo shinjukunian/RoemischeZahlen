@@ -170,7 +170,7 @@ class PreviewView: MyView{
         #if os(macOS)
         self.delegate?.videoAspectRatio=bufferAspectRatio
         #else
-                let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation ?? .portrait
+        let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation ?? .portrait
         
         switch orientation {
         case .landscapeLeft:

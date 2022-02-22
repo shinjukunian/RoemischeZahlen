@@ -81,6 +81,7 @@
 		5A93420627C4979600AD3947 /* Output+Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93420427C4979600AD3947 /* Output+Categories.swift */; };
 		5AA6131027C1D6CF008E3C6C /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6130F27C1D6CF008E3C6C /* Output.swift */; };
 		5AA6131127C1D6CF008E3C6C /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6130F27C1D6CF008E3C6C /* Output.swift */; };
+		5AD1D02227C4E608000E9CA5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,7 @@
 		5A93420227C4974900AD3947 /* OutputSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSelectionView.swift; sourceTree = "<group>"; };
 		5A93420427C4979600AD3947 /* Output+Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Output+Categories.swift"; sourceTree = "<group>"; };
 		5AA6130F27C1D6CF008E3C6C /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
+		5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				163C1B35263A5AE000E1A69C /* XLIIApp.swift */,
 				163C1B3F263A5AE500E1A69C /* Info.plist */,
 				163C1B86263A799600E1A69C /* InfoPlist.strings */,
+				5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 			files = (
 				163C1B62263A5AE500E1A69C /* Assets.xcassets in Resources */,
 				163C1B88263A799600E1A69C /* InfoPlist.strings in Resources */,
+				5AD1D02227C4E608000E9CA5 /* Launch Screen.storyboard in Resources */,
 				163C1B78263A746100E1A69C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
