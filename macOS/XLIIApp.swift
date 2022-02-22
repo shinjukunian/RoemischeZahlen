@@ -11,7 +11,7 @@ import SwiftUI
 struct XLIIApp: App {
     
     @State private var presentingCamera = false
-    @State private var presentSettings = false
+   
     
     var cameraView:some View{
         
@@ -35,70 +35,39 @@ struct XLIIApp: App {
         #endif
     }
     
-    var textInputView:some View{
-        let holder=ConversionInputHolder()
-        return ContentView(holder: holder)
-            
-            .toolbar(content: {
-                ToolbarItem(placement: .automatic, content: {
-                    Button(action: {
-                        presentingCamera=true
-                    }, label: {
-                        Image(systemName: "camera")
+
+    
+
+    var body: some Scene {
+        WindowGroup{
+            ContentView(holder: ConversionInputHolder())
+                .toolbar(content: {
+                    ToolbarItem(placement: .automatic, content: {
+                        Button(action: {
+                            presentingCamera=true
+                        }, label: {
+                            Image(systemName: "camera")
+                        })
                     })
                 })
-                
-            })
-    }
-    
-    @ViewBuilder func makeTextInputView()-> some View{
-        
-        let t=textInputView
-        
-#if os(macOS)
-        t//.frame(maxWidth: 400, maxHeight: .infinity)
-        .sheet(isPresented: $presentingCamera, onDismiss: {
-            
-        }, content: {
-            cameraView
-        })
-        
-#else
-        NavigationView(content: {
-            t.fullScreenCover(isPresented: $presentingCamera, onDismiss: {
-                
-            }, content: {
-                cameraView
-            })
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle(Text("XLII"))
-                
-        }).navigationViewStyle(.stack)
-#endif
-    }
-    
-    var windowScene:some Scene{
-        let w=WindowGroup{
-            makeTextInputView()
+                .sheet(isPresented: $presentingCamera, onDismiss: {
+                    
+                }, content: {
+                    cameraView
+                })
         }
-        #if os(macOS)
-        return w
-            .windowToolbarStyle(UnifiedWindowToolbarStyle())
-            .windowStyle(HiddenTitleBarWindowStyle())
-        #else
-        return w
-        #endif
-    }
+        .windowToolbarStyle(.unified(showsTitle: true))
+        .windowStyle(.titleBar)
         
-    
-    var body: some Scene {
-        windowScene
         
-        #if os(macOS)
         Settings {
-            SettingsView()
-        }
-        #endif
+            VStack{
+                SettingsView()
+            }.padding()
+            
+        }.windowToolbarStyle(.unified(showsTitle: true))
+            .windowStyle(.titleBar)
+        
         
     }
 }

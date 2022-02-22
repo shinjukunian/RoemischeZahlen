@@ -20,7 +20,9 @@ struct ContentView: View {
         content
             .background(Color(uiColor: .secondarySystemBackground))
             .sheet(isPresented: $showSettings, content: {
-                SettingsView()
+                NavigationView{
+                    SettingsView()  
+                }
             })
             .onAppear{
                 let appearance = UINavigationBarAppearance()
@@ -44,7 +46,7 @@ struct ContentView: View {
         if horizontalSize == .regular{
             
             HStack{
-                Rectangle().frame(width:0).background(.ultraThinMaterial)
+//                Rectangle().frame(width:0).background(.ultraThinMaterial)
                 InputView(holder: holder)
                     .toolbar(content: {
                         ToolbarItem(placement: .navigationBarTrailing, content: {

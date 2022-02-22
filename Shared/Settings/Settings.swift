@@ -17,8 +17,10 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = false
     
+    @Environment(\.openURL) var openURL
+    
     var body: some View {
-        NavigationView{
+        
             Form{
                 Section(content: {
                     Toggle(isOn: $daijiForAll, label: {Text("Convert all characters to  Daiji")})
@@ -46,12 +48,17 @@ struct SettingsView: View {
                 }, header: {
                     Text("Feedback")
                 })
+#else
+                Section(content: {
+                    openURLButton
+                }, header: {})
+                
 #endif
             }
             .navigationTitle(Text("Settings"))
-            #if os(iOS)
+#if os(iOS)
             .navigationViewStyle(.stack)
-            #endif
+           
             .toolbar(content: {
                 ToolbarItem(placement: .confirmationAction, content: {
                     Button(action: {
@@ -59,7 +66,23 @@ struct SettingsView: View {
                     }, label: {Text("Done")})
                 })
             })
-        }
+#endif
+    }
+    var openURLButton:some View{
+        Button(action: {
+            let bundle=Bundle.main
+            let name=bundle.applicationName
+            let version=bundle.version
+            let osVersion=ProcessInfo.processInfo.operatingSystemVersionString
+            let subject=NSLocalizedString("Feedback \(name) (\(version)) [MacOS \(osVersion)]", comment: "Feedback subject string")
+            let subjectString="SUBJECT="+subject.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let receiver="support@telethon.jp".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let mailString="mailto:"+receiver+"?"+subjectString+"&"+""
+            let url=URL(string: mailString)!
+            openURL(url)
+        }, label: {
+            Text("Send Feedback")
+        })
     }
 }
 

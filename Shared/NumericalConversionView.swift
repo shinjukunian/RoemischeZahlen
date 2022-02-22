@@ -23,8 +23,8 @@ struct NumericalConversionView: View {
                     }, label: {
                         Image(systemName: "play")
                     })
-                    .keyboardShortcut(KeyEquivalent("s"), modifiers: [.command,.option])
                     .help(Text("Speak"))
+                    .buttonStyle(.borderless)
                 }
                 
                 Divider()
@@ -60,7 +60,10 @@ struct ConversionCardBoxStyle: GroupBoxStyle {
         .padding()
         #if os(iOS)
         .background(Color(uiColor: .systemBackground))
+        #else
+        .background(Color.init(nsColor: .controlBackgroundColor))
         #endif
+        
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }

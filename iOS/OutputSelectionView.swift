@@ -33,24 +33,6 @@ struct OutputSelectionView: View {
         self.selection=Set(holder.outputs)
     }
     
-    var availableLocalizedOutputs:[Output]{
-        let current=Locale.current
-        return Locale.availableIdentifiers
-            .filter({$0.hasPrefix("ja") == false })
-            .map({Locale(identifier: $0)})
-            .filter({$0.languageCode != nil || $0 != current})
-            .uniqued(on: {$0.languageCode ?? ""})
-            .sorted(by: {l1,l2 in
-                guard let language1=current.localizedString(forLanguageCode: l1.languageCode ?? ""),
-                      let language2=current.localizedString(forLanguageCode: l2.languageCode ?? "")
-                else{
-                    return true
-                }
-                return language1 < language2
-                
-            })
-            .map({Output.localized(locale: $0)})
-    }
     
     
     
@@ -65,8 +47,11 @@ struct OutputSelectionView: View {
             
         }
         .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
+        .onChange(of: selection, perform: {selection in
+            holder.outputs=Array(selection)
+        })
         
-        
+
         .toolbar(content: {
             
             ToolbarItem(placement: .confirmationAction, content: {
@@ -81,19 +66,14 @@ struct OutputSelectionView: View {
             })
 
         })
-        .onChange(of: selection, perform: {selection in
-            holder.outputs=Array(selection)
-        })
-        .background(.thinMaterial)
-#if os(iOS)
         .environment(\.editMode, .constant(.active))
-#endif
+
         .onAppear(perform: {
             self.selection=Set(holder.outputs)
             self.displayInputs = [
                 OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
                 OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
-                OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: availableLocalizedOutputs)
+                OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: Output.availableLocalizedOutputs)
                 
             ]
         })
@@ -101,7 +81,7 @@ struct OutputSelectionView: View {
             
         })
         .onChange(of: searchText, perform: {text in
-            let availableSystem=availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
+            let availableSystem=Output.availableLocalizedOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
             let availableBuiltin=Output.builtin.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
             let availableNumeric=Output.numericTypes.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
             
@@ -122,7 +102,10 @@ struct OutputSelectionView: View {
                     Text(output.description)
                     Spacer()
                     
-                }
+                }.onDrag({
+                    let provider=NSItemProvider(item: output.rawValue as NSString, typeIdentifier: Output.dragType)
+                    return provider
+                })
             })
             
         }, header: {
