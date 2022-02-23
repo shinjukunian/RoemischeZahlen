@@ -99,10 +99,9 @@ struct OutputSelectionView: View {
         }
         .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
         .onChange(of: searchText, perform: {text in
-            
-            let filtered=availableOutputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-            
-            
+            let filtered=outputs.filter({$0.description.localizedStandardContains(text.trimmingCharacters(in: .whitespaces))
+                
+            })
             outputs=filtered
         })
         .onChange(of: sortOrder, perform: {sortOrder in

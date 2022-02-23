@@ -81,6 +81,8 @@
 		5A93420627C4979600AD3947 /* Output+Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93420427C4979600AD3947 /* Output+Categories.swift */; };
 		5AA6131027C1D6CF008E3C6C /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6130F27C1D6CF008E3C6C /* Output.swift */; };
 		5AA6131127C1D6CF008E3C6C /* Output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6130F27C1D6CF008E3C6C /* Output.swift */; };
+		5AB2BEF727C5AA82004CF66C /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF627C5AA82004CF66C /* Commands.swift */; };
+		5AB2BEF827C5AA82004CF66C /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF627C5AA82004CF66C /* Commands.swift */; };
 		5AD1D02227C4E608000E9CA5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,7 @@
 		5A93420227C4974900AD3947 /* OutputSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSelectionView.swift; sourceTree = "<group>"; };
 		5A93420427C4979600AD3947 /* Output+Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Output+Categories.swift"; sourceTree = "<group>"; };
 		5AA6130F27C1D6CF008E3C6C /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
+		5AB2BEF627C5AA82004CF66C /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,6 +248,7 @@
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
 				163C1B72263A5BD700E1A69C /* ExotischeZahlenFormatter.swift */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
+				5AB2BEF627C5AA82004CF66C /* Commands.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -591,6 +595,7 @@
 				5A7658E326F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095B26F07515006BFB31 /* Extensions.swift in Sources */,
 				163C1B5E263A5AE500E1A69C /* XLIIApp.swift in Sources */,
+				5AB2BEF727C5AA82004CF66C /* Commands.swift in Sources */,
 				5A7658E926F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
 				5A5AE97F27C1E8840020A0FA /* ConversionInputHolder.swift in Sources */,
@@ -629,6 +634,7 @@
 				5A5AE98327C1EEC10020A0FA /* NumericalConversionView.swift in Sources */,
 				5A7658E426F070DE00F034AE /* Hunderter.swift in Sources */,
 				5A7E095C26F07515006BFB31 /* Extensions.swift in Sources */,
+				5AB2BEF827C5AA82004CF66C /* Commands.swift in Sources */,
 				5A7658EA26F0710F00F034AE /* ZehnTausender.swift in Sources */,
 				5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
 				5A3D33DB27C4678900C7C27F /* InputView.swift in Sources */,

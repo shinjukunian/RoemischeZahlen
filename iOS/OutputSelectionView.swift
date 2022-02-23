@@ -59,7 +59,17 @@ struct OutputSelectionView: View {
         }
         .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
         .onChange(of: selection, perform: {selection in
-            holder.outputs=Array(selection)
+            let present=Set(holder.outputs)
+            let inserted=selection.subtracting(present)
+            let deleted=present.subtracting(selection)
+         
+            let new=holder.outputs.filter({present in
+                deleted.contains(present) == false
+            }) + Array(inserted)
+            
+            withAnimation{
+                holder.outputs = new
+            }
         })
         
         .toolbar(content: {
@@ -94,23 +104,26 @@ struct OutputSelectionView: View {
             
         })
         .onChange(of: searchText, perform: {text in
-            
-            self.displayInputs = zip([Output.builtin,Output.numericTypes,Output.availableLocalizedOutputs], OutputSelectionViewSection.titles).map({(outputs, title)in
-                let filtered=outputs.filter({$0.description.lowercased().hasPrefix(text.lowercased())})
-                return OutputSelectionViewSection(title: title, outputs: filtered)
-            })
-            .filter({$0.outputs.isEmpty == false})
-            
+            withAnimation{
+                self.displayInputs = zip([Output.builtin,Output.numericTypes,Output.availableLocalizedOutputs], OutputSelectionViewSection.titles).map({(outputs, title)in
+                    let filtered=outputs.filter({$0.description.localizedStandardContains(text.trimmingCharacters(in: .whitespaces))
+                    })
+                    return OutputSelectionViewSection(title: title, outputs: filtered)
+                })
+                .filter({$0.outputs.isEmpty == false})
+            }
         })
         .onChange(of: showSelected, perform: {showSelected in
-            if showSelected{
-                self.displayInputs = zip(availableDisplayOutputs,OutputSelectionViewSection.titles) .map{(list,title) in
-                    let filtered=list.outputs.filter({holder.outputs.contains($0)})
-                    return OutputSelectionViewSection(title: title, outputs: filtered)
+            withAnimation{
+                if showSelected{
+                    self.displayInputs = zip(availableDisplayOutputs,OutputSelectionViewSection.titles) .map{(list,title) in
+                        let filtered=list.outputs.filter({holder.outputs.contains($0)})
+                        return OutputSelectionViewSection(title: title, outputs: filtered)
+                    }.filter({$0.outputs.isEmpty == false})
                 }
-            }
-            else{
-                self.displayInputs=availableDisplayOutputs
+                else{
+                    self.displayInputs=availableDisplayOutputs
+                }
             }
         })
         

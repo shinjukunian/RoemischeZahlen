@@ -9,14 +9,16 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @ObservedObject var holder:ConversionInputHolder
+    
+    @StateObject var holder=ConversionInputHolder()
+    
     @AppStorage(UserDefaults.Keys.showSideBarKey) var showSideBar:Bool = true
     
     var body: some View{
         HSplitView{
             ZStack{
                 
-                    List{}.listStyle(.sidebar)
+                List{}.listStyle(.sidebar)
                 InputView(holder: holder)
                     .toolbar(content: {
                         
@@ -26,22 +28,13 @@ struct ContentView: View {
             }
             
             if showSideBar {
-                
                     OutputSelectionView(holder: holder)
                         .frame(minWidth:200, maxWidth: 400)
-                
                 
             }
         }.toolbar(content: {
             ToolbarItem(placement: .status, content: {
-                Button(action: {
-                    withAnimation{
-                        showSideBar.toggle()
-            
-                    }
-                }, label: {
-                    Image(systemName: "sidebar.right")
-                })
+                SidebarButton(showSideBar: $showSideBar)
             })
         })
     }

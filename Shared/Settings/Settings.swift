@@ -48,10 +48,6 @@ struct SettingsView: View {
                 }, header: {
                     Text("Feedback")
                 })
-#else
-                Section(content: {
-                    openURLButton
-                }, header: {})
                 
 #endif
             }
@@ -68,22 +64,7 @@ struct SettingsView: View {
             })
 #endif
     }
-    var openURLButton:some View{
-        Button(action: {
-            let bundle=Bundle.main
-            let name=bundle.applicationName
-            let version=bundle.version
-            let osVersion=ProcessInfo.processInfo.operatingSystemVersionString
-            let subject=NSLocalizedString("Feedback \(name) (\(version)) [MacOS \(osVersion)]", comment: "Feedback subject string")
-            let subjectString="SUBJECT="+subject.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-            let receiver="support@telethon.jp".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-            let mailString="mailto:"+receiver+"?"+subjectString+"&"+""
-            let url=URL(string: mailString)!
-            openURL(url)
-        }, label: {
-            Text("Send Feedback")
-        })
-    }
+    
 }
 
 struct SettingsView_Previews: PreviewProvider {

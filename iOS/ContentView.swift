@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var holder:ConversionInputHolder
+    @StateObject var holder=ConversionInputHolder()
     
     @State var showLanguageSelection = false
     @State var showSettings = false
@@ -25,13 +25,7 @@ struct ContentView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing, content: {
                     if horizontalSize == .regular{
-                        Button(action: {
-                            withAnimation{
-                                showSideBar.toggle()
-                            }
-                        }, label: {
-                            Label(title: {Text("Show Sidebar")}, icon: {Image(systemName: "sidebar.right")})
-                        })
+                        SidebarButton(showSideBar: $showSideBar)
                     }
                     else{
                         EmptyView()
@@ -58,7 +52,7 @@ struct ContentView: View {
             showSettings=true
         }, label: {
             Label(title: {Text("Show Settings")}, icon: {Image(systemName: "gearshape.2")})
-        }).disabled(holder.numericInput == nil)
+        })//.disabled(holder.numericInput == nil)
     }
     
     @ViewBuilder
@@ -112,6 +106,6 @@ struct ContentView_Previews: PreviewProvider {
         let holder=ConversionInputHolder()
         holder.input="m"
         return ContentView(holder: holder)
-            .previewInterfaceOrientation(.portraitUpsideDown)
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }

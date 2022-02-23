@@ -18,7 +18,7 @@ struct XLIIApp: App {
     var body: some Scene {
         WindowGroup{
             NavigationView{
-                ContentView(holder: ConversionInputHolder())
+                ContentView()
                     
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationTitle(Text("XLII"))

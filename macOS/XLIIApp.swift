@@ -14,7 +14,7 @@ struct XLIIApp: App {
 
     var body: some Scene {
         WindowGroup{
-            ContentView(holder: ConversionInputHolder())
+            ContentView()
                 .toolbar(content: {
                     ToolbarItem(placement: .automatic, content: {
                         Button(action: {
@@ -32,6 +32,10 @@ struct XLIIApp: App {
         }
         .windowToolbarStyle(.unifiedCompact(showsTitle: true))
         .windowStyle(.titleBar)
+        .commands(content: {
+            FeedbackButton()
+        })
+        
         
         
         Settings {
