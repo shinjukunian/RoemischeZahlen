@@ -77,13 +77,16 @@ struct ContentView: View {
             InputView(holder: holder)
                 .toolbar(content: {
                     
-                    ToolbarItemGroup(placement: .bottomBar, content: {
-                        Spacer()
+                    ToolbarItemGroup(placement: .navigationBarLeading, content: {
+                      
                         Button(action: {
                             showLanguageSelection=true
                         }, label: {
                             Image(systemName: "plus.rectangle")
                         }).disabled(holder.numericInput == nil)
+                    })
+                    
+                    ToolbarItemGroup(placement: .bottomBar, content: {
                         Spacer()
                         settingsButton
                     })
