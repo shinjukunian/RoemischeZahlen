@@ -149,10 +149,10 @@
 				5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */,
 				5A34FAC227C34B69002D58E0 /* ConversionTableView.swift */,
 				5A7E095A26F07515006BFB31 /* Extensions.swift */,
+				5AB2BEF627C5AA82004CF66C /* Commands.swift */,
 				5A3D33DC27C4679A00C7C27F /* Camera */,
 				163C1B37263A5AE500E1A69C /* Assets.xcassets */,
 				163C1B7B263A746100E1A69C /* Localizable.strings */,
-				5AB2BEF627C5AA82004CF66C /* Commands.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

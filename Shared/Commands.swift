@@ -53,3 +53,17 @@ struct SidebarButton: View{
         .help(showSideBar ? Text("Hide output selection."): Text("Display output selection"))
     }
 }
+
+
+struct CameraButton: View{
+    
+    @Binding var showCamera:Bool
+    
+    var body: some View{
+        Button(action: {
+            showCamera=true
+        }, label: {
+            Label(title: {Text("Show Camera")}, icon: {Image(systemName: "camera")})
+        })
+    }
+}

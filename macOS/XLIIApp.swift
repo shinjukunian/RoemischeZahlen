@@ -17,11 +17,7 @@ struct XLIIApp: App {
             ContentView()
                 .toolbar(content: {
                     ToolbarItem(placement: .automatic, content: {
-                        Button(action: {
-                            presentingCamera=true
-                        }, label: {
-                            Image(systemName: "camera")
-                        })
+                        CameraButton(showCamera: $presentingCamera)
                     })
                 })
                 .sheet(isPresented: $presentingCamera, onDismiss: {

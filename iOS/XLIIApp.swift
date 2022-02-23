@@ -11,9 +11,6 @@ import SwiftUI
 struct XLIIApp: App {
     
     @State private var presentingCamera = false
-    @State private var presentSettings = false
-    
-    
     
     var body: some Scene {
         WindowGroup{
@@ -27,11 +24,7 @@ struct XLIIApp: App {
                     })
                     .toolbar(content: {
                         ToolbarItem(placement: .primaryAction, content: {
-                            Button(action: {
-                                presentingCamera=true
-                            }, label: {
-                                Image(systemName: "camera")
-                            })
+                            CameraButton(showCamera: $presentingCamera)
                         })
                     })
                 

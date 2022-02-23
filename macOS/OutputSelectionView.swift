@@ -66,7 +66,7 @@ struct OutputSelectionView: View {
     var tableView: some View{
         Table(sortOrder: $sortOrder, columns: {
                         
-            TableColumn("Selected", content: {output in
+            TableColumn(LocalizedStringKey("Selected"), content: {output in
                 
                 let binding=Binding<Bool>(get: {
                     holder.outputs.contains(output)
@@ -83,7 +83,7 @@ struct OutputSelectionView: View {
             }).width(min: 50, ideal: 50, max: 60)
             
 
-            TableColumn("Name", value: \.description)
+            TableColumn(LocalizedStringKey("Name"), value: \.description)
         }, rows: {
             ForEach(outputs, id: \.id, content: {output in
                 TableRow(output)
