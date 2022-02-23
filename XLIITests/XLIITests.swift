@@ -155,7 +155,7 @@ class XLIITests: XCTestCase {
         XCTAssertNil(PhoenizianFormatter(number: 1000))
         XCTAssertNotNil(PhoenizianFormatter(string: "𐤗𐤛𐤛𐤛"))
         
-        let random=(0..<1000).map({_ in return Int.random(in: 0..<1_000)})
+        let random=(0..<1000).map({_ in return Int.random(in: 1..<1_000)})
         
         for number in random{
             let p=try XCTUnwrap( PhoenizianFormatter(number: number) )

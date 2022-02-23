@@ -19,6 +19,8 @@
 		163C1B79263A746100E1A69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B7B263A746100E1A69C /* Localizable.strings */; };
 		163C1B88263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B86263A799600E1A69C /* InfoPlist.strings */; };
 		163C1B8B263A799600E1A69C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 163C1B89263A799600E1A69C /* InfoPlist.strings */; };
+		5A1A43D527C606C800099895 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5A1A43D427C606C800099895 /* Algorithms */; };
+		5A1A43D727C606D200099895 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5A1A43D627C606D200099895 /* Algorithms */; };
 		5A34FAAC27C3190D002D58E0 /* Hieroglyphen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAB27C3190D002D58E0 /* Hieroglyphen.swift */; };
 		5A34FAAD27C3190D002D58E0 /* Hieroglyphen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAB27C3190D002D58E0 /* Hieroglyphen.swift */; };
 		5A34FAAF27C3299D002D58E0 /* Suzhou.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A34FAAE27C3299D002D58E0 /* Suzhou.swift */; };
@@ -45,8 +47,6 @@
 		5A5AE98227C1EEC10020A0FA /* NumericalConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */; };
 		5A5AE98327C1EEC10020A0FA /* NumericalConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */; };
 		5A5AE98527C207570020A0FA /* OutputSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98427C207570020A0FA /* OutputSelectionView.swift */; };
-		5A5AE98927C20F190020A0FA /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5A5AE98827C20F190020A0FA /* Algorithms */; };
-		5A5AE98C27C20F220020A0FA /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5A5AE98B27C20F220020A0FA /* Algorithms */; };
 		5A5AE98E27C228E30020A0FA /* Babylonisch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98D27C228E30020A0FA /* Babylonisch.swift */; };
 		5A5AE98F27C228E30020A0FA /* Babylonisch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98D27C228E30020A0FA /* Babylonisch.swift */; };
 		5A606FB5263E86B700C3DE62 /* SceneStability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB4263E86B700C3DE62 /* SceneStability.swift */; };
@@ -185,7 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A5AE98927C20F190020A0FA /* Algorithms in Frameworks */,
+				5A1A43D527C606C800099895 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A5AE98C27C20F220020A0FA /* Algorithms in Frameworks */,
+				5A1A43D727C606D200099895 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +390,7 @@
 			);
 			name = "XLII (iOS)";
 			packageProductDependencies = (
-				5A5AE98827C20F190020A0FA /* Algorithms */,
+				5A1A43D427C606C800099895 /* Algorithms */,
 			);
 			productName = "RoemischeZahl (iOS)";
 			productReference = 163C1B3C263A5AE500E1A69C /* XLII.app */;
@@ -410,7 +410,7 @@
 			);
 			name = "XLII (macOS)";
 			packageProductDependencies = (
-				5A5AE98B27C20F220020A0FA /* Algorithms */,
+				5A1A43D627C606D200099895 /* Algorithms */,
 			);
 			productName = "RoemischeZahl (macOS)";
 			productReference = 163C1B44263A5AE500E1A69C /* XLII.app */;
@@ -510,7 +510,7 @@
 			);
 			mainGroup = 163C1B2F263A5ADF00E1A69C;
 			packageReferences = (
-				5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				5A1A43D327C606C800099895 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 163C1B3D263A5AE500E1A69C /* Products */;
 			projectDirPath = "";
@@ -1132,7 +1132,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+		5A1A43D327C606C800099895 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
 			requirement = {
@@ -1143,14 +1143,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5A5AE98827C20F190020A0FA /* Algorithms */ = {
+		5A1A43D427C606C800099895 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			package = 5A1A43D327C606C800099895 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
 		};
-		5A5AE98B27C20F220020A0FA /* Algorithms */ = {
+		5A1A43D627C606D200099895 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5A5AE98727C20F190020A0FA /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			package = 5A1A43D327C606C800099895 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
