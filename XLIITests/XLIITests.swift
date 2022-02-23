@@ -130,5 +130,43 @@ class XLIITests: XCTestCase {
             XCTAssert(arabic.value == number, "failed \(number) converted to \(arabic.value)")
         }
     }
+    
+    func testPhoenician()throws{
+        let numbers=[1:"𐤖",
+                2:"𐤚",
+                     3:"𐤛",
+                     9:"𐤛𐤛𐤛",
+                     19:"𐤗𐤛𐤛𐤛",
+                     20:"𐤘",
+                     30:"𐤘𐤗",
+                     60:"𐤘𐤘𐤘",
+                     143:"𐤙𐤘𐤘𐤛",
+                     340:"𐤛𐤙𐤘𐤘",
+                     900:"𐤛𐤛𐤛𐤙"
+        ]
+        for number in numbers{
+            let p=try XCTUnwrap( PhoenizianFormatter(number: number.key) )
+            XCTAssert(p.phoenician == number.value, "\(number.key) converted to \(p.phoenician), expected \(number.value)")
+            let reverse=try XCTUnwrap(PhoenizianFormatter(string: p.phoenician))
+            XCTAssert(reverse.arabic == number.key, "\(p.phoenician) converted to \(reverse.arabic), expected \(number.key)")
+        }
+        
+        XCTAssertNil(PhoenizianFormatter(string: "hallo"))
+        XCTAssertNil(PhoenizianFormatter(number: 1000))
+        XCTAssertNotNil(PhoenizianFormatter(string: "𐤗𐤛𐤛𐤛"))
+        
+        let random=(0..<1000).map({_ in return Int.random(in: 0..<1_000)})
+        
+        for number in random{
+            let p=try XCTUnwrap( PhoenizianFormatter(number: number) )
+            let reverse=try XCTUnwrap(PhoenizianFormatter(string: p.phoenician))
+            
+            XCTAssert(reverse.arabic == number, "\(p.phoenician) converted to \(reverse.arabic), expected \(number)")
+        }
+        
+        
+    }
+
 
 }
+

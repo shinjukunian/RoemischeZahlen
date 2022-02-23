@@ -45,6 +45,7 @@ protocol AlsSuzhouZahl {
     var suzhou: String {get}
 }
 
+
 extension AlsSuzhouZahl{
     var arabischSuzhouDict: [Int : String] { [0:"〇",
                                               1:"〡",

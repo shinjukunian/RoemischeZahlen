@@ -72,7 +72,7 @@ struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou:
+        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
@@ -90,6 +90,7 @@ class ExotischeZahlenFormatter{
             case suzhou
             case hieroglyph
             case aegean
+            case phoenician
         }
         
         let value:Int
@@ -117,13 +118,29 @@ class ExotischeZahlenFormatter{
     }
     
     func macheJapanischeZahl(aus Zahl:Int)->String?{
-        guard Zahl > 0 else {
+        
+        switch Zahl{
+        case ..<0:
+            return nil
+        case 0:
+            return "〇"
+        case 0...:
+            let z:[AlsJapanischeZahl]=[TenQuadrillion(Zahl: Zahl),
+                                       OneTrillion(Zahl: Zahl),
+                                       HundertMillionen(Zahl: Zahl),
+                                       ZehnTausender(Zahl: Zahl),
+                                       JapanischeTausender(Zahl: Zahl),
+                                       Hunderter(Zahl: Zahl),
+                                       Zehner(Zahl: Zahl),
+                                       Einer(Zahl: Zahl)]
+            return z.reduce("", {r, z in
+                r+z.japanisch
+            })
+        default:
             return nil
         }
-        let z:[AlsJapanischeZahl]=[HundertMillionen(Zahl: Zahl), ZehnTausender(Zahl: Zahl), JapanischeTausender(Zahl: Zahl), Hunderter(Zahl: Zahl), Zehner(Zahl: Zahl),Einer(Zahl: Zahl)]
-        return z.reduce("", {r, z in
-            r+z.japanisch
-        })
+        
+        
     }
     
     func macheSuzhouZahl(aus Zahl:Int)->String?{
@@ -135,10 +152,12 @@ class ExotischeZahlenFormatter{
     }
     
     func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
-        guard Zahl > 0, Zahl < 100_000_000_000 else {
+        guard Zahl > 0, Zahl < Int.max else {
             return nil
         }
-        let z:[AlsJapanischeBankZahl]=[HundertMillionen(Zahl: Zahl),
+        let z:[AlsJapanischeBankZahl]=[TenQuadrillion(Zahl: Zahl),
+                                       OneTrillion(Zahl: Zahl),
+                                       HundertMillionen(Zahl: Zahl),
                                        ZehnTausender(Zahl: Zahl),
                                        JapanischeTausender(Zahl: Zahl),
                                        Hunderter(Zahl: Zahl),
@@ -210,6 +229,10 @@ class ExotischeZahlenFormatter{
             if let zahl=AegeanZahl(string: text){
                 return NumericalOutput(value: zahl.arabic, locale: .aegean)
             }
+        case _ where text.potentiellePhoenizischeZahl:
+            if let zahl=PhoenizianFormatter(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .phoenician)
+            }
         default:
             return nil
         }
@@ -252,13 +275,15 @@ class ExotischeZahlenFormatter{
         restZahl=restZahl.replacingOccurrences(of: zehnTausender.japanisch_Bank, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let hundertMillionen=HundertMillionen(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: hundertMillionen.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        let trillion=OneTrillion(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: trillion.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         
         if restZahl.count > 0{
             return nil
         }
         
         
-        return hundertMillionen.arabisch + zehnTausender.arabisch + tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
+        return trillion.arabisch + hundertMillionen.arabisch + zehnTausender.arabisch + tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
     }
     
     

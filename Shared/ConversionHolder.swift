@@ -64,6 +64,8 @@ class NumeralConversionHolder{
             formattedOutput = localizedSpellOutFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber
         case .numeric(let base):
             formattedOutput = String(zahl, radix: base, uppercase: true)
+        case .phoenician:
+            formattedOutput = PhoenizianFormatter(number: zahl)?.phoenician ?? noValidNumber
         }
         
     }

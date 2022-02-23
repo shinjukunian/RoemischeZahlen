@@ -18,7 +18,7 @@ struct OutputView: View {
             .onChange(of: holder.inputType, perform: {input in
                 switch input{
                 case .numeric(let results):
-                    self.selectedBase =  (results.first(where: {$0.base == .decimal})?.base ?? results.first?.base) ?? .decimal
+                    self.selectedBase =  (results.first(where: {$0.base == holder.preferredBase})?.base ?? results.first?.base) ?? .decimal
                 default:
                     break
                 }
@@ -40,11 +40,19 @@ struct OutputView: View {
     var contentView: some View{
         switch holder.inputType{
         case .empty:
-            EmptyView()
+            Divider().background(Color.accentColor)
+            GroupBox{
+                Text("Please enter a number")
+            }
         case .invalid:
             Divider().background(Color.accentColor)
             GroupBox{
                 Text("The input could not be parsed.")
+            }
+        case .overflow:
+            Divider().background(Color.accentColor)
+            GroupBox{
+                Text("The input is too large to be represented.")
             }
         case .textual(let output):
             Text(verbatim: output.description).font(.caption2)

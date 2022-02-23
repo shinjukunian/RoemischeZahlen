@@ -15,7 +15,7 @@ extension String{
     }
     
     var potenzielleJapanischeZahl:Bool{
-        let japanischeZahlenBuchstabenHaufen=CharacterSet(charactersIn: "一二三四五六七八九十百千万億壱弐参肆伍陸漆捌玖拾陌阡萬")
+        let japanischeZahlenBuchstabenHaufen=CharacterSet(charactersIn: "一二三四五六七八九十百千万億壱弐参肆伍陸漆捌玖拾陌阡萬兆")
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: japanischeZahlenBuchstabenHaufen)
     }
@@ -40,6 +40,14 @@ extension String{
         let aegean=CharacterSet(charactersIn: start...end)
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: aegean)
+    }
+    
+    var potentiellePhoenizischeZahl:Bool{
+        let start=Unicode.Scalar.init(0x10900)!
+        let end=Unicode.Scalar(0x1091B)!
+        let phoenician=CharacterSet(charactersIn: start...end)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: phoenician)
     }
 }
 

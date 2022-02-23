@@ -91,6 +91,8 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                     return formatter.macheHieroglyphenZahl(aus: number)
                 case .suzhou:
                     return formatter.macheSuzhouZahl(aus: number)
+                case .phoenician:
+                    return PhoenizianFormatter(number: number)?.phoenician
                 case .numeric(let base):
                     return String(number, radix: base)
                 case .localized(let locale):

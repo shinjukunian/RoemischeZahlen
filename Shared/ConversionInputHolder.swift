@@ -47,7 +47,7 @@ class ConversionInputHolder:ObservableObject {
             }
             representations=results
         }
-        
+
     }
     
     enum InputType: Equatable,Hashable{
@@ -56,6 +56,7 @@ class ConversionInputHolder:ObservableObject {
         case textual(output:Output)
         case invalid
         case empty
+        case overflow
         
         enum Base:Int, CaseIterable, Equatable, RawRepresentable, Identifiable{
             var id: Self{
@@ -99,6 +100,8 @@ class ConversionInputHolder:ObservableObject {
         return f
     }()
     
+    var preferredBase: InputType.Base = .decimal
+    
     init(){
         self.outputs = outputPreference.outputs
     }
@@ -117,8 +120,9 @@ class ConversionInputHolder:ObservableObject {
         
         if otherBases == true,
            let parser=NumericParser(text: input, bases: InputType.Base.allCases),
-           let first=parser.representations.first{
-            numericInput=first.value
+            parser.representations.isEmpty == false,
+            let first=(parser.representations.first(where: {$0.base == preferredBase}) ?? parser.representations.first){
+                numericInput=first.value
             self.inputType = .numeric(results: parser.representations)
         }
         else if let zahl = Int(input){
@@ -132,8 +136,14 @@ class ConversionInputHolder:ObservableObject {
             self.inputType = .textual(output: output)
         }
         else if let arabisch = integerFormatter.number(from: input){
-            numericInput=arabisch.intValue
-            self.inputType = .textual(output: .arabisch)
+            if arabisch.compare(NSNumber(value: Double(Int.max))) == .orderedAscending{
+                numericInput=arabisch.intValue
+                self.inputType = .textual(output: .arabisch)
+            }
+            else{
+                self.inputType = .overflow
+            }
+            
         }
         else{
             numericInput=nil
