@@ -35,15 +35,9 @@ struct ConversionTableView: View {
                             }, label: {
                                 Label(title: {Text("Speak")}, icon: {Image(systemName: "play.rectangle.fill")})
                             })
-                            Button(action: {
-                                    #if os(macOS)
-                                    NSPasteboard.general.declareTypes([.string], owner: nil)
-                                    NSPasteboard.general.setString(hh.formattedOutput, forType: .string)
-                                    #else
-                                    UIPasteboard.general.string=hh.formattedOutput
-                                    #endif
-                                
-                            }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
+                            
+                            copyButtons(holder: hh)
+                            
                             if holder.outputs.contains(outPut){
                                 Button(role: .destructive, action: {
                                     withAnimation(.default) {
@@ -65,8 +59,41 @@ struct ConversionTableView: View {
         else{
             EmptyView()
         }
-        
-        
+    }
+    
+    @ViewBuilder
+    func copyButtons(holder: NumeralConversionHolder) -> some View{
+        switch holder.info.outputMode{
+        case .arabisch:
+            Button(action: {
+#if os(macOS)
+                NSPasteboard.general.declareTypes([.string], owner: nil)
+                NSPasteboard.general.setString(holder.formattedOutput, forType: .string)
+#else
+                UIPasteboard.general.string=holder.formattedOutput
+#endif
+                
+            }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
+            Button(action: {
+#if os(macOS)
+                NSPasteboard.general.declareTypes([.string], owner: nil)
+                NSPasteboard.general.setString(String(holder.info.input), forType: .string)
+#else
+                UIPasteboard.general.string=String(holder.info.input)
+#endif
+                
+            }, label: {Label(title: {Text("Copy Unformatted")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
+        default:
+            Button(action: {
+#if os(macOS)
+                NSPasteboard.general.declareTypes([.string], owner: nil)
+                NSPasteboard.general.setString(holder.formattedOutput, forType: .string)
+#else
+                UIPasteboard.general.string=holder.formattedOutput
+#endif
+                
+            }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
+        }
     }
 }
 

@@ -26,6 +26,13 @@ class NumeralConversionHolder{
         return f
     }()
     
+    lazy var integerFormatter:NumberFormatter = {
+        let f=NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits=0
+        return f
+    }()
+    
     lazy var formatter=ExotischeZahlenFormatter()
     
     let noValidNumber=NSLocalizedString("Conversion not possible.", comment: "")
@@ -47,7 +54,7 @@ class NumeralConversionHolder{
         case .japanisch:
             formattedOutput = formatter.macheJapanischeZahl(aus: zahl) ?? noValidNumber
         case .arabisch:
-            formattedOutput = String(zahl)
+            formattedOutput = integerFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber
         case .japanisch_bank:
             formattedOutput = formatter.macheJapanischeBankZahl(aus: zahl, einfach: true) ?? noValidNumber
         case .babylonian:
