@@ -9,7 +9,7 @@ import Foundation
 
 struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHieroglyphenZahl {
     let anzahl:Int
-    let multiplikator:Int = 100
+    let multiplikator:Int64 = 100
     
     let arabischRömischDict=[0:"",
                              1:"C",
@@ -98,7 +98,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
     init(Zahl:Int){
         let tausnder = Zahl / 1000
         let übrigehunderter = Zahl - 1000 * tausnder
-        anzahl = übrigehunderter / multiplikator
+        anzahl = übrigehunderter / Int(multiplikator)
     }
     
     init(römischeZahl:String) {
@@ -147,7 +147,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
             .first(where: {_,n in
                 return n == hieroglyph
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil
@@ -160,7 +160,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
             .first(where: {_,n in
                 return n == aegeanNumber
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil

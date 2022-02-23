@@ -10,10 +10,10 @@ import Foundation
 
 struct Tausender: AlsArabischeZahl{
     let anzahl:Int
-    let multiplikator:Int = 1000
+    let multiplikator:Int64 = 1000
     
     init(Zahl:Int){
-        let tausnder = Zahl / multiplikator
+        let tausnder = Zahl / Int(multiplikator)
         anzahl = tausnder
     }
     
@@ -77,7 +77,7 @@ struct Tausender: AlsArabischeZahl{
 struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl{
     
     let anzahl:Int
-    let multiplikator:Int = 1000
+    let multiplikator:Int64 = 1000
     
     let arabischJapanischDict = [0:"",
                                  1:"千",
@@ -140,9 +140,9 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
     ]
     
     init(Zahl:Int){
-        let zehnTausender = Zahl / (multiplikator*10)
-        let restlicheTausender = Zahl - zehnTausender * (multiplikator*10)
-        let tausnder = restlicheTausender / multiplikator
+        let zehnTausender = Zahl / (Int(multiplikator)*10)
+        let restlicheTausender = Zahl - zehnTausender * (Int(multiplikator)*10)
+        let tausnder = restlicheTausender / Int(multiplikator)
         anzahl = tausnder
     }
     
@@ -194,7 +194,7 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
             .first(where: {_,n in
                 return n == aegeanNumber
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil

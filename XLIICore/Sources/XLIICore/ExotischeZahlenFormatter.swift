@@ -211,13 +211,15 @@ public class ExotischeZahlenFormatter{
         restZahl=restZahl.replacingOccurrences(of: hundertMillionen.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         let trillion=OneTrillion(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: trillion.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
+        let tenQuadrillion=TenQuadrillion(japanischeZahl: restZahl)
+        restZahl=restZahl.replacingOccurrences(of: tenQuadrillion.japanisch, with: "", options: [.backwards, .caseInsensitive, .anchored, .widthInsensitive], range: nil)
         
         if restZahl.count > 0{
             return nil
         }
         
         
-        return trillion.arabisch + hundertMillionen.arabisch + zehnTausender.arabisch + tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
+        return tenQuadrillion.arabisch + trillion.arabisch + hundertMillionen.arabisch + zehnTausender.arabisch + tausender.arabisch + hunderter.arabisch + zehner.arabisch + einser.arabisch
     }
     
     

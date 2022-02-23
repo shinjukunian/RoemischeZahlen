@@ -94,13 +94,13 @@ extension AlsBabylonischeZahl{
 
 protocol AlsArabischeZahl{
     var arabisch:Int {get}
-    var multiplikator: Int {get}
+    var multiplikator: Int64 {get}
     var anzahl: Int {get}
 }
 
 extension AlsArabischeZahl{
     var arabisch:Int{
-        return self.anzahl * multiplikator
+        return self.anzahl * Int(multiplikator)
     }
 }
 

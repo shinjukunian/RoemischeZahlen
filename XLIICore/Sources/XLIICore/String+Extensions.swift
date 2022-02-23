@@ -15,7 +15,7 @@ extension String{
     }
     
     var potenzielleJapanischeZahl:Bool{
-        let japanischeZahlenBuchstabenHaufen=CharacterSet(charactersIn: "一二三四五六七八九十百千万億壱弐参肆伍陸漆捌玖拾陌阡萬兆")
+        let japanischeZahlenBuchstabenHaufen=CharacterSet(charactersIn: "一二三四五六七八九十百千万億壱弐参肆伍陸漆捌玖拾陌阡萬兆京")
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: japanischeZahlenBuchstabenHaufen)
     }
