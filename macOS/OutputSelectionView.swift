@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import XLIICore
 
 struct OutputSelectionView: View {
     

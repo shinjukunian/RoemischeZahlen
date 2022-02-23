@@ -1,0 +1,47 @@
+/* Aegean Output */
+"Aegean" = "Ägäisch";
+
+/* Arabic Numeral Output */
+"Arabic Numerals" = "Arabische Ziffern";
+
+/* Arabic Numeral Output */
+"Babylonian Cuneiform" = "Babylonisch";
+
+/* binary number */
+"Binary" = "Binär";
+
+/* decimal number */
+"Decimal" = "Dezimal";
+
+/* Egytpian Output */
+"Egyptian Numerals (Hieroglyphs)" = "Ägyptische Ziffern (Hieroglyphen)";
+
+/* Japanese Numeral Output */
+"Japanese" = "Japanisch";
+
+/* Arabic Numeral Output */
+"Japanese (大字)" = "Japanisch (大字)";
+
+/* utterance string */
+"is:" = "ist:";
+
+/* Other base */
+"Numeric Base %i" = "Numerisch mit Basis %i";
+
+/* Octal number */
+"Octal" = "Oktal";
+
+/* Phoenician alphabetPhoenician */
+"Phoenician" = "Phönizisch";
+
+/* Roman Numeral Output */
+"Roman" = "Römisch";
+
+/* Hexadecimal number */
+"Hexadecimal" = "Hexadezimal";
+
+/* "Suzhou Output" */
+"Suzhou (蘇州碼子)" = "Suzhou (蘇州碼子)";
+
+/* "Counting Rods"  */
+"Counting Rods (籌)" = "Zahlstäbchen (籌)";

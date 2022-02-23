@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import XLIICore
 
 class NumeralConversionHolder{
     
@@ -65,7 +66,7 @@ class NumeralConversionHolder{
         case .numeric(let base):
             formattedOutput = String(zahl, radix: base, uppercase: true)
         case .phoenician:
-            formattedOutput = PhoenizianFormatter(number: zahl)?.phoenician ?? noValidNumber
+            formattedOutput = formatter.machePhoenizischeZahl(aus: zahl) ?? noValidNumber
         }
         
     }

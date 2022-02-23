@@ -1,17 +1,5 @@
-/* Aegean Output */
-"Aegean" = "Ägäisch";
-
 /* No comment provided by engineer. */
 "Allow bases other than 10 for numeric input" = "Zahlen mit einer von 10 verschiedenen Basis erkennen";
-
-/* Arabic Numeral Output */
-"Arabic Numerals" = "Arabische Ziffern";
-
-/* Arabic Numeral Output */
-"Babylonian Cuneiform" = "Babylonisch";
-
-/* binary number */
-"Binary" = "Binär";
 
 /* No comment provided by engineer. */
 "Conversion not possible." = "Umwandlung nicht möglich";
@@ -28,9 +16,6 @@
 /* (No Comment) */
 "Copy" = "Kopieren";
 
-/* decimal number */
-"Decimal" = "Dezimal";
-
 /* No comment provided by engineer. */
 "Deselect All" = "Auswahl entfernen";
 
@@ -46,9 +31,6 @@
 /* No comment provided by engineer. */
 "Done" = "Fertig";
 
-/* Egytpian Output */
-"Egyptian Numerals (Hieroglyphs)" = "Ägyptische Ziffern (Hieroglyphen)";
-
 /* (No Comment) */
 "Enter Number" = "Zahl eingeben";
 
@@ -57,9 +39,6 @@
 
 /* No comment provided by engineer. */
 "Formatting" = "Ausgabe";
-
-/* Hexadecimal number */
-"Hexadecimal" = "Hexadezimal";
 
 /* No comment provided by engineer. */
 "Hide output selection." = "Ausgabeauswahl verbergen";
@@ -70,14 +49,6 @@
 /* prompt */
 "Hold Steady" = "Bitte still halten";
 
-/* utterance string */
-"is:" = "ist:";
-
-/* Japanese Numeral Output */
-"Japanese" = "Japanisch";
-
-/* Arabic Numeral Output */
-"Japanese (大字)" = "Japanisch (大字)";
 
 /* No comment provided by engineer. */
 "No Input" = "Keine Eingabe";
@@ -88,11 +59,6 @@
 /* No comment provided by engineer. */
 "Numeric" = "Numerisch";
 
-/* Other base */
-"Numeric Base %i" = "Numerisch mit Basis %i";
-
-/* Octal number */
-"Octal" = "Oktal";
 
 /* No comment provided by engineer. */
 "Output" = "Format";
@@ -103,17 +69,12 @@
 /* No comment provided by engineer. */
 "Parse numeric input for other bases, e.g. binary or hexadecimal." = "Eingegebene Zahlen in anderen Zahlensystemen einlesen, bspw. Hexadezimal.";
 
-/* Phoenician alphabetPhoenician */
-"Phoenician" = "Phönizisch";
-
 /* No comment provided by engineer. */
 "Please enter a number" = "Bitte eine Zahl eingeben.";
 
 /* No comment provided by engineer. */
 "Remove" = "Entfernen";
 
-/* Roman Numeral Output */
-"Roman" = "Römisch";
 
 /* Localizable.strings
   RoemischeZahl

@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, CustomStringConvertible{
+public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, CustomStringConvertible{
     
-    typealias RawValue = String
+    public typealias RawValue = String
     
     case römisch
     case japanisch
@@ -26,13 +26,13 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
     
     case localized(locale:Locale)
     
-    static let currentLocale = Output.localized(locale: Locale.current)
-    static let dragType = "com.mihomaus.xlii.outputType"
+    public static let currentLocale = Output.localized(locale: Locale.current)
+    public static let dragType = "com.mihomaus.xlii.outputType"
 
-    static let numericTypes:[Output] = [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]
-    static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician]
+    public static let numericTypes:[Output] = [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]
+    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician]
     
-    init?(rawValue: String) {
+    public init?(rawValue: String) {
         switch rawValue{
         case "roman":
             self = .römisch
@@ -72,7 +72,7 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         }
     }
     
-    init?(output:ExotischeZahlenFormatter.NumericalOutput){
+    public init?(output:ExotischeZahlenFormatter.NumericalOutput){
         switch output.locale{
         case .japanese:
             self = .japanisch
@@ -89,7 +89,7 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         }
     }
     
-    var rawValue: String{
+    public var rawValue: String{
         switch self {
         case .römisch:
             return "roman"
@@ -119,11 +119,11 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
     }
     
     
-    var id: String {
+    public var id: String {
         return rawValue
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         switch self {
         case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician:
             hasher.combine(rawValue)
@@ -132,28 +132,28 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         }
     }
     
-    var description: String{
+    public var description: String{
         switch self {
         case .römisch:
-            return NSLocalizedString("Roman", comment: "Roman Numeral Output")
+            return NSLocalizedString("Roman", tableName: nil, bundle: .module, value: "Roman", comment: "Roman Numeral Output")
         case .japanisch:
-            return NSLocalizedString("Japanese", comment: "Japanese Numeral Output")
+            return NSLocalizedString("Japanese", tableName: nil, bundle: .module, value: "Japanese", comment: "Japanese Numeral Output")
         case .arabisch:
-            return NSLocalizedString("Arabic Numerals", comment: "Arabic Numeral Output")
+            return NSLocalizedString("Arabic Numerals", tableName: nil, bundle: .module, value: "Arabic Numerals", comment: "Arabic Numeral Output")
         case .japanisch_bank:
-            return NSLocalizedString("Japanese (大字)", comment: "Arabic Numeral Output")
+            return NSLocalizedString("Japanese (大字)", tableName: nil, bundle: .module, value: "Japanese (大字)", comment: "Arabic Numeral Output")
         case .babylonian:
-            return NSLocalizedString("Babylonian Cuneiform", comment: "Arabic Numeral Output")
+            return NSLocalizedString("Babylonian Cuneiform", tableName: nil, bundle: .module, value: "Babylonian Cuneiform", comment: "Babylonian Cuneiform")
         case .aegean:
-            return NSLocalizedString("Aegean", comment: "Aegean Output")
+            return NSLocalizedString("Aegean", tableName: nil, bundle: .module, value: "Aegean", comment: "Aegean Output")
         case .sangi:
-            return NSLocalizedString("Counting Rods (籌)", comment: "Aegean Output")
+            return NSLocalizedString("Counting Rods (籌)", tableName: nil, bundle: .module, value: "Counting Rods (籌)", comment: "Counting Rods")
         case .hieroglyph:
-            return NSLocalizedString("Egyptian Numerals (Hieroglyphs)", comment: "Egytpian Output")
+            return NSLocalizedString("Egyptian Numerals (Hieroglyphs)", tableName: nil, bundle: .module, value: "Egyptian Numerals (Hieroglyphs)", comment: "Egytpian Output")
         case .suzhou:
-            return NSLocalizedString("Suzhou (蘇州碼子)", comment: "Suzhou Output")
+            return NSLocalizedString("Suzhou (蘇州碼子)", tableName: nil, bundle: .module, value: "Suzhou (蘇州碼子)", comment: "Suzhou Output")
         case .phoenician:
-            return NSLocalizedString("Phoenician", comment: "Phoenician alphabetPhoenician")
+            return NSLocalizedString("Phoenician", tableName: nil, bundle: .module, value: "Phoenician", comment: "Phoenician alphabet")
         case .localized(let locale):
             if let language=locale.languageCode{
                 return Locale.current.localizedString(forLanguageCode: language) ?? locale.identifier
@@ -164,15 +164,15 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
         case .numeric(let base):
             switch base{
             case 2:
-                return NSLocalizedString("Binary", comment: "binary number")
+                return NSLocalizedString("Binary", tableName: nil, bundle: .module, value: "Binary", comment: "binary number")
             case 8:
-                return NSLocalizedString("Octal", comment: "Octal number")
+                return NSLocalizedString("Octal", tableName: nil, bundle: .module, value: "Octal", comment: "Octal number")
             case 10:
-                return NSLocalizedString("Decimal", comment: "decimal number")
+                return NSLocalizedString("Decimal", tableName: nil, bundle: .module, value: "Decimal", comment: "Decimal number")
             case 16:
-                return NSLocalizedString("Hexadecimal", comment: "Hexadecimal number")
+                return NSLocalizedString("Hexadecimal", tableName: nil, bundle: .module, value: "Hexadecimal", comment: "Hexadecimal number")
             default:
-                return String(format: NSLocalizedString("Numeric Base %i", comment: "Other base"), base)
+                return String(format: NSLocalizedString("Numeric Base %i", tableName: nil, bundle: .module, value: "Numeric Base %i", comment: "Other base"), base)
             }
         }
     }
@@ -182,22 +182,4 @@ enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, Custo
 }
 
 
-struct OutputPreference:RawRepresentable{
-    
-    typealias RawValue = String
-    
-    let outputs:[Output]
-    
-    init?(rawValue: String) {
-        let values=rawValue.split(separator: "%").compactMap({Output(rawValue: String($0))})
-        self.outputs=values
-    }
-    
-    init(outputs:[Output]){
-        self.outputs=outputs
-    }
-    
-    var rawValue: String{
-        return self.outputs.map({$0.rawValue}).joined(separator: "%")
-    }
-}
+

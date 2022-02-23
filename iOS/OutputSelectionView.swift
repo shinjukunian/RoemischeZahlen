@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Algorithms
+import XLIICore
 
 struct OutputSelectionView: View {
     

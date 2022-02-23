@@ -28,10 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
-         <TestPlanReference
-            reference = "container:XLIITests/XLII (macOS).xctestplan"
-            default = "YES">
-         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -40,7 +36,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5A34FAB427C33AF0002D58E0"
                BuildableName = "XLIITests.xctest"
-               BlueprintName = "XLIITests"
+               BlueprintName = "XLIITests (macOS)"
                ReferencedContainer = "container:XLII.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -50,8 +46,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "de"
-      launchStyle = "1"
+      language = "ja"
+      launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"

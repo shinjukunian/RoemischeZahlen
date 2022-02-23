@@ -1,0 +1,47 @@
+/* Aegean Output */
+"Aegean" = "エーゲ海の数字";
+
+/* Arabic Numeral Output */
+"Arabic Numerals" = "アラビア数字";
+
+/* Arabic Numeral Output */
+"Babylonian Cuneiform" = "バビロニアの楔形文字";
+
+/* binary number */
+"Binary" = "二進法";
+
+/* decimal number */
+"Decimal" = "十進法";
+
+/* Egytpian Output */
+"Egyptian Numerals (Hieroglyphs)" = "エジプト数学 (ヒエログリフ)";
+
+/* Japanese Numeral Output */
+"Japanese" = "日本語";
+
+/* Arabic Numeral Output */
+"Japanese (大字)" = "日本語 (大字)";
+
+/* utterance string */
+"is:" = "わ";
+
+/* Other base */
+"Numeric Base %i" = "%i進法";
+
+/* Octal number */
+"Octal" = "八進法";
+
+/* Phoenician alphabetPhoenician */
+"Phoenician" = "フェニキア文字";
+
+/* Roman Numeral Output */
+"Roman" = "ローマ数字";
+
+/* Hexadecimal number */
+"Hexadecimal" = "十六進法";
+
+/* "Suzhou Output" */
+"Suzhou (蘇州碼子)" = "蘇州号碼";
+
+/* "Counting Rods"  */
+"Counting Rods (籌)" = "算木";

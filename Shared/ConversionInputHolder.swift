@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import XLIICore
 
 class ConversionInputHolder:ObservableObject {
     

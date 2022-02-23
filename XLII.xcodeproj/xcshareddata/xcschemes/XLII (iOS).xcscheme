@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1330"
+   LastUpgradeVersion = "1320"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -35,12 +35,12 @@
       </TestPlans>
       <Testables>
          <TestableReference
-            skipped = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "163C1B4B263A5AE500E1A69C"
-               BuildableName = "Tests iOS.xctest"
-               BlueprintName = "Tests iOS"
+               BlueprintIdentifier = "5AEE116027C60DF70085210A"
+               BuildableName = "XLIITests (iOS).xctest"
+               BlueprintName = "XLIITests (iOS)"
                ReferencedContainer = "container:XLII.xcodeproj">
             </BuildableReference>
          </TestableReference>

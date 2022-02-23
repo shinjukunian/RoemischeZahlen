@@ -10,6 +10,7 @@ import Vision
 import AVFoundation
 import CoreImage
 import SwiftUI
+import XLIICore
 
 protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {
     var videoAspectRatio: CGFloat {get set}
@@ -27,13 +28,15 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
             case other
             
             init(text:String) {
-                if text.potenzielleRömischeZahl,
-                   let römisch=ExotischeZahlenFormatter().macheZahl(römisch: text){
-                    self = .romanNumeral(number: römisch)
-                }
-                else if text.potenzielleJapanischeZahl,
-                        let japanisch=ExotischeZahlenFormatter().macheZahl(aus: text){
-                    self = .japaneseNumber(number: japanisch.value)
+                if let number=ExotischeZahlenFormatter().macheZahl(aus: text){
+                    switch number.locale{
+                    case .roman:
+                        self = .romanNumeral(number: number.value)
+                    case .japanese:
+                        self = .japaneseNumber(number: number.value)
+                    default:
+                        self = .other
+                    }
                 }
                 else if let number=NumberFormatter().number(from: text)?.intValue{
                     self = .arabicNumber(number: number)
@@ -92,7 +95,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                 case .suzhou:
                     return formatter.macheSuzhouZahl(aus: number)
                 case .phoenician:
-                    return PhoenizianFormatter(number: number)?.phoenician
+                    return formatter.machePhoenizischeZahl(aus: number)
                 case .numeric(let base):
                     return String(number, radix: base)
                 case .localized(let locale):

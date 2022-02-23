@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import XLIICore
 
 extension Recognizer.TextElement.TextElementType{
     var fillColor:Color{
