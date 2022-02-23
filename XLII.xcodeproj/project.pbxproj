@@ -858,7 +858,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mihomaus.RoemischeZahl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLII;
 				PRODUCT_NAME = XLII;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -880,7 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mihomaus.RoemischeZahl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLII;
 				PRODUCT_NAME = XLII;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -907,7 +907,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mihomaus.RoemischeZahl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLII;
 				PRODUCT_NAME = XLII;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -932,7 +932,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mihomaus.RoemischeZahl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLII;
 				PRODUCT_NAME = XLII;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;

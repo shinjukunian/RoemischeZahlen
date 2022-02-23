@@ -21,7 +21,7 @@ extension UserDefaults{
 
 extension NSUserActivity{
     enum ActivityTypes{
-        static let conversionActivity = "com.mihomaus.RoemischeZahl.conversionActivity"
+        static let conversionActivity = "com.telethon.XLII.conversionActivity"
     }
 }
 

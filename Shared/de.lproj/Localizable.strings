@@ -1,3 +1,18 @@
+/* Aegean Output */
+"Aegean" = "Ägäisch";
+
+/* No comment provided by engineer. */
+"Allow bases other than 10 for numeric input" = "Zahlen mit einer von 10 verschiedenen Basis erkennen";
+
+/* Arabic Numeral Output */
+"Arabic Numerals" = "Arabische Ziffern";
+
+/* Arabic Numeral Output */
+"Babylonian Cuneiform" = "Babylonisch";
+
+/* binary number */
+"Binary" = "Binär";
+
 /* No comment provided by engineer. */
 "Conversion not possible." = "Umwandlung nicht möglich";
 
@@ -13,14 +28,44 @@
 /* (No Comment) */
 "Copy" = "Kopieren";
 
+/* decimal number */
+"Decimal" = "Dezimal";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Auswahl entfernen";
+
 /* prompt */
 "Detecting..." = "Erkenne...";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Fertig";
+"Dismis" = "Fertig";
+
+/* No comment provided by engineer. */
+"Display output selection" = "Ausgabeauswahl anzeigen";
 
 /* No comment provided by engineer. */
 "Done" = "Fertig";
+
+/* Egytpian Output */
+"Egyptian Numerals (Hieroglyphs)" = "Ägyptische Ziffern (Hieroglyphen)";
+
+/* (No Comment) */
+"Enter Number" = "Zahl eingeben";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
+
+/* No comment provided by engineer. */
+"Formatting" = "Ausgabe";
+
+/* Hexadecimal number */
+"Hexadecimal" = "Hexadezimal";
+
+/* No comment provided by engineer. */
+"Hide output selection." = "Ausgabeauswahl verbergen";
+
+/* No comment provided by engineer. */
+"Hide Sidebar" = "Seitenleiste verbergen";
 
 /* prompt */
 "Hold Steady" = "Bitte still halten";
@@ -28,19 +73,46 @@
 /* utterance string */
 "is:" = "ist:";
 
-/* No comment provided by engineer. */
+/* Japanese Numeral Output */
 "Japanese" = "Japanisch";
 
-/* No comment provided by engineer. */
+/* Arabic Numeral Output */
 "Japanese (大字)" = "Japanisch (大字)";
+
+/* No comment provided by engineer. */
+"No Input" = "Keine Eingabe";
 
 /* (No Comment) */
 "Number" = "Zahl";
 
 /* No comment provided by engineer. */
+"Numeric" = "Numerisch";
+
+/* Other base */
+"Numeric Base %i" = "Numerisch mit Basis %i";
+
+/* Octal number */
+"Octal" = "Oktal";
+
+/* No comment provided by engineer. */
 "Output" = "Format";
 
 /* No comment provided by engineer. */
+"Output Selection" = "Ausgabeauswahl";
+
+/* No comment provided by engineer. */
+"Parse numeric input for other bases, e.g. binary or hexadecimal." = "Eingegebene Zahlen in anderen Zahlensystemen einlesen, bspw. Hexadezimal.";
+
+/* Phoenician alphabetPhoenician */
+"Phoenician" = "Phönizisch";
+
+/* No comment provided by engineer. */
+"Please enter a number" = "Bitte eine Zahl eingeben.";
+
+/* No comment provided by engineer. */
+"Remove" = "Entfernen";
+
+/* Roman Numeral Output */
 "Roman" = "Römisch";
 
 /* Localizable.strings
@@ -50,16 +122,35 @@
 "Roman Numerals" = "Römische Zahlen";
 
 /* No comment provided by engineer. */
+"Search" = "Suchen";
+
+/* No comment provided by engineer. */
 "Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Show Selected" = "Auswahl anzeigen";
+
+/* No comment provided by engineer. */
+"Show Settings" = "Einstellungen anzeigen";
+
+/* No comment provided by engineer. */
+"Show Sidebar" = "Seitenleiste anzeigen";
 
 /* (No Comment) */
 "Speak" = "Sprechen";
+
+/* No comment provided by engineer. */
+"System" = "System";
+
+/* No comment provided by engineer. */
+"The input could not be parsed." = "Ungültige Eingabe";
+
+/* No comment provided by engineer. */
+"The input is too large to be represented." = "Die eingegebene Zahl ist zu groß";
 
 /* No comment provided by engineer. */
 "Use ROI" = "ROI benutzen";
 
 /* No comment provided by engineer. */
 "XLII" = "XLII";
-
-"Enter Number" = "Zahl eingeben";
 
