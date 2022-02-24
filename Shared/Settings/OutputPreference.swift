@@ -26,4 +26,6 @@ struct OutputPreference:RawRepresentable{
     var rawValue: String{
         return self.outputs.map({$0.rawValue}).joined(separator: "%")
     }
+    
+    static let `default` = OutputPreference(outputs:[.römisch, .japanisch, .suzhou, .hieroglyph, .babylonian, .numeric(base: 16)])
 }

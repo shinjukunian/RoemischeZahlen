@@ -44,6 +44,8 @@
 		5A606FB9263E873000C3DE62 /* Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FB7263E873000C3DE62 /* Recognizer.swift */; };
 		5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */; };
 		5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */; };
+		5A66C3FF27C7CE3700B48D75 /* BasePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A66C3FE27C7CE3700B48D75 /* BasePreference.swift */; };
+		5A66C40027C7CE3700B48D75 /* BasePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A66C3FE27C7CE3700B48D75 /* BasePreference.swift */; };
 		5A68E5BB27C3AB5800D5BC40 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68E5BA27C3AB5800D5BC40 /* Settings.swift */; };
 		5A68E5BC27C3AB5800D5BC40 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68E5BA27C3AB5800D5BC40 /* Settings.swift */; };
 		5A68E5BE27C3AE2C00D5BC40 /* MailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68E5BD27C3AE2C00D5BC40 /* MailController.swift */; };
@@ -99,6 +101,7 @@
 		5A606FB4263E86B700C3DE62 /* SceneStability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneStability.swift; sourceTree = "<group>"; };
 		5A606FB7263E873000C3DE62 /* Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognizer.swift; sourceTree = "<group>"; };
 		5A606FBA263FD7AE00C3DE62 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		5A66C3FE27C7CE3700B48D75 /* BasePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePreference.swift; sourceTree = "<group>"; };
 		5A68E5BA27C3AB5800D5BC40 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		5A68E5BD27C3AE2C00D5BC40 /* MailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailController.swift; sourceTree = "<group>"; };
 		5A7E095A26F07515006BFB31 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -230,6 +233,7 @@
 				5A13656027C78FA500499017 /* BaseEditingView.swift */,
 				5A13655D27C78F8400499017 /* BaseAction.swift */,
 				5AEE117327C612A30085210A /* OutputPreference.swift */,
+				5A66C3FE27C7CE3700B48D75 /* BasePreference.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -372,6 +376,7 @@
 				5A871E6B27C3C277006606CD /* OutputView.swift in Sources */,
 				5A7E096126F09A6E006BFB31 /* ConversionHolder.swift in Sources */,
 				5A68E5BE27C3AE2C00D5BC40 /* MailController.swift in Sources */,
+				5A66C3FF27C7CE3700B48D75 /* BasePreference.swift in Sources */,
 				5A3D33D827C4672B00C7C27F /* ContentView.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
 				5AC491DF27C75F04004AA6D5 /* NumericParsingResult.swift in Sources */,
@@ -397,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */,
+				5A66C40027C7CE3700B48D75 /* BasePreference.swift in Sources */,
 				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
 				5A13655F27C78F8400499017 /* BaseAction.swift in Sources */,
 				5A871E6C27C3C277006606CD /* OutputView.swift in Sources */,

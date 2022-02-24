@@ -11,7 +11,8 @@ import XLIICore
 struct BaseSelectionView: View {
     
     @AppStorage(UserDefaults.Keys.preferredBasesKey) var preferredBases:BasePreference = BasePreference.default
-    
+    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference: OutputPreference = .default
+
     @State var actions:[BaseAction] = [BaseAction]()
     
     @State var selectedAction:BaseAction?
@@ -65,7 +66,7 @@ struct BaseSelectionView: View {
 #if os(macOS)
                 
                 ToolbarItemGroup(placement: .automatic, content: {
-                    HStack{
+                    ControlGroup{
                         Button(action: {
                             self.actions.append(.insert(base: 12))
                         }, label: {
@@ -141,9 +142,17 @@ struct BaseSelectionView: View {
                     default:
                         return nil
                     }
-                }) + [10]).sorted()
+                })).sorted()
                 self.preferredBases=BasePreference(bases: bases)
-                
+                let filteredOutputs=self.outputPreference.outputs.filter({output in
+                    switch output{
+                    case .numeric(let base):
+                        return self.preferredBases.bases.contains(base)
+                    default:
+                        return true
+                    }
+                })
+                outputPreference = OutputPreference(outputs: filteredOutputs)
             })
 #if os(macOS)
             .onDeleteCommand(perform: {
@@ -160,6 +169,7 @@ struct BaseSelectionView: View {
             self.actions=actions.filter({$0 != base})
         }
     }
+    
     
     
     

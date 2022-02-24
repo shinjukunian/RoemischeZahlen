@@ -32,7 +32,7 @@ class ConversionInputHolder:ObservableObject {
     
     @Published var selectedResult:NumericParsingResult = .empty
     
-    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference = OutputPreference(outputs: [.römisch, .japanisch, .suzhou, .hieroglyph, .babylonian])
+    @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference: OutputPreference = .default
     
     @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
 

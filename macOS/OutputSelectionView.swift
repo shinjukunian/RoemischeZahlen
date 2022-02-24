@@ -67,6 +67,7 @@ struct OutputSelectionView: View {
     
     
     var tableView: some View{
+        
         Table(sortOrder: $sortOrder, columns: {
                         
             TableColumn(LocalizedStringKey("Selected"), content: {output in
@@ -117,6 +118,9 @@ struct OutputSelectionView: View {
         })
         .onChange(of: sortOrder, perform: {sortOrder in
             outputs.sort(using: sortOrder)
+        })
+        .onChange(of: preferredBases, perform: {p in
+            outputs = Output.builtin + p.outputs + Output.availableLocalizedOutputs            
         })
     }
     

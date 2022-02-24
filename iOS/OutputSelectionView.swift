@@ -33,6 +33,8 @@ struct OutputSelectionView: View {
     @State var searchText:String = ""
     @State var displayInputs:[OutputSelectionViewSection] = [OutputSelectionViewSection]()
     
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var preferredBases:BasePreference = BasePreference.default
+    
     init(holder:ConversionInputHolder){
         self.holder=holder
         self.selection=Set(holder.outputs)
@@ -43,15 +45,13 @@ struct OutputSelectionView: View {
     var availableDisplayOutputs:[OutputSelectionViewSection]{
          return
         [OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),
-            OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: Output.numericTypes),
+         OutputSelectionViewSection(title: OutputSelectionViewSection.numericTitle, outputs: preferredBases.outputs),
             OutputSelectionViewSection(title: OutputSelectionViewSection.systemTitle, outputs: Output.availableLocalizedOutputs)
          ]
     }
     
     
     var body: some View {
-        
-
         
         List(selection: $selection){
             
@@ -108,7 +108,7 @@ struct OutputSelectionView: View {
         })
         .onChange(of: searchText, perform: {text in
             withAnimation{
-                self.displayInputs = zip([Output.builtin,Output.numericTypes,Output.availableLocalizedOutputs], OutputSelectionViewSection.titles).map({(outputs, title)in
+                self.displayInputs = zip([Output.builtin, preferredBases.outputs, Output.availableLocalizedOutputs], OutputSelectionViewSection.titles).map({(outputs, title)in
                     let filtered=outputs.filter({$0.description.localizedStandardContains(text.trimmingCharacters(in: .whitespaces))
                     })
                     return OutputSelectionViewSection(title: title, outputs: filtered)
