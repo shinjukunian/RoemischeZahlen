@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 
-struct FeedbackButton : Commands{
+struct AppCommands : Commands{
     
     @Environment(\.openURL) var openURL
+    @FocusedBinding(\.showingSidebar) var showSidebar:Bool?
     
     var body: some Commands{
         CommandGroup(after: .help, addition: {
@@ -29,6 +30,17 @@ struct FeedbackButton : Commands{
             }, label: {
                 Text("Feeedback")
             })
+        })
+        CommandGroup(replacing: .sidebar, addition: {
+            Button(action: {
+                withAnimation{
+                    showSidebar?.toggle()
+                }
+            }, label: {
+                (showSidebar ?? false)  ? Text("Hide Sidebar"): Text("Show Sidebar")
+            })
+                .keyboardShortcut("s", modifiers: [.control,.command])
+                .disabled(showSidebar == nil)
         })
     }
 }

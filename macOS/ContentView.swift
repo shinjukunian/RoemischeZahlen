@@ -32,11 +32,13 @@ struct ContentView: View {
                         .frame(minWidth:200, maxWidth: 400)
                 
             }
-        }.toolbar(content: {
+        }
+        .toolbar(content: {
             ToolbarItem(placement: .status, content: {
                 SidebarButton(showSideBar: $showSideBar)
             })
         })
+        .focusedValue(\.showingSidebar, $showSideBar)
     }
     
 }

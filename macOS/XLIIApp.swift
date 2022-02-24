@@ -29,7 +29,7 @@ struct XLIIApp: App {
         .windowToolbarStyle(.unifiedCompact(showsTitle: true))
         .windowStyle(.titleBar)
         .commands(content: {
-            FeedbackButton()
+            AppCommands()
         })
         
         

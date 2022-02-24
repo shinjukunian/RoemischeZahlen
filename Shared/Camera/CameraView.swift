@@ -30,6 +30,8 @@ struct CameraView: View {
     
     @State var selectedTextElement:Recognizer.TextElement?
     
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var preferredBases:BasePreference = BasePreference.default
+    
     var body: some View {
         
         ZStack{
@@ -85,7 +87,7 @@ struct CameraView: View {
             }
             
             Picker(selection: $outputType, label: Text("Output"), content: {
-                ForEach(Output.builtin + Output.numericTypes, id: \.self, content: {output in
+                ForEach(Output.builtin + preferredBases.outputs, id: \.self, content: {output in
                     Text(verbatim: output.description)
                         .lineLimit(3)
                         .tag(output)

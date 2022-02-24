@@ -47,12 +47,13 @@ extension CGRect:Hashable{
     }
 }
 
+
 extension FocusedValues {
-    var conversionItem: Binding<NumeralConversionHolder>? {
-        get { self[NumeralConversionHolderKey.self] }
-        set { self[NumeralConversionHolderKey.self] = newValue }
+    var showingSidebar: Binding<Bool>? {
+        get { self[ShowingSidebarKey.self] }
+        set { self[ShowingSidebarKey.self] = newValue }
     }
-    private struct NumeralConversionHolderKey: FocusedValueKey {
-        typealias Value = Binding<NumeralConversionHolder>
+    private struct ShowingSidebarKey: FocusedValueKey {
+        typealias Value = Binding<Bool>
     }
 }

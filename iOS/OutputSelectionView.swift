@@ -38,6 +38,8 @@ struct OutputSelectionView: View {
         self.selection=Set(holder.outputs)
     }
     
+    
+    
     var availableDisplayOutputs:[OutputSelectionViewSection]{
          return
         [OutputSelectionViewSection(title: OutputSelectionViewSection.builtinTitle, outputs: Output.builtin),

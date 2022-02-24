@@ -62,14 +62,9 @@ extension Output{
         }
     }
     
-    static var numericTypes:[Output]{
-        return BasePreference.preferredBases.bases.map({.numeric(base: $0)}).filter({$0.isDecimal == false})
-    }
-     
-
 }
 
-struct BasePreference: RawRepresentable{
+struct BasePreference: RawRepresentable, Equatable, Hashable, Identifiable{
     
     typealias RawValue = String
     
@@ -79,8 +74,23 @@ struct BasePreference: RawRepresentable{
         return bases.map({String($0)}).joined(separator: "|")
     }
     
+    var id: String{
+        rawValue
+    }
+    
     init(bases:[Int]){
         self.bases=bases
+    }
+    
+    init(outputs: [Output]){
+        self.bases=outputs.compactMap({output in
+            switch output{
+            case .numeric(let base):
+                return base
+            default:
+                return nil
+            }
+        })
     }
     
     init?(rawValue: String) {
@@ -94,4 +104,9 @@ struct BasePreference: RawRepresentable{
     static var preferredBases:BasePreference{
         BasePreference(rawValue: UserDefaults.standard.string(forKey: UserDefaults.Keys.preferredBasesKey) ?? "") ?? .default
     }
+    
+    var outputs:[Output]  {
+        self.bases.map({.numeric(base: $0)})
+    }
+    
 }

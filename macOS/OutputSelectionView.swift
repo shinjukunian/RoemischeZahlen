@@ -16,8 +16,11 @@ struct OutputSelectionView: View {
     
     @State var outputs:[Output] = [Output]()
     @State var showSelected:Bool = false
+    
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var preferredBases:BasePreference = BasePreference.default
+    
     var availableOutputs:[Output]{
-        Output.builtin + Output.numericTypes + Output.availableLocalizedOutputs
+        Output.builtin + preferredBases.outputs + Output.availableLocalizedOutputs
     }
     
     @Environment(\.undoManager) var undoManager
@@ -96,7 +99,7 @@ struct OutputSelectionView: View {
             
         .tableStyle(.inset(alternatesRowBackgrounds: true))
         .onAppear{
-            outputs=Output.builtin + Output.numericTypes + Output.availableLocalizedOutputs
+            outputs=availableOutputs
         }
         .searchable(text: $searchText, placement: .automatic, prompt: Text("Search"))
         .onChange(of: searchText, perform: {text in
