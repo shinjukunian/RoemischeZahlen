@@ -45,3 +45,10 @@
 
 /* "Counting Rods"  */
 "Counting Rods (籌)" = "算木";
+
+"Ternary" = "三進法";
+"Quaternary" = "四進法";
+"Senary" = "六進法";
+"Quinary" = "五進法";
+"Duodecimal" = "十二進法";
+"Vigesimal" = "二十進法";

@@ -56,7 +56,7 @@ struct OutputView: View {
                 
                 Text(verbatim: holder.selectedResult.type.description)
                     .font(.caption2)
-            case 2...4:
+            case 2...3:
                 picker
                     .labelsHidden()
                     .pickerStyle(.segmented)

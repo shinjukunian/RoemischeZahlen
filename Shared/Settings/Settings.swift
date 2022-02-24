@@ -18,50 +18,74 @@ struct SettingsView: View {
     @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
     
     @Environment(\.openURL) var openURL
+    @State var showBaseSelection:Bool = false
     
     var body: some View {
-        
-            Form{
-                Section(content: {
-                    Toggle(isOn: $daijiForAll, label: {Text("Convert all characters to  Daiji")})
-                        .help(Text("Convert all characters to Daiji. This usage is archaic."))
-                    
-                    Toggle(isOn: $otherBases, label: {Text("Allow bases other than 10 for numeric input")})
-                        .help(Text("Parse numeric input for other bases, e.g. binary or hexadecimal."))
-                    
-                }, header: {
-                    Text("Formatting")
-                })
+        form
+    }
+    
+    var form: some View{
+        Form{
+            Section(content: {
+                Toggle(isOn: $daijiForAll, label: {Text("Convert all characters to  Daiji")})
+                    .help(Text("Convert all characters to Daiji. This usage is archaic."))
                 
+                Toggle(isOn: $otherBases, label: {Text("Allow bases other than 10 for numeric input")})
+                    .help(Text("Parse numeric input for other bases, e.g. binary or hexadecimal."))
+
+                if otherBases{
 #if os(iOS)
-                Section(content: {
                     NavigationLink(destination: {
-                        
-                        MailView(result: .constant(nil))
-                        
+                        BaseSelectionView()
                     }, label: {
-                        Text("Feedback")
+                        Text("Select Bases")
                     })
+#else
+                    Button(action: {
+                        showBaseSelection.toggle()
+                    }, label: {
+                        Label(title: {Text("Select Bases")}, icon: {
+                            
+                        })
+                    }).sheet(isPresented: $showBaseSelection, content: {
+                        BaseSelectionView().frame(minWidth: 300, minHeight: 300)
+                    })
+#endif
+                }
+            
+            }, header: {
+                Text("Formatting")
+            })
+            
+#if os(iOS)
+            Section(content: {
+                NavigationLink(destination: {
                     
-                    .disabled(!MFMailComposeViewController.canSendMail())
+                    MailView(result: .constant(nil))
                     
-                }, header: {
+                }, label: {
                     Text("Feedback")
                 })
                 
-#endif
-            }
-            .navigationTitle(Text("Settings"))
-#if os(iOS)
-            .navigationViewStyle(.stack)
-           
-            .toolbar(content: {
-                ToolbarItem(placement: .confirmationAction, content: {
-                    Button(action: {
-                        dismiss()
-                    }, label: {Text("Done")})
-                })
+                .disabled(!MFMailComposeViewController.canSendMail())
+                
+            }, header: {
+                Text("Feedback")
             })
+            
+#endif
+        }
+        .navigationTitle(Text("Settings"))
+#if os(iOS)
+        .navigationViewStyle(.stack)
+       
+        .toolbar(content: {
+            ToolbarItem(placement: .confirmationAction, content: {
+                Button(action: {
+                    dismiss()
+                }, label: {Text("Done")})
+            })
+        })
 #endif
     }
     

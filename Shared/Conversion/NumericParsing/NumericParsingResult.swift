@@ -26,11 +26,11 @@ struct NumericParser{
     let text:String
     let representations:[NumericParsingResult]
     
-    init?(text:String, bases:[Base]){
+    init?(text:String, bases:[Int]){
         self.text=text
         let results=bases.compactMap({base->NumericParsingResult? in
-            if let int=Int(text, radix: base.rawValue){
-                return NumericParsingResult(originalText: text, value: int, type: .numeric(base: base.rawValue))
+            if let int=Int(text, radix: base){
+                return NumericParsingResult(originalText: text, value: int, type: .numeric(base: base))
             }
             else{
                 return nil
@@ -41,7 +41,6 @@ struct NumericParser{
         }
         representations=results
     }
-
 }
 
 enum InputType: Equatable,Hashable{
@@ -49,19 +48,6 @@ enum InputType: Equatable,Hashable{
     case invalid
     case empty
     case overflow
-}
-
-enum Base:Int, CaseIterable, Equatable, RawRepresentable, Identifiable{
-    var id: Self{
-        return self
-    }
-    
-    case binary = 2
-    case octal = 8
-    case decimal = 10
-    case hexadecimal = 16
-    
-    static var allCases: [Base] = [.binary, .octal, .decimal, .hexadecimal]
 }
 
 
@@ -74,5 +60,38 @@ extension Output{
             return true
         default: return false
         }
+    }
+    
+    static var numericTypes:[Output]{
+        return BasePreference.preferredBases.bases.map({.numeric(base: $0)}).filter({$0.isDecimal == false})
+    }
+     
+
+}
+
+struct BasePreference: RawRepresentable{
+    
+    typealias RawValue = String
+    
+    let bases:[Int]
+    
+    var rawValue: String{
+        return bases.map({String($0)}).joined(separator: "|")
+    }
+    
+    init(bases:[Int]){
+        self.bases=bases
+    }
+    
+    init?(rawValue: String) {
+        bases=rawValue.split(separator: "|").compactMap({Int($0)})
+    }
+    
+    static let defaultBases = [2,8,10,16]
+    
+    static let `default` = BasePreference(bases: BasePreference.defaultBases)
+    
+    static var preferredBases:BasePreference{
+        BasePreference(rawValue: UserDefaults.standard.string(forKey: UserDefaults.Keys.preferredBasesKey) ?? "") ?? .default
     }
 }

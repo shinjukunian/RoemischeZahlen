@@ -29,7 +29,6 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     public static let currentLocale = Output.localized(locale: Locale.current)
     public static let dragType = "com.mihomaus.xlii.outputType"
 
-    public static let numericTypes:[Output] = [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]
     public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician]
     
     public init?(rawValue: String) {
@@ -165,12 +164,25 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             switch base{
             case 2:
                 return NSLocalizedString("Binary", tableName: nil, bundle: .module, value: "Binary", comment: "binary number")
+            case 3:
+                return NSLocalizedString("Ternary", tableName: nil, bundle: .module, value: "Ternary", comment: "binary number")
+            case 4:
+                return NSLocalizedString("Quaternary", tableName: nil, bundle: .module, value: "Quaternary", comment: "binary number")
+            case 5:
+                return NSLocalizedString("Quinary", tableName: nil, bundle: .module, value: "Quinary", comment: "binary number")
+            case 6:
+                return NSLocalizedString("Senary", tableName: nil, bundle: .module, value: "Senary", comment: "binary number")
+                
             case 8:
                 return NSLocalizedString("Octal", tableName: nil, bundle: .module, value: "Octal", comment: "Octal number")
             case 10:
                 return NSLocalizedString("Decimal", tableName: nil, bundle: .module, value: "Decimal", comment: "Decimal number")
             case 16:
                 return NSLocalizedString("Hexadecimal", tableName: nil, bundle: .module, value: "Hexadecimal", comment: "Hexadecimal number")
+            case 12:
+                return NSLocalizedString("Duodecimal", tableName: nil, bundle: .module, value: "Duodecimal", comment: "Duodecimal number")
+            case 20:
+                return NSLocalizedString("Vigesimal", tableName: nil, bundle: .module, value: "Vigesimal", comment: "Vigesimal number")
             default:
                 return String(format: NSLocalizedString("Numeric Base %i", tableName: nil, bundle: .module, value: "Numeric Base %i", comment: "Other base"), base)
             }

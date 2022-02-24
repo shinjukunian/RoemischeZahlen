@@ -35,7 +35,9 @@ class ConversionInputHolder:ObservableObject {
     @AppStorage(UserDefaults.Keys.outPutModesKey) var outputPreference = OutputPreference(outputs: [.römisch, .japanisch, .suzhou, .hieroglyph, .babylonian])
     
     @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
-    
+
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var preferredBases:BasePreference = BasePreference.default
+
     @Published var outputs:[Output] = [.japanisch,.römisch]{
         didSet{
             outputPreference=OutputPreference(outputs: outputs)
@@ -49,7 +51,7 @@ class ConversionInputHolder:ObservableObject {
         return f
     }()
     
-    var preferredBase: Base = .decimal
+    
     
     init(){
         self.outputs = outputPreference.outputs
@@ -70,7 +72,7 @@ class ConversionInputHolder:ObservableObject {
         var results=[NumericParsingResult]()
         
         if otherBases == true,
-           let parser=NumericParser(text: input, bases: Base.allCases),
+           let parser=NumericParser(text: input, bases: preferredBases.bases),
             parser.representations.isEmpty == false{
             results.append(contentsOf: parser.representations)
         }

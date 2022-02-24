@@ -15,6 +15,7 @@ extension UserDefaults{
         static let daijiCompleteKey = "daijiCompleteKey"
         static let allowBasesBesides10Key = "allowBasesBesides10Key"
         static let showSideBarKey = "showSideBarKey"
+        static let preferredBasesKey = "preferredBases"
     }
 }
 
