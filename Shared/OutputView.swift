@@ -11,35 +11,25 @@ import XLIICore
 struct OutputView: View {
     
     @ObservedObject var holder:ConversionInputHolder
-    @State var selectedBase:ConversionInputHolder.InputType.Base = .decimal
-
+    
     var body: some View {
         contentView
             
-            .onChange(of: holder.inputType, perform: {input in
-                switch input{
-                case .numeric(let results):
-                    self.selectedBase =  (results.first(where: {$0.base == holder.preferredBase})?.base ?? results.first?.base) ?? .decimal
-                default:
-                    break
+            .onChange(of: holder.results, perform: {results in
+                if let arabic=results.first(where: {$0.type.isDecimal}){
+                    holder.selectedResult = arabic
+                }else{
+                    holder.selectedResult = results.first ?? .empty
                 }
             })
-            .onChange(of: selectedBase, perform: {selectedBase in
-                switch holder.inputType{
-                case .numeric(let results):
-                    guard let result=results.first(where: {$0.base == selectedBase}) else{
-                        return
-                    }
-                    holder.numericInput = result.value
-                default: break
-                }
-            })
+
         
     }
     
     @ViewBuilder
     var contentView: some View{
-        switch holder.inputType{
+
+        switch holder.state{
         case .empty:
             Divider().background(Color.accentColor)
             GroupBox{
@@ -55,51 +45,53 @@ struct OutputView: View {
             GroupBox{
                 Text("The input is too large to be represented.")
             }
-        case .textual(let output):
-            Text(verbatim: output.description).font(.caption2)
-            Divider().background(Color.accentColor)
-            let validOutputs=holder.outputs.filter({$0 != output})
-            let items=[Output.arabisch, Output.currentLocale] + validOutputs
-            ConversionTableView(holder: holder, displayItems: items)
-        case .arabic:
-            Divider().background(Color.accentColor)
-            let items=[Output.currentLocale] + holder.outputs
-            
-            ConversionTableView(holder: holder, displayItems: items)
-        case .numeric(let results):
-            if results.count > 1{
-                Picker(selection: $selectedBase, content: {
-                    ForEach(results.map{$0.base}, id: \.self, content: {base in
-                        Text(verbatim: Output.numeric(base: base.rawValue).description).tag(base)
-                    })
-                }, label: {})
-                .pickerStyle(.segmented)
-            
+        case .valid:
+            switch holder.results.count{
+            case 0:
+                Divider().background(Color.accentColor)
+                GroupBox{
+                    Text("The input could not be parsed.")
+                }
+            case 1:
+                
+                Text(verbatim: holder.selectedResult.type.description)
+                    .font(.caption2)
+            case 2...4:
+                picker
+                    .labelsHidden()
+                    .pickerStyle(.segmented)
+            default:
+                picker.fixedSize(horizontal: true, vertical: false)
+                    .pickerStyle(.menu)
             }
-            else{
-                let output=Output.numeric(base: results.first?.base.rawValue ?? 10)
-                Text(verbatim: output.description).font(.caption2)
-            }
+            
             
             Divider().background(Color.accentColor)
             let items:[Output] = {
                 let items:[Output]
-                if selectedBase == .decimal{
+                if holder.selectedResult.type.isDecimal{
                     items = [Output.currentLocale] +  holder.outputs
                 }
                 else{
                     items = [.arabisch, Output.currentLocale] +  holder.outputs
                 }
                 return items.filter({output in
-                    switch output{
-                    case .numeric(let base):
-                        return base != selectedBase.rawValue
-                    default: return true
-                    }
+                    return output != holder.selectedResult.type
                 })
             }()
-            ConversionTableView(holder: holder, displayItems: items)
+            ConversionTableView(holder: holder, displayItems: items, selectedConversion: holder.selectedResult)
         }
+    }
+        
+    var picker:some View{
+        Picker(selection: $holder.selectedResult, content: {
+            ForEach(holder.results, id: \.self, content: {result in
+                Text(verbatim: result.type.description)
+                    .tag(result)
+            })
+        }, label: {
+            Text("Result:")
+        })
     }
 }
 

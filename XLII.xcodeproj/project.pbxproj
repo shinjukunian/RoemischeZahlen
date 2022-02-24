@@ -54,6 +54,8 @@
 		5AB2BEF827C5AA82004CF66C /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF627C5AA82004CF66C /* Commands.swift */; };
 		5AB2BEFA27C5CC16004CF66C /* BaseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF927C5CC16004CF66C /* BaseSelectionView.swift */; };
 		5AB2BEFB27C5CC16004CF66C /* BaseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF927C5CC16004CF66C /* BaseSelectionView.swift */; };
+		5AC491DF27C75F04004AA6D5 /* NumericParsingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC491DE27C75F04004AA6D5 /* NumericParsingResult.swift */; };
+		5AC491E027C75F04004AA6D5 /* NumericParsingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC491DE27C75F04004AA6D5 /* NumericParsingResult.swift */; };
 		5AD1D02227C4E608000E9CA5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */; };
 		5AEE117027C60FB10085210A /* XLIICore in Frameworks */ = {isa = PBXBuildFile; productRef = 5AEE116F27C60FB10085210A /* XLIICore */; };
 		5AEE117227C60FB60085210A /* XLIICore in Frameworks */ = {isa = PBXBuildFile; productRef = 5AEE117127C60FB60085210A /* XLIICore */; };
@@ -99,6 +101,7 @@
 		5A93420227C4974900AD3947 /* OutputSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSelectionView.swift; sourceTree = "<group>"; };
 		5AB2BEF627C5AA82004CF66C /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		5AB2BEF927C5CC16004CF66C /* BaseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionView.swift; sourceTree = "<group>"; };
+		5AC491DE27C75F04004AA6D5 /* NumericParsingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NumericParsingResult.swift; path = NumericParsing/NumericParsingResult.swift; sourceTree = "<group>"; };
 		5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5AEE116E27C60F930085210A /* XLIICore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XLIICore; sourceTree = "<group>"; };
 		5AEE117327C612A30085210A /* OutputPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputPreference.swift; sourceTree = "<group>"; };
@@ -143,7 +146,7 @@
 			children = (
 				5A68E5B927C3AB4700D5BC40 /* Settings */,
 				5A7E096026F09A6E006BFB31 /* ConversionHolder.swift */,
-				5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */,
+				5AC491DD27C75EDA004AA6D5 /* Conversion */,
 				5A3D33D927C4678900C7C27F /* InputView.swift */,
 				5A871E6A27C3C277006606CD /* OutputView.swift */,
 				5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */,
@@ -221,6 +224,15 @@
 				5AEE117327C612A30085210A /* OutputPreference.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		5AC491DD27C75EDA004AA6D5 /* Conversion */ = {
+			isa = PBXGroup;
+			children = (
+				5A5AE97E27C1E8840020A0FA /* ConversionInputHolder.swift */,
+				5AC491DE27C75F04004AA6D5 /* NumericParsingResult.swift */,
+			);
+			path = Conversion;
 			sourceTree = "<group>";
 		};
 		5AEE116D27C60F930085210A /* Packages */ = {
@@ -354,6 +366,7 @@
 				5A68E5BE27C3AE2C00D5BC40 /* MailController.swift in Sources */,
 				5A3D33D827C4672B00C7C27F /* ContentView.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
+				5AC491DF27C75F04004AA6D5 /* NumericParsingResult.swift in Sources */,
 				5A54F3A126411F58009D6882 /* ROIView.swift in Sources */,
 				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
 				5A34FAC327C34B69002D58E0 /* ConversionTableView.swift in Sources */,
@@ -389,6 +402,7 @@
 				5A3D33D627C466ED00C7C27F /* XLIIApp.swift in Sources */,
 				5A5AE98327C1EEC10020A0FA /* NumericalConversionView.swift in Sources */,
 				5A7E095C26F07515006BFB31 /* Extensions.swift in Sources */,
+				5AC491E027C75F04004AA6D5 /* NumericParsingResult.swift in Sources */,
 				5AB2BEF827C5AA82004CF66C /* Commands.swift in Sources */,
 				5A606FBC263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
 				5A3D33DB27C4678900C7C27F /* InputView.swift in Sources */,

@@ -23,21 +23,23 @@ struct InputView: View {
             
         }
         .padding(.horizontal)
-        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: [ConversionInputHolder.InputType.empty, .invalid].contains(holder.inputType) == false , { activity in
-            activity.isEligibleForHandoff = true
+
+        .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.state == .valid, { activity in
             
-            do{
-                activity.title = self.holder.input
-                try activity.setTypedPayload(ConversionInputHolder.Payload(text: self.holder.input, numeric: self.holder.numericInput ?? 0))
-                activity.needsSave=true
-                activity.becomeCurrent()
-                #if DEBUG
-                print("saving user activity \(activity.title ?? "")")
-                #endif
-            }
-            catch let error{
-                print(error.localizedDescription)
-            }
+//            activity.isEligibleForHandoff = true
+//
+//            do{
+//                activity.title = self.holder.input
+//                try activity.setTypedPayload(ConversionInputHolder.Payload(text: self.holder.input, numeric: self.holder.numericInput ?? 0))
+//                activity.needsSave=true
+//                activity.becomeCurrent()
+//                #if DEBUG
+//                print("saving user activity \(activity.title ?? "")")
+//                #endif
+//            }
+//            catch let error{
+//                print(error.localizedDescription)
+//            }
         })
         .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
             print("restoring \(userActivity.activityType)")
@@ -48,7 +50,7 @@ struct InputView: View {
             catch let error{
                 print(error.localizedDescription)
             }
-            
+
         })
         .onAppear(perform:{
             textFieldIsFocused=true

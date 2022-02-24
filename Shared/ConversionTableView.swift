@@ -14,50 +14,47 @@ struct ConversionTableView: View {
     let displayItems:[Output]
     @State var draggedItem:Output? = nil
     
+    let selectedConversion:NumericParsingResult
+    
     var body: some View {
-        if let input=holder.numericInput {
-            ScrollView{
-                ForEach(displayItems, content: {outPut in
-                    let hh=NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: input, outputMode: outPut))
-                    
-                    NumericalConversionView(holder: hh)
-                        .onDrag({
-                            let provider=NSItemProvider(item: nil, typeIdentifier: Output.dragType)
-                            provider.registerObject(hh.formattedOutput as NSString, visibility: .all)
-                            
-                            draggedItem = outPut
-                            return provider
-                        })
-                        .onDrop(of: [Output.dragType], delegate: ContentViewReorderDropDelegate(item:outPut, items: $holder.outputs, draggedItem: $draggedItem))
-                        .contextMenu(menuItems: {
-                            Button(action: {
-                                hh.speak()
-                            }, label: {
-                                Label(title: {Text("Speak")}, icon: {Image(systemName: "play.rectangle.fill")})
-                            })
-                            
-                            copyButtons(holder: hh)
-                            
-                            if holder.outputs.contains(outPut){
-                                Button(role: .destructive, action: {
-                                    withAnimation(.default) {
-                                        guard let holderIDX=holder.outputs.firstIndex(of: outPut)
-                                                else{return}
-                                        holder.outputs.remove(at: holderIDX)
-                                    }
-                                }, label: {
-                                    Label(title: {Text("Remove")}, icon: {Image(systemName: "trash")})
-                                })
-
-                            }
-                            
+        ScrollView{
+            ForEach(displayItems, content: {outPut in
+                let hh=NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: selectedConversion.value, outputMode: outPut))
+                
+                NumericalConversionView(holder: hh)
+                    .onDrag({
+                        let provider=NSItemProvider(item: nil, typeIdentifier: Output.dragType)
+                        provider.registerObject(hh.formattedOutput as NSString, visibility: .all)
+                        
+                        draggedItem = outPut
+                        return provider
+                    })
+                    .onDrop(of: [Output.dragType], delegate: ContentViewReorderDropDelegate(item:outPut, items: $holder.outputs, draggedItem: $draggedItem))
+                    .contextMenu(menuItems: {
+                        Button(action: {
+                            hh.speak()
+                        }, label: {
+                            Label(title: {Text("Speak")}, icon: {Image(systemName: "play.rectangle.fill")})
                         })
                         
-                })
-            }
-        }
-        else{
-            EmptyView()
+                        copyButtons(holder: hh)
+                        
+                        if holder.outputs.contains(outPut){
+                            Button(role: .destructive, action: {
+                                withAnimation(.default) {
+                                    guard let holderIDX=holder.outputs.firstIndex(of: outPut)
+                                            else{return}
+                                    holder.outputs.remove(at: holderIDX)
+                                }
+                            }, label: {
+                                Label(title: {Text("Remove")}, icon: {Image(systemName: "trash")})
+                            })
+
+                        }
+                        
+                    })
+                    
+            })
         }
     }
     
@@ -101,7 +98,11 @@ struct ConversionTableView_Previews: PreviewProvider {
     static var previews: some View {
         let holder=ConversionInputHolder()
         holder.input=""
-        return ConversionTableView(holder: holder, displayItems:  [.currentLocale, .localized(locale: Locale(identifier: "el_GR"))] + holder.outputs)
+        
+        return ConversionTableView(holder: holder,
+                                   displayItems: [.currentLocale, .localized(locale: Locale(identifier: "el_GR"))],
+                                   selectedConversion: holder.results.first ?? .empty)
+        
     }
 }
 

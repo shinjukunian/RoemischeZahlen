@@ -83,7 +83,7 @@ struct ContentView: View {
                             showLanguageSelection=true
                         }, label: {
                             Image(systemName: "plus.rectangle")
-                        }).disabled(holder.numericInput == nil)
+                        }).disabled(holder.results.isEmpty)
                     })
                     
                     ToolbarItemGroup(placement: .bottomBar, content: {
