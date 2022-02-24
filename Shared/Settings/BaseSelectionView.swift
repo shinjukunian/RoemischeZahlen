@@ -142,7 +142,7 @@ struct BaseSelectionView: View {
                     default:
                         return nil
                     }
-                })).sorted()
+                }) + [10]).sorted()
                 self.preferredBases=BasePreference(bases: bases)
                 let filteredOutputs=self.outputPreference.outputs.filter({output in
                     switch output{

@@ -63,6 +63,7 @@ class ConversionInputHolder:ObservableObject {
     let noInput = NSLocalizedString("No Input", comment: "")
     
     func parse(){
+        let input=self.input.trimmingCharacters(in: .whitespaces)
         guard input.isEmpty == false else{
             self.results.removeAll()
             self.state = .empty

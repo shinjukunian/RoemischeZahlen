@@ -41,7 +41,7 @@ struct BasePreference: RawRepresentable, Equatable, Hashable, Identifiable{
         bases=rawValue.split(separator: "|").compactMap({Int($0)})
     }
     
-    static let defaultBases = [2,8,16]
+    static let defaultBases = [2,8,10,16]
     
     static let `default` = BasePreference(bases: BasePreference.defaultBases)
     
