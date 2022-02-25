@@ -30,41 +30,11 @@ struct WidgetView: View {
                         Spacer()
                     }
                     VStack(alignment: .center){
-                        VStack{
-                            TimeView(formattedEntry: formatted)
-                                .font(.title2)
-                                .lineLimit(1)
-                                .multilineTextAlignment(.center)
-                                .minimumScaleFactor(0.1)
-                            if entry.showDate{
-                                Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.caption).foregroundColor(.secondary)
-                            }
-                            
-                        }.frame(maxWidth: .infinity).padding(5)
-                            .background(content: {
-                                RoundedRectangle(cornerRadius: 8).fill(.background)
-                            })
-                        
-                        VStack{
-                            DateView(formattedEntry: formatted)
-                                .minimumScaleFactor(0.1)
-                                .lineLimit(1)
-                                .multilineTextAlignment(.center)
-                            if entry.showDate{
-                                Text(entry.date.formatted(date: .numeric, time: .omitted)).font(.caption).foregroundColor(.secondary)
-                            }
-                        }.frame(maxWidth: .infinity).padding(5).background(content: {
-                            RoundedRectangle(cornerRadius: 8).fill(.background
-                            )
-                        })
-                        
-                        
+                        timeStack(formatted: formatted)
+                        dateStack(formatted: formatted)
                     }
                 }.padding(6)
-                
-                Spacer()
-                
-                
+    
             }
             else{
                 Text(entry.date.formatted(date: .abbreviated, time: .shortened))
@@ -73,8 +43,41 @@ struct WidgetView: View {
                 
             }
         }
-        
-        
+        .widgetURL(entry.deepLinkURL)
+    }
+    
+    @ViewBuilder
+    func timeStack(formatted:FormattedDate)-> some View{
+        VStack{
+            TimeView(formattedEntry: formatted)
+                .font(.title2)
+                .lineLimit(1)
+                .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.1)
+            if entry.showDate{
+                Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.caption).foregroundColor(.secondary)
+            }
+            
+        }.frame(maxWidth: .infinity).padding(5)
+            .background(content: {
+                RoundedRectangle(cornerRadius: 8).fill(.background)
+            })
+    }
+    
+    @ViewBuilder
+    func dateStack(formatted:FormattedDate)-> some View{
+        VStack{
+            DateView(formattedEntry: formatted)
+                .minimumScaleFactor(0.1)
+                .lineLimit(1)
+                .multilineTextAlignment(.center)
+            if entry.showDate{
+                Text(entry.date.formatted(date: .numeric, time: .omitted)).font(.caption).foregroundColor(.secondary)
+            }
+        }.frame(maxWidth: .infinity).padding(5).background(content: {
+            RoundedRectangle(cornerRadius: 8).fill(.background
+            )
+        })
     }
     
     

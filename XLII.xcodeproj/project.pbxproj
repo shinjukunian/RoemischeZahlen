@@ -92,6 +92,9 @@
 		5AA75D9327C8D8E000D1AA0A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5AA75D9127C8D8E000D1AA0A /* Localizable.strings */; };
 		5AA75D9627C8D8E000D1AA0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5AA75D9427C8D8E000D1AA0A /* InfoPlist.strings */; };
 		5AA75D9927C8D8E000D1AA0A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5AA75D9727C8D8E000D1AA0A /* Localizable.strings */; };
+		5AA75D9E27C8E6B500D1AA0A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8230F227C87D6200E61C86 /* UserDefaults.swift */; };
+		5AA75D9F27C8E6B500D1AA0A /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8230F227C87D6200E61C86 /* UserDefaults.swift */; };
+		5AA75DA727C8FA0100D1AA0A /* XLIITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA75DA627C8FA0100D1AA0A /* XLIITests.swift */; };
 		5AB2BEF727C5AA82004CF66C /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF627C5AA82004CF66C /* Commands.swift */; };
 		5AB2BEF827C5AA82004CF66C /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF627C5AA82004CF66C /* Commands.swift */; };
 		5AB2BEFA27C5CC16004CF66C /* BaseSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2BEF927C5CC16004CF66C /* BaseSelectionView.swift */; };
@@ -117,6 +120,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5A8230F827C87EB000E61C86;
 			remoteInfo = "Widget-iOSExtension";
+		};
+		5AA75DA827C8FA0100D1AA0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 163C1B30263A5ADF00E1A69C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 163C1B43263A5AE500E1A69C;
+			remoteInfo = "XLII (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -216,6 +226,8 @@
 		5AA75D9B27C8D95A00D1AA0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5AA75D9C27C8D95A00D1AA0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5AA75D9D27C8D95A00D1AA0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5AA75DA427C8FA0100D1AA0A /* XLIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AA75DA627C8FA0100D1AA0A /* XLIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIITests.swift; sourceTree = "<group>"; };
 		5AB2BEF627C5AA82004CF66C /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		5AB2BEF927C5CC16004CF66C /* BaseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionView.swift; sourceTree = "<group>"; };
 		5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -263,6 +275,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5AA75DA127C8FA0100D1AA0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -274,6 +293,7 @@
 				163C1B3E263A5AE500E1A69C /* iOS */,
 				163C1B45263A5AE500E1A69C /* macOS */,
 				5A8230FE27C87EB000E61C86 /* Widget */,
+				5AA75DA527C8FA0100D1AA0A /* XLIITests */,
 				163C1B3D263A5AE500E1A69C /* Products */,
 				5A5AE98A27C20F220020A0FA /* Frameworks */,
 			);
@@ -307,6 +327,7 @@
 				163C1B44263A5AE500E1A69C /* XLII.app */,
 				5A8230F927C87EB000E61C86 /* Widget (iOS).appex */,
 				5A701DE227C8BF9B00CB31B0 /* Widget (macOS).appex */,
+				5AA75DA427C8FA0100D1AA0A /* XLIITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -440,6 +461,14 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
+		5AA75DA527C8FA0100D1AA0A /* XLIITests */ = {
+			isa = PBXGroup;
+			children = (
+				5AA75DA627C8FA0100D1AA0A /* XLIITests.swift */,
+			);
+			path = XLIITests;
+			sourceTree = "<group>";
+		};
 		5AEE116D27C60F930085210A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +566,24 @@
 			productReference = 5A8230F927C87EB000E61C86 /* Widget (iOS).appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		5AA75DA327C8FA0100D1AA0A /* XLIITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AA75DAA27C8FA0100D1AA0A /* Build configuration list for PBXNativeTarget "XLIITests" */;
+			buildPhases = (
+				5AA75DA027C8FA0100D1AA0A /* Sources */,
+				5AA75DA127C8FA0100D1AA0A /* Frameworks */,
+				5AA75DA227C8FA0100D1AA0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5AA75DA927C8FA0100D1AA0A /* PBXTargetDependency */,
+			);
+			name = XLIITests;
+			productName = XLIITests;
+			productReference = 5AA75DA427C8FA0100D1AA0A /* XLIITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -557,6 +604,10 @@
 					};
 					5A8230F827C87EB000E61C86 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					5AA75DA327C8FA0100D1AA0A = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 163C1B43263A5AE500E1A69C;
 					};
 				};
 			};
@@ -582,6 +633,7 @@
 				163C1B43263A5AE500E1A69C /* XLII (macOS) */,
 				5A8230F827C87EB000E61C86 /* Widget (iOS) */,
 				5A701DE127C8BF9B00CB31B0 /* Widget (macOS) */,
+				5AA75DA327C8FA0100D1AA0A /* XLIITests */,
 			);
 		};
 /* End PBXProject section */
@@ -625,6 +677,13 @@
 				5A82310327C87EB100E61C86 /* Assets.xcassets in Resources */,
 				5AA75D9327C8D8E000D1AA0A /* Localizable.strings in Resources */,
 				5AA75D9027C8D8E000D1AA0A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AA75DA227C8FA0100D1AA0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +770,7 @@
 				5A701DF827C8BFC400CB31B0 /* Widget.swift in Sources */,
 				5A701DF927C8BFC400CB31B0 /* DateEntry.swift in Sources */,
 				5AA75D8127C8D49400D1AA0A /* XLII_Widget.intentdefinition in Sources */,
+				5AA75D9F27C8E6B500D1AA0A /* UserDefaults.swift in Sources */,
 				5A701DF527C8BFC400CB31B0 /* TimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -724,7 +784,16 @@
 				5A10416427C8A09000125E50 /* TimeView.swift in Sources */,
 				5A82311327C88AEA00E61C86 /* DateEntry.swift in Sources */,
 				5AA75D8027C8D49400D1AA0A /* XLII_Widget.intentdefinition in Sources */,
+				5AA75D9E27C8E6B500D1AA0A /* UserDefaults.swift in Sources */,
 				5A82310027C87EB000E61C86 /* Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AA75DA027C8FA0100D1AA0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AA75DA727C8FA0100D1AA0A /* XLIITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +809,11 @@
 			isa = PBXTargetDependency;
 			target = 5A8230F827C87EB000E61C86 /* Widget (iOS) */;
 			targetProxy = 5A82310727C87EB100E61C86 /* PBXContainerItemProxy */;
+		};
+		5AA75DA927C8FA0100D1AA0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 163C1B43263A5AE500E1A69C /* XLII (macOS) */;
+			targetProxy = 5AA75DA827C8FA0100D1AA0A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1166,6 +1240,46 @@
 			};
 			name = Release;
 		};
+		5AA75DAB27C8FA0100D1AA0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLIITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLII.app/Contents/MacOS/XLII";
+			};
+			name = Debug;
+		};
+		5AA75DAC27C8FA0100D1AA0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLIITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLII.app/Contents/MacOS/XLII";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1210,6 +1324,15 @@
 			buildConfigurations = (
 				5A82310B27C87EB100E61C86 /* Debug */,
 				5A82310C27C87EB100E61C86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5AA75DAA27C8FA0100D1AA0A /* Build configuration list for PBXNativeTarget "XLIITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AA75DAB27C8FA0100D1AA0A /* Debug */,
+				5AA75DAC27C8FA0100D1AA0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

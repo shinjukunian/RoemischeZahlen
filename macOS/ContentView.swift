@@ -39,6 +39,12 @@ struct ContentView: View {
             })
         })
         .focusedValue(\.showingSidebar, $showSideBar)
+        .onOpenURL(perform: {url in
+            guard let number=url.numberFromDeepLink else{
+                return
+            }
+            holder.input=String(number)
+        })
     }
     
 }

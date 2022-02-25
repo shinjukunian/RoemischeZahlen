@@ -44,6 +44,12 @@ struct ContentView: View {
                 UINavigationBar.appearance().standardAppearance = appearance
                 UINavigationBar.appearance().scrollEdgeAppearance = appearance
             }
+            .onOpenURL(perform: {url in
+                guard let number=url.numberFromDeepLink else{
+                    return
+                }
+                holder.input=String(number)
+            })
     }
     
     @ViewBuilder

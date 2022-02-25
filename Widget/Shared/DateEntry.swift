@@ -40,6 +40,13 @@ struct DateEntry: TimelineEntry {
     var showDate:Bool{
         return configuration.showDate?.boolValue ?? true
     }
+    
+    var deepLinkURL:URL{
+        guard let formattedDate=formattedDate else{
+            return URL.deeplinkURL(number: 42)
+        }
+        return URL.deeplinkURL(number: formattedDate.minute)
+    }
 }
 
 struct FormattedDate{
@@ -127,8 +134,6 @@ struct FormattedDate{
         return yearAtt + seperator + monthAtt + seperator + dayAtt
        
     }
-    
-    
     
 }
 

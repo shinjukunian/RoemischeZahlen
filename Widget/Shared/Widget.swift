@@ -24,9 +24,14 @@ struct Provider: IntentTimelineProvider {
         var entries: [DateEntry] = []
 
         let currentDate = Date()
+        let calendar=Calendar.current
+        //we want to update at 0 seconds to be in synch with other system clocks
+        let currentMinuteDate=calendar.date(bySetting: .second, value: 0, of: currentDate) ?? currentDate
+        
         let minutesIn6Hours=60*6
+        
         for minuteOffset in 0 ..< minutesIn6Hours {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentMinuteDate)!
             let entry = DateEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }

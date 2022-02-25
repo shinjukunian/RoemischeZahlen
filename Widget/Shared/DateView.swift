@@ -21,11 +21,12 @@ struct DateView: View{
     
     
     var body: some View{
-        HStack(alignment: .center, spacing: 3.0){
+        HStack(alignment: .center, spacing: 2.0){
             let format=self.timeFormat
             
             let separator = Text(verbatim: format.seperator)
                 .foregroundColor(.accent)
+                .fontWeight(.bold)
             Text(verbatim: formattedEntry.formattedText(component: format.order[0]))
             
             separator

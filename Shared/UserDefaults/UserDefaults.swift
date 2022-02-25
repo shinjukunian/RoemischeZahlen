@@ -25,3 +25,28 @@ extension UserDefaults{
         #endif
     }
 }
+
+extension URL{
+    static let widgetScheme:String = "XLIIdeepLink"
+    static let numberItemName:String = "XLII_deepLink_number"
+    
+    static func deeplinkURL(number:Int)->URL{
+        var urlComponents=URLComponents()
+        urlComponents.scheme=URL.widgetScheme
+        urlComponents.host="com.telethon.XLII"
+        let item=URLQueryItem(name: URL.numberItemName, value: String(number))
+        urlComponents.queryItems=[item]
+        return urlComponents.url ?? URL(string: "")!
+    }
+    
+    var numberFromDeepLink:Int?{
+        guard let components=URLComponents(url: self, resolvingAgainstBaseURL: true),
+                components.scheme == URL.widgetScheme,
+              let item=components.queryItems?.first(where: {$0.name == URL.numberItemName}),
+              let value=item.value
+        else{
+            return nil
+        }
+        return Int(value)
+    }
+}

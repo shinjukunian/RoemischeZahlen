@@ -5,7 +5,7 @@
 "6Yox3D" = "Ausgabe";
 
 /* (No Comment) */
-"bDHYbg" = "japanisch";
+"bDHYbg" = "Japanisch";
 
 /* (No Comment) */
 "FKIyC2" = "Römisch";
@@ -17,7 +17,7 @@
 "IjsoSq" = "Binär";
 
 /* (No Comment) */
-"kbGnWf" = "oktal";
+"kbGnWf" = "Oktal";
 
 /* (No Comment) */
 "MmRo9V-bDHYbg" = "Es gibt ${count} Möglichkeiten, die zu ‘japanisch’ passen.";
@@ -59,19 +59,19 @@
 "Mzi92T" = "Babylonisch";
 
 /* (No Comment) */
-"n6xN6Z" = "nein";
+"n6xN6Z" = "Nein";
 
 /* (No Comment) */
 "nMBpQq" = "Suzhou";
 
 /* (No Comment) */
-"nnnITa" = "hexadecimal";
+"nnnITa" = "Hexadecimal";
 
 /* (No Comment) */
 "ObHNkB" = "Ägyptische Hieroglyphen";
 
 /* (No Comment) */
-"OoHG84" = "ja";
+"OoHG84" = "Ja";
 
 /* (No Comment) */
 "tVvJ9c" = "Das gewöhnliche Datum anzeigen";
@@ -86,7 +86,7 @@
 "WYPQme" = "Ägäisch";
 
 /* (No Comment) */
-"wzN0co" = "phönizisch";
+"wzN0co" = "Phönizisch";
 
 /* (No Comment) */
 "XKeRwq" = "Ausgabeformat";
@@ -128,5 +128,5 @@
 "ZMVQQn-zwrZQr" = "Sicher, dass Sie ‘vigesimal’ gemeint haben?";
 
 /* (No Comment) */
-"zwrZQr" = "vigesimal";
+"zwrZQr" = "Vigesimal";
 
