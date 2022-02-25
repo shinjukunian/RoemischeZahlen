@@ -17,7 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5A701DE127C8BF9B00CB31B0"
                BuildableName = "Widget (macOS).appex"
-               BlueprintName = "Widget (macOS)"
+               BlueprintName = "Widget-macOS"
                ReferencedContainer = "container:XLII.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

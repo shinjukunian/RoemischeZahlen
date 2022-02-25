@@ -17,7 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5A8230F827C87EB000E61C86"
                BuildableName = "Widget (iOS).appex"
-               BlueprintName = "Widget (iOS)"
+               BlueprintName = "Widget-iOS"
                ReferencedContainer = "container:XLII.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,7 +64,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5A8230F827C87EB000E61C86"
             BuildableName = "Widget (iOS).appex"
-            BlueprintName = "Widget (iOS)"
+            BlueprintName = "Widget-iOS"
             ReferencedContainer = "container:XLII.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
