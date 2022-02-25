@@ -36,6 +36,7 @@ class XLIICoreTests_japanese: XCTestCase {
         }
     }
     
+    @available(iOS 15.0, *)
     @available(macOS 12.0, *)
     func testJapanese()throws{
         

@@ -74,7 +74,7 @@ public class ExotischeZahlenFormatter{
     }
     
     public func macheSuzhouZahl(aus Zahl:Int)->String?{
-        guard Zahl > 0 else {
+        guard Zahl >= 0 else {
             return nil
         }
         let suzhou=SuzhouZahl(Zahl: Zahl)

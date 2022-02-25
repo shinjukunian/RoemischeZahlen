@@ -86,7 +86,9 @@ class XLIICoreTests: XCTestCase {
             XCTAssert(arabic.value == number, "failed \(number) converted to \(arabic.value)")
         }
         
-        
+        let zero=0
+        let h=try XCTUnwrap(formatter.macheSuzhouZahl(aus: zero))
+        XCTAssert(h == "〇")
     }
     
     

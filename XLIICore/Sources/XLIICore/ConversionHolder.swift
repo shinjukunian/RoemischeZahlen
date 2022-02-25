@@ -33,7 +33,7 @@ public class NumeralConversionHolder: Equatable{
     
     lazy var formatter=ExotischeZahlenFormatter()
     
-    let noValidNumber=NSLocalizedString("Conversion not possible.", comment: "")
+    public let noValidNumber=NSLocalizedString("Conversion not possible.", comment: "")
     let noInput = NSLocalizedString("No Input", comment: "")
     
     public let input:Int
