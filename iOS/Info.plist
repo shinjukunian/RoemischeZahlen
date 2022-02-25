@@ -28,6 +28,7 @@
 	<string>Allow XLII to access the camera to scan characters.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>ConfigurationIntent</string>
 		<string>com.telethon.XLII.conversionActivity</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

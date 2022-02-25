@@ -36,6 +36,10 @@ struct DateEntry: TimelineEntry {
         
         return FormattedDate(year: year, month: month, day: day, hour: hour, minute: minute, output: output)
     }
+    
+    var showDate:Bool{
+        return configuration.showDate?.boolValue ?? true
+    }
 }
 
 struct FormattedDate{

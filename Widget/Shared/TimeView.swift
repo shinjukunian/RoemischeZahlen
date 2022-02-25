@@ -44,12 +44,7 @@ struct TimeView: View{
             }
            
         }
-//        .onAppear(perform: {
-//            withAnimation(self.animation, {
-//                self.fullyOpaque.toggle()
-//            })
-//            
-//        })
+
     }
     
     var prefers24HTime:Bool{

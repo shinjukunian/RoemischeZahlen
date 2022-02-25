@@ -16,42 +16,52 @@ struct WidgetView: View {
     
     var body: some View {
         ZStack{
-            Rectangle().fill(Color.primary.opacity(0.1))
+            Rectangle().fill(Color.widgetBackground)
             
             if let formatted=entry.formattedDate{
                 
-                VStack(spacing: 4.0){
+                VStack(spacing: 4){
                     HStack{
                         Text(verbatim: entry.output.description)
                             .font(.caption2)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.secondary)
+                            
+                        
                         
                         Spacer()
                     }
-                    VStack(alignment: .center, spacing: 5){
+                    VStack(alignment: .center){
                         VStack{
                             TimeView(formattedEntry: formatted)
-                            Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.caption).foregroundColor(.secondary)
+                                .font(.title2)
+                                .multilineTextAlignment(.center)
+                            if entry.showDate{
+                                Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.caption).foregroundColor(.secondary)
+                            }
+                            
                         }.frame(maxWidth: .infinity).padding(5)
                             .background(content: {
                                 RoundedRectangle(cornerRadius: 8).fill(.background)
                             })
-                            
+                        
                         VStack{
                             DateView(formattedEntry: formatted)
-                                .minimumScaleFactor(0.5)
-                            Text(entry.date.formatted(date: .numeric, time: .omitted)).font(.caption).foregroundColor(.secondary)
+                                .minimumScaleFactor(0.5).font(.title3)
+                            if entry.showDate{
+                                Text(entry.date.formatted(date: .numeric, time: .omitted)).font(.caption).foregroundColor(.secondary)
+                            }
                         }.frame(maxWidth: .infinity).padding(5).background(content: {
-                            RoundedRectangle(cornerRadius: 8).fill(.white)
+                            RoundedRectangle(cornerRadius: 8).fill(.background
+                            )
                         })
                         
                         
                     }
-                }.padding()
+                }.padding(6)
                 
                 Spacer()
-                    
+                
                 
             }
             else{
@@ -71,12 +81,12 @@ struct WidgetView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let intent=ConfigurationIntent()
-        intent.output = .babylonian
+        intent.output = .hexadecimal
         let components=DateComponents(calendar: .autoupdatingCurrent, timeZone: nil, year: 2022, month: 2, day: 22, hour: 19, minute: 10, second: 0)
         
         return WidgetView(entry: .init(date: components.date ?? .now, configuration: intent))
             .preferredColorScheme(.dark)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-            .environment(\.locale, .init(identifier: "ja_JP"))
+            .environment(\.locale, .init(identifier: "de_DE"))
     }
 }

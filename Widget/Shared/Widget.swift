@@ -71,6 +71,16 @@ extension Output{
             self = .sangi
         case .suzhou:
             self = .suzhou
+        case .japanese:
+            self = .japanisch
+        case .hexadecimal:
+            self = .numeric(base: 16)
+        case .binary:
+            self = .numeric(base: 2)
+        case .octal:
+            self = .numeric(base: 8)
+        case .vigesimal:
+            self = .numeric(base: 20)
         }
     }
 }
@@ -78,6 +88,18 @@ extension Output{
 
 extension Color{
     static var accent:Color{
-        return Color(uiColor: UIColor(named: "AccentColor") ?? .green) 
+#if os(iOS)
+        return Color(uiColor: UIColor(named: "AccentColor") ?? .green)
+#else
+        return Color(nsColor: NSColor(named: "AccentColor") ?? .green)
+#endif
+    }
+    
+    static var widgetBackground:Color{
+#if os(iOS)
+        return Color(uiColor: .quaternarySystemFill)
+#else
+        return Color(nsColor: .windowBackgroundColor)
+#endif
     }
 }
