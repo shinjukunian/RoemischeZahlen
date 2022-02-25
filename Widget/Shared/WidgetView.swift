@@ -24,18 +24,18 @@ struct WidgetView: View {
                     HStack{
                         Text(verbatim: entry.output.description)
                             .font(.caption2)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.secondary)
                             
-                        
-                        
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.secondary)
                         Spacer()
                     }
                     VStack(alignment: .center){
                         VStack{
                             TimeView(formattedEntry: formatted)
                                 .font(.title2)
+                                .lineLimit(1)
                                 .multilineTextAlignment(.center)
+                                .minimumScaleFactor(0.1)
                             if entry.showDate{
                                 Text(entry.date.formatted(date: .omitted, time: .shortened)).font(.caption).foregroundColor(.secondary)
                             }
@@ -47,7 +47,9 @@ struct WidgetView: View {
                         
                         VStack{
                             DateView(formattedEntry: formatted)
-                                .minimumScaleFactor(0.5).font(.title3)
+                                .minimumScaleFactor(0.1)
+                                .lineLimit(1)
+                                .multilineTextAlignment(.center)
                             if entry.showDate{
                                 Text(entry.date.formatted(date: .numeric, time: .omitted)).font(.caption).foregroundColor(.secondary)
                             }
@@ -81,8 +83,8 @@ struct WidgetView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let intent=ConfigurationIntent()
-        intent.output = .hexadecimal
-        let components=DateComponents(calendar: .autoupdatingCurrent, timeZone: nil, year: 2022, month: 2, day: 22, hour: 19, minute: 10, second: 0)
+        intent.output = /.aegean
+        let components=DateComponents(calendar: .autoupdatingCurrent, timeZone: nil, year: 2022, month: 12, day: 19, hour: 23, minute: 50, second: 0)
         
         return WidgetView(entry: .init(date: components.date ?? .now, configuration: intent))
             .preferredColorScheme(.dark)

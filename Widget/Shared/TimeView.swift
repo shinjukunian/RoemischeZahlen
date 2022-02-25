@@ -27,12 +27,12 @@ struct TimeView: View{
             let separator = Text(verbatim: formattedEntry.timeSeparator)
                 .foregroundColor(.accent)
             let prefers24HTime = prefers24HTime
-            Text(verbatim: formattedEntry.formattedText(component: .hour, use24h: prefers24HTime))
+            Text(verbatim: formattedEntry.formattedText(component: .hour, use24h: prefers24HTime)).layoutPriority(10)
             
             separator
                 .opacity(fullyOpaque ? 1: 0)
             
-            Text(verbatim: formattedEntry.formattedText(component: .minute))
+            Text(verbatim: formattedEntry.formattedText(component: .minute)).layoutPriority(10)
             
             if prefers24HTime == false{
                 switch formattedEntry.hour{
