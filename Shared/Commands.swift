@@ -32,6 +32,7 @@ struct AppCommands : Commands{
             })
         })
         CommandGroup(replacing: .sidebar, addition: {
+            
             Button(action: {
                 withAnimation{
                     showSidebar?.toggle()

@@ -31,16 +31,19 @@ struct XLIIApp: App {
         .commands(content: {
             AppCommands()
         })
+        .defaultAppStorage(.shared)
         
         
         
         Settings {
             VStack{
                 SettingsView()
+                    .defaultAppStorage(.shared)
             }.padding()
             
-        }.windowToolbarStyle(.unified(showsTitle: true))
-            .windowStyle(.titleBar)
+        }
+        .windowToolbarStyle(.unified(showsTitle: true))
+        .windowStyle(.titleBar)
         
         
     }

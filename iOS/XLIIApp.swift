@@ -29,7 +29,9 @@ struct XLIIApp: App {
                     })
                 
                 
-            }.navigationViewStyle(.stack)
+            }
+            .navigationViewStyle(.stack)
+            .defaultAppStorage(.shared)
         }
     }
 }

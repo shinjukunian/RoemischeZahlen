@@ -9,18 +9,6 @@ import Foundation
 import CoreGraphics
 import SwiftUI
 
-extension UserDefaults{
-    enum Keys {
-        static let outPutModesKey = "outPutModesKey"
-        static let daijiCompleteKey = "daijiCompleteKey"
-        static let allowBasesBesides10Key = "allowBasesBesides10Key"
-        static let showSideBarKey = "showSideBarKey"
-        static let preferredBasesKey = "preferredBases"
-        static let historyPreferenceKey = "historyPreferenceKey"
-    }
-}
-
-
 extension NSUserActivity{
     enum ActivityTypes{
         static let conversionActivity = "com.telethon.XLII.conversionActivity"
