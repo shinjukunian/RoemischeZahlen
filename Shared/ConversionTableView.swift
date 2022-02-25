@@ -16,19 +16,22 @@ struct ConversionTableView: View {
     
     let selectedConversion:NumericParsingResult
     
+    @State var selectedDisplayItem:NumeralConversionHolder?
+    
     var body: some View {
         ScrollView{
             ForEach(displayItems, content: {outPut in
-                let hh=NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: selectedConversion.value, outputMode: outPut))
+                let hh=NumeralConversionHolder(input: selectedConversion.value, output: outPut, originalText: selectedConversion.originalText)
+
                 
-                NumericalConversionView(holder: hh)
+                NumericalConversionView(holder: hh, isSelected: selectedDisplayItem == hh)
+                    .onTapGesture {
+                        selectedDisplayItem = hh
+                    }
                     .onDrag({
-                        let provider=NSItemProvider(item: nil, typeIdentifier: Output.dragType)
-                        provider.registerObject(hh.formattedOutput as NSString, visibility: .all)
-                        
                         draggedItem = outPut
-                        return provider
-                    })
+                        return hh.itemProvider
+                    }, preview: {Text(hh.formattedOutput).font(.largeTitle)})
                     .onDrop(of: [Output.dragType], delegate: ContentViewReorderDropDelegate(item:outPut, items: $holder.outputs, draggedItem: $draggedItem))
                     .contextMenu(menuItems: {
                         Button(action: {
@@ -60,36 +63,20 @@ struct ConversionTableView: View {
     
     @ViewBuilder
     func copyButtons(holder: NumeralConversionHolder) -> some View{
-        switch holder.info.outputMode{
+        
+        let copy=Button(action: {
+            Pasteboard.general.add(text: holder.formattedOutput)
+            
+        }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
+        
+        switch holder.output{
         case .arabisch:
+            copy
             Button(action: {
-#if os(macOS)
-                NSPasteboard.general.declareTypes([.string], owner: nil)
-                NSPasteboard.general.setString(holder.formattedOutput, forType: .string)
-#else
-                UIPasteboard.general.string=holder.formattedOutput
-#endif
-                
-            }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
-            Button(action: {
-#if os(macOS)
-                NSPasteboard.general.declareTypes([.string], owner: nil)
-                NSPasteboard.general.setString(String(holder.info.input), forType: .string)
-#else
-                UIPasteboard.general.string=String(holder.info.input)
-#endif
-                
+                Pasteboard.general.add(text: String(holder.input))
             }, label: {Label(title: {Text("Copy Unformatted")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
         default:
-            Button(action: {
-#if os(macOS)
-                NSPasteboard.general.declareTypes([.string], owner: nil)
-                NSPasteboard.general.setString(holder.formattedOutput, forType: .string)
-#else
-                UIPasteboard.general.string=holder.formattedOutput
-#endif
-                
-            }, label: {Label(title: {Text("Copy")}, icon: {Image(systemName: "arrow.right.doc.on.clipboard")})})
+            copy
         }
     }
 }

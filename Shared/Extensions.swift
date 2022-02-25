@@ -16,6 +16,7 @@ extension UserDefaults{
         static let allowBasesBesides10Key = "allowBasesBesides10Key"
         static let showSideBarKey = "showSideBarKey"
         static let preferredBasesKey = "preferredBases"
+        static let historyPreferenceKey = "historyPreferenceKey"
     }
 }
 
@@ -57,3 +58,5 @@ extension FocusedValues {
         typealias Value = Binding<Bool>
     }
 }
+
+

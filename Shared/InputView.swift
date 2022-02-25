@@ -12,12 +12,21 @@ struct InputView: View {
     @ObservedObject var holder:ConversionInputHolder
 
     @FocusState private var textFieldIsFocused: Bool
-    @Namespace var mainNamespace
+    
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var historyData = HistoryPreference.empty.rawValue
+    
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var preferredBases:BasePreference = .default
     
     var body: some View {
         
         VStack{
-            textField
+            let history=(HistoryPreference(rawValue: historyData) ?? .empty)
+            InputTextField(text: $holder.input, historyItems: history.items, textFieldIsFocused: textFieldIsFocused, onSubmit: {
+                guard holder.state == .valid else{
+                    return
+                }
+                historyData = HistoryPreference.updateHistory(history: history, items: [.init(text: holder.input)]).rawValue
+            })
             OutputView(holder: holder)
             Spacer()
             
@@ -26,20 +35,20 @@ struct InputView: View {
 
         .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.state == .valid, { activity in
             
-//            activity.isEligibleForHandoff = true
-//
-//            do{
-//                activity.title = self.holder.input
-//                try activity.setTypedPayload(ConversionInputHolder.Payload(text: self.holder.input, numeric: self.holder.numericInput ?? 0))
-//                activity.needsSave=true
-//                activity.becomeCurrent()
-//                #if DEBUG
-//                print("saving user activity \(activity.title ?? "")")
-//                #endif
-//            }
-//            catch let error{
-//                print(error.localizedDescription)
-//            }
+            activity.isEligibleForHandoff = true
+
+            do{
+                activity.title = holder.input
+                try activity.setTypedPayload(ConversionInputHolder.Payload(text: holder.input, numeric: holder.selectedResult.value))
+                activity.needsSave=true
+                activity.becomeCurrent()
+                #if DEBUG
+                print("saving user activity \(activity.title ?? "")")
+                #endif
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
         })
         .onContinueUserActivity(NSUserActivity.ActivityTypes.conversionActivity, perform: { userActivity in
             print("restoring \(userActivity.activityType)")
@@ -59,25 +68,7 @@ struct InputView: View {
         
         
     }
-    
-    
-    var textField:some View{
-        let t=TextField(LocalizedStringKey("Enter Number"), text: $holder.input)
-            .textFieldStyle(.roundedBorder)
-            
-            .focused($textFieldIsFocused)
-            
-#if os(macOS)
-        return t
-            .prefersDefaultFocus(in: mainNamespace)
-#else
-        return t
-            .keyboardType(.numbersAndPunctuation)
-            .overlay(
-                RoundedRectangle(cornerRadius: 6, style: .continuous)
-                    .stroke(textFieldIsFocused ? Color.accentColor : .clear, lineWidth: 0.75))
-#endif
-    }
+
 }
 
 struct InputView_Previews: PreviewProvider {

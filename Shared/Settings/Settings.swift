@@ -17,6 +17,8 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
     
+    @AppStorage(UserDefaults.Keys.preferredBasesKey) var historyData = HistoryPreference.empty.rawValue
+    
     @Environment(\.openURL) var openURL
     @State var showBaseSelection:Bool = false
     
@@ -74,6 +76,15 @@ struct SettingsView: View {
             })
             
 #endif
+            Section(content: {
+                Button(role: .destructive, action: {
+                    historyData = HistoryPreference.empty.rawValue
+                }, label: {
+                    Label(title: {
+                        Text("Delete History")
+                    }, icon: {})
+                })
+            }, header: {Text("History")})
         }
         .navigationTitle(Text("Settings"))
 #if os(iOS)

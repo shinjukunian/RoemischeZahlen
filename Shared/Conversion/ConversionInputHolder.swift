@@ -104,7 +104,7 @@ class ConversionInputHolder:ObservableObject {
             return
         }
         
-        self.results=results//.uniqued(on: {$0.value})
+        self.results=results
         self.state = .valid
     }
 }

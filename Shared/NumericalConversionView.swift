@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import XLIICore
 
 struct NumericalConversionView: View {
     
@@ -13,11 +14,13 @@ struct NumericalConversionView: View {
     @State var isHovering:Bool = false
     @State var isHoveringOnButton = false
     
+    let isSelected:Bool
+    
     var body: some View {
         GroupBox{
             VStack{
                 HStack{
-                    Text(verbatim: holder.info.outputMode.description)
+                    Text(verbatim: holder.output.description)
                         .font(.caption2)
                     Spacer()
                     Button(action: {
@@ -45,10 +48,8 @@ struct NumericalConversionView: View {
                     .lineLimit(6)
                     
             }
-        }.groupBoxStyle(ConversionCardBoxStyle(isHovering: isHovering))
-        .onHover(perform: {hovering in
-            isHovering = hovering
-        })
+        }.groupBoxStyle(ConversionCardBoxStyle(isHovering: isSelected))
+        
         
         
         
@@ -58,7 +59,7 @@ struct NumericalConversionView: View {
 
 struct NumericalConversionView_Previews: PreviewProvider {
     static var previews: some View {
-        NumericalConversionView(holder: NumeralConversionHolder(info: NumeralConversionHolder.ConversionInfo(input: 4, outputMode: .sangi)))
+        NumericalConversionView(holder: .init(input: 42, output: .babylonian, originalText: "42"), isSelected: true)
     }
 }
 

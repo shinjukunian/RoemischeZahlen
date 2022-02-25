@@ -7,17 +7,15 @@
 
 import Foundation
 import SwiftUI
-import XLIICore
 
-class NumeralConversionHolder{
+public class NumeralConversionHolder: Equatable{
     
-    struct ConversionInfo:Equatable,Codable{
-        let input:Int
-        let outputMode:Output
+    public static func == (lhs: NumeralConversionHolder, rhs: NumeralConversionHolder) -> Bool {
+        lhs.input == rhs.input && lhs.output == rhs.output && lhs.originalText == rhs.originalText
     }
     
     
-    var formattedOutput:String = ""
+    public var formattedOutput:String = ""
     
     lazy var localizedSpellOutFormatter: NumberFormatter = {
         let f=NumberFormatter()
@@ -38,17 +36,21 @@ class NumeralConversionHolder{
     let noValidNumber=NSLocalizedString("Conversion not possible.", comment: "")
     let noInput = NSLocalizedString("No Input", comment: "")
     
+    public let input:Int
+    public let output:Output
+    let originalText:String
     
-    let info:ConversionInfo
-    
-    init(info:ConversionInfo){
-        self.info=info
-        parse()
+    public init(input:Int, output:Output, originalText:String){
+        self.input=input
+        self.output=output
+        self.originalText=originalText
+        self.formattedOutput =  parse()
     }
     
-    func parse(){
-        let zahl=info.input
-        switch info.outputMode {
+    func parse()->String{
+        let zahl=input
+        let formattedOutput:String
+        switch output {
         case .römisch:
             formattedOutput = formatter.macheRömischeZahl(aus: zahl) ?? noValidNumber
         case .japanisch:
@@ -75,13 +77,28 @@ class NumeralConversionHolder{
         case .phoenician:
             formattedOutput = formatter.machePhoenizischeZahl(aus: zahl) ?? noValidNumber
         }
+        return formattedOutput
         
     }
     
-    func speak(){
-        formatter.speak(input: SpeechOutput(text: String(info.input), format: .arabisch), output: SpeechOutput(text: formattedOutput, format: info.outputMode))
+    public func speak(){
+        formatter.speak(input: SpeechOutput(text: String(input), format: .arabisch), output: SpeechOutput(text: formattedOutput, format: output))
     }
     
+    
+    @available(iOS 11.0, *)
+    public var itemProvider:NSItemProvider{
+        let provider=NSItemProvider(item: nil, typeIdentifier: Output.dragType)
+        provider.registerObject(self.formattedOutput as NSString, visibility: .all)
+        provider.registerItem(forTypeIdentifier: Output.dragType, loadHandler: {handler,object,e in
+            guard let handler=handler else{
+                return
+            }
+            handler(self.output.rawValue as NSString, nil)
+            
+        })
+        return provider
+    }
     
     
     
