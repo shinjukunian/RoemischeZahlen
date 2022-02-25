@@ -83,7 +83,7 @@ struct WidgetView: View {
 struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let intent=ConfigurationIntent()
-        intent.output = /.aegean
+        intent.output = .aegean
         let components=DateComponents(calendar: .autoupdatingCurrent, timeZone: nil, year: 2022, month: 12, day: 19, hour: 23, minute: 50, second: 0)
         
         return WidgetView(entry: .init(date: components.date ?? .now, configuration: intent))

@@ -213,7 +213,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Do you want to display the date?</string>
+							<string>Do you want to display the date and time?</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>UBcio0</string>
 							<key>INIntentParameterPromptDialogType</key>

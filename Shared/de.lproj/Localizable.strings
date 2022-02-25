@@ -17,6 +17,15 @@
 "Copy" = "Kopieren";
 
 /* No comment provided by engineer. */
+"Copy Unformatted" = "Ohne Formatierung Kopieren";
+
+/* No comment provided by engineer. */
+"Delete History" = "Verlauf löschen";
+
+/* No comment provided by engineer. */
+"Delete Item" = "Löschen";
+
+/* No comment provided by engineer. */
 "Deselect All" = "Auswahl entfernen";
 
 /* prompt */
@@ -38,6 +47,9 @@
 "Feedback" = "Feedback";
 
 /* No comment provided by engineer. */
+"Feeedback" = "Feedback";
+
+/* No comment provided by engineer. */
 "Formatting" = "Ausgabe";
 
 /* No comment provided by engineer. */
@@ -46,9 +58,17 @@
 /* No comment provided by engineer. */
 "Hide Sidebar" = "Seitenleiste verbergen";
 
+/* No comment provided by engineer. */
+"History" = "Verlauf";
+
 /* prompt */
 "Hold Steady" = "Bitte still halten";
 
+/* No comment provided by engineer. */
+"Insert Item" = "Einfügen";
+
+/* No comment provided by engineer. */
+"Japanese" = "Japanisch";
 
 /* No comment provided by engineer. */
 "No Input" = "Keine Eingabe";
@@ -58,7 +78,6 @@
 
 /* No comment provided by engineer. */
 "Numeric" = "Numerisch";
-
 
 /* No comment provided by engineer. */
 "Output" = "Format";
@@ -75,6 +94,11 @@
 /* No comment provided by engineer. */
 "Remove" = "Entfernen";
 
+/* No comment provided by engineer. */
+"Result:" = "Ergebniss:";
+
+/* No comment provided by engineer. */
+"Roman" = "Römisch";
 
 /* Localizable.strings
   RoemischeZahl
@@ -86,7 +110,13 @@
 "Search" = "Suchen";
 
 /* No comment provided by engineer. */
+"Select Bases" = "Basen Auswählen";
+
+/* No comment provided by engineer. */
 "Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Show Camera" = "Kamera";
 
 /* No comment provided by engineer. */
 "Show Selected" = "Auswahl anzeigen";
