@@ -57,5 +57,11 @@ extension String{
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: phoenician)
     }
+    
+    var potentielleBrahmiZahl:Bool{
+        let brahmi=BrahmiNumber.Lookups.traditionalCharacterSet.union(BrahmiNumber.Lookups.positionalCharacterSet)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: brahmi)
+    }
 }
 

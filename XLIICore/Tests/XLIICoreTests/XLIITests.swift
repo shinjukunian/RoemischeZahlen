@@ -219,5 +219,77 @@ class XLIICoreTests: XCTestCase {
         let reversedParser=try XCTUnwrap(KharosthiNumber(string: expected))
         XCTAssert(reversedParser.arabic == number, "print \(expected) (\(number) converted to \(reversedParser.arabic)")
     }
+    
+    func testBrahmi() throws {
+        let joiner=String(Unicode.Scalar.init(0x1107F)!)
+        let number=5368
+        let expected="𑁥"+joiner+"𑁖"+"𑁤"+joiner+"𑁔"+"𑁠𑁙"
+        
+        let parser=try XCTUnwrap(BrahmiNumber(number: number, positional: false))
+        let k=parser.brahmi
+        XCTAssert(k == expected, "\(number) (\(expected) converted to \(k)")
+        let reversedParser=try XCTUnwrap(BrahmiNumber(string: expected), "\(number) (\(expected)")
+        XCTAssert(reversedParser.arabic == number, "print \(expected) (\(number) converted to \(reversedParser.arabic)")
+        
+        let cases = [3:"𑁔",
+                     15:"𑁛𑁖",
+                     124:"𑁤𑁜𑁕",
+                     200:"𑁤"+joiner+"𑁓",
+                     102:"𑁤"+"𑁓",
+                     547: "𑁤"+joiner+"𑁖"+"𑁞𑁘",
+                     1200: "𑁥"+"𑁤"+joiner+"𑁓",
+                     833: "𑁤"+joiner+"𑁙"+"𑁝𑁔",
+                     5368: "𑁥"+joiner+"𑁖"+"𑁤"+joiner+"𑁔"+"𑁠𑁙"
+        ]
+        
+        for c in cases{
+            let number=c.key
+            let expected=c.value
+            let parser=try XCTUnwrap(BrahmiNumber(number: number, positional: false))
+            let k=parser.brahmi
+            XCTAssert(k == expected, "print \(number) (\(expected) converted to \(k)")
+            let reversedParser=try XCTUnwrap(BrahmiNumber(string: expected), "conversion of \(expected) (\(number) failed")
+            XCTAssert(reversedParser.arabic == number, "print \(expected) (\(number)) converted to \(reversedParser.arabic)")
+        }
+        
+        
+        let positionalCases = [15:"𑁧𑁫",
+                               10:"𑁧𑁦",
+                               99:"𑁯𑁯",
+                               128:"𑁧𑁨𑁮"
+        ]
+        
+        for c in positionalCases{
+            let number=c.key
+            let expected=c.value
+            let parser=try XCTUnwrap(BrahmiNumber(number: number, positional: true))
+            let k=parser.brahmi
+            XCTAssert(k == expected, "print \(number) (\(expected) converted to \(k)")
+            let reversedParser=try XCTUnwrap(BrahmiNumber(string: expected), "conversion of \(expected) (\(number) failed")
+            XCTAssert(reversedParser.arabic == number, "print \(expected) (\(number) converted to \(reversedParser.arabic)")
+        }
+        
+        let random=(0..<2000).map({_ in return Int.random(in: 1..<10_000)})
+        
+        for number in random{
+            let parser=try XCTUnwrap(BrahmiNumber(number: number, positional: false))
+            let kh=parser.brahmi
+            
+            let reversedParser=try XCTUnwrap(BrahmiNumber(string: kh), "conversion of \(expected) (\(number) failed")
+            XCTAssert(reversedParser.arabic == number, "print \(kh) (\(number) converted to \(reversedParser.arabic)")
+        }
+        
+        XCTAssertNil(BrahmiNumber(string: "469"))
+        
+        let random2=(0..<20000).map({_ in return Int.random(in: 1..<10_000_000)})
+        
+        for number in random2{
+            let parser=try XCTUnwrap(BrahmiNumber(number: number, positional: true))
+            let kh=parser.brahmi
+            
+            let reversedParser=try XCTUnwrap(BrahmiNumber(string: kh), "conversion of \(expected) (\(number) failed")
+            XCTAssert(reversedParser.arabic == number, "print \(kh) (\(number) converted to \(reversedParser.arabic)")
+        }
+    }
 }
 

@@ -100,6 +100,10 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                     return String(number, radix: base)
                 case .kharosthi:
                     return formatter.macheKharosthiZahl(aus: number)
+                case .brahmi_traditional:
+                    return formatter.macheBrahmiZahl(aus: number, positional: false)
+                case .brahmi_positional:
+                    return formatter.macheBrahmiZahl(aus: number, positional: true)
                 case .localized(let locale):
                     let f=NumberFormatter()
                     f.numberStyle = .spellOut

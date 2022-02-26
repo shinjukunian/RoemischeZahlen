@@ -10,9 +10,9 @@ import AVFoundation
 
 public class ExotischeZahlenFormatter{
     
-    public struct NumericalOutput{
+    public struct NumericalOutput: Equatable{
         
-        public enum InputLocale{
+        public enum InputLocale: Equatable{
             case roman
             case japanese
             case suzhou
@@ -20,6 +20,7 @@ public class ExotischeZahlenFormatter{
             case aegean
             case phoenician
             case kharosthi
+            case brahmi(positional:Bool)
         }
         
         public let value:Int
@@ -123,6 +124,10 @@ public class ExotischeZahlenFormatter{
         return AegeanZahl(number: Zahl)?.aegean
     }
     
+    public func macheBrahmiZahl(aus Zahl:Int, positional:Bool)-> String?{
+        return BrahmiNumber(number: Zahl, positional: positional)?.brahmi
+    }
+    
     public func macheSangiZahl(aus Zahl:Int)->String?{
         guard Zahl > 0, Zahl < 100_000 else {
             return nil
@@ -176,6 +181,10 @@ public class ExotischeZahlenFormatter{
         case _ where text.potentielleKharosthiZahl:
             if let zahl=KharosthiNumber(string: text){
                 return NumericalOutput(value: zahl.arabic, locale: .kharosthi)
+            }
+        case _ where text.potentielleBrahmiZahl:
+            if let zahl=BrahmiNumber(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .brahmi(positional: zahl.positional))
             }
         default:
             return nil

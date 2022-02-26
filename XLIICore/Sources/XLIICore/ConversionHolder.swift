@@ -78,6 +78,10 @@ public class NumeralConversionHolder: Equatable{
             formattedOutput = formatter.machePhoenizischeZahl(aus: zahl) ?? noValidNumber
         case .kharosthi:
             formattedOutput = formatter.macheKharosthiZahl(aus: zahl) ?? noValidNumber
+        case .brahmi_positional:
+            formattedOutput = BrahmiNumber(number: zahl, positional: true)?.brahmi ?? noValidNumber
+        case .brahmi_traditional:
+            formattedOutput = BrahmiNumber(number: zahl, positional: false)?.brahmi ?? noValidNumber
         }
         return formattedOutput
         
