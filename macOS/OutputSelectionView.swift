@@ -47,7 +47,8 @@ struct OutputSelectionView: View {
                 })
                 Spacer()
                 Toggle(isOn: $showSelected, label: {
-                    Text("Show Selected")
+                    showSelected ? Text("Show All") : Text("Show Selected")
+                    
                 }).toggleStyle(.button)
                 Spacer()
                 

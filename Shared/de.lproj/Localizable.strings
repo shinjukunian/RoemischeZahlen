@@ -145,3 +145,11 @@
 /* No comment provided by engineer. */
 "XLII" = "XLII";
 
+/*Table Header**/
+"Selected" = "Ausgewählt";
+
+/*Table Header**/
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Show All" = "Alle anzeigen";
