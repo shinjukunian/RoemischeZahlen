@@ -23,22 +23,31 @@ struct NumericalConversionView: View {
                     Text(verbatim: holder.output.description)
                         .font(.caption2)
                     Spacer()
-                    Button(action: {
-                        holder.speak()
-                    }, label: {
-                        if isHoveringOnButton{
-                            Image(systemName: "play.fill")
-                        }
-                        else{
-                            Image(systemName: "play")
+                    HStack{
+                        
+                        if let url=holder.output.url{
+                            Link(destination: url, label: {
+                                Image(systemName: "info.circle")
+                            })
                         }
                         
-                    })
-                    .help(Text("Speak"))
-                    .buttonStyle(.borderless)
-                    .onHover(perform: {h in
-                        isHoveringOnButton=h
-                    })
+                        Button(action: {
+                            holder.speak()
+                        }, label: {
+                            if isHoveringOnButton{
+                                Image(systemName: "play.fill")
+                            }
+                            else{
+                                Image(systemName: "play")
+                            }
+                            
+                        })
+                            .help(Text("Speak"))
+                            .buttonStyle(.borderless)
+                            .onHover(perform: {h in
+                                isHoveringOnButton=h
+                            })
+                    }
                 }
                 
                 Divider()
@@ -46,14 +55,14 @@ struct NumericalConversionView: View {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .lineLimit(6)
-                    
+                
             }
         }.groupBoxStyle(ConversionCardBoxStyle(isHovering: isSelected))
         
         
         
         
-            
+        
     }
 }
 
@@ -76,15 +85,15 @@ struct ConversionCardBoxStyle: GroupBoxStyle {
             configuration.content
         }
         .padding()
-        #if os(iOS)
+#if os(iOS)
         .background(Color(uiColor: .secondarySystemGroupedBackground))
-        #else
+#else
         .background(Color.init(nsColor: .controlBackgroundColor))
-        #endif
+#endif
         .overlay(content:{
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .stroke(Color.accentColor, lineWidth: isHovering ? 3 : 0)
-                
+            
         })
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         

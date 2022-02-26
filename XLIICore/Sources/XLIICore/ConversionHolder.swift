@@ -76,6 +76,8 @@ public class NumeralConversionHolder: Equatable{
             formattedOutput = String(zahl, radix: base, uppercase: true)
         case .phoenician:
             formattedOutput = formatter.machePhoenizischeZahl(aus: zahl) ?? noValidNumber
+        case .kharosthi:
+            formattedOutput = formatter.macheKharosthiZahl(aus: zahl) ?? noValidNumber
         }
         return formattedOutput
         

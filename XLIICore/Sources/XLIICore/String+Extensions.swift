@@ -49,5 +49,13 @@ extension String{
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: phoenician)
     }
+    
+    var potentielleKharosthiZahl:Bool{
+        let start=Unicode.Scalar.init(0x10A40)!
+        let end=Unicode.Scalar(0x10A58)!
+        let phoenician=CharacterSet(charactersIn: start...end)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: phoenician)
+    }
 }
 

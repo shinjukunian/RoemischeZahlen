@@ -19,6 +19,7 @@ public class ExotischeZahlenFormatter{
             case hieroglyph
             case aegean
             case phoenician
+            case kharosthi
         }
         
         public let value:Int
@@ -69,8 +70,13 @@ public class ExotischeZahlenFormatter{
         default:
             return nil
         }
-        
-        
+    }
+    
+    public func macheKharosthiZahl(aus Zahl:Int)->String?{
+        guard (1..<1_000_000).contains(Zahl) else{
+            return nil
+        }
+        return KharosthiNumber(number: Zahl)?.kharosthi
     }
     
     public func macheSuzhouZahl(aus Zahl:Int)->String?{
@@ -166,6 +172,10 @@ public class ExotischeZahlenFormatter{
         case _ where text.potentiellePhoenizischeZahl:
             if let zahl=PhoenizianFormatter(string: text){
                 return NumericalOutput(value: zahl.arabic, locale: .phoenician)
+            }
+        case _ where text.potentielleKharosthiZahl:
+            if let zahl=KharosthiNumber(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .kharosthi)
             }
         default:
             return nil

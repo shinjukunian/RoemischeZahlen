@@ -95,10 +95,68 @@ public struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician:
+        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
     }
     
+}
+
+
+public extension Output{
+    var url:URL?{
+        let tableName = "URLs.strings"
+        switch self {
+        case .römisch:
+            let string=NSLocalizedString("Roman", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Roman_numerals", comment: "")
+            return URL(string: string)
+        case .japanisch:
+            let string=NSLocalizedString("Japanese", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Japanese_numerals", comment: "")
+            return URL(string: string)
+        case .arabisch:
+            let string=NSLocalizedString("Arabic", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Arabic_numerals", comment: "")
+            return URL(string: string)
+        case .japanisch_bank:
+            let string=NSLocalizedString("Japanese", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Japanese_numerals", comment: "")
+            return URL(string: string)
+        case .babylonian:
+            let string=NSLocalizedString("Babylonian", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Babylonian_cuneiform_numerals", comment: "")
+            return URL(string: string)
+        case .aegean:
+            let string=NSLocalizedString("Aegean", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Aegean_numerals", comment: "")
+            return URL(string: string)
+        case .sangi:
+            let string=NSLocalizedString("Sangi", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Counting_rods", comment: "")
+            return URL(string: string)
+        case .hieroglyph:
+            let string=NSLocalizedString("Hieroglyph", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Egyptian_numerals", comment: "")
+            return URL(string: string)
+        case .suzhou:
+            let string=NSLocalizedString("Suzhou", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Suzhou_numerals", comment: "")
+            return URL(string: string)
+        case .phoenician:
+            let string=NSLocalizedString("Phoenician", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Phoenician_alphabet#Numerals", comment: "")
+            return URL(string: string)
+        case .kharosthi:
+            let string=NSLocalizedString("Kharosthi", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Kharosthi#Numerals", comment: "")
+            return URL(string: string)
+        case .numeric(let base):
+            switch base{
+            case 2:
+                let string=NSLocalizedString("Binary", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Binary_number", comment: "")
+                return URL(string: string)
+            case 8:
+                let string=NSLocalizedString("Octal", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Octal", comment: "")
+                return URL(string: string)
+            case 16:
+                let string=NSLocalizedString("Octal", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Hexadecimal", comment: "")
+                return URL(string: string)
+            default:
+                return nil
+            }
+        case .localized(_):
+            return nil
+        }
+    }
 }

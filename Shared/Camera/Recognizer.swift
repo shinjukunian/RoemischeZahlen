@@ -98,6 +98,8 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                     return formatter.machePhoenizischeZahl(aus: number)
                 case .numeric(let base):
                     return String(number, radix: base)
+                case .kharosthi:
+                    return formatter.macheKharosthiZahl(aus: number)
                 case .localized(let locale):
                     let f=NumberFormatter()
                     f.numberStyle = .spellOut

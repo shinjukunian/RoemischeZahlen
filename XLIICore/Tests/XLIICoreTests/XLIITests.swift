@@ -168,7 +168,56 @@ class XLIICoreTests: XCTestCase {
         
         
     }
+    
+    
+    func testKharosthi()throws{
+        
+        let cases = [1996:"𐩇𐩃𐩃𐩀𐩆𐩅𐩅𐩅𐩅𐩄𐩃𐩁",
+                     500:"𐩃𐩀𐩆",
+                     477:"𐩃𐩆𐩅𐩅𐩅𐩄𐩃𐩂",
+                     19:"𐩄𐩃𐩃𐩀",
+                     12500:"𐩄𐩁𐩇𐩃𐩀𐩆",
+                     16:"𐩄𐩃𐩁",
+                     85:"𐩅𐩅𐩅𐩅𐩃𐩀",
+                     167_000:"𐩆𐩅𐩅𐩅𐩃𐩂𐩇",
 
-
+        ]
+        
+        for n in cases{
+            let number=n.key
+            let expected=n.value
+            let parser=try XCTUnwrap(KharosthiNumber(number: number))
+            let k=parser.kharosthi
+            XCTAssert(k == expected, "print \(number) (\(expected) converted to \(k)")
+            
+            let reversedParser=try XCTUnwrap(KharosthiNumber(string: expected))
+            XCTAssert(reversedParser.arabic == number, "print \(expected) (\(number) converted to \(reversedParser.arabic)")
+            
+        }
+        
+        let random=(0..<10_000).map({_ in return Int.random(in: 1..<1_000_000)})
+        
+        for number in random{
+            let parser=try XCTUnwrap(KharosthiNumber(number: number))
+            let kh=parser.kharosthi
+            
+            let reversedParser=try XCTUnwrap(KharosthiNumber(string: kh))
+            XCTAssert(reversedParser.arabic == number, "print \(kh) (\(number) converted to \(reversedParser.arabic)")
+        }
+        
+        XCTAssertNil(KharosthiNumber(string: "469"))
+        
+    }
+    
+    
+    func testKharosthiSingle()throws{
+        let number=1996
+        let expected="𐩇𐩃𐩃𐩀𐩆𐩅𐩅𐩅𐩅𐩄𐩃𐩁"
+        let parser=try XCTUnwrap(KharosthiNumber(number: number))
+        let k=parser.kharosthi
+        XCTAssert(k == expected, "print \(number) (\(expected) converted to \(k)")
+        let reversedParser=try XCTUnwrap(KharosthiNumber(string: expected))
+        XCTAssert(reversedParser.arabic == number, "print \(expected) (\(number) converted to \(reversedParser.arabic)")
+    }
 }
 

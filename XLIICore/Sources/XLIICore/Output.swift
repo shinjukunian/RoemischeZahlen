@@ -21,6 +21,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     case hieroglyph
     case suzhou
     case phoenician
+    case kharosthi
     
     case numeric(base:Int)
     
@@ -29,7 +30,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     public static let currentLocale = Output.localized(locale: Locale.current)
     public static let dragType = "com.mihomaus.xlii.outputType"
 
-    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician]
+    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician, .kharosthi]
     
     public init?(rawValue: String) {
         switch rawValue{
@@ -53,6 +54,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = .suzhou
         case "phoenician":
             self = .phoenician
+        case "kharosthi":
+            self = .kharosthi
         case _ where rawValue.hasPrefix("numeric_base"):
             let components=rawValue.split(separator: "|")
             guard components.count == 2,
@@ -85,6 +88,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = .aegean
         case .phoenician:
             self = .phoenician
+        case .kharosthi:
+            self = .kharosthi
         }
     }
     
@@ -112,6 +117,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             return "suzhou"
         case .phoenician:
             return "phoenician"
+        case .kharosthi:
+            return "kharosthi"
         case .numeric(let base):
             return "numeric_base|\(base)"
         }
@@ -124,7 +131,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     
     public func hash(into hasher: inout Hasher) {
         switch self {
-        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician:
+        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi:
             hasher.combine(rawValue)
         case .localized(_), .numeric(_):
             hasher.combine(rawValue)
@@ -153,6 +160,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             return NSLocalizedString("Suzhou (蘇州碼子)", tableName: nil, bundle: .module, value: "Suzhou (蘇州碼子)", comment: "Suzhou Output")
         case .phoenician:
             return NSLocalizedString("Phoenician", tableName: nil, bundle: .module, value: "Phoenician", comment: "Phoenician alphabet")
+        case .kharosthi:
+            return NSLocalizedString("Kharoṣṭhī", tableName: nil, bundle: .module, value: "Kharoṣṭhī", comment: "Kharoṣṭhī alphabet")
         case .localized(let locale):
             if let language=locale.languageCode{
                 return Locale.current.localizedString(forLanguageCode: language) ?? locale.identifier
