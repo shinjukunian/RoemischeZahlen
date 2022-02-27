@@ -20,7 +20,7 @@ struct CyrilligLargeNumber: Cyrillic{
     
     init?(number:Int){
         
-        guard number < 10_000_000_000 else{
+        guard number < Int64(10_000_000_000) else{
             return nil
         }
         
