@@ -95,7 +95,7 @@ public struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_traditional, .brahmi_positional:
+        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_traditional, .brahmi_positional, .glagolitic:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
@@ -143,6 +143,9 @@ public extension Output{
             return URL(string: string)
         case .brahmi_positional, .brahmi_traditional:
             let string=NSLocalizedString("Brahmi", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Brahmi_numerals", comment: "")
+            return URL(string: string)
+        case .glagolitic:
+            let string=NSLocalizedString("Glagolitic", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Glagolitic_numerals", comment: "")
             return URL(string: string)
         case .numeric(let base):
             switch base{

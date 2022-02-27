@@ -21,6 +21,7 @@ public class ExotischeZahlenFormatter{
             case phoenician
             case kharosthi
             case brahmi(positional:Bool)
+            case glagolitic
         }
         
         public let value:Int
@@ -150,6 +151,9 @@ public class ExotischeZahlenFormatter{
         return HieroglyphenZahl(Zahl: Zahl)?.hieroglyph
     }
     
+    public func macheGlagolitischeZahl(aus Zahl:Int)->String?{
+        return GlagoliticNumer(number: Zahl)?.glacolitic
+    }
     
     
     public func macheZahl(aus text:String)->NumericalOutput?{
@@ -185,6 +189,10 @@ public class ExotischeZahlenFormatter{
         case _ where text.potentielleBrahmiZahl:
             if let zahl=BrahmiNumber(string: text){
                 return NumericalOutput(value: zahl.arabic, locale: .brahmi(positional: zahl.positional))
+            }
+        case _ where text.potentielleGlagoliticZahl:
+            if let zahl=GlagoliticNumer(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .glagolitic)
             }
         default:
             return nil

@@ -111,7 +111,7 @@
 					<key>INEnumValueDisplayNameID</key>
 					<string>IjsoSq</string>
 					<key>INEnumValueIndex</key>
-					<integer>9</integer>
+					<integer>50</integer>
 					<key>INEnumValueName</key>
 					<string>binary</string>
 				</dict>
@@ -121,7 +121,7 @@
 					<key>INEnumValueDisplayNameID</key>
 					<string>kbGnWf</string>
 					<key>INEnumValueIndex</key>
-					<integer>11</integer>
+					<integer>51</integer>
 					<key>INEnumValueName</key>
 					<string>octal</string>
 				</dict>
@@ -131,7 +131,7 @@
 					<key>INEnumValueDisplayNameID</key>
 					<string>nnnITa</string>
 					<key>INEnumValueIndex</key>
-					<integer>12</integer>
+					<integer>52</integer>
 					<key>INEnumValueName</key>
 					<string>hexadecimal</string>
 				</dict>
@@ -141,9 +141,49 @@
 					<key>INEnumValueDisplayNameID</key>
 					<string>zwrZQr</string>
 					<key>INEnumValueIndex</key>
-					<integer>13</integer>
+					<integer>53</integer>
 					<key>INEnumValueName</key>
 					<string>vigesimal</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Brahmi</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>lPFmgz</string>
+					<key>INEnumValueIndex</key>
+					<integer>9</integer>
+					<key>INEnumValueName</key>
+					<string>brahmi_traditional</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Brahmi (positional)</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>36855g</string>
+					<key>INEnumValueIndex</key>
+					<integer>10</integer>
+					<key>INEnumValueName</key>
+					<string>brahmi_positional</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Kharoṣṭhī</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>lllgtt</string>
+					<key>INEnumValueIndex</key>
+					<integer>11</integer>
+					<key>INEnumValueName</key>
+					<string>kharosthi</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Glagolitic</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>F3JVi3</string>
+					<key>INEnumValueIndex</key>
+					<integer>12</integer>
+					<key>INEnumValueName</key>
+					<string>glagolitic</string>
 				</dict>
 			</array>
 		</dict>
@@ -155,9 +195,9 @@
 	<key>INIntentDefinitionSystemVersion</key>
 	<string>21D62</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13E5095k</string>
+	<string>13C100</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>13.3</string>
+	<string>13.2.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>

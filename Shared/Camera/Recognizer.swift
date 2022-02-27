@@ -104,6 +104,8 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                     return formatter.macheBrahmiZahl(aus: number, positional: false)
                 case .brahmi_positional:
                     return formatter.macheBrahmiZahl(aus: number, positional: true)
+                case .glagolitic:
+                    return formatter.macheGlagolitischeZahl(aus: number)
                 case .localized(let locale):
                     let f=NumberFormatter()
                     f.numberStyle = .spellOut

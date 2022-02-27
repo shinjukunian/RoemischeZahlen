@@ -86,6 +86,14 @@ extension Output{
             self = .numeric(base: 8)
         case .vigesimal:
             self = .numeric(base: 20)
+        case .brahmi_traditional:
+            self = .brahmi_traditional
+        case .brahmi_positional:
+            self = .brahmi_positional
+        case .kharosthi:
+            self = .kharosthi
+        case .glagolitic:
+            self = .glagolitic
         }
     }
 }

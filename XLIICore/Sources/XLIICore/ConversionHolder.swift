@@ -82,6 +82,8 @@ public class NumeralConversionHolder: Equatable{
             formattedOutput = BrahmiNumber(number: zahl, positional: true)?.brahmi ?? noValidNumber
         case .brahmi_traditional:
             formattedOutput = BrahmiNumber(number: zahl, positional: false)?.brahmi ?? noValidNumber
+        case .glagolitic:
+            formattedOutput = GlagoliticNumer(number: zahl)?.glacolitic ?? noValidNumber
         }
         return formattedOutput
         

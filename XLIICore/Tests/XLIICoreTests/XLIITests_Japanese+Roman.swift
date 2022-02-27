@@ -86,4 +86,28 @@ class XLIICoreTests_japanese: XCTestCase {
         
     }
     
+    
+    func testGlagolitic() throws{
+        let formatter=ExotischeZahlenFormatter()
+        let cases=[5:"Ⰴ", 16:"ⰅⰊ", 583:"ⰗⰑⰂ", 1280:"ⰝⰔⰑ", 2018:"ⰞⰇⰊ"]
+        
+        for c in cases{
+            let text=try XCTUnwrap(formatter.macheGlagolitischeZahl(aus:c.key))
+            XCTAssert(text == c.value, "failed \(c.key) \(c.value) converted to \(text)")
+            let number=try XCTUnwrap(formatter.macheZahl(aus:text))
+            XCTAssert(number.locale == .glagolitic)
+            XCTAssert(number.value == c.key, "failed \(text) \(c.key) converted to \(number)")
+        }
+        
+        let numbers=(0..<100).map({_ in return Int.random(in: 0..<3000)})
+        
+        for number in numbers{
+            let h=try XCTUnwrap(formatter.macheGlagolitischeZahl(aus: number))
+            XCTAssert(h.isEmpty == false)
+            let arabic=try XCTUnwrap(formatter.macheZahl(aus: h), "\(h) (\(number) could not be converted back to a number")
+            XCTAssert(arabic.locale == .glagolitic, "locale determined as \(arabic.locale), expected roman [\(arabic)]")
+            XCTAssert(arabic.value == number, "failed \(number) converted to \(arabic.value)")
+        }
+    }
+    
 }

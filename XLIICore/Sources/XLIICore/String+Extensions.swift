@@ -63,5 +63,13 @@ extension String{
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: brahmi)
     }
+    
+    var potentielleGlagoliticZahl:Bool{
+        let start=Unicode.Scalar.init(0x2c00)!
+        let end=Unicode.Scalar(0x2c5f)!
+        let gl=CharacterSet(charactersIn: start...end)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: gl)
+    }
 }
 

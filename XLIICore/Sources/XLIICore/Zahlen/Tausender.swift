@@ -31,15 +31,16 @@ struct Tausender: AlsArabischeZahl{
             
             let tausender = Tausender(Zahl: anzahl)
             let millions:String
-            
+            let doubleOverbar=String(Unicode.Scalar(0x033F)!)
+//            let overbar=String(Unicode.Scalar(0xFE26)!)
             if tausender.anzahl > 0{
                 let milZehner = Zehner(Zahl: tausender.anzahl)
                 let milEinser = Einer(Zahl: tausender.anzahl)
                 let milHunderter = Hunderter(Zahl: tausender.anzahl)
                 let mil = milHunderter.römisch + milZehner.römisch + milEinser.römisch
-                let overbar=Unicode.Scalar(0x033F)!
+                
                 let overbarMillions=mil.map({c in
-                    return String(c) + String(overbar)
+                    return String(c) + doubleOverbar
                 })
                 millions = overbarMillions.joined()
                 
@@ -49,9 +50,9 @@ struct Tausender: AlsArabischeZahl{
             }
             
             let roemischeTausender = hunderter.römisch + zehner.römisch + einser.römisch
-            let overbar=Unicode.Scalar(0x0305)!
+            let overbar=String(Unicode.Scalar(0xFE26)!)
             let overbarTausender=roemischeTausender.map({c in
-                return String(c) + String(overbar)
+                return String(c) + overbar
             })
             return millions + overbarTausender.joined()
         }
