@@ -84,6 +84,8 @@ public class NumeralConversionHolder: Equatable{
             formattedOutput = BrahmiNumber(number: zahl, positional: false)?.brahmi ?? noValidNumber
         case .glagolitic:
             formattedOutput = GlagoliticNumer(number: zahl)?.glacolitic ?? noValidNumber
+        case .cyrillic:
+            formattedOutput = formatter.macheKyrillischeZahl(aus: zahl, titlo: true, mitKreisen: false, Großbuchstaben: false) ?? noValidNumber
         }
         return formattedOutput
         

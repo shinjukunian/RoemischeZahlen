@@ -94,6 +94,8 @@ extension Output{
             self = .kharosthi
         case .glagolitic:
             self = .glagolitic
+        case .cyrillic:
+            self = .cyrillic
         }
     }
 }

@@ -71,5 +71,18 @@ extension String{
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
         return vorhandeneBuchstaben.isSubset(of: gl)
     }
+    
+    var potentielleKyrillischeZahl:Bool{
+        let startK=UnicodeScalar(0x0400)!
+        let endK=UnicodeScalar(0x04FF)!
+        let set1=CharacterSet(charactersIn: startK...endK)
+        let set2=CharacterSet(charactersIn: UnicodeScalar(0xA460)! ... UnicodeScalar(0xA69F)!)
+        var set3=set1.union(set2)
+        set3.insert(UnicodeScalar(0x20DD)!)
+//        set3.insert(charactersIn: UnicodeScalar(0xA670)!...UnicodeScalar(0xA672)!)
+//        set3.insert(<#T##character: Unicode.Scalar##Unicode.Scalar#>)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        return vorhandeneBuchstaben.isSubset(of: set3)
+    }
 }
 

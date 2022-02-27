@@ -22,6 +22,7 @@ public class ExotischeZahlenFormatter{
             case kharosthi
             case brahmi(positional:Bool)
             case glagolitic
+            case cyrillic
         }
         
         public let value:Int
@@ -194,10 +195,30 @@ public class ExotischeZahlenFormatter{
             if let zahl=GlagoliticNumer(string: text){
                 return NumericalOutput(value: zahl.arabic, locale: .glagolitic)
             }
+        case _ where text.potentielleKyrillischeZahl:
+            if let zahl=CyrillicNumber(text: text){
+                return NumericalOutput(value: zahl.arabic, locale: .cyrillic)
+            }
         default:
             return nil
         }
         return nil
+    }
+    
+    public func macheKyrillischeZahl(aus Zahl:Int, titlo:Bool, mitKreisen:Bool, Großbuchstaben:Bool)->String?{
+        guard let parser=CyrillicNumber(number: Zahl, useMultiplicationModifiers: mitKreisen) else{
+            return nil
+        }
+        switch (titlo, Großbuchstaben){
+        case (true, true):
+            return parser.cyrilicUsingTitlo.uppercased()
+        case (true,false):
+            return parser.cyrilicUsingTitlo.lowercased()
+        case (false,true):
+            return parser.cyrillic.uppercased()
+        case (false,false):
+            return parser.cyrillic.lowercased()
+        }
     }
     
     func macheZahl(römisch Zahl:String)->Int?{

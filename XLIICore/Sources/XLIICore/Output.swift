@@ -25,6 +25,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     case brahmi_traditional
     case brahmi_positional
     case glagolitic
+    case cyrillic
     
     case numeric(base:Int)
     
@@ -33,7 +34,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     public static let currentLocale = Output.localized(locale: Locale.current)
     public static let dragType = "com.mihomaus.xlii.outputType"
 
-    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician, .kharosthi, brahmi_traditional, .brahmi_positional, .glagolitic]
+    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician, .kharosthi, brahmi_traditional, .brahmi_positional, .glagolitic, .cyrillic]
     
     public init?(rawValue: String) {
         switch rawValue{
@@ -65,6 +66,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = .brahmi_positional
         case "glagolitic":
             self = .glagolitic
+        case "cyrillic":
+            self = .cyrillic
         case _ where rawValue.hasPrefix("numeric_base"):
             let components=rawValue.split(separator: "|")
             guard components.count == 2,
@@ -103,6 +106,9 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = positional ? .brahmi_positional : .brahmi_traditional
         case .glagolitic:
             self = .glagolitic
+        case .cyrillic:
+            self = .cyrillic
+            
         }
     }
     
@@ -140,6 +146,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             return "brahmi_traditional"
         case .glagolitic:
             return "glagolitic"
+        case .cyrillic:
+            return "cyrillic"
         }
     }
     
@@ -150,7 +158,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     
     public func hash(into hasher: inout Hasher) {
         switch self {
-        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_positional, .brahmi_traditional, .glagolitic:
+        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_positional, .brahmi_traditional, .glagolitic, .cyrillic:
             hasher.combine(rawValue)
         case .localized(_), .numeric(_):
             hasher.combine(rawValue)
@@ -187,6 +195,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             return NSLocalizedString("Brahmi (positional)", tableName: nil, bundle: .module, value: "Brahmi (positional)", comment: "Brahmi alphabet")
         case .glagolitic:
             return NSLocalizedString("Glagolitic", tableName: nil, bundle: .module, value: "Glagolitic", comment: "Glagolitic alphabet")
+        case .cyrillic:
+            return NSLocalizedString("Cyrillic", tableName: nil, bundle: .module, value: "Cyrillic", comment: "Cyrillic alphabet")
         case .localized(let locale):
             if let language=locale.languageCode{
                 return Locale.current.localizedString(forLanguageCode: language) ?? locale.identifier

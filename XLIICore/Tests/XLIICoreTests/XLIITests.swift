@@ -291,5 +291,7 @@ class XLIICoreTests: XCTestCase {
             XCTAssert(reversedParser.arabic == number, "print \(kh) (\(number) converted to \(reversedParser.arabic)")
         }
     }
+    
+    
 }
 

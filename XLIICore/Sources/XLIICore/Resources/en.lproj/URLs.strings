@@ -42,3 +42,6 @@
 
 /*Glagolitic*/
 "Glagolitic" = "https://en.wikipedia.org/wiki/Glagolitic_numerals";
+
+/*Cyrillic*/
+"Cyrillic" = "https://en.wikipedia.org/wiki/Cyrillic_numerals";
