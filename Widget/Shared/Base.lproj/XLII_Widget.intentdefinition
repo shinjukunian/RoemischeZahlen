@@ -195,6 +195,16 @@
 					<key>INEnumValueName</key>
 					<string>cyrillic</string>
 				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Geʽez</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>6dgtXd</string>
+					<key>INEnumValueIndex</key>
+					<integer>14</integer>
+					<key>INEnumValueName</key>
+					<string>geez</string>
+				</dict>
 			</array>
 		</dict>
 	</array>

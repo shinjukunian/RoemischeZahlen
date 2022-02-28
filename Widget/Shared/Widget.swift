@@ -96,6 +96,8 @@ extension Output{
             self = .glagolitic
         case .cyrillic:
             self = .cyrillic
+        case .geez:
+            self = .geez
         }
     }
 }

@@ -23,6 +23,7 @@ public class ExotischeZahlenFormatter{
             case brahmi(positional:Bool)
             case glagolitic
             case cyrillic
+            case geez
         }
         
         public let value:Int
@@ -199,6 +200,10 @@ public class ExotischeZahlenFormatter{
             if let zahl=CyrillicNumber(text: text){
                 return NumericalOutput(value: zahl.arabic, locale: .cyrillic)
             }
+        case _ where text.potentielleGeezZahl:
+            if let zahl=GeezNumber(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .geez)
+            }
         default:
             return nil
         }
@@ -220,6 +225,11 @@ public class ExotischeZahlenFormatter{
             return parser.cyrillic.lowercased()
         }
     }
+    
+    public func macheGeezZahl(aus Zahl:Int)->String?{
+        return GeezNumber(number: Zahl)?.geez
+    }
+    
     
     func macheZahl(römisch Zahl:String)->Int?{
         let einser=Einer(römischeZahl: Zahl)

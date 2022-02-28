@@ -45,3 +45,6 @@
 
 /*Cyrillic*/
 "Cyrillic" = "https://en.wikipedia.org/wiki/Cyrillic_numerals";
+
+/*Geez*/
+"Geez" = "https://en.wikipedia.org/wiki/Ge%CA%BDez_script%23Numerals";

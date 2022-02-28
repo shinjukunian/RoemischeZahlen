@@ -95,7 +95,7 @@ public struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_traditional, .brahmi_positional, .cyrillic, .glagolitic:
+        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_traditional, .brahmi_positional, .cyrillic, .glagolitic, .geez:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
@@ -136,30 +136,33 @@ public extension Output{
             let string=NSLocalizedString("Suzhou", tableName: tableName, bundle: .module, value:"https://en.wikipedia.org/wiki/Suzhou_numerals", comment: "")
             return URL(string: string)
         case .phoenician:
-            let string=NSLocalizedString("Phoenician", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Phoenician_alphabet#Numerals", comment: "")
+            let string=NSLocalizedString("Phoenician", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Phoenician_alphabet#Numerals", comment: "")
             return URL(string: string)
         case .kharosthi:
-            let string=NSLocalizedString("Kharosthi", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Kharosthi#Numerals", comment: "")
+            let string=NSLocalizedString("Kharosthi", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Kharosthi#Numerals", comment: "")
             return URL(string: string)
         case .brahmi_positional, .brahmi_traditional:
-            let string=NSLocalizedString("Brahmi", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Brahmi_numerals", comment: "")
+            let string=NSLocalizedString("Brahmi", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Brahmi_numerals", comment: "")
             return URL(string: string)
         case .glagolitic:
-            let string=NSLocalizedString("Glagolitic", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Glagolitic_numerals", comment: "")
+            let string=NSLocalizedString("Glagolitic", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Glagolitic_numerals", comment: "")
             return URL(string: string)
         case .cyrillic:
-            let string=NSLocalizedString("Cyrillic", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Cyrillic_numerals", comment: "")
+            let string=NSLocalizedString("Cyrillic", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Cyrillic_numerals", comment: "")
+            return URL(string: string)
+        case .geez:// the english wikipedia URL has to be pecent encoded, otherwise the URL constructor fails
+            let string=NSLocalizedString("Geez", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Ge%CA%BDez_script%23Numerals", comment: "")
             return URL(string: string)
         case .numeric(let base):
             switch base{
             case 2:
-                let string=NSLocalizedString("Binary", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Binary_number", comment: "")
+                let string=NSLocalizedString("Binary", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Binary_number", comment: "")
                 return URL(string: string)
             case 8:
-                let string=NSLocalizedString("Octal", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Octal", comment: "")
+                let string=NSLocalizedString("Octal", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Octal", comment: "")
                 return URL(string: string)
             case 16:
-                let string=NSLocalizedString("Octal", tableName: "URLs", bundle: .module, value: "https://en.wikipedia.org/wiki/Hexadecimal", comment: "")
+                let string=NSLocalizedString("Octal", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Hexadecimal", comment: "")
                 return URL(string: string)
             default:
                 return nil

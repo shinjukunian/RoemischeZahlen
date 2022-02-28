@@ -109,6 +109,8 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                 case .cyrillic:
                     #warning("use user prefs")
                     return formatter.macheKyrillischeZahl(aus: number, titlo: true, mitKreisen: false, Großbuchstaben: false)
+                case .geez:
+                    return formatter.macheGeezZahl(aus: number)
                 case .localized(let locale):
                     let f=NumberFormatter()
                     f.numberStyle = .spellOut

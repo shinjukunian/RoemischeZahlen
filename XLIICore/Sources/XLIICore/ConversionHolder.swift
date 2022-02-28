@@ -86,6 +86,8 @@ public class NumeralConversionHolder: Equatable{
             formattedOutput = GlagoliticNumer(number: zahl)?.glacolitic ?? noValidNumber
         case .cyrillic:
             formattedOutput = formatter.macheKyrillischeZahl(aus: zahl, titlo: true, mitKreisen: false, Großbuchstaben: false) ?? noValidNumber
+        case .geez:
+            formattedOutput = GeezNumber(number: zahl)?.geez ?? noValidNumber
         }
         return formattedOutput
         

@@ -84,5 +84,13 @@ extension String{
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
         return vorhandeneBuchstaben.isSubset(of: set3)
     }
+    
+    var potentielleGeezZahl:Bool{
+        let startK=UnicodeScalar(0x1369)!
+        let endK=UnicodeScalar(0x137C)!
+        let set=CharacterSet(charactersIn: startK...endK)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
+        return vorhandeneBuchstaben.isSubset(of: set)
+    }
 }
 

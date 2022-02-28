@@ -23,7 +23,7 @@ class XLII_DescriptiveURLS: XCTestCase {
         let outputs = Output.builtin + [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]
         
         let expectations = try outputs.map({output -> XCTestExpectation in
-            let url=try XCTUnwrap(output.url)
+            let url=try XCTUnwrap(output.url, "\(output) url not available")
             let expectation=XCTestExpectation(description: "testing \(url)")
             let task=session.dataTask(with: url, completionHandler: {data, response, error in
                 XCTAssertNotNil(data, "No data was downloaded. (\(url)")
