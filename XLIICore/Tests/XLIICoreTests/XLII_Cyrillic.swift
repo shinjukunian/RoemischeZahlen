@@ -117,9 +117,51 @@ class XLII_Cyrillic: XCTestCase {
 
         
         }
-        
-        
     }
+    
+    func testReverseLarge() throws{
+        let titloCases=[
+            1706:"҂аѱ҃ѕ", 23:"кг҃", 735:"ѱл҃е",
+            113:"рг҃і", 123:"рк҃г", 2022:"҂вк҃в",
+            8567:"҂ифѯ҃з", 78:"ои҃", 9999:"҂ѳцч҃ѳ",
+            25517:"в⃝҂еф҃зі", 989976:"ѳ҈и⃝҂ѳцоѕ",
+            1_200_567:"а҉в҈фѯз",
+            12_987_090:"а꙰в҉ѳ҈и⃝҂зч",
+            3_124_563_567:"г꙲а꙱в꙰д҉е҈ѕ⃝҂гфѯз",
+            3567:"҂гфѯ҃з"
+                        
+        ]
+        
+        let number="в⃝҂еф҃зі"
+        let expectation=25517
+
+        let parser=try XCTUnwrap(CyrillicNumber(text: number))
+        XCTAssert(parser.arabic == expectation, "parsing failed for \(number) [\(expectation)] parsed as \(parser.arabic)")
+        
+        for c in titloCases{
+            let number=c.value
+            let expectation=c.key
+            let parser=try XCTUnwrap(CyrillicNumber(text: number))
+            XCTAssert(parser.arabic == expectation, "parsing failed for \(number) [\(expectation)] parsed as \(parser.arabic)")
+        
+        }
+        
+        let random=(0..<2000).map({_ in return Int.random(in: 1..<10_000_000_000)})
+        
+        for number in random{
+            
+            let parser=try XCTUnwrap(CyrillicNumber(number: number, useMultiplicationModifiers: Bool.random()), "conversion failed for \(number)")
+            let cyrillic=parser.cyrilicUsingTitlo
+            let reverse=try XCTUnwrap(CyrillicNumber(text: cyrillic), "initialization failed for \(cyrillic)")
+            XCTAssert(reverse.arabic == number, "back conversion failed for \(cyrillic), result \(reverse.arabic), expected \(number)")
+            
+            let reverseNoDiacritics=try XCTUnwrap(CyrillicNumber(text: parser.cyrillic), "initialization failed for \(parser.cyrillic)")
+            XCTAssert(reverseNoDiacritics.arabic == number, "back conversion failed for \(parser.cyrillic), result \(reverse.arabic), expected \(number)")
+
+        }
+    }
+    
+    
     
 
 }

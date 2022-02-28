@@ -53,7 +53,7 @@ struct CyrillicNumber: Cyrillic{
                 tensString=CyrillicNumber.table[tens.quotient * 10]
                 onesString=CyrillicNumber.table[tens.remainder]
             }
-
+            
             let text=[hundredsStrings,tensString,onesString]
                 .compactMap({$0})
                 .filter({$0.isEmpty == false})
@@ -73,66 +73,67 @@ struct CyrillicNumber: Cyrillic{
         guard text.isEmpty == false else{
             return nil
         }
-
+        
         self.cyrillic=CyrillicNumber.canonicalForm(text)
+        var combined=Dictionary(uniqueKeysWithValues: zip(CyrillicNumber.table.values, CyrillicNumber.table.keys))
         let scalarsSet=Set(text.unicodeScalars)
         if scalarsSet.isDisjoint(with: CyrillicNumber.modifierSymbols) == false{
-            #warning("implement")
-            return nil
+            combined = combined.merging(CyrilligLargeNumber.largeNumbersLookup, uniquingKeysWith: {s1,s2 in
+                return s1
+            })
         }
-        else{
-            var parsed=cyrillic
-            var number = 0
-            
-            let combined=Dictionary(uniqueKeysWithValues: zip(CyrillicNumber.table.values, CyrillicNumber.table.keys))
-            
-            while (parsed.isEmpty == false){
-                if let rangeItem=combined.compactMap({key, value -> (Range<String.Index>,Int)? in
-                    if let range=parsed.range(of: key, options: [.anchored,.backwards]){
-                        // look ahead
-                        if range.lowerBound > parsed.startIndex,
-                            let offset=parsed.index(range.lowerBound, offsetBy: -1, limitedBy: parsed.startIndex){
-                            let lookAhead=parsed[offset]
-                            if String(lookAhead) == CyrillicNumber.thousandsSymbol{
-                                let match=parsed[range]
-                                let newRange=offset..<range.upperBound
-                                if match.count == 1{ // we have matche a single token, this will be multiplied
-                                    return (newRange,value * 1000)
-                                }
-                                else{// the value is invalid, the multiplier only applies to the leftmost token
-                                    let newValue=match.enumerated().map({(idx,token) -> Int in
-                                        let value=combined[String(token)] ?? 0
-                                        return idx == 0 ? value * 1000 : value
-                                    }).reduce(0,+)
-                                    return (newRange,newValue)
-                                }
-                                
+        
+        
+        var parsed=cyrillic.filter({$0.isWhitespace == false})
+        var number = 0
+        
+        while (parsed.isEmpty == false){
+            if let rangeItem=combined.compactMap({key, value -> (Range<String.Index>,Int)? in
+                if let range=parsed.range(of: key, options: [.anchored,.backwards]){
+                    // look ahead
+                    if range.lowerBound > parsed.startIndex,
+                       let offset=parsed.index(range.lowerBound, offsetBy: -1, limitedBy: parsed.startIndex){
+                        let lookAhead=parsed[offset]
+                        if String(lookAhead) == CyrillicNumber.thousandsSymbol{
+                            let match=parsed[range]
+                            let newRange=offset..<range.upperBound
+                            if match.count == 1{ // we have matche a single token, this will be multiplied
+                                return (newRange,value * 1000)
                             }
-                            else{
-                                return (range,value)
+                            else{// the value is invalid, the multiplier only applies to the leftmost token
+                                let newValue=match.enumerated().map({(idx,token) -> Int in
+                                    let value=combined[String(token)] ?? 0
+                                    return idx == 0 ? value * 1000 : value
+                                }).reduce(0,+)
+                                return (newRange,newValue)
                             }
+                            
                         }
                         else{
                             return (range,value)
                         }
-                       
                     }
                     else{
-                        return nil
+                        return (range,value)
                     }
-                }).min(by: {r1,r2 in
-                    r1.0.lowerBound < r2.0.lowerBound
-                }){
-                    let range=rangeItem.0
-                    let value=rangeItem.1
-                    parsed = String(parsed[parsed.startIndex..<range.lowerBound])
-                    number += value
+                    
                 }
                 else{
                     return nil
                 }
+            }).min(by: {r1,r2 in
+                r1.0.lowerBound < r2.0.lowerBound
+            }){
+                let range=rangeItem.0
+                let value=rangeItem.1
+                parsed = String(parsed[parsed.startIndex..<range.lowerBound])
+                number += value
             }
-            arabic=number
+            else{
+                return nil
+            }
         }
+        arabic=number
+        
     }
 }

@@ -81,7 +81,7 @@ extension String{
         set3.insert(UnicodeScalar(0x20DD)!)
 //        set3.insert(charactersIn: UnicodeScalar(0xA670)!...UnicodeScalar(0xA672)!)
 //        set3.insert(<#T##character: Unicode.Scalar##Unicode.Scalar#>)
-        let vorhandeneBuchstaben=CharacterSet(charactersIn: self.trimmingCharacters(in: .whitespaces))
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
         return vorhandeneBuchstaben.isSubset(of: set3)
     }
 }

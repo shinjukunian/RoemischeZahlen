@@ -20,7 +20,9 @@ class XLII_DescriptiveURLS: XCTestCase {
 
     func testURLs() throws {
         let session = URLSession.shared
-        for output in Output.builtin + [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]{
+        let outputs = Output.builtin + [.numeric(base: 2), .numeric(base: 8), .numeric(base: 16)]
+        
+        let expectations = try outputs.map({output -> XCTestExpectation in
             let url=try XCTUnwrap(output.url)
             let expectation=XCTestExpectation(description: "testing \(url)")
             let task=session.dataTask(with: url, completionHandler: {data, response, error in
@@ -28,15 +30,18 @@ class XLII_DescriptiveURLS: XCTestCase {
                 expectation.fulfill()
             })
             task.resume()
-            wait(for: [expectation], timeout: 5)
-        }
+            return expectation
+        })
+        
+        wait(for: expectations, timeout: 20)
+        
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+//    func testPerformanceExample() throws {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
 
 }

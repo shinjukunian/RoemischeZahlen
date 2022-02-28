@@ -79,3 +79,29 @@ struct CyrilligLargeNumber: Cyrillic{
         cyrillic=text
     }
 }
+
+
+
+extension CyrilligLargeNumber{
+    static var largeNumbersLookup:[String:Int] {
+        let symbols = [10_000:CyrillicNumber.tenThousandSymbol,
+                       100_000:CyrillicNumber.hundredThousandSymbol,
+                       1_000_000:CyrillicNumber.millionSymbol,
+                       10_000_000:CyrillicNumber.tenMillionSymbol,
+                       100_000_000:CyrillicNumber.hundredMillionSymbol,
+                       1_000_000_000:CyrillicNumber.billionSymbol]
+        
+        let numericSymbols=symbols.map({value, symbol -> [(String,Int)] in
+            
+            let range=(1...9)
+            let symbols=range.map({multiplier -> (String,Int) in
+                let numberSymbol=CyrillicNumber.table[multiplier]! //should always exist
+                return (numberSymbol + symbol, multiplier * value)
+                
+            })
+            return symbols
+        }).flatMap({$0})
+        let lookup=Dictionary(uniqueKeysWithValues: numericSymbols)
+        return lookup
+    }
+}

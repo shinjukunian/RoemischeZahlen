@@ -293,5 +293,77 @@ class XLIICoreTests: XCTestCase {
     }
     
     
+    func testGeez() throws {
+        let number=9900015427
+        let expectation="፺፱፼፩፼፶፬፻፳፯"
+        let parser=try XCTUnwrap(GeezNumber(number: number))
+        XCTAssert(expectation == parser.geez, "\(parser.geez) doesnt match expectation \(expectation) (\(number)")
+        
+        let cases=[123:"፻፳፫",
+                   99:"፺፱",
+                   8976:"፹፱፻፸፮",
+                   475:"፬፻፸፭",
+                   83692:"፰፼፴፮፻፺፪",
+                   253775:"፳፭፼፴፯፻፸፭",
+                   86880087:"፹፮፻፹፰፼፹፯",
+                   13:"፲፫",
+                   83692788097:"፰፻፴፮፼፺፪፻፸፰፼፹፻፺፯",
+                   1234567890123:"፼፳፫፻፵፭፼፷፯፻፹፱፼፻፳፫",
+                   402589148:"፬፼፪፻፶፰፼፺፩፻፵፰",
+                   923018624:"፱፼፳፫፻፩፼፹፮፻፳፬"
+                   
+        ]
+        
+        for c in cases{
+            let number=c.key
+            let expectation=c.value
+            let parser=try XCTUnwrap(GeezNumber(number: number))
+            XCTAssert(expectation == parser.geez, "\(parser.geez) doesnt match expectation \(expectation) (\(number)")
+        }
+        
+    }
+    
+    func testGeez_reverse()throws{
+        let number="፱፼፳፫፻፩፼፹፮፻፳፬ "
+        let expectation=923018624
+        
+        let parser=try XCTUnwrap(GeezNumber(string: number))
+        XCTAssert(expectation == parser.arabic, "\(parser.arabic) doesnt match expectation \(expectation) (\(number)")
+        
+        let cases = [12_000:"፼፳፻",
+                     137:"፻፴፯",
+                     9999:"፺፱፻፺፱",
+                     123:"፻፳፫",
+                     99:"፺፱",
+                     8976:"፹፱፻፸፮",
+                     475:"፬፻፸፭",
+                     83692:"፰፼፴፮፻፺፪",
+                     253775:"፳፭፼፴፯፻፸፭",
+                     86880087:"፹፮፻፹፰፼፹፯",
+                     13:"፲፫",
+                     83692788097:"፰፻፴፮፼፺፪፻፸፰፼፹፻፺፯",
+                     1234567890123:"፼፳፫፻፵፭፼፷፯፻፹፱፼፻፳፫",
+                     923018624:"፱፼፳፫፻፩፼፹፮፻፳፬"
+        ]
+        
+        for c in cases{
+            let number=c.value
+            let expectation=c.key
+            
+            let parser=try XCTUnwrap(GeezNumber(string: number))
+            XCTAssert(expectation == parser.arabic, "\(parser.arabic) doesnt match expectation \(expectation) (\(number)")
+        }
+        
+        let random=(0..<20000).map({_ in return Int.random(in: 1..<10_000_000_000)})
+        
+        for number in random{
+            let parser=try XCTUnwrap(GeezNumber(number: number))
+            
+            let reversedParser=try XCTUnwrap(GeezNumber(string: parser.geez), "conversion of \(parser.geez) (\(number) failed")
+            XCTAssert(reversedParser.arabic == number, "print \(parser.geez) (expected \(number)) converted to \(reversedParser.arabic)")
+        }
+        
+    }
+    
 }
 
