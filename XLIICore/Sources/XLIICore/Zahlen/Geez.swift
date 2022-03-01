@@ -26,13 +26,8 @@ struct GeezNumber{
             let div100_ones=div100.quotient.quotientAndRemainder(dividingBy: 10)
             let div10=div100.remainder.quotientAndRemainder(dividingBy: 10)
             
-//            let onesString:String?
-//            if multiplier > 1{// no leading zeros for ten thousands
-//                onesString=GeezNumber.table[div10_000.remainder > 1 ? div10.remainder : 0]
-//            }
-//            else{
-                let onesString=GeezNumber.table[div10.remainder]
-//            }
+            let onesString=GeezNumber.table[div10.remainder]
+
             
             let tensString=GeezNumber.table[div10.quotient * 10]
             

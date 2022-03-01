@@ -107,8 +107,8 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                 case .glagolitic:
                     return formatter.macheGlagolitischeZahl(aus: number)
                 case .cyrillic:
-                    #warning("use user prefs")
-                    return formatter.macheKyrillischeZahl(aus: number, titlo: true, mitKreisen: false, Großbuchstaben: false)
+                    let useUppercase=UserDefaults.shared.bool(forKey: UserDefaults.Keys.uppercaseCyrillicKey)
+                    return formatter.macheKyrillischeZahl(aus: number, titlo: true, mitKreisen: false, Großbuchstaben: useUppercase)
                 case .geez:
                     return formatter.macheGeezZahl(aus: number)
                 case .localized(let locale):

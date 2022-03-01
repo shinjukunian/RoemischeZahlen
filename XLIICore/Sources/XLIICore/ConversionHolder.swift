@@ -10,6 +10,16 @@ import SwiftUI
 
 public class NumeralConversionHolder: Equatable{
     
+    public struct ConversionContext:Equatable{
+        public var convertAllToDaiji = false
+        public var uppercaseCyrillic = true
+        public var useTitlo = true
+        public var useCyrillicDiacriticNotation = false
+        public var uppercaseNumericBases = true
+        
+        public init(){}
+    }
+    
     public static func == (lhs: NumeralConversionHolder, rhs: NumeralConversionHolder) -> Bool {
         lhs.input == rhs.input && lhs.output == rhs.output && lhs.originalText == rhs.originalText
     }
@@ -39,11 +49,13 @@ public class NumeralConversionHolder: Equatable{
     public let input:Int
     public let output:Output
     let originalText:String
+    let context:ConversionContext
     
-    public init(input:Int, output:Output, originalText:String){
+    public init(input:Int, output:Output, originalText:String, context:ConversionContext = ConversionContext()){
         self.input=input
         self.output=output
         self.originalText=originalText
+        self.context=context
         self.formattedOutput =  parse()
     }
     
@@ -58,7 +70,7 @@ public class NumeralConversionHolder: Equatable{
         case .arabisch:
             formattedOutput = integerFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber
         case .japanisch_bank:
-            formattedOutput = formatter.macheJapanischeBankZahl(aus: zahl, einfach: true) ?? noValidNumber
+            formattedOutput = formatter.macheJapanischeBankZahl(aus: zahl, einfach: !context.convertAllToDaiji) ?? noValidNumber
         case .babylonian:
             formattedOutput = formatter.macheBabylonischeZahl(aus: zahl) ?? noValidNumber
         case .aegean:
@@ -73,7 +85,7 @@ public class NumeralConversionHolder: Equatable{
             localizedSpellOutFormatter.locale=locale
             formattedOutput = localizedSpellOutFormatter.string(from: NSNumber(value: zahl)) ?? noValidNumber
         case .numeric(let base):
-            formattedOutput = String(zahl, radix: base, uppercase: true)
+            formattedOutput = String(zahl, radix: base, uppercase: context.uppercaseNumericBases)
         case .phoenician:
             formattedOutput = formatter.machePhoenizischeZahl(aus: zahl) ?? noValidNumber
         case .kharosthi:
@@ -85,7 +97,7 @@ public class NumeralConversionHolder: Equatable{
         case .glagolitic:
             formattedOutput = GlagoliticNumer(number: zahl)?.glacolitic ?? noValidNumber
         case .cyrillic:
-            formattedOutput = formatter.macheKyrillischeZahl(aus: zahl, titlo: true, mitKreisen: false, Großbuchstaben: false) ?? noValidNumber
+            formattedOutput = formatter.macheKyrillischeZahl(aus: zahl, titlo: context.useTitlo, mitKreisen: context.useCyrillicDiacriticNotation, Großbuchstaben: context.uppercaseCyrillic) ?? noValidNumber
         case .geez:
             formattedOutput = GeezNumber(number: zahl)?.geez ?? noValidNumber
         }

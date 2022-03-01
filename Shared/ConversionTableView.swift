@@ -18,10 +18,22 @@ struct ConversionTableView: View {
     
     @State var selectedDisplayItem:NumeralConversionHolder?
     
+    @AppStorage(UserDefaults.Keys.daijiCompleteKey) var useDaijiForAll = false
+    @AppStorage(UserDefaults.Keys.uppercaseCyrillicKey) var uppercaseCyrillic:Bool = false
+    @AppStorage(UserDefaults.Keys.uppercaseNumericLettersKey) var uppercaseNumericLetters:Bool = true
+    
+    var context:NumeralConversionHolder.ConversionContext{
+        var ctx=NumeralConversionHolder.ConversionContext()
+        ctx.convertAllToDaiji=useDaijiForAll
+        ctx.uppercaseCyrillic=uppercaseCyrillic
+        ctx.uppercaseNumericBases=uppercaseNumericLetters
+        return ctx
+    }
+    
     var body: some View {
         ScrollView{
             ForEach(displayItems, content: {outPut in
-                let hh=NumeralConversionHolder(input: selectedConversion.value, output: outPut, originalText: selectedConversion.originalText)
+                let hh=NumeralConversionHolder(input: selectedConversion.value, output: outPut, originalText: selectedConversion.originalText, context: context)
 
                 
                 NumericalConversionView(holder: hh, isSelected: selectedDisplayItem == hh)
@@ -84,10 +96,12 @@ struct ConversionTableView: View {
 struct ConversionTableView_Previews: PreviewProvider {
     static var previews: some View {
         let holder=ConversionInputHolder()
-        holder.input=""
+        holder.input="93"
         
         return ConversionTableView(holder: holder,
-                                   displayItems: [.currentLocale, .localized(locale: Locale(identifier: "el_GR"))],
+                                   displayItems: [.japanisch_bank,
+                                                  .numeric(base: 16)
+                                                  ,.localized(locale: Locale(identifier: "el_GR"))],
                                    selectedConversion: holder.results.first ?? .empty)
         
     }

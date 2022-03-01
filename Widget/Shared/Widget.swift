@@ -45,10 +45,15 @@ struct Provider: IntentTimelineProvider {
 @main
 struct Widget_iOS: Widget {
     let kind: String = "Widget_iOS"
+    
+    init(){
+        UserDefaults.shared.registerDefaults()
+    }
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WidgetView(entry: entry)
+                .defaultAppStorage(.shared)
         }
         .configurationDisplayName(Text("XLII"))
         .description(Text("This is a XLII time widget."))

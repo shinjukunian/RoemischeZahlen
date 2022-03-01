@@ -15,14 +15,28 @@ extension UserDefaults{
         static let showSideBarKey = "showSideBarKey"
         static let preferredBasesKey = "preferredBases"
         static let historyPreferenceKey = "historyPreferenceKey"
+        static let uppercaseCyrillicKey = "uppercaseCyrillicKey"
+        static let uppercaseNumericLettersKey = "uppercaseNumericLettersKey"
     }
     
     static var shared:UserDefaults{
         #if os(macOS)
-        UserDefaults(suiteName: ".group.telethon.XLII")!
+        UserDefaults(suiteName: "DVQ96RL2KL.group.telethon.XLII")!
         #else
-        UserDefaults(suiteName: "DVQ96RL@KL.group.telethon.XLII")!
+        UserDefaults(suiteName: "group.telethon.XLII")!
         #endif
+    }
+    
+    var `defaults` : [String:Any]  {
+        [UserDefaults.Keys.uppercaseNumericLettersKey : true,
+         UserDefaults.Keys.daijiCompleteKey : false,
+         UserDefaults.Keys.uppercaseCyrillicKey : false,
+         UserDefaults.Keys.allowBasesBesides10Key : true
+        ]
+    }
+    
+    func registerDefaults(){
+        self.register(defaults: defaults)
     }
 }
 

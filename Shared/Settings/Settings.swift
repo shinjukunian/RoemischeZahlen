@@ -17,7 +17,12 @@ struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage(UserDefaults.Keys.allowBasesBesides10Key) var otherBases:Bool = true
     
+    @AppStorage(UserDefaults.Keys.uppercaseCyrillicKey) var uppercaseCyrillic:Bool = false
+    
+    @AppStorage(UserDefaults.Keys.uppercaseNumericLettersKey) var uppercaseNumericLetters:Bool = true
+    
     @AppStorage(UserDefaults.Keys.preferredBasesKey) var historyData = HistoryPreference.empty.rawValue
+    
     
     @Environment(\.openURL) var openURL
     @State var showBaseSelection:Bool = false
@@ -31,6 +36,11 @@ struct SettingsView: View {
             Section(content: {
                 Toggle(isOn: $daijiForAll, label: {Text("Convert all characters to  Daiji")})
                     .help(Text("Convert all characters to Daiji. This usage is archaic."))
+                
+                Toggle(isOn: $uppercaseCyrillic, label: {Text("Use uppercase letters for Cyrillic conversion")})
+                
+                Toggle(isOn: $uppercaseNumericLetters, label: {Text("Use uppercase letters for conversion to higher numeric bases")})
+                
                 
                 Toggle(isOn: $otherBases, label: {Text("Allow bases other than 10 for numeric input")})
                     .help(Text("Parse numeric input for other bases, e.g. binary or hexadecimal."))

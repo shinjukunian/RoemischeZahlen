@@ -61,6 +61,8 @@ struct FormattedDate{
     let year:Int
     let output:Output
     
+    let ctx:NumeralConversionHolder.ConversionContext
+    
     static let dummy = FormattedDate(year: 2022, month: 2, day: 25, hour: 12, minute: 12, output: .römisch)
     
     init(year:Int, month:Int, day:Int, hour:Int, minute:Int, output:Output){
@@ -70,6 +72,10 @@ struct FormattedDate{
         self.year=year
         self.day=day
         self.month=month
+        var ctx=NumeralConversionHolder.ConversionContext()
+        ctx.uppercaseCyrillic = UserDefaults.shared.bool(forKey: UserDefaults.Keys.uppercaseCyrillicKey)
+        ctx.convertAllToDaiji = UserDefaults.shared.bool(forKey: UserDefaults.Keys.daijiCompleteKey)
+        self.ctx=ctx
     }
     
     var time:String{

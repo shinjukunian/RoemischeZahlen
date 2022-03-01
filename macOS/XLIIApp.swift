@@ -11,6 +11,10 @@ import SwiftUI
 struct XLIIApp: App {
     
     @State private var presentingCamera = false
+    
+    init(){
+        UserDefaults.shared.registerDefaults()
+    }
 
     var body: some Scene {
         WindowGroup{
