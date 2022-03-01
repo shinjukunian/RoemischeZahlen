@@ -20,6 +20,9 @@ struct ContentView: View {
     
     var body: some View {
         content
+            
+            .ignoresSafeArea(.all, edges: [.bottom])
+            
             .background(Color(uiColor: .systemGroupedBackground))
             .toolbar(content: {
                 
@@ -71,11 +74,13 @@ struct ContentView: View {
                         ToolbarItem(placement: .navigationBarTrailing, content: {
                             settingsButton
                         })
-                    }).padding(.top)
-                    .edgesIgnoringSafeArea([.bottom])
+                    })
+                    .padding(.vertical)
+                    
                 Divider().background(Color.accentColor)
                 OutputSelectionView(holder: holder)
             }
+            
 
             
         }
@@ -92,13 +97,13 @@ struct ContentView: View {
                         }).disabled(holder.results.isEmpty)
                     })
                     
-                    ToolbarItemGroup(placement: .bottomBar, content: {
+                    ToolbarItemGroup(placement: .navigationBarLeading, content: {
                         Spacer()
                         settingsButton
                     })
                     
                 })
-                .padding(.top)
+                .padding(.vertical)
                 .sheet(isPresented: $showLanguageSelection, onDismiss: {}, content: {
                     NavigationView{
                         OutputSelectionView(holder: holder)
@@ -115,6 +120,6 @@ struct ContentView_Previews: PreviewProvider {
         let holder=ConversionInputHolder()
         holder.input="m"
         return ContentView(holder: holder)
-            .previewInterfaceOrientation(.landscapeRight)
+            .previewInterfaceOrientation(.portrait)
     }
 }
