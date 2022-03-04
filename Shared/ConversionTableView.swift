@@ -17,6 +17,7 @@ struct ConversionTableView: View {
     let selectedConversion:NumericParsingResult
     
     @State var selectedDisplayItem:NumeralConversionHolder?
+    @State var presentDetail:Bool = false
     
     @AppStorage(UserDefaults.Keys.daijiCompleteKey) var useDaijiForAll = false
     @AppStorage(UserDefaults.Keys.uppercaseCyrillicKey) var uppercaseCyrillic:Bool = false
@@ -39,6 +40,11 @@ struct ConversionTableView: View {
                 NumericalConversionView(holder: hh, isSelected: selectedDisplayItem == hh)
                     .onTapGesture {
                         selectedDisplayItem = hh
+                        #if os(iOS)
+                        if hh.output.buttons != nil{
+                            presentDetail.toggle()
+                        }
+                        #endif
                     }
                     .onDrag({
                         draggedItem = outPut
@@ -64,13 +70,32 @@ struct ConversionTableView: View {
                             }, label: {
                                 Label(title: {Text("Remove")}, icon: {Image(systemName: "trash")})
                             })
-
                         }
                         
                     })
                     
             })
-        }
+        }.sheet(isPresented: $presentDetail, onDismiss: {
+            
+        }, content: {
+            if let selectedDisplayItem=selectedDisplayItem {
+                let holder=ConversionDetailHolder(item: selectedDisplayItem)
+                ConversionDetailView()
+                    .environmentObject(holder)
+                    .toolbar(content: {
+                        ToolbarItem(placement: .confirmationAction, content: {
+                            Button(action: {
+                                presentDetail.toggle()
+                            }, label: {Text("Done")})
+                        })
+                    })
+                    
+            }
+            else{
+                EmptyView() //should never happen
+            }
+            
+        })
     }
     
     @ViewBuilder

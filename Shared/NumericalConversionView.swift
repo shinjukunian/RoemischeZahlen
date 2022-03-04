@@ -22,12 +22,15 @@ struct NumericalConversionView: View {
                 HStack{
                     Text(verbatim: holder.output.description)
                         .font(.caption2)
+                    if holder.output.buttons != nil{
+                        Image(systemName: "info.circle")
+                    }
                     Spacer()
                     HStack{
                         
                         if let url=holder.output.url{
                             Link(destination: url, label: {
-                                Image(systemName: "info.circle")
+                                Image(systemName: "safari")
                             })
                         }
                         
@@ -68,7 +71,7 @@ struct NumericalConversionView: View {
 
 struct NumericalConversionView_Previews: PreviewProvider {
     static var previews: some View {
-        NumericalConversionView(holder: .init(input: 42, output: .babylonian, originalText: "42"), isSelected: true)
+        NumericalConversionView(holder: .init(input: 42, output: .hieroglyph, originalText: "42"), isSelected: true)
     }
 }
 
