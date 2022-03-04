@@ -365,5 +365,37 @@ class XLIICoreTests: XCTestCase {
         
     }
     
+    
+    func testSangi()throws{
+        let cases = [
+            231:"𝍡𝍫𝍠",
+            5089:"𝍭〇𝍰𝍨",
+            407: "𝍣〇𝍦",
+            6720: "𝍮𝍦𝍪〇"
+        ]
+        
+        XCTAssert("𝍮𝍦𝍪〇".potentielleSangiZahl == true)
+        
+        let formatter=ExotischeZahlenFormatter()
+        for c in cases{
+            let number=try XCTUnwrap(formatter.macheSangiZahl(aus: c.key))
+//            number.unicodeScalars.forEach({print(String(Int($0.value), radix: 16))})
+            XCTAssert(number == c.value, "conversion failed for \(c.key): \rxpected \(c.value),\rresult: \(number)")
+            let reverse=try XCTUnwrap(formatter.macheZahl(aus:number), "backconversion failed \(c.value)")
+            XCTAssert(reverse.locale == .sangi)
+            XCTAssert(reverse.value == c.key)
+        }
+        
+        let random=(0..<20000).map({_ in return Int.random(in: 1..<10_000_000_000)})
+        
+        for number in random{
+            let converted=try XCTUnwrap(formatter.macheSangiZahl(aus: number))
+            
+            let reversedParser=try XCTUnwrap(formatter.macheZahl(aus: converted), "conversion of \(converted) (\(number) failed")
+            XCTAssert(reversedParser.locale == .sangi)
+            XCTAssert(reversedParser.value == number, "print \(converted) (expected \(number)) converted to \(reversedParser.value)")
+        }
+    }
+    
 }
 

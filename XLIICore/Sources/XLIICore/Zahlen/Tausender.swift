@@ -75,7 +75,7 @@ struct Tausender: AlsArabischeZahl{
 }
 
 
-struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl{
+struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl{
     
     let anzahl:Int
     let multiplikator:Int64 = 1000
@@ -128,17 +128,6 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
                                               9:"𐄪"
     ]
     
-    let arabischSangiDict: [Int : String] = [0:" ",
-                                             1:"𝍩",
-                                             2:"𝍪",
-                                             3:"𝍫",
-                                             4:"𝍬",
-                                             5:"𝍭",
-                                             6:"𝍮",
-                                             7:"𝍯",
-                                             8:"𝍰",
-                                             9:"𝍱"
-    ]
     
     init(Zahl:Int){
         let zehnTausender = Zahl / (Int(multiplikator)*10)

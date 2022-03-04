@@ -113,6 +113,8 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = .cyrillic
         case .geez:
             self = .geez
+        case .sangi:
+            self = .sangi
             
         }
     }

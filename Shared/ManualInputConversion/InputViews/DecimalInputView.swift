@@ -29,7 +29,12 @@ struct DecimalInputView: View {
                                 .fontWeight(.bold)
                                 .frame(minWidth:40, maxWidth: 50)
                                 .frame(minHeight: 40, maxHeight:40)
-                        }).buttonStyle(InputViewButtonStyle())
+                        })
+                        #if os(macOS)
+                            .buttonStyle(InputViewButtonStyle())
+                        #else
+                            .buttonStyle(.bordered)
+                        #endif
                             
                             
                     })

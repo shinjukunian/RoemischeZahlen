@@ -110,7 +110,7 @@ class ConversionDetailHolder:ObservableObject{
                     return
                 }
             case _ where output == foundOutput:
-                guard output == foundOutput, backConverted == textualInput else{
+                guard backConverted == textualInput else{
                     self.state = .invalid
                     return
                 }

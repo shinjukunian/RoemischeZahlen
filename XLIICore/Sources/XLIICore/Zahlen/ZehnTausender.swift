@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl{
+struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl{
     let anzahl:Int
     let multiplikator:Int64 = 10000
     
@@ -29,19 +29,7 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
                                               9:"𐄳"
     ]
     
-    let arabischSangiDict: [Int : String] = [0:"",
-                                             1:"𝍠",
-                                             2:"𝍡",
-                                             3:"𝍢",
-                                             4:"𝍣",
-                                             5:"𝍤",
-                                             6:"𝍥",
-                                             7:"𝍦",
-                                             8:"𝍧",
-                                             9:"𝍨"
-    ]
-    
-    
+   
     
     init(Zahl:Int){
         let hundertMillionen = Zahl / 100_000_000

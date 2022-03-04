@@ -33,18 +33,12 @@
 		5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C8263E75D000D6940B /* CameraView.swift */; };
 		5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
 		5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
-		5A4B086727D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */; };
-		5A4B086827D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */; };
 		5A50534D27D0CD5B00AEC970 /* ConversionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534C27D0CD5B00AEC970 /* ConversionDetailView.swift */; };
 		5A50534E27D0CD5B00AEC970 /* ConversionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534C27D0CD5B00AEC970 /* ConversionDetailView.swift */; };
 		5A50535027D1776800AEC970 /* ConversionDetailHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534F27D1776800AEC970 /* ConversionDetailHolder.swift */; };
 		5A50535127D1776800AEC970 /* ConversionDetailHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534F27D1776800AEC970 /* ConversionDetailHolder.swift */; };
 		5A50535827D186A500AEC970 /* TextualInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50535727D186A500AEC970 /* TextualInputView.swift */; };
 		5A50535927D186A500AEC970 /* TextualInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50535727D186A500AEC970 /* TextualInputView.swift */; };
-		5A50535B27D1893400AEC970 /* Output+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50535A27D1893400AEC970 /* Output+Buttons.swift */; };
-		5A50535C27D1893400AEC970 /* Output+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50535A27D1893400AEC970 /* Output+Buttons.swift */; };
-		5A50535E27D1A2BB00AEC970 /* ButtonConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50535D27D1A2BB00AEC970 /* ButtonConfigurations.swift */; };
-		5A50535F27D1A2BB00AEC970 /* ButtonConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50535D27D1A2BB00AEC970 /* ButtonConfigurations.swift */; };
 		5A54F3A126411F58009D6882 /* ROIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54F3A026411F58009D6882 /* ROIView.swift */; };
 		5A54F3A226411F58009D6882 /* ROIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A54F3A026411F58009D6882 /* ROIView.swift */; };
 		5A5AE98227C1EEC10020A0FA /* NumericalConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */; };
@@ -96,8 +90,6 @@
 		5A871E6B27C3C277006606CD /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A871E6A27C3C277006606CD /* OutputView.swift */; };
 		5A871E6C27C3C277006606CD /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A871E6A27C3C277006606CD /* OutputView.swift */; };
 		5A93420327C4974900AD3947 /* OutputSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A93420227C4974900AD3947 /* OutputSelectionView.swift */; };
-		5AA612BF27D1ADAF00989577 /* NumericButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA612BE27D1ADAF00989577 /* NumericButtonConfiguration.swift */; };
-		5AA612C027D1ADAF00989577 /* NumericButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA612BE27D1ADAF00989577 /* NumericButtonConfiguration.swift */; };
 		5AA612C227D1B27000989577 /* ConversionDetailResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA612C127D1B27000989577 /* ConversionDetailResultView.swift */; };
 		5AA612C327D1B27000989577 /* ConversionDetailResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA612C127D1B27000989577 /* ConversionDetailResultView.swift */; };
 		5AA75D7E27C8D49400D1AA0A /* XLII_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 5AA75D8327C8D49400D1AA0A /* XLII_Widget.intentdefinition */; };
@@ -200,12 +192,9 @@
 		5A3D33D927C4678900C7C27F /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5A40F9CB263E765200D6940B /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrahmiButtonConfiguration.swift; sourceTree = "<group>"; };
 		5A50534C27D0CD5B00AEC970 /* ConversionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionDetailView.swift; sourceTree = "<group>"; };
 		5A50534F27D1776800AEC970 /* ConversionDetailHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionDetailHolder.swift; sourceTree = "<group>"; };
 		5A50535727D186A500AEC970 /* TextualInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextualInputView.swift; sourceTree = "<group>"; };
-		5A50535A27D1893400AEC970 /* Output+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Output+Buttons.swift"; sourceTree = "<group>"; };
-		5A50535D27D1A2BB00AEC970 /* ButtonConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonConfigurations.swift; sourceTree = "<group>"; };
 		5A54F3A026411F58009D6882 /* ROIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROIView.swift; sourceTree = "<group>"; };
 		5A5AE98127C1EEC10020A0FA /* NumericalConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericalConversionView.swift; sourceTree = "<group>"; };
 		5A5AE98427C207570020A0FA /* OutputSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSelectionView.swift; sourceTree = "<group>"; };
@@ -238,7 +227,6 @@
 		5A82312427C895F000E61C86 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		5A871E6A27C3C277006606CD /* OutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
 		5A93420227C4974900AD3947 /* OutputSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputSelectionView.swift; sourceTree = "<group>"; };
-		5AA612BE27D1ADAF00989577 /* NumericButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericButtonConfiguration.swift; sourceTree = "<group>"; };
 		5AA612C127D1B27000989577 /* ConversionDetailResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionDetailResultView.swift; sourceTree = "<group>"; };
 		5AA75D8227C8D49400D1AA0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/XLII_Widget.intentdefinition; sourceTree = "<group>"; };
 		5AA75D8927C8D50300D1AA0A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/XLII_Widget.strings; sourceTree = "<group>"; };
@@ -414,12 +402,8 @@
 		5A50535327D1864D00AEC970 /* InputViews */ = {
 			isa = PBXGroup;
 			children = (
-				5A50535A27D1893400AEC970 /* Output+Buttons.swift */,
 				5AF4B43927D0C31F00EF549B /* DecimalInputView.swift */,
 				5A50535727D186A500AEC970 /* TextualInputView.swift */,
-				5A50535D27D1A2BB00AEC970 /* ButtonConfigurations.swift */,
-				5AA612BE27D1ADAF00989577 /* NumericButtonConfiguration.swift */,
-				5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */,
 			);
 			path = InputViews;
 			sourceTree = "<group>";
@@ -755,7 +739,6 @@
 				5A871E6B27C3C277006606CD /* OutputView.swift in Sources */,
 				5A68E5BE27C3AE2C00D5BC40 /* MailController.swift in Sources */,
 				5A66C3FF27C7CE3700B48D75 /* BasePreference.swift in Sources */,
-				5A4B086727D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */,
 				5A3D33D827C4672B00C7C27F /* ContentView.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
 				5A8230EE27C8660500E61C86 /* HistoryItem.swift in Sources */,
@@ -763,7 +746,6 @@
 				5AA612C227D1B27000989577 /* ConversionDetailResultView.swift in Sources */,
 				5A13656127C78FA500499017 /* BaseEditingView.swift in Sources */,
 				5A54F3A126411F58009D6882 /* ROIView.swift in Sources */,
-				5A50535E27D1A2BB00AEC970 /* ButtonConfigurations.swift in Sources */,
 				5AA75D7E27C8D49400D1AA0A /* XLII_Widget.intentdefinition in Sources */,
 				5A50534D27D0CD5B00AEC970 /* ConversionDetailView.swift in Sources */,
 				5A606FB8263E873000C3DE62 /* Recognizer.swift in Sources */,
@@ -772,7 +754,6 @@
 				5A50535827D186A500AEC970 /* TextualInputView.swift in Sources */,
 				5AB2BEFA27C5CC16004CF66C /* BaseSelectionView.swift in Sources */,
 				5A13655E27C78F8400499017 /* BaseAction.swift in Sources */,
-				5AA612BF27D1ADAF00989577 /* NumericButtonConfiguration.swift in Sources */,
 				5A68E5BB27C3AB5800D5BC40 /* Settings.swift in Sources */,
 				5A5AE98227C1EEC10020A0FA /* NumericalConversionView.swift in Sources */,
 				5A66C40927C8515300B48D75 /* ConversionInputHolder.swift in Sources */,
@@ -782,7 +763,6 @@
 				5AB2BEF727C5AA82004CF66C /* Commands.swift in Sources */,
 				5AF4B43A27D0C31F00EF549B /* DecimalInputView.swift in Sources */,
 				5A606FBB263FD7AE00C3DE62 /* OverlayView.swift in Sources */,
-				5A50535B27D1893400AEC970 /* Output+Buttons.swift in Sources */,
 				5A5AE98527C207570020A0FA /* OutputSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,14 +772,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A606FB6263E86B700C3DE62 /* SceneStability.swift in Sources */,
-				5AA612C027D1ADAF00989577 /* NumericButtonConfiguration.swift in Sources */,
-				5A50535F27D1A2BB00AEC970 /* ButtonConfigurations.swift in Sources */,
 				5A66C40027C7CE3700B48D75 /* BasePreference.swift in Sources */,
 				5AA612C327D1B27000989577 /* ConversionDetailResultView.swift in Sources */,
 				5A66C40A27C8515300B48D75 /* ConversionInputHolder.swift in Sources */,
 				5A66C40C27C8515B00B48D75 /* NumericParsingResult.swift in Sources */,
-				5A4B086827D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */,
-				5A50535C27D1893400AEC970 /* Output+Buttons.swift in Sources */,
 				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
 				5A13655F27C78F8400499017 /* BaseAction.swift in Sources */,
 				5A871E6C27C3C277006606CD /* OutputView.swift in Sources */,

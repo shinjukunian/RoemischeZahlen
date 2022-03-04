@@ -27,11 +27,6 @@ protocol AlsAegaeischeZahl: AlsZahl {
     init?(aegeanNumber:String)
 }
 
-protocol AlsSangiZahl: AlsZahl {
-    var arabischSangiDict: [Int:String] {get}
-    var sangi: String {get}
-}
-
 protocol AlsHieroglyphenZahl: AlsZahl {
     var arabischHieroglyphenDict: [Int:String] {get}
     var hieroglyphe: String {get}
@@ -80,11 +75,6 @@ extension AlsAegaeischeZahl{
     }
 }
 
-extension AlsSangiZahl{
-    var sangi: String{
-        return self.arabischSangiDict[self.anzahl] ?? ""
-    }
-}
 
 extension AlsBabylonischeZahl{
     var babylonisch:String{

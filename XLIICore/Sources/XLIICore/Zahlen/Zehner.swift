@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHieroglyphenZahl{
+struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsHieroglyphenZahl{
     let anzahl:Int
     let multiplikator:Int64 = 10
     let arabischRömischDict=[0:"",
@@ -69,17 +69,7 @@ struct Zehner: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanis
                                               9:"𐄘"
     ]
     
-    let arabischSangiDict: [Int : String] = [0:" ",
-                                             1:"𝍩",
-                                             2:"𝍪",
-                                             3:"𝍫",
-                                             4:"𝍬",
-                                             5:"𝍭",
-                                             6:"𝍮",
-                                             7:"𝍯",
-                                             8:"𝍰",
-                                             9:"𝍱"
-    ]
+    
     
     let arabischHieroglyphenDict: [Int : String] = [0:"",
                                                     1:"𓎆",

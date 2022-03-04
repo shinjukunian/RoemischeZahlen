@@ -24,6 +24,7 @@ public class ExotischeZahlenFormatter{
             case glagolitic
             case cyrillic
             case geez
+            case sangi
         }
         
         public let value:Int
@@ -132,21 +133,7 @@ public class ExotischeZahlenFormatter{
     }
     
     public func macheSangiZahl(aus Zahl:Int)->String?{
-        guard Zahl > 0, Zahl < 100_000 else {
-            return nil
-        }
-        
-        let z:[AlsSangiZahl]=[ZehnTausender(Zahl: Zahl),
-                              JapanischeTausender(Zahl: Zahl),
-                              Hunderter(Zahl: Zahl),
-                              Zehner(Zahl: Zahl),
-                              Einer(Zahl: Zahl)
-        ]
-        
-        let text = z.reduce("", {r, z in
-            r+z.sangi
-        }).trimmingPrefix(while: {$0 == " "})
-        return String(text)
+        return SangiNumber(number: Zahl).sangi
     }
     
     public func macheHieroglyphenZahl(aus Zahl:Int)->String?{
@@ -203,6 +190,10 @@ public class ExotischeZahlenFormatter{
         case _ where text.potentielleGeezZahl:
             if let zahl=GeezNumber(string: text){
                 return NumericalOutput(value: zahl.arabic, locale: .geez)
+            }
+        case _ where text.potentielleSangiZahl:
+            if let zahl=SangiNumber(text: text){
+                return NumericalOutput(value: zahl.arabic, locale: .sangi)
             }
         default:
             return nil

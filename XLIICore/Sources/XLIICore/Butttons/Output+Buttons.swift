@@ -6,31 +6,39 @@
 //
 
 import Foundation
-import XLIICore
 
-protocol ButtonProviding{
+public protocol ButtonProviding{
     var buttonValues:[[String]] {get}
     var values:[[Int]] {get}
+    
+    @available(iOS 15.0, *)
+    @available(macOS 12.0, *)
     var buttonLabels:[[String]] {get}
+    
     var formattingHandler:(String)->String {get}
 }
 
-extension ButtonProviding{
+
+public extension ButtonProviding{
     var formattingHandler:(String)->String  {
         return {s in return s}
     }
+    
+    @available(iOS 15.0, *)
+    @available(macOS 12.0, *)
     var buttonLabels:[[String]]{
         return self.values.map({$0.map({$0.formatted()})})
     }
 }
 
+
 extension Output{
-    struct ButtonConfiguration: ButtonProviding{
-        let buttonValues:[[String]]
-        let values:[[Int]]
+    public struct ButtonConfiguration: ButtonProviding{
+        public let buttonValues:[[String]]
+        public let values:[[Int]]
     }
     
-    var buttons:ButtonProviding?{
+    public var buttons:ButtonProviding?{
         switch self {
         case .römisch:
             return ButtonConfiguration(buttonValues: [["M"],["C","D"],["X","L"],["I","V"]], values: [[1000],[100,500],[10,50],[1,5]])
@@ -46,7 +54,7 @@ extension Output{
         case .aegean:
             return AegeanButtonConfiguration()
         case .sangi:
-            return nil
+            return ButtonConfiguration(buttonValues: [["𝍯","𝍰","𝍱"],["𝍦","𝍧","𝍨"],["𝍬","𝍭","𝍮"],["𝍣","𝍤","𝍥"],["𝍩","𝍪","𝍫"],["𝍠","𝍡","𝍢"],["〇"]], values: [[7,8,9],[7,8,9],[4,5,6],[4,5,6],[1,2,3],[1,2,3],[0]])
         case .hieroglyph:
             return HieroglyphButtonConfiguration()
         case .suzhou:

@@ -79,8 +79,6 @@ extension String{
         let set2=CharacterSet(charactersIn: UnicodeScalar(0xA460)! ... UnicodeScalar(0xA69F)!)
         var set3=set1.union(set2)
         set3.insert(UnicodeScalar(0x20DD)!)
-//        set3.insert(charactersIn: UnicodeScalar(0xA670)!...UnicodeScalar(0xA672)!)
-//        set3.insert(<#T##character: Unicode.Scalar##Unicode.Scalar#>)
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
         return vorhandeneBuchstaben.isSubset(of: set3)
     }
@@ -91,6 +89,14 @@ extension String{
         let set=CharacterSet(charactersIn: startK...endK)
         let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
         return vorhandeneBuchstaben.isSubset(of: set)
+    }
+    
+    var potentielleSangiZahl:Bool{// something is very wrong with the standard implementation but this works
+        let characters="〇𝍠𝍡𝍢𝍣𝍤𝍥𝍦𝍧𝍨𝍩𝍪𝍫𝍬𝍭𝍮𝍯𝍰𝍱"
+        let set=Set(characters.map{$0})
+        let vorhandeneBuchstaben=Set(self.map({$0})).filter({$0.isWhitespace == false})
+        let contained=vorhandeneBuchstaben.isSubset(of: set)
+        return contained
     }
 }
 
