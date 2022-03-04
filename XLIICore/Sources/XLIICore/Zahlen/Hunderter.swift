@@ -127,19 +127,21 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
     }
     
     init(japanischeZahl:String) {
-        let a=[self.arabischJapanischDict,
-               self.arabischJapanischBankDict]
-            .compactMap {
-                $0.sorted(by: {$0.0 > $1.0})
-                    .first(where: {_,n in
-                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                            return true
-                        }
-                        return false
-                    })
+        let a=[self.arabischJapanischDict, self.arabischJapanischBankDict, self.arabischJapanischBankDict_einfach]
+            .map{
+                $0.compactMap({value,n->(Range<String.Index>,Int)? in
+                    if let range=japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive]){
+                        return (range,value)
+                    }
+                    return nil
+                })
             }
+            .flatMap({$0})
+            .min(by: {r1,r2 in
+                r1.0.lowerBound < r2.0.lowerBound
+            })
         
-        self.anzahl=a.first?.key ?? 0
+        self.anzahl=a?.1 ?? 0
     }
     
     init?(hieroglyph:String){

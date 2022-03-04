@@ -37,7 +37,7 @@ struct ConversionDetailView: View {
                 }
             }.padding()
             
-            inputView
+            inputView.padding(.horizontal)
                
 
             
@@ -87,12 +87,16 @@ struct ConversionDetailView: View {
                 Image(systemName: "clear")
             })
         })
+            .keyboardShortcut(.delete, modifiers: [])
+        #if os(macOS)
+            .buttonStyle(.borderless)
+        #endif
     }
     
 }
 
 struct ConversionView_Previews: PreviewProvider {
     static var previews: some View {
-        ConversionDetailView().environmentObject(ConversionDetailHolder(output: .kharosthi))
+        ConversionDetailView().environmentObject(ConversionDetailHolder(output: .glagolitic))
     }
 }

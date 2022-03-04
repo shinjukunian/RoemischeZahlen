@@ -56,7 +56,7 @@ struct GlagoliticNumer{
     ]
     
     init?(number:Int){
-        guard number < 3000 else{
+        guard number < 4000 else{
             return nil
         }
         self.arabic = number

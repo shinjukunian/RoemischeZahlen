@@ -8,7 +8,7 @@
 import Foundation
 
 //http://prevodnik.gorazd.org/old-church-slavonic-numerals-converter-kb-info
-struct CyrillicNumber: Cyrillic{
+public struct CyrillicNumber: Cyrillic{
     
     let arabic:Int
     let cyrillic:String

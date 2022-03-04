@@ -74,7 +74,7 @@ extension CyrillicNumber{
                         .filter({titloSet.contains($0) == false}))
     }
     
-    static func numericallyEqual(_ lhs:String, _ rhs:String)->Bool{
+    public static func numericallyEqual(_ lhs:String, _ rhs:String)->Bool{
         return CyrillicNumber.strippingTitlo(lhs).uppercased() == CyrillicNumber.strippingTitlo(rhs).uppercased()
     }
     

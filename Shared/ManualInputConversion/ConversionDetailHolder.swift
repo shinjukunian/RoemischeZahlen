@@ -96,10 +96,25 @@ class ConversionDetailHolder:ObservableObject{
     
     func parseTextual(){
         if let result=formater.macheZahl(aus: textualInput),
-           let foundOutput=Output(output: result),
-           output == foundOutput{
+           let foundOutput=Output(output: result){
             let backConverted=NumeralConversionHolder(input: result.value, output: output, originalText: "").formattedOutput
-            guard backConverted == textualInput else{
+            switch output{
+            case .cyrillic where output == foundOutput:
+                guard CyrillicNumber.numericallyEqual(backConverted, textualInput) else{
+                    self.state = .invalid
+                    return
+                }
+            case .japanisch where foundOutput == .japanisch, .japanisch_bank where foundOutput == .japanisch:
+                guard backConverted == textualInput else{
+                    self.state = .invalid
+                    return
+                }
+            case _ where output == foundOutput:
+                guard output == foundOutput, backConverted == textualInput else{
+                    self.state = .invalid
+                    return
+                }
+            default:
                 self.state = .invalid
                 return
             }

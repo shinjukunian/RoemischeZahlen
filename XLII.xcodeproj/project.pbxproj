@@ -33,6 +33,8 @@
 		5A40F9CA263E75D000D6940B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9C8263E75D000D6940B /* CameraView.swift */; };
 		5A40F9CC263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
 		5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A40F9CB263E765200D6940B /* PreviewView.swift */; };
+		5A4B086727D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */; };
+		5A4B086827D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */; };
 		5A50534D27D0CD5B00AEC970 /* ConversionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534C27D0CD5B00AEC970 /* ConversionDetailView.swift */; };
 		5A50534E27D0CD5B00AEC970 /* ConversionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534C27D0CD5B00AEC970 /* ConversionDetailView.swift */; };
 		5A50535027D1776800AEC970 /* ConversionDetailHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50534F27D1776800AEC970 /* ConversionDetailHolder.swift */; };
@@ -198,6 +200,7 @@
 		5A3D33D927C4678900C7C27F /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		5A40F9C8263E75D000D6940B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5A40F9CB263E765200D6940B /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrahmiButtonConfiguration.swift; sourceTree = "<group>"; };
 		5A50534C27D0CD5B00AEC970 /* ConversionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionDetailView.swift; sourceTree = "<group>"; };
 		5A50534F27D1776800AEC970 /* ConversionDetailHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionDetailHolder.swift; sourceTree = "<group>"; };
 		5A50535727D186A500AEC970 /* TextualInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextualInputView.swift; sourceTree = "<group>"; };
@@ -416,6 +419,7 @@
 				5A50535727D186A500AEC970 /* TextualInputView.swift */,
 				5A50535D27D1A2BB00AEC970 /* ButtonConfigurations.swift */,
 				5AA612BE27D1ADAF00989577 /* NumericButtonConfiguration.swift */,
+				5A4B086627D1E335005793BD /* BrahmiButtonConfiguration.swift */,
 			);
 			path = InputViews;
 			sourceTree = "<group>";
@@ -751,6 +755,7 @@
 				5A871E6B27C3C277006606CD /* OutputView.swift in Sources */,
 				5A68E5BE27C3AE2C00D5BC40 /* MailController.swift in Sources */,
 				5A66C3FF27C7CE3700B48D75 /* BasePreference.swift in Sources */,
+				5A4B086727D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */,
 				5A3D33D827C4672B00C7C27F /* ContentView.swift in Sources */,
 				5A40F9C9263E75D000D6940B /* CameraView.swift in Sources */,
 				5A8230EE27C8660500E61C86 /* HistoryItem.swift in Sources */,
@@ -793,6 +798,7 @@
 				5AA612C327D1B27000989577 /* ConversionDetailResultView.swift in Sources */,
 				5A66C40A27C8515300B48D75 /* ConversionInputHolder.swift in Sources */,
 				5A66C40C27C8515B00B48D75 /* NumericParsingResult.swift in Sources */,
+				5A4B086827D1E335005793BD /* BrahmiButtonConfiguration.swift in Sources */,
 				5A50535C27D1893400AEC970 /* Output+Buttons.swift in Sources */,
 				5A40F9CD263E765200D6940B /* PreviewView.swift in Sources */,
 				5A13655F27C78F8400499017 /* BaseAction.swift in Sources */,
@@ -1201,7 +1207,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLII.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1233,7 +1239,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.telethon.XLII.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1263,7 +1269,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.telethon.XLII.Widget-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1295,7 +1301,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.telethon.XLII.Widget-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

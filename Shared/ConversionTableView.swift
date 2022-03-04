@@ -38,14 +38,23 @@ struct ConversionTableView: View {
 
                 
                 NumericalConversionView(holder: hh, isSelected: selectedDisplayItem == hh)
-                    .onTapGesture {
+#if os(macOS)
+                    .gesture(TapGesture(count: 2).onEnded({
+                        guard selectedDisplayItem != nil,
+                                hh.output.buttons != nil else{
+                            return
+                        }
+                        presentDetail.toggle()
+                    }))
+#endif
+                    .simultaneousGesture(TapGesture().onEnded({
                         selectedDisplayItem = hh
-                        #if os(iOS)
+#if os(iOS)
                         if hh.output.buttons != nil{
                             presentDetail.toggle()
                         }
-                        #endif
-                    }
+#endif
+                    }))
                     .onDrag({
                         draggedItem = outPut
                         return hh.itemProvider
