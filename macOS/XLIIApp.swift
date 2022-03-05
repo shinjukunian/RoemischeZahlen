@@ -10,8 +10,6 @@ import SwiftUI
 @main
 struct XLIIApp: App {
     
-    @State private var presentingCamera = false
-    
     init(){
         UserDefaults.shared.registerDefaults()
     }
@@ -19,16 +17,6 @@ struct XLIIApp: App {
     var body: some Scene {
         WindowGroup{
             ContentView()
-                .toolbar(content: {
-                    ToolbarItem(placement: .automatic, content: {
-                        CameraButton(showCamera: $presentingCamera)
-                    })
-                })
-                .sheet(isPresented: $presentingCamera, onDismiss: {
-                    
-                }, content: {
-                    CameraView()
-                })
         }
         .windowToolbarStyle(.unifiedCompact(showsTitle: true))
         .windowStyle(.titleBar)

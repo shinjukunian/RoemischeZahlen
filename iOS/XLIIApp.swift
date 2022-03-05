@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct XLIIApp: App {
     
-    @State private var presentingCamera = false
+    
     
     init(){
         UserDefaults.shared.registerDefaults()
@@ -20,18 +20,8 @@ struct XLIIApp: App {
         WindowGroup{
             NavigationView{
                 ContentView()
-                    
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationTitle(Text("XLII"))
-                    .fullScreenCover(isPresented: $presentingCamera, content: {
-                        CameraView()
-                    })
-                    .toolbar(content: {
-                        ToolbarItem(placement: .primaryAction, content: {
-                            CameraButton(showCamera: $presentingCamera)
-                        })
-                    })
-                
                 
             }
             .navigationViewStyle(.stack)

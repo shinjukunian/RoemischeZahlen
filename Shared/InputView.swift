@@ -32,7 +32,6 @@ struct InputView: View {
             
         }
         .padding(.horizontal)
-
         .userActivity(NSUserActivity.ActivityTypes.conversionActivity, isActive: holder.state == .valid, { activity in
             
             activity.isEligibleForHandoff = true

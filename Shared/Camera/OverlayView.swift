@@ -88,7 +88,7 @@ struct OverlayView: View {
                         Text(element.text)
                     }
                     
-                })
+                }).fixedSize()
             
             
             

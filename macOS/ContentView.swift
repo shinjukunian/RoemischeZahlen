@@ -11,6 +11,7 @@ import Combine
 struct ContentView: View {
     
     @StateObject var holder=ConversionInputHolder()
+    @State private var presentingCamera = false
     
     @AppStorage(UserDefaults.Keys.showSideBarKey) var showSideBar:Bool = true
     
@@ -37,6 +38,12 @@ struct ContentView: View {
             ToolbarItem(placement: .status, content: {
                 SidebarButton(showSideBar: $showSideBar)
             })
+            ToolbarItem(placement: .automatic, content: {
+                CameraButton(showCamera: $presentingCamera)
+            })
+        })
+        .sheet(isPresented: $presentingCamera, content: {
+            CameraView()
         })
         .focusedValue(\.showingSidebar, $showSideBar)
         .onOpenURL(perform: {url in

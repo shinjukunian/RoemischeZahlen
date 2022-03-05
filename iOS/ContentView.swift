@@ -13,6 +13,7 @@ struct ContentView: View {
     
     @State var showLanguageSelection = false
     @State var showSettings = false
+    @State private var presentingCamera = false
     
     @Environment(\.horizontalSizeClass) var horizontalSize:UserInterfaceSizeClass?
     
@@ -34,7 +35,13 @@ struct ContentView: View {
                         EmptyView()
                     }
                 })
+                ToolbarItem(placement: .primaryAction, content: {
+                    CameraButton(showCamera: $presentingCamera)
+                })
                 
+            })
+            .fullScreenCover(isPresented: $presentingCamera, content: {
+                CameraView().environmentObject(holder)
             })
             .sheet(isPresented: $showSettings, content: {
                 NavigationView{
