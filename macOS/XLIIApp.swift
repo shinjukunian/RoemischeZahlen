@@ -17,11 +17,13 @@ struct XLIIApp: App {
     var body: some Scene {
         WindowGroup{
             ContentView()
+
         }
         .windowToolbarStyle(.unifiedCompact(showsTitle: true))
         .windowStyle(.titleBar)
         .commands(content: {
             AppCommands()
+//            ImportFromDevicesCommands()
         })
         .defaultAppStorage(.shared)
         

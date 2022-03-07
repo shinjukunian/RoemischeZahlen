@@ -7,13 +7,22 @@
 
 import SwiftUI
 import Combine
+import UniformTypeIdentifiers
 
 struct ContentView: View {
+    struct URLItem:Identifiable,Equatable,Hashable{
+        let url:URL
+        var id: String{
+            return url.absoluteString
+        }
+    }
     
     @StateObject var holder=ConversionInputHolder()
     @State private var presentingCamera = false
     
     @AppStorage(UserDefaults.Keys.showSideBarKey) var showSideBar:Bool = true
+    
+    @State var droppedURL:URLItem? = nil
     
     var body: some View{
         HSplitView{
@@ -47,11 +56,30 @@ struct ContentView: View {
         })
         .focusedValue(\.showingSidebar, $showSideBar)
         .onOpenURL(perform: {url in
-            guard let number=url.numberFromDeepLink else{
-                return
+            if let number=url.numberFromDeepLink{
+                holder.input=String(number)
             }
-            holder.input=String(number)
+            else if url.isFileURL,
+                    let uti=try? url.resourceValues(forKeys: Set([URLResourceKey.contentTypeKey])).contentType,
+                    NSImage.importImageTypes.contains(uti){
+                self.droppedURL=URLItem(url: url)
+            }
         })
+        .sheet(item: $droppedURL, content: {item in
+            if let image=NSImage(contentsOf: item.url){
+                StaticImageAnalysisView(image: image, outputType: .japanisch)
+                    .environmentObject(holder)
+                    .environmentObject(Recognizer())
+            }
+        })
+//        .importsItemProviders(NSImage.importImageTypes, onImport: {providers in
+//            guard let imageProvider=providers.first(where: {$0.hasRepresentationConforming(toTypeIdentifier: UTType.image.identifier)})else{
+//                return false
+//            }
+//
+//            
+//            return true
+//        })
     }
     
 }

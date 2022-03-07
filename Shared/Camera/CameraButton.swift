@@ -14,7 +14,7 @@ struct CameraShutterButton: View {
     var body: some View {
         
         Button(action: {
-            
+            action()
         }, label: {
             ZStack{
                 Circle().fill(.white).padding(12)
@@ -22,7 +22,9 @@ struct CameraShutterButton: View {
             }
             .frame(width:80,height: 80)
             .opacity(0.75)
-        }).buttonStyle(.plain)
+        })
+        .buttonStyle(.plain)
+        .keyboardShortcut(.space, modifiers: [])
         
 
             

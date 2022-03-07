@@ -11,15 +11,16 @@ import AVFoundation
 import CoreImage
 import SwiftUI
 import XLIICore
+import Combine
 
-protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate {
+protocol Recognizing:AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
     var videoAspectRatio: CGFloat {get set}
     var textOrientation: CGImagePropertyOrientation {get set}
+    var photoOutput:AVCapturePhotoOutput? {get set}
+    var session:AVCaptureSession? {get set}
 }
 
 class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
-    
-    
     
     static let fullAreaROI:CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)
     
@@ -36,7 +37,11 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
     }()
     
     lazy var sequenceRequestHandler = VNSequenceRequestHandler()
-    lazy var request: VNRecognizeTextRequest = VNRecognizeTextRequest(completionHandler: recognizeTextHandler)
+    
+    lazy var request: VNRecognizeTextRequest = VNRecognizeTextRequest(completionHandler: {[weak self] request, error in
+        self?.recognizeTextHandler(request: request, error: error)
+    })
+   
     internal var transpositionHistoryPoints: [CGPoint] = [ ]
     var previousPixelBuffer: CVPixelBuffer?
     
@@ -44,6 +49,11 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
        
     var currentlyAnalyzedPixelBuffer: CVPixelBuffer?
     var currentFrame=0
+    
+    weak var photoOutput:AVCapturePhotoOutput?
+    weak var session: AVCaptureSession?
+    
+    @Published var image:UIImage?
     
     @Published var useROI:Bool = true{
         didSet{
@@ -65,23 +75,53 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         }
     }
     
+    
+    
+    
     override init() {
         super.init()
         request.recognitionLevel = .fast
         request.usesLanguageCorrection = false
 //        request.recognitionLanguages=["zh-Hant", "en"]
         self.useROI = useROI
+        
+        
+    }
+    
+    func captureImage(){
+        guard let types=self.photoOutput?.availablePhotoPixelFormatTypes else{
+            return
+        }
+        let settings=AVCapturePhotoSettings(format: [kCVPixelBufferPixelFormatTypeKey as String:types[0]])
+        photoOutput?.capturePhoto(with: settings, delegate: self)
+    }
+    
+    func start(){
+        session?.startRunning()
+    }
+    
+    func stop(){
+        session?.stopRunning()
     }
     
     func recognizeTextHandler(request: VNRequest, error: Error?) {
+       
         
         guard let results = request.results as? [VNRecognizedTextObservation] else {
             return
         }
-        
+        let elements=analyze(results: results, useROI: self.useROI)
+        DispatchQueue.main.async {
+            self.foundElements=elements
+        }
+       
+    }
+    
+    
+    func analyze(results:[VNRecognizedTextObservation], useROI:Bool)->[TextElement]{
         let maximumCandidates = 1
-        
         var elements=[TextElement]()
+        
         for visionResult in results {
             guard let candidate = visionResult.topCandidates(maximumCandidates).first else { continue }
             
@@ -91,7 +131,7 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
                       let text=s else{
                     return
                 }
-                if self.useROI{
+                if useROI{
                     let convertedX=self.regionOfInterest.minX+self.regionOfInterest.width*rect.minX
                     let convertedY=self.regionOfInterest.minY+self.regionOfInterest.height*rect.minY
                     let convertedWidth=self.regionOfInterest.width * rect.width
@@ -106,10 +146,28 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
             })
             
         }
-        DispatchQueue.main.async {
-            self.foundElements=elements
-        }
+        return elements
     }
+    
+    func analyze(image:CGImage) async -> [TextElement] {
+        
+        let handler = VNImageRequestHandler(cgImage:image, orientation: .up, options: [.ciContext:self.ciContext])
+        let request=VNRecognizeTextRequest()
+        request.recognitionLevel = .accurate
+        do{
+            try handler.perform([request])
+            guard let results=request.results else{
+                return [TextElement]()
+            }
+            return analyze(results: results, useROI: false)
+        }
+        catch let error{
+            print(error.localizedDescription)
+            return [TextElement]()
+        }
+        
+    }
+    
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
@@ -130,5 +188,23 @@ class Recognizer:NSObject, Recognizing, SceneStability, ObservableObject{
         DispatchQueue.main.async {
             self.state=state
         }
+    }
+    
+    
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let pixelBuffer=photo.pixelBuffer else{return}
+
+        let ciImage=CIImage(cvPixelBuffer: pixelBuffer, options: [CIImageOption.applyOrientationProperty:true])
+        let transform=ciImage.orientationTransform(for: textOrientation)
+        
+        let corrected=ciImage.transformed(by: transform)
+        if let cg=ciContext.createCGImage(corrected, from: corrected.extent){
+            let image=UIImage(cgImage: cg)
+            self.stop()
+            self.image=image
+        }
+        
+        
     }
 }

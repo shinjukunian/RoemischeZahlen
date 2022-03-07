@@ -8,38 +8,7 @@
 import SwiftUI
 import XLIICore
 
-extension Recognizer.TextElement.TextElementType{
-    var fillColor:Color{
-        let color:Color
-        switch self {
-        case .arabicNumber:
-            color=Color.red
-        case .japaneseNumber:
-            color=Color.green
-        case .romanNumeral:
-            color=Color.orange
-        case .other:
-            color=Color.clear
-        }
-        return color.opacity(0.2)
-    }
-    
-    var strokeColor:Color{
-        let color:Color
-        switch self {
-        case .arabicNumber:
-            color=Color.red
-        case .japaneseNumber:
-            color=Color.green
-        case .romanNumeral:
-            color=Color.orange
-        case .other:
-            color=Color.gray
-        }
-        return color.opacity(0.8)
-    }
-    
-}
+
 
 
 struct OverlayView: View {
@@ -56,10 +25,6 @@ struct OverlayView: View {
     
     var body: some View {
         makeView()
-            .contentShape(Rectangle()) 
-            .onTapGesture(perform: {
-                print("tap")
-        })
     }
     
     @ViewBuilder

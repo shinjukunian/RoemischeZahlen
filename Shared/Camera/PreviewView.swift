@@ -75,7 +75,9 @@ class PreviewView: MyView{
     var videoDataOutput = AVCaptureVideoDataOutput()
     let videoDataOutputQueue = DispatchQueue(label: "com.telethon.VideoDataOutputQueue")
 
-    var zoomLevel:CGFloat = 2{
+    var cancelables = Set<AnyCancellable>()
+    
+    var zoomLevel:CGFloat = 1.5{
         didSet{
             do {
                 #if os(iOS)
@@ -96,6 +98,8 @@ class PreviewView: MyView{
     }
     
     weak var delegate:Recognizing?
+    
+    var bufferAspectRatio:CGFloat=1
     
     init(delegate: Recognizing) {
         self.delegate=delegate
@@ -134,7 +138,7 @@ class PreviewView: MyView{
         }
         let session = AVCaptureSession()
         session.beginConfiguration()
-        let bufferAspectRatio:CGFloat
+        
         if videoDevice.supportsSessionPreset(.hd4K3840x2160) {
 //            session.sessionPreset = AVCaptureSession.Preset.hd4K3840x2160
             bufferAspectRatio = 3840.0 / 2160.0
@@ -149,11 +153,7 @@ class PreviewView: MyView{
         else{
             bufferAspectRatio=1
         }
-        
-        
-        
-        
-        
+
         
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
             session.canAddInput(videoDeviceInput)
@@ -165,29 +165,28 @@ class PreviewView: MyView{
             session.addOutput(videoDataOutput)
         }
 
-        session.commitConfiguration()
-        
-        #if os(macOS)
-        self.delegate?.videoAspectRatio=bufferAspectRatio
-        #else
-        let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation ?? .portrait
-        
-        switch orientation {
-        case .landscapeLeft:
-            self.delegate?.textOrientation = CGImagePropertyOrientation.up
-        case .landscapeRight:
-            self.delegate?.textOrientation = CGImagePropertyOrientation.down
-        case .portraitUpsideDown:
-            self.delegate?.textOrientation = CGImagePropertyOrientation.left
-            self.delegate?.videoAspectRatio=1/bufferAspectRatio
-        default:
-            self.delegate?.textOrientation = CGImagePropertyOrientation.right
-            self.delegate?.videoAspectRatio=1/bufferAspectRatio
+        let photo=AVCapturePhotoOutput()
+        if session.canAddOutput(photo){
+            session.addOutput(photo)
+            delegate?.photoOutput=photo
         }
+        
+        session.commitConfiguration()
+        delegate?.session=session
+#if os(macOS)
+        self.delegate?.videoAspectRatio=bufferAspectRatio
+#else
         let l=self.zoomLevel
         self.zoomLevel=l
+        updateOrientation()
+        NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+            .sink(receiveValue: {[weak self] _ in
+                self?.updateOrientation()
+            }).store(in: &cancelables)
         
-        #endif
+        
+        
+#endif
         
         
         self.captureSession = session
@@ -235,6 +234,25 @@ class PreviewView: MyView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
+    }
+    
+    func updateOrientation(){
+        let orientation = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.interfaceOrientation ?? .portrait
+        
+        switch orientation {
+        case .landscapeLeft:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.down
+        case .landscapeRight:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.up
+        case .portraitUpsideDown:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.left
+            self.delegate?.videoAspectRatio=1/bufferAspectRatio
+        default:
+            self.delegate?.textOrientation = CGImagePropertyOrientation.right
+            self.delegate?.videoAspectRatio=1/bufferAspectRatio
+        }
+        (self.layer as? AVCaptureVideoPreviewLayer)?.connection?.videoOrientation = AVCaptureVideoOrientation(deviceOrientation: orientation) ?? .portrait
+    
     }
     
     #endif

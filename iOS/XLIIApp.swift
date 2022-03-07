@@ -10,8 +10,6 @@ import SwiftUI
 @main
 struct XLIIApp: App {
     
-    
-    
     init(){
         UserDefaults.shared.registerDefaults()
     }
