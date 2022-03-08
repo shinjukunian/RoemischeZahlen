@@ -100,6 +100,12 @@ public class NumeralConversionHolder: Equatable{
             formattedOutput = formatter.macheKyrillischeZahl(aus: zahl, titlo: context.useTitlo, mitKreisen: context.useCyrillicDiacriticNotation, Großbuchstaben: context.uppercaseCyrillic) ?? noValidNumber
         case .geez:
             formattedOutput = GeezNumber(number: zahl)?.geez ?? noValidNumber
+        case .sundanese:
+            formattedOutput = SundaneseNumber(number: zahl).sundanese
+        case .tibetan:
+            formattedOutput = TibetanNumber(number: zahl).tibetan
+        case .mongolian:
+            formattedOutput = MongolianNumber(number: zahl).mongolian
         }
         return formattedOutput
         

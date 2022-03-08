@@ -205,6 +205,36 @@
 					<key>INEnumValueName</key>
 					<string>geez</string>
 				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Sundanese</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>Ev6kXi</string>
+					<key>INEnumValueIndex</key>
+					<integer>15</integer>
+					<key>INEnumValueName</key>
+					<string>sundanese</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Tibetan</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>XPkj7j</string>
+					<key>INEnumValueIndex</key>
+					<integer>16</integer>
+					<key>INEnumValueName</key>
+					<string>tibetan</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Mongolian</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>5JtVjX</string>
+					<key>INEnumValueIndex</key>
+					<integer>17</integer>
+					<key>INEnumValueName</key>
+					<string>mongolian</string>
+				</dict>
 			</array>
 		</dict>
 	</array>
@@ -215,9 +245,9 @@
 	<key>INIntentDefinitionSystemVersion</key>
 	<string>21D62</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>13C100</string>
+	<string>13E5104i</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>13.2.1</string>
+	<string>13.3</string>
 	<key>INIntents</key>
 	<array>
 		<dict>

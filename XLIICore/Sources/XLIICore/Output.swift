@@ -27,6 +27,9 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     case glagolitic
     case cyrillic
     case geez
+    case sundanese
+    case tibetan
+    case mongolian
     
     case numeric(base:Int)
     
@@ -35,7 +38,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     public static let currentLocale = Output.localized(locale: Locale.current)
     public static let dragType = "com.mihomaus.xlii.outputType"
 
-    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician, .kharosthi, brahmi_traditional, .brahmi_positional, .glagolitic, .cyrillic, .geez]
+    public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician, .kharosthi, brahmi_traditional, .brahmi_positional, .glagolitic, .cyrillic, .geez, .sundanese, .tibetan, .mongolian]
     
     public init?(rawValue: String) {
         switch rawValue{
@@ -71,6 +74,12 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = .cyrillic
         case "geez":
             self = .geez
+        case "sundanese":
+            self = .sundanese
+        case "tibetan":
+            self = .tibetan
+        case "mongolian":
+            self = .mongolian
         case _ where rawValue.hasPrefix("numeric_base"):
             let components=rawValue.split(separator: "|")
             guard components.count == 2,
@@ -115,6 +124,12 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             self = .geez
         case .sangi:
             self = .sangi
+        case .sundanese:
+            self = .sundanese
+        case .tibetan:
+            self = .tibetan
+        case .mongolian:
+            self = .mongolian
             
         }
     }
@@ -157,6 +172,12 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             return "cyrillic"
         case .geez:
             return "geez"
+        case .sundanese:
+            return "sundanese"
+        case .tibetan:
+            return "tibetan"
+        case .mongolian:
+            return "mongolian"
         }
     }
     
@@ -167,7 +188,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
     
     public func hash(into hasher: inout Hasher) {
         switch self {
-        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_positional, .brahmi_traditional, .glagolitic, .cyrillic, .geez:
+        case .römisch, .japanisch, .japanisch_bank, .arabisch, .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_positional, .brahmi_traditional, .glagolitic, .cyrillic, .geez, .sundanese, .tibetan, .mongolian:
             hasher.combine(rawValue)
         case .localized(_), .numeric(_):
             hasher.combine(rawValue)
@@ -208,6 +229,12 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             return NSLocalizedString("Cyrillic", tableName: nil, bundle: .module, value: "Cyrillic", comment: "Cyrillic alphabet")
         case .geez:
             return NSLocalizedString("Geez", tableName: nil, bundle: .module, value: "Geʽez", comment: "Cyrillic alphabet")
+        case .sundanese:
+            return NSLocalizedString("Sundanese (Wilangan)", tableName: nil, bundle: .module, value: "Sundanese (Wilangan)", comment: "Sundanese alphabet")
+        case .tibetan:
+            return NSLocalizedString("Tibetan", tableName: nil, bundle: .module, value: "Tibetan", comment: "Tibetan alphabet")
+        case .mongolian:
+            return NSLocalizedString("Mongolian", tableName: nil, bundle: .module, value: "Mongolian", comment: "Mongolian alphabet")
         case .localized(let locale):
             if let language=locale.languageCode{
                 return Locale.current.localizedString(forLanguageCode: language) ?? locale.identifier

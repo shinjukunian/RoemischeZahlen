@@ -397,5 +397,84 @@ class XLIICoreTests: XCTestCase {
         }
     }
     
+    
+    func testSundanese()throws{
+        let cases=[999:"|᮹᮹᮹|",
+                   7880:"|᮷᮸᮸᮰|",
+                   50000:"|᮵᮰᮰᮰᮰|",
+                   6486417:"|᮶᮴᮸᮶᮴᮱᮷|",
+                   29:"|᮲᮹|",
+                   725160:"|᮷᮲᮵᮱᮶᮰|"
+        ]
+        
+        for c in cases{
+            let parsed=SundaneseNumber(number: c.key)
+            XCTAssert(parsed.sundanese == c.value, "\(parsed.sundanese) doesnt match expected \(c.value) (\(c.key))")
+            let reversed=try XCTUnwrap(SundaneseNumber(string: c.value))
+            XCTAssert(reversed.arabic == c.key)
+            XCTAssert(parsed.sundanese.potentielleSundaneseZahl)
+        }
+        
+        let random=(0..<20000).map({_ in return Int.random(in: 1..<10_000_000_000)})
+        for n in random{
+            let parsed=SundaneseNumber(number: n)
+            let reversed=try XCTUnwrap(SundaneseNumber(string: parsed.sundanese))
+            XCTAssert(reversed.arabic == n)
+        }
+    }
+    
+    func testTibetan()throws{
+        let cases=[90:"༩༠",
+                   10000:"༡༠༠༠༠",
+                   60:"༦༠",
+                   17:"༡༧",
+                   12:"༡༢",
+                   5:"༥"
+        ]
+        
+        let formatter=ExotischeZahlenFormatter()
+        
+        for c in cases{
+            let parsed=try XCTUnwrap(formatter.macheTibetanischeZahl(aus: c.key))
+            XCTAssert(parsed == c.value, "\(parsed) doesnt match expected \(c.value) (\(c.key))")
+            let reversed=try XCTUnwrap(formatter.macheZahl(aus:c.value))
+            XCTAssert(reversed.value == c.key)
+            XCTAssert(reversed.locale == .tibetan)
+        }
+        
+        let random=(0..<20000).map({_ in return Int.random(in: 1..<10_000_000_000)})
+        for n in random{
+            let parsed=try XCTUnwrap(formatter.macheTibetanischeZahl(aus: n))
+            let reversed=try XCTUnwrap(formatter.macheZahl(aus:parsed))
+            XCTAssert(reversed.value == n)
+            XCTAssert(reversed.locale == .tibetan)
+        }
+    }
+    
+    func testMongolian()throws{
+        let cases=[90:"᠙᠐",
+                   5:"᠕"
+        ]
+        
+        let formatter=ExotischeZahlenFormatter()
+        
+        for c in cases{
+            let parsed=try XCTUnwrap(formatter.macheMongolischeZahl(aus: c.key))
+            XCTAssert(parsed == c.value, "\(parsed) doesnt match expected \(c.value) (\(c.key))")
+            let reversed=try XCTUnwrap(formatter.macheZahl(aus:c.value))
+            XCTAssert(reversed.value == c.key)
+            XCTAssert(reversed.locale == .mongolian)
+        }
+        
+        let random=(0..<20000).map({_ in return Int.random(in: 1..<10_000_000_000)})
+        for n in random{
+            let parsed=try XCTUnwrap(formatter.macheMongolischeZahl(aus: n))
+            let reversed=try XCTUnwrap(formatter.macheZahl(aus:parsed))
+            XCTAssert(reversed.value == n)
+            XCTAssert(reversed.locale == .mongolian)
+        }
+    }
+    
+    
 }
 

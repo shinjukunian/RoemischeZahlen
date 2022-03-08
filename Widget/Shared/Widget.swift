@@ -103,6 +103,12 @@ extension Output{
             self = .cyrillic
         case .geez:
             self = .geez
+        case .mongolian:
+            self = .mongolian
+        case.tibetan:
+            self = .tibetan
+        case .sundanese:
+            self = .sundanese
         }
     }
 }

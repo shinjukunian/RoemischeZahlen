@@ -47,7 +47,6 @@ extension Output{
         case .arabisch:
             return nil
         case .japanisch_bank:
-
             return ButtonConfiguration(buttonValues: [["万","億"],["拾","百","千"],["七","八","九"],["四","五","六"],["壱","弐","参"]], values: [[10_000,100_000_000],[10,100,1000],[7,8,9],[4,5,6],[1,2,3]])
         case .babylonian:
             return nil
@@ -75,6 +74,12 @@ extension Output{
             return ButtonConfiguration(buttonValues: [["҂"],["Х","Ѱ","Ѿ","Ц"],["С","Т","У","Ф"],["О","П","Ч","Р"],["К","Л","М","Н","Ѯ"],["Ѕ","З","И","Ѳ","І"],["А","В","Г","Д","Е"]], values: [[1000],[600,700,800,900],[200,300,400,500],[70,80,90,100],[20,30,40,50,60],[6,7,8,9,10],[1,2,3,4,5]])
         case .geez:
             return ButtonConfiguration(buttonValues: [["፸","፹","፺","፻","፼"],["፳","፴","፵","፶","፷"],["፮","፯","፰","፱","፲"],["፩","፪","፫","፬","፭"]], values: [[70,80,90,100,10_000],[20,30,40,50,60],[6,7,8,9,10],[1,2,3,4,5]])
+        case .sundanese:
+            return SundaneseButtonConfiguration()
+        case .tibetan:
+            return ButtonConfiguration(buttonValues: [["༧","༨","༩"],["༤","༥","༦"],["༡","༢","༣",],["༠"]], values: [[7,8,9],[4,5,6],[1,2,3],[0]])
+        case .mongolian:
+            return ButtonConfiguration(buttonValues: [["᠗","᠘","᠙"],["᠔","᠕","᠖"],["᠑","᠒","᠓",],["᠐"]], values: [[7,8,9],[4,5,6],[1,2,3],[0]])
         case .numeric(let base):
             guard base != 10 else{
                 return nil

@@ -107,6 +107,12 @@ extension Recognizer{
                     return formatter.macheKyrillischeZahl(aus: number, titlo: true, mitKreisen: false, Großbuchstaben: useUppercase)
                 case .geez:
                     return formatter.macheGeezZahl(aus: number)
+                case .sundanese:
+                    return formatter.macheSundaneseZahl(aus: number)
+                case .tibetan:
+                    return formatter.macheTibetanischeZahl(aus: number)
+                case .mongolian:
+                    return formatter.macheMongolischeZahl(aus: number)
                 case .localized(let locale):
                     let f=NumberFormatter()
                     f.numberStyle = .spellOut

@@ -51,6 +51,10 @@ struct ContentView: View {
                 CameraButton(showCamera: $presentingCamera)
             })
         })
+        .touchBar(content: {
+            CameraButton(showCamera: $presentingCamera)
+            SidebarButton(showSideBar: $showSideBar)
+        })
         .sheet(isPresented: $presentingCamera, content: {
             CameraView()
         })

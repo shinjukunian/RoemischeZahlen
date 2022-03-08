@@ -25,6 +25,9 @@ public class ExotischeZahlenFormatter{
             case cyrillic
             case geez
             case sangi
+            case sundanese
+            case tibetan
+            case mongolian
         }
         
         public let value:Int
@@ -144,6 +147,18 @@ public class ExotischeZahlenFormatter{
         return GlagoliticNumer(number: Zahl)?.glacolitic
     }
     
+    public func macheSundaneseZahl(aus Zahl:Int)->String?{
+        return SundaneseNumber(number: Zahl).sundanese
+    }
+    
+    public func macheTibetanischeZahl(aus Zahl:Int)->String?{
+        return TibetanNumber(number: Zahl).tibetan
+    }
+    
+    public func macheMongolischeZahl(aus Zahl:Int)->String?{
+        return MongolianNumber(number: Zahl).mongolian
+    }
+    
     
     public func macheZahl(aus text:String)->NumericalOutput?{
         switch text {
@@ -194,6 +209,18 @@ public class ExotischeZahlenFormatter{
         case _ where text.potentielleSangiZahl:
             if let zahl=SangiNumber(text: text){
                 return NumericalOutput(value: zahl.arabic, locale: .sangi)
+            }
+        case _ where text.potentielleSundaneseZahl:
+            if let zahl=SundaneseNumber(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .sundanese)
+            }
+        case _ where text.potentielleTibetanZahl:
+            if let zahl=TibetanNumber(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .tibetan)
+            }
+        case _ where text.potentielleMongolischeZahl:
+            if let zahl=MongolianNumber(string: text){
+                return NumericalOutput(value: zahl.arabic, locale: .mongolian)
             }
         default:
             return nil

@@ -95,7 +95,7 @@ public struct SpeechOutput{
             u.rate=0.35
             u.preUtteranceDelay=0.6
             outputUtterances=[u]
-        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_traditional, .brahmi_positional, .cyrillic, .glagolitic, .geez:
+        case .babylonian, .aegean, .sangi, .hieroglyph, .suzhou, .phoenician, .kharosthi, .brahmi_traditional, .brahmi_positional, .cyrillic, .glagolitic, .geez, .sundanese, .tibetan, .mongolian:
             outputUtterances = [AVSpeechUtterance]()
         }
         return outputUtterances
@@ -152,6 +152,15 @@ public extension Output{
             return URL(string: string)
         case .geez:// the english wikipedia URL has to be pecent encoded, otherwise the URL constructor fails
             let string=NSLocalizedString("Geez", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Ge%CA%BDez_script%23Numerals", comment: "")
+            return URL(string: string)
+        case .sundanese:
+            let string=NSLocalizedString("Sundanese", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Sundanese_numerals", comment: "")
+            return URL(string: string)
+        case .tibetan:
+            let string=NSLocalizedString("Tibetan", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Tibetan_numerals", comment: "")
+            return URL(string: string)
+        case .mongolian:
+            let string=NSLocalizedString("Mongolian", tableName: tableName, bundle: .module, value: "https://en.wikipedia.org/wiki/Mongolian_numerals", comment: "")
             return URL(string: string)
         case .numeric(let base):
             switch base{

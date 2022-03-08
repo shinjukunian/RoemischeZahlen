@@ -61,11 +61,7 @@ struct NumericalConversionView: View {
                 
             }
         }.groupBoxStyle(ConversionCardBoxStyle(isHovering: isSelected))
-        
-        
-        
-        
-        
+
     }
 }
 

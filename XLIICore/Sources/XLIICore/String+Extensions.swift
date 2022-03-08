@@ -98,5 +98,26 @@ extension String{
         let contained=vorhandeneBuchstaben.isSubset(of: set)
         return contained
     }
+    
+    var potentielleSundaneseZahl:Bool{
+        let characters="᮰᮱᮲᮳᮴᮵᮶᮷᮸᮹|"
+        let set=CharacterSet(charactersIn: characters)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
+        return vorhandeneBuchstaben.isSubset(of: set)
+    }
+    
+    var potentielleTibetanZahl:Bool{
+        let characters="༠༡༢༣༤༥༦༧༨༩"
+        let set=CharacterSet(charactersIn: characters)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
+        return vorhandeneBuchstaben.isSubset(of: set)
+    }
+    
+    var potentielleMongolischeZahl:Bool{
+        let characters="᠐᠑᠒᠓᠔᠕᠖᠗᠘᠙"
+        let set=CharacterSet(charactersIn: characters)
+        let vorhandeneBuchstaben=CharacterSet(charactersIn: self).subtracting(.whitespaces)
+        return vorhandeneBuchstaben.isSubset(of: set)
+    }
 }
 
