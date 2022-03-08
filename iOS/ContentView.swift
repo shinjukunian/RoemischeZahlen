@@ -22,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         content
             
-            .ignoresSafeArea(.all, edges: [.bottom])
+            .ignoresSafeArea(.container, edges: [.bottom])
             
             .background(Color(uiColor: .systemGroupedBackground))
             .toolbar(content: {
