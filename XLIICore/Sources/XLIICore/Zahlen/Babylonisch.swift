@@ -31,7 +31,12 @@ struct BabylonischeZahl{
                                                    5:"𒐐",
     ]
     
-    init(Zahl:Int){
+    init?(Zahl:Int){
+        
+        guard Zahl != 0 else{
+            return nil
+        }
+        
         self.arabisch=Zahl
         
         let multiplicator=60

@@ -14,6 +14,9 @@ struct GeezNumber{
     let geez:String
 
     init?(number:Int){
+        guard number > 0 else{
+            return nil
+        }
         self.arabic=number
         
         var parsed=number

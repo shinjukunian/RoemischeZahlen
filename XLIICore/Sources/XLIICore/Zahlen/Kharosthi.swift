@@ -32,7 +32,7 @@ struct KharosthiNumber{
     let thousandSymbol = "𐩇"
     
     init?(number:Int){
-        guard number < 10_000_000 else{
+        guard (1..<10_000_000).contains(number) else{
             return nil
         }
         self.arabic=number

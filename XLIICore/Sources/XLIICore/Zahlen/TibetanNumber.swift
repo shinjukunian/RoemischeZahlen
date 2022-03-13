@@ -15,6 +15,11 @@ struct TibetanNumber{
     
     init(number:Int){
         self.arabic=number
+        guard number != 0 else{
+            tibetan=table[0]!
+            return
+        }
+        
         var parsed=number
         var components=[String]()
         
@@ -60,6 +65,11 @@ struct MongolianNumber{
     
     init(number:Int){
         self.arabic=number
+        guard number != 0 else{
+            mongolian=table[0]!
+            return
+        }
+        
         var parsed=number
         var components=[String]()
         

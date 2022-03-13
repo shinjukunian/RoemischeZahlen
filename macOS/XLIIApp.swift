@@ -28,7 +28,6 @@ struct XLIIApp: App {
         .defaultAppStorage(.shared)
         
         
-        
         Settings {
             VStack{
                 SettingsView()

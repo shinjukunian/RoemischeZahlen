@@ -27,6 +27,10 @@ struct SundaneseNumber{
     
     init(number:Int){
         self.arabic=number
+        guard number != 0 else{
+            sundanese=table[0]!
+            return
+        }
         var parsed=number
         var components=[String]()
         

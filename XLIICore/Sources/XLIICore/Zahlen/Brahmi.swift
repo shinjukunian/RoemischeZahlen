@@ -14,6 +14,10 @@ struct BrahmiNumber{
     let positional:Bool
     
     init?(number:Int, positional:Bool){
+        guard number != 0 else{
+            return nil
+        }
+        
         self.positional=positional
         arabic=number
         

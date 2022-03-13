@@ -96,6 +96,10 @@ public class ExotischeZahlenFormatter{
     }
     
     public func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
+        if Zahl == 0 {
+            return "〇"
+        }
+        
         guard Zahl > 0, Zahl < Int.max else {
             return nil
         }
@@ -120,7 +124,7 @@ public class ExotischeZahlenFormatter{
     }
     
     public func macheBabylonischeZahl(aus Zahl:Int)->String?{
-        return BabylonischeZahl(Zahl: Zahl).babylonisch
+        return BabylonischeZahl(Zahl: Zahl)?.babylonisch
     }
     
     public func machePhoenizischeZahl(aus Zahl:Int)->String?{

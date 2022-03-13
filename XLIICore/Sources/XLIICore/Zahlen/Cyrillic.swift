@@ -28,6 +28,10 @@ public struct CyrillicNumber: Cyrillic{
             return
         }
         
+        guard number != 0 else{
+            return nil
+        }
+        
         self.arabic=number
         
         var parsed=number

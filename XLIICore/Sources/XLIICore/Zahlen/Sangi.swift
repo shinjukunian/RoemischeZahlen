@@ -37,6 +37,10 @@ struct SangiNumber{
     
     init(number:Int){
         self.arabic=number
+        guard number != 0 else{
+            sangi=onesDict[0]!
+            return
+        }
         
         var components:[String]=[String]()
         var parsed=number

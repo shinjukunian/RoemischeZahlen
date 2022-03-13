@@ -56,7 +56,7 @@ struct GlagoliticNumer{
     ]
     
     init?(number:Int){
-        guard number < 4000 else{
+        guard (1..<4000).contains(number) else{
             return nil
         }
         self.arabic = number
