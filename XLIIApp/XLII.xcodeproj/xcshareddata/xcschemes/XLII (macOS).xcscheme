@@ -52,6 +52,16 @@
                ReferencedContainer = "container:XLII.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "XLIICoreTests"
+               BuildableName = "XLIICoreTests"
+               BlueprintName = "XLIICoreTests"
+               ReferencedContainer = "container:..">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
