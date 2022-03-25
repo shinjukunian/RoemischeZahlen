@@ -15,7 +15,7 @@ To achieve full immersion, use the XLII Clock widget to display the current date
 
 ![Widget](artwork/screenshots_github/widget.png)
 
-The [XLIICore]() package provides parsing / conversion / formatting and powers XLII.
+The [XLIICore](XLIICore/README.md) package provides parsing / conversion / formatting and powers XLII. See the [documentation](XLIICore/README.md) for details.
 
 Currently, XLII supports:
 
