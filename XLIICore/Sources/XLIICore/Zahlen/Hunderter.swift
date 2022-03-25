@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl, AlsHieroglyphenZahl {
+struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsHieroglyphenZahl {
     let anzahl:Int
-    let multiplikator:Int = 100
+    let multiplikator:Int64 = 100
     
     let arabischRömischDict=[0:"",
                              1:"C",
@@ -71,17 +71,6 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
                                               9:"𐄡"
     ]
     
-    let arabischSangiDict: [Int : String] = [0:" ",
-                                             1:"𝍠",
-                                             2:"𝍡",
-                                             3:"𝍢",
-                                             4:"𝍣",
-                                             5:"𝍤",
-                                             6:"𝍥",
-                                             7:"𝍦",
-                                             8:"𝍧",
-                                             9:"𝍨"
-    ]
     
     let arabischHieroglyphenDict: [Int : String] = [0:"",
                                                     1:"𓍢",
@@ -98,7 +87,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
     init(Zahl:Int){
         let tausnder = Zahl / 1000
         let übrigehunderter = Zahl - 1000 * tausnder
-        anzahl = übrigehunderter / multiplikator
+        anzahl = übrigehunderter / Int(multiplikator)
     }
     
     init(römischeZahl:String) {
@@ -127,19 +116,21 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
     }
     
     init(japanischeZahl:String) {
-        let a=[self.arabischJapanischDict,
-               self.arabischJapanischBankDict]
-            .compactMap {
-                $0.sorted(by: {$0.0 > $1.0})
-                    .first(where: {_,n in
-                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                            return true
-                        }
-                        return false
-                    })
+        let a=[self.arabischJapanischDict, self.arabischJapanischBankDict, self.arabischJapanischBankDict_einfach]
+            .map{
+                $0.compactMap({value,n->(Range<String.Index>,Int)? in
+                    if let range=japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive]){
+                        return (range,value)
+                    }
+                    return nil
+                })
             }
+            .flatMap({$0})
+            .min(by: {r1,r2 in
+                r1.0.lowerBound < r2.0.lowerBound
+            })
         
-        self.anzahl=a.first?.key ?? 0
+        self.anzahl=a?.1 ?? 0
     }
     
     init?(hieroglyph:String){
@@ -147,7 +138,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
             .first(where: {_,n in
                 return n == hieroglyph
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil
@@ -160,7 +151,7 @@ struct Hunderter: AlsRoemischeZahl, AlsArabischeZahl, AlsJapanischeZahl, AlsJapa
             .first(where: {_,n in
                 return n == aegeanNumber
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil

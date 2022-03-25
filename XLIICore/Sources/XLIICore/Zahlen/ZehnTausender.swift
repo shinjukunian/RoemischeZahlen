@@ -8,9 +8,9 @@
 import Foundation
 
 
-struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl{
+struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl{
     let anzahl:Int
-    let multiplikator:Int = 10000
+    let multiplikator:Int64 = 10000
     
     let arabischJapanischDict = [Int:String]()
     var arabischJapanischBankDict = [Int : String]()
@@ -29,24 +29,12 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
                                               9:"𐄳"
     ]
     
-    let arabischSangiDict: [Int : String] = [0:"",
-                                             1:"𝍠",
-                                             2:"𝍡",
-                                             3:"𝍢",
-                                             4:"𝍣",
-                                             5:"𝍤",
-                                             6:"𝍥",
-                                             7:"𝍦",
-                                             8:"𝍧",
-                                             9:"𝍨"
-    ]
-    
-    
+   
     
     init(Zahl:Int){
         let hundertMillionen = Zahl / 100_000_000
         let restlicheZehnTausender = Zahl - hundertMillionen * 100_000_000
-        let zehnTausender = restlicheZehnTausender / multiplikator
+        let zehnTausender = restlicheZehnTausender / Int(multiplikator)
         anzahl = zehnTausender
     }
     
@@ -88,8 +76,9 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
     }
     
     init(japanischeZahl:String) {
-        var restZahl=japanischeZahl.replacingOccurrences(of: "万", with: "")
-        restZahl=japanischeZahl.replacingOccurrences(of: "萬", with: "")
+        let manSet=Set(["万","萬"])
+        var restZahl=String(japanischeZahl.trimmingSuffix(while: {manSet.contains(String($0))}))
+        
         
         let einser=Einer(japanischeZahl: restZahl)
         restZahl=restZahl.replacingOccurrences(of: einser.japanisch, with: "", options: [.anchored,.backwards,.widthInsensitive], range: nil)
@@ -111,7 +100,7 @@ struct ZehnTausender: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl
             .first(where: {_,n in
                 return n == aegeanNumber
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil

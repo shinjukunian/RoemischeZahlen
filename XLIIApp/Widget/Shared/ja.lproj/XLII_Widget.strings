@@ -1,0 +1,132 @@
+/* (No Comment) */
+"6GjNUF" = "詳細を表示";
+
+/* (No Comment) */
+"6Yox3D" = "WidgetOutput";
+
+/* (No Comment) */
+"bDHYbg" = "日本語";
+
+/* (No Comment) */
+"FKIyC2" = "ローマ数字";
+
+/* (No Comment) */
+"gpCwrM" = "設定";
+
+/* (No Comment) */
+"IjsoSq" = "二進法";
+
+/* (No Comment) */
+"kbGnWf" = "八進法";
+
+/* (No Comment) */
+"MmRo9V-bDHYbg" = "There are ${count} options matching ‘Japanese’.";
+
+/* (No Comment) */
+"MmRo9V-FKIyC2" = "There are ${count} options matching ‘Roman’.";
+
+/* (No Comment) */
+"MmRo9V-IjsoSq" = "There are ${count} options matching ‘Binary’.";
+
+/* (No Comment) */
+"MmRo9V-kbGnWf" = "There are ${count} options matching ‘Octal’.";
+
+/* (No Comment) */
+"MmRo9V-Mzi92T" = "There are ${count} options matching ‘Babylonian’.";
+
+/* (No Comment) */
+"MmRo9V-nMBpQq" = "There are ${count} options matching ‘Suzhou’.";
+
+/* (No Comment) */
+"MmRo9V-nnnITa" = "There are ${count} options matching ‘Hexadecimal’.";
+
+/* (No Comment) */
+"MmRo9V-ObHNkB" = "There are ${count} options matching ‘Egyptian (Hieroglyph)’.";
+
+/* (No Comment) */
+"MmRo9V-UCGvur" = "There are ${count} options matching ‘Sangi’.";
+
+/* (No Comment) */
+"MmRo9V-WYPQme" = "There are ${count} options matching ‘Aegean’.";
+
+/* (No Comment) */
+"MmRo9V-wzN0co" = "There are ${count} options matching ‘Phoenician’.";
+
+/* (No Comment) */
+"MmRo9V-zwrZQr" = "There are ${count} options matching ‘Vigesimal’.";
+
+/* (No Comment) */
+"Mzi92T" = "バビロニアの楔形文字";
+
+/* (No Comment) */
+"n6xN6Z" = "no";
+
+/* (No Comment) */
+"nMBpQq" = "蘇州号碼";
+
+/* (No Comment) */
+"nnnITa" = "十六進法";
+
+/* (No Comment) */
+"ObHNkB" = "エジプト数学 (ヒエログリフ)";
+
+/* (No Comment) */
+"OoHG84" = "yes";
+
+/* (No Comment) */
+"tVvJ9c" = "Display the date using regular formatting.";
+
+/* (No Comment) */
+"UBcio0" = "Do you want to display the date?";
+
+/* (No Comment) */
+"UCGvur" = "算木";
+
+/* (No Comment) */
+"WYPQme" = "エーゲ海の数字";
+
+/* (No Comment) */
+"wzN0co" = "フェニキア文字";
+
+/* (No Comment) */
+"XKeRwq" = "変換選択";
+
+/* (No Comment) */
+"ZMVQQn-bDHYbg" = "Just to confirm, you wanted ‘Japanese’?";
+
+/* (No Comment) */
+"ZMVQQn-FKIyC2" = "Just to confirm, you wanted ‘Roman’?";
+
+/* (No Comment) */
+"ZMVQQn-IjsoSq" = "Just to confirm, you wanted ‘Binary’?";
+
+/* (No Comment) */
+"ZMVQQn-kbGnWf" = "Just to confirm, you wanted ‘Octal’?";
+
+/* (No Comment) */
+"ZMVQQn-Mzi92T" = "Just to confirm, you wanted ‘Babylonian’?";
+
+/* (No Comment) */
+"ZMVQQn-nMBpQq" = "Just to confirm, you wanted ‘Suzhou’?";
+
+/* (No Comment) */
+"ZMVQQn-nnnITa" = "Just to confirm, you wanted ‘Hexadecimal’?";
+
+/* (No Comment) */
+"ZMVQQn-ObHNkB" = "Just to confirm, you wanted ‘Egyptian (Hieroglyph)’?";
+
+/* (No Comment) */
+"ZMVQQn-UCGvur" = "Just to confirm, you wanted ‘Sangi’?";
+
+/* (No Comment) */
+"ZMVQQn-WYPQme" = "Just to confirm, you wanted ‘Aegean’?";
+
+/* (No Comment) */
+"ZMVQQn-wzN0co" = "Just to confirm, you wanted ‘Phoenician’?";
+
+/* (No Comment) */
+"ZMVQQn-zwrZQr" = "Just to confirm, you wanted ‘Vigesimal’?";
+
+/* (No Comment) */
+"zwrZQr" = "二十進法";
+

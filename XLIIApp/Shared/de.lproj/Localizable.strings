@@ -1,0 +1,155 @@
+/* No comment provided by engineer. */
+"Allow bases other than 10 for numeric input" = "Zahlen mit einer von 10 verschiedenen Basis erkennen";
+
+/* No comment provided by engineer. */
+"Conversion not possible." = "Umwandlung nicht möglich";
+
+/* No comment provided by engineer. */
+"Convert" = "Umwandeln";
+
+/* No comment provided by engineer. */
+"Convert all characters to  Daiji" = "Alle Zeichen in Daiji umwandeln";
+
+/* No comment provided by engineer. */
+"Convert all characters to Daiji. This usage is archaic." = "Alle Zeichen in Daiji umwandeln. Diese Schreibweise ist veraltet.";
+
+/* (No Comment) */
+"Copy" = "Kopieren";
+
+/* No comment provided by engineer. */
+"Copy Unformatted" = "Ohne Formatierung Kopieren";
+
+/* No comment provided by engineer. */
+"Delete History" = "Verlauf löschen";
+
+/* No comment provided by engineer. */
+"Delete Item" = "Löschen";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Auswahl entfernen";
+
+/* prompt */
+"Detecting..." = "Erkenne...";
+
+/* No comment provided by engineer. */
+"Dismis" = "Fertig";
+
+/* No comment provided by engineer. */
+"Display output selection" = "Ausgabeauswahl anzeigen";
+
+/* No comment provided by engineer. */
+"Done" = "Fertig";
+
+/* (No Comment) */
+"Enter Number" = "Zahl eingeben";
+
+/* No comment provided by engineer. */
+"Feedback" = "Feedback";
+
+/* No comment provided by engineer. */
+"Feeedback" = "Feedback";
+
+/* No comment provided by engineer. */
+"Formatting" = "Ausgabe";
+
+/* No comment provided by engineer. */
+"Hide output selection." = "Ausgabeauswahl verbergen";
+
+/* No comment provided by engineer. */
+"Hide Sidebar" = "Seitenleiste verbergen";
+
+/* No comment provided by engineer. */
+"History" = "Verlauf";
+
+/* prompt */
+"Hold Steady" = "Bitte still halten";
+
+/* No comment provided by engineer. */
+"Insert Item" = "Einfügen";
+
+/* No comment provided by engineer. */
+"Japanese" = "Japanisch";
+
+/* No comment provided by engineer. */
+"No Input" = "Keine Eingabe";
+
+/* (No Comment) */
+"Number" = "Zahl";
+
+/* No comment provided by engineer. */
+"Numeric" = "Numerisch";
+
+/* No comment provided by engineer. */
+"Output" = "Format";
+
+/* No comment provided by engineer. */
+"Output Selection" = "Ausgabeauswahl";
+
+/* No comment provided by engineer. */
+"Parse numeric input for other bases, e.g. binary or hexadecimal." = "Eingegebene Zahlen in anderen Zahlensystemen einlesen, bspw. Hexadezimal.";
+
+/* No comment provided by engineer. */
+"Please enter a number" = "Bitte eine Zahl eingeben.";
+
+/* No comment provided by engineer. */
+"Remove" = "Entfernen";
+
+/* No comment provided by engineer. */
+"Result:" = "Ergebniss:";
+
+/* No comment provided by engineer. */
+"Roman" = "Römisch";
+
+/* Localizable.strings
+  RoemischeZahl
+
+  Created by Miho on 2021/04/29. */
+"Roman Numerals" = "Römische Zahlen";
+
+/* No comment provided by engineer. */
+"Search" = "Suchen";
+
+/* No comment provided by engineer. */
+"Select Bases" = "Basen Auswählen";
+
+/* No comment provided by engineer. */
+"Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Show Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Show Selected" = "Auswahl anzeigen";
+
+/* No comment provided by engineer. */
+"Show Settings" = "Einstellungen anzeigen";
+
+/* No comment provided by engineer. */
+"Show Sidebar" = "Seitenleiste anzeigen";
+
+/* (No Comment) */
+"Speak" = "Sprechen";
+
+/* No comment provided by engineer. */
+"System" = "System";
+
+/* No comment provided by engineer. */
+"The input could not be parsed." = "Ungültige Eingabe";
+
+/* No comment provided by engineer. */
+"The input is too large to be represented." = "Die eingegebene Zahl ist zu groß";
+
+/* No comment provided by engineer. */
+"Use ROI" = "ROI benutzen";
+
+/* No comment provided by engineer. */
+"XLII" = "XLII";
+
+/*Table Header**/
+"Selected" = "Ausgewählt";
+
+/*Table Header**/
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Show All" = "Alle anzeigen";

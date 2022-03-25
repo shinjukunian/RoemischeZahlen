@@ -1,0 +1,9 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "XLII";
+
+/* Bundle name */
+"CFBundleName" = "XLII";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "カメラの利用を許可する。";
+

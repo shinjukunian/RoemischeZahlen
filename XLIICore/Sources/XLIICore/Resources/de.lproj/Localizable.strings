@@ -26,7 +26,7 @@
 "is:" = "ist:";
 
 /* Other base */
-"Numeric Base %i" = "Numerisch mit Basis %i";
+"Numeric Base %i" = "Basis %i";
 
 /* Octal number */
 "Octal" = "Oktal";
@@ -45,3 +45,19 @@
 
 /* "Counting Rods"  */
 "Counting Rods (籌)" = "Zahlstäbchen (籌)";
+
+"Ternary" = "Ternär";
+"Quaternary" = "Quaternär";
+"Senary" = "Senär";
+"Quinary" = "Quinär";
+"Duodecimal" = "Duodezimal";
+"Vigesimal" = "Vigesimal";
+"Kharoṣṭhī" = "Kharoṣṭhī";
+"Brahmi" = "Brahmi";
+"Brahmi (positional)" = "Brahmi (Stellwert)";
+"Glagolitic" = "Glagolitisch";
+"Cyrillic" = "Kyrillische Zahlschrift";
+"Geez" = "Geʽez (Äthiopische Schrift)";
+"Sundanese (Wilangan)" = "Sundanesisch (Wilangan)";
+"Tibetan" = "Tibetanisch";
+"Mongolian" = "Mongolisch";

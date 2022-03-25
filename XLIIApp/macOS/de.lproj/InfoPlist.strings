@@ -1,0 +1,9 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "XLII";
+
+/* Bundle name */
+"CFBundleName" = "XLII";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "XLII benötigt Zugriff auf Ihre Kamera, um Zahlen nach Schrifterkennung umzuwandeln.";
+

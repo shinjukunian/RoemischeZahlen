@@ -26,7 +26,7 @@
 "is:" = "is:";
 
 /* Other base */
-"Numeric Base %i" = "Numeric Base %i";
+"Numeric Base %i" = "Base %i";
 
 /* Octal number */
 "Octal" = "Octal";
@@ -45,3 +45,17 @@
 
 /* "Counting Rods"  */
 "Counting Rods (籌)" = "Counting Rods (籌)";
+
+"Ternary" = "Ternary";
+"Quaternary" = "Quaternary";
+"Senary" = "Senary";
+"Quinary" = "Quinary";
+"Duodecimal" = "Duodecimal";
+"Vigesimal" = "Vigesimal";
+"Kharoṣṭhī" = "Kharoṣṭhī";
+"Glagolitic" = "Glagolitic";
+"Cyrillic" = "Cyrillic numerals";
+"Geez" = "Geʽez";
+"Sundanese (Wilangan)" = "Sundanese (Wilangan)";
+"Tibetan" = "Tibetan";
+"Mongolian" = "Mongolian";

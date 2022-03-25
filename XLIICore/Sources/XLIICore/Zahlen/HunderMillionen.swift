@@ -11,7 +11,7 @@ import Foundation
 struct HundertMillionen: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
    
     let anzahl:Int
-    let multiplikator:Int = 100_000_000
+    let multiplikator:Int64 = 100_000_000
     
     var arabischJapanischBankDict = [Int : String]()
     
@@ -20,10 +20,10 @@ struct HundertMillionen: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZ
     let arabischJapanischDict = [Int:String]()
     
     init(Zahl:Int){
-        let trillionen = Zahl / 1_000_000_000_000
-        let restlicheHundertMillionen = Zahl - trillionen * 1_000_000_000_000
-        let hundertMillionen = restlicheHundertMillionen / multiplikator
-        anzahl = hundertMillionen
+        let trillionen = Int64(Zahl) / Int64(1_000_000_000_000)
+        let restlicheHundertMillionen = Int64(Zahl) - trillionen * Int64(1_000_000_000_000)
+        let hundertMillionen = restlicheHundertMillionen / Int64(multiplikator)
+        anzahl = Int(hundertMillionen)
     }
     
     var japanisch: String{
@@ -74,7 +74,7 @@ struct HundertMillionen: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZ
 struct OneTrillion: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
    
     let anzahl:Int
-    let multiplikator:Int = 1_000_000_000_000
+    let multiplikator:Int64 = 1_000_000_000_000
     
     var arabischJapanischBankDict = [Int : String]()
     
@@ -84,10 +84,10 @@ struct OneTrillion: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
     
     init(Zahl:Int){
         
-        let tenQuad = Zahl / 10_000_000_000_000_000
-        let restlicheTrillionen = Zahl - tenQuad * 10_000_000_000_000_000
+        let tenQuad = Int64(Zahl) / Int64(10_000_000_000_000_000)
+        let restlicheTrillionen = Int64(Zahl) - Int64(tenQuad) * Int64(10_000_000_000_000_000)
         let trillionen = restlicheTrillionen / multiplikator
-        anzahl = trillionen
+        anzahl = Int(trillionen)
     }
     
     var japanisch: String{
@@ -138,7 +138,8 @@ struct OneTrillion: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
 struct TenQuadrillion: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZahl{
    
     let anzahl:Int
-    let multiplikator:Int = 10_000_000_000_000_000
+    let multiplikator:Int64 = 10_000_000_000_000_000
+    
     
     var arabischJapanischBankDict = [Int : String]()
     
@@ -147,7 +148,7 @@ struct TenQuadrillion: AlsArabischeZahl, AlsJapanischeZahl, AlsJapanischeBankZah
     let arabischJapanischDict = [Int:String]()
     
     init(Zahl:Int){
-        let qudrillionen = Zahl / multiplikator
+        let qudrillionen = Zahl / Int(multiplikator)
         anzahl = qudrillionen
     }
     

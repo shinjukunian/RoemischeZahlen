@@ -10,10 +10,10 @@ import Foundation
 
 struct Tausender: AlsArabischeZahl{
     let anzahl:Int
-    let multiplikator:Int = 1000
+    let multiplikator:Int64 = 1000
     
     init(Zahl:Int){
-        let tausnder = Zahl / multiplikator
+        let tausnder = Zahl / Int(multiplikator)
         anzahl = tausnder
     }
     
@@ -31,15 +31,16 @@ struct Tausender: AlsArabischeZahl{
             
             let tausender = Tausender(Zahl: anzahl)
             let millions:String
-            
+            let doubleOverbar=String(Unicode.Scalar(0x033F)!)
+//            let overbar=String(Unicode.Scalar(0xFE26)!)
             if tausender.anzahl > 0{
                 let milZehner = Zehner(Zahl: tausender.anzahl)
                 let milEinser = Einer(Zahl: tausender.anzahl)
                 let milHunderter = Hunderter(Zahl: tausender.anzahl)
                 let mil = milHunderter.römisch + milZehner.römisch + milEinser.römisch
-                let overbar=Unicode.Scalar(0x033F)!
+                
                 let overbarMillions=mil.map({c in
-                    return String(c) + String(overbar)
+                    return String(c) + doubleOverbar
                 })
                 millions = overbarMillions.joined()
                 
@@ -49,9 +50,9 @@ struct Tausender: AlsArabischeZahl{
             }
             
             let roemischeTausender = hunderter.römisch + zehner.römisch + einser.römisch
-            let overbar=Unicode.Scalar(0x0305)!
+            let overbar=String(Unicode.Scalar(0xFE26)!)
             let overbarTausender=roemischeTausender.map({c in
-                return String(c) + String(overbar)
+                return String(c) + overbar
             })
             return millions + overbarTausender.joined()
         }
@@ -74,10 +75,10 @@ struct Tausender: AlsArabischeZahl{
 }
 
 
-struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl, AlsSangiZahl{
+struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBankZahl, AlsAegaeischeZahl{
     
     let anzahl:Int
-    let multiplikator:Int = 1000
+    let multiplikator:Int64 = 1000
     
     let arabischJapanischDict = [0:"",
                                  1:"千",
@@ -127,22 +128,11 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
                                               9:"𐄪"
     ]
     
-    let arabischSangiDict: [Int : String] = [0:" ",
-                                             1:"𝍩",
-                                             2:"𝍪",
-                                             3:"𝍫",
-                                             4:"𝍬",
-                                             5:"𝍭",
-                                             6:"𝍮",
-                                             7:"𝍯",
-                                             8:"𝍰",
-                                             9:"𝍱"
-    ]
     
     init(Zahl:Int){
-        let zehnTausender = Zahl / (multiplikator*10)
-        let restlicheTausender = Zahl - zehnTausender * (multiplikator*10)
-        let tausnder = restlicheTausender / multiplikator
+        let zehnTausender = Zahl / (Int(multiplikator)*10)
+        let restlicheTausender = Zahl - zehnTausender * (Int(multiplikator)*10)
+        let tausnder = restlicheTausender / Int(multiplikator)
         anzahl = tausnder
     }
     
@@ -174,19 +164,21 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
     }
     
     init(japanischeZahl:String) {
-        let a=[self.arabischJapanischDict,
-               self.arabischJapanischBankDict]
-            .compactMap {
-                $0.sorted(by: {$0.0 > $1.0})
-                    .first(where: {_,n in
-                        if japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive], range: nil, locale: nil) != nil{
-                            return true
-                        }
-                        return false
-                    })
+        let a=[self.arabischJapanischDict, self.arabischJapanischBankDict, self.arabischJapanischBankDict_einfach]
+            .map{
+                $0.compactMap({value,n->(Range<String.Index>,Int)? in
+                    if let range=japanischeZahl.range(of: n, options: [.caseInsensitive, .anchored, .backwards, .widthInsensitive]){
+                        return (range,value)
+                    }
+                    return nil
+                })
             }
+            .flatMap({$0})
+            .min(by: {r1,r2 in
+                r1.0.lowerBound < r2.0.lowerBound
+            })
         
-        self.anzahl=a.first?.key ?? 0
+        self.anzahl=a?.1 ?? 0
     }
     
     init?(aegeanNumber:String){
@@ -194,7 +186,7 @@ struct JapanischeTausender: AlsJapanischeZahl, AlsArabischeZahl, AlsJapanischeBa
             .first(where: {_,n in
                 return n == aegeanNumber
             }){
-            self.anzahl=a.key * multiplikator
+            self.anzahl=a.key * Int(multiplikator)
         }
         else{
             return nil

@@ -1,0 +1,158 @@
+/* No comment provided by engineer. */
+"Allow bases other than 10 for numeric input" = "十進法以外の基数の使用も可能とする";
+
+/* No comment provided by engineer. */
+"Base Selection" = "基数の選択";
+
+/* No comment provided by engineer. */
+"Conversion not possible." = "変換できません";
+
+/* No comment provided by engineer. */
+"Convert" = "変換";
+
+/* No comment provided by engineer. */
+"Convert all characters to  Daiji" = "全て大字に変換する";
+
+/* No comment provided by engineer. */
+"Convert all characters to Daiji. This usage is archaic." = "全て大字に変換する。一般的ではありません。";
+
+/* (No Comment) */
+"Copy" = "コピー";
+
+/* No comment provided by engineer. */
+"Copy Unformatted" = "値をコピーする";
+
+/* No comment provided by engineer. */
+"Delete History" = "履歴を削除";
+
+/* No comment provided by engineer. */
+"Delete Item" = "削除する";
+
+/* No comment provided by engineer. */
+"Deselect All" = "選択を解除";
+
+/* prompt */
+"Detecting..." = "検出中";
+
+/* No comment provided by engineer. */
+"Dismis" = "終了";
+
+/* No comment provided by engineer. */
+"Display output selection" = "変換選択を表示する";
+
+/* No comment provided by engineer. */
+"Done" = "完了";
+
+/* (No Comment) */
+"Enter Number" = "数字を入力";
+
+/* No comment provided by engineer. */
+"Feedback" = "フィードバック";
+
+/* No comment provided by engineer. */
+"Feeedback" = "フィードバック";
+
+/* No comment provided by engineer. */
+"Formatting" = "フォーマット";
+
+/* No comment provided by engineer. */
+"Hide output selection." = "変換選択を非表示にする";
+
+/* No comment provided by engineer. */
+"Hide Sidebar" = "サイドバーを非表示にする";
+
+/* No comment provided by engineer. */
+"History" = "履歴";
+
+/* prompt */
+"Hold Steady" = "固定してください";
+
+/* No comment provided by engineer. */
+"Insert Item" = "追加する";
+
+/* No comment provided by engineer. */
+"Japanese" = "日本語";
+
+/* No comment provided by engineer. */
+"No Input" = "空欄";
+
+/* (No Comment) */
+"Number" = "数字";
+
+/* No comment provided by engineer. */
+"Numeric" = "数字";
+
+/* No comment provided by engineer. */
+"Output" = "変換";
+
+/* No comment provided by engineer. */
+"Output Selection" = "変換選択";
+
+/* No comment provided by engineer. */
+"Parse numeric input for other bases, e.g. binary or hexadecimal." = "十進法以外を使用する（例；二進法）";
+
+/* No comment provided by engineer. */
+"Please enter a number" = "数字を入力してください";
+
+/* No comment provided by engineer. */
+"Remove" = "削除";
+
+/* No comment provided by engineer. */
+"Result:" = "結果";
+
+/* No comment provided by engineer. */
+"Roman" = "ローマ数字";
+
+/* Localizable.strings
+  RoemischeZahl
+
+  Created by Miho on 2021/04/29. */
+"Roman Numerals" = "ローマ数字";
+
+/* No comment provided by engineer. */
+"Search" = "検索";
+
+/* No comment provided by engineer. */
+"Select Bases" = "基数を選択する";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
+
+/* No comment provided by engineer. */
+"Show Camera" = "カメラを起動";
+
+/* No comment provided by engineer. */
+"Show Selected" = "選択済を表示";
+
+/* No comment provided by engineer. */
+"Show Settings" = "設定を表示";
+
+/* No comment provided by engineer. */
+"Show Sidebar" = "サイドバーを表示";
+
+/* (No Comment) */
+"Speak" = "発音";
+
+/* No comment provided by engineer. */
+"System" = "システム";
+
+/* No comment provided by engineer. */
+"The input could not be parsed." = "変換不可";
+
+/* No comment provided by engineer. */
+"The input is too large to be represented." = "入力の数字が大きすぎます";
+
+/* No comment provided by engineer. */
+"Use ROI" = "ROIを使用する";
+
+/* No comment provided by engineer. */
+"XLII" = "XLII";
+
+/*Table Header**/
+"Selected" = "選択";
+
+/*Table Header**/
+"Name" = "名前";
+
+/* No comment provided by engineer. */
+"Show All" = "全てを表示";
