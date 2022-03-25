@@ -7,6 +7,7 @@
 
 import Foundation
 
+///Various helper functions to check whether a number belongs to a certain script.
 extension String{
     var potenzielleRömischeZahl:Bool{
         let romischerBuchstabenHaufen=CharacterSet(charactersIn: "iIvVxXlLcCdDmMD̅L̅V̅X̅")

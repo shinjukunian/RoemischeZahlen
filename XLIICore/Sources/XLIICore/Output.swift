@@ -7,39 +7,64 @@
 
 import Foundation
 
+
+/// An `enum` to encapsulate output formatting
 public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable, CustomStringConvertible{
     
     public typealias RawValue = String
     
+    /// roman numerals (eg. XLII)
     case römisch
+    /// japanese numerals (eg. 四十二)
     case japanisch
+    /// arabic numerals　(e.g. 42)
     case arabisch
+    /// japanese numerals used in banking / finance (e.g. 四拾弐)
     case japanisch_bank
+    /// babylonian numerals (e.g. 𒐏𒐖)
     case babylonian
+    /// Aegean (linar B) numerals (e.g. 𐄓𐄈)
     case aegean
+    /// sangi (counting rods) numerals (e.g. 𝍬𝍡)
     case sangi
+    /// egyptian hieroglyphs (e.g. 𓎉𓏻)
     case hieroglyph
+    /// suzhou numerals (e.g. 〤〢)
     case suzhou
+    /// phoenician numerals (e.g. 𐤘𐤘𐤚)
     case phoenician
+    /// kharosthi numerals (e.g. 𐩅𐩅𐩁)
     case kharosthi
+    /// brahmi numerals (e.g. 𑁞𑁓)
     case brahmi_traditional
+    /// brahmi positional numerals (e.g. 𑁪𑁨)
     case brahmi_positional
+    /// glagolitic numerals (e.g. ⰍⰁ)
     case glagolitic
+    /// cyrillic numerals (e.g. мв҃)
     case cyrillic
+    /// ge'ez numerals (e.g. ፵፪)
     case geez
+    /// sundanese numerals (e.g. |᮴᮲|)
     case sundanese
+    /// tibetan numerals (e.g. ༤༢)
     case tibetan
+    /// mongolian numerals (e.g. ᠔᠒)
     case mongolian
     
+    /// numeric representation witha  base different from ten (binary, hexadecimal, etc.).
     case numeric(base:Int)
     
+    /// spell-out localization for the designated locale
     case localized(locale:Locale)
     
     public static let currentLocale = Output.localized(locale: Locale.current)
     public static let dragType = "com.mihomaus.xlii.outputType"
 
+    /// The `Output` variants curently implemented
     public static let builtin:[Output] = [.römisch, .japanisch, .japanisch_bank, .suzhou, .babylonian, .aegean, .sangi, .hieroglyph, .phoenician, .kharosthi, brahmi_traditional, .brahmi_positional, .glagolitic, .cyrillic, .geez, .sundanese, .tibetan, .mongolian]
     
+    /// Raw-representable implementation
     public init?(rawValue: String) {
         switch rawValue{
         case "roman":
@@ -98,6 +123,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
         }
     }
     
+    /// Interoperability with the detected output of `ExotischerZahlenFormatter`
     public init?(output:ExotischeZahlenFormatter.NumericalOutput){
         switch output.locale{
         case .japanese:
@@ -133,7 +159,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
             
         }
     }
-    
+    /// Rawrepresentable implementation
     public var rawValue: String{
         switch self {
         case .römisch:
@@ -181,7 +207,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
         }
     }
     
-    
+    /// Identifiable implementation
     public var id: String {
         return rawValue
     }
@@ -195,6 +221,7 @@ public enum Output: Identifiable, Codable, Equatable, RawRepresentable, Hashable
         }
     }
     
+    ///Localized Descriptions
     public var description: String{
         switch self {
         case .römisch:

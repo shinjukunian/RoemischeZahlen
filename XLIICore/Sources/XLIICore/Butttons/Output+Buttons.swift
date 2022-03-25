@@ -31,7 +31,7 @@ public extension ButtonProviding{
     }
 }
 
-
+/// Custom Buttons for Input Keyboards for exotic numbes
 extension Output{
     public struct ButtonConfiguration: ButtonProviding{
         public let buttonValues:[[String]]

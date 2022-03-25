@@ -270,6 +270,7 @@
 		5AA75D9D27C8D95A00D1AA0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5AA75DA427C8FA0100D1AA0A /* XLIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA75DA627C8FA0100D1AA0A /* XLIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIITests.swift; sourceTree = "<group>"; };
+		5AA77D7B27EDA565008139B6 /* RoemischeZahlen */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = RoemischeZahlen; path = ..; sourceTree = "<group>"; };
 		5AB2BEF627C5AA82004CF66C /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		5AB2BEF927C5CC16004CF66C /* BaseSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionView.swift; sourceTree = "<group>"; };
 		5ABAD5E127D35BBC00BF753D /* CameraResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraResultView.swift; sourceTree = "<group>"; };
@@ -279,7 +280,6 @@
 		5ABAD5ED27D49CBF00BF753D /* StaticImageAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticImageAnalysisView.swift; sourceTree = "<group>"; };
 		5AD1D02127C4E608000E9CA5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5AD376F827C8AF9A00EBBD1C /* Widget-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget-iOS.entitlements"; sourceTree = "<group>"; };
-		5AEE116E27C60F930085210A /* XLIICore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = XLIICore; sourceTree = "<group>"; };
 		5AEE117327C612A30085210A /* OutputPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputPreference.swift; sourceTree = "<group>"; };
 		5AF4B43927D0C31F00EF549B /* DecimalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -562,7 +562,7 @@
 		5AEE116D27C60F930085210A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				5AEE116E27C60F930085210A /* XLIICore */,
+				5AA77D7B27EDA565008139B6 /* RoemischeZahlen */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
