@@ -8,10 +8,12 @@
 import Foundation
 import AVFoundation
 
+/// A class that converts between different (exotic) numerical formats
 public class ExotischeZahlenFormatter{
     
+    /// A struct that holds the parsed input
     public struct NumericalOutput: Equatable{
-        
+        /// The detected input type
         public enum InputLocale: Equatable{
             case roman
             case japanese
@@ -29,8 +31,9 @@ public class ExotischeZahlenFormatter{
             case tibetan
             case mongolian
         }
-        
+        /// The parsed input as `Int`
         public let value:Int
+        /// The detected number format
         public let locale:InputLocale
     }
     
@@ -38,6 +41,10 @@ public class ExotischeZahlenFormatter{
     
     public init(){}
     
+    
+    /// Converts a number to a Roman numeral
+    /// - Parameter Zahl: a number between 1 and 1000000000
+    /// - Returns: a roman numeral or nil of conversion fails.
     public func macheRömischeZahl(aus Zahl:Int)->String?{
         
         guard Zahl > 0, Zahl < 1_000_000_000 else {
@@ -56,6 +63,10 @@ public class ExotischeZahlenFormatter{
         return tausender.römisch + hunderterRömisch + zehnerRömisch + einserRömisch
     }
     
+    
+    /// Convert a number to Japanese
+    /// - Parameter Zahl: a number
+    /// - Returns: a Japanese numeral
     public func macheJapanischeZahl(aus Zahl:Int)->String?{
         
         switch Zahl{
@@ -80,6 +91,9 @@ public class ExotischeZahlenFormatter{
         }
     }
     
+    /// Convert to Kharosthi
+    /// - Parameter Zahl: a number between 1 and 1000000
+    /// - Returns: a Kharosthi number
     public func macheKharosthiZahl(aus Zahl:Int)->String?{
         guard (1..<1_000_000).contains(Zahl) else{
             return nil
@@ -87,6 +101,9 @@ public class ExotischeZahlenFormatter{
         return KharosthiNumber(number: Zahl)?.kharosthi
     }
     
+    /// Convert to Suzhou
+    /// - Parameter Zahl: a number
+    /// - Returns: a Suzhou number
     public func macheSuzhouZahl(aus Zahl:Int)->String?{
         guard Zahl >= 0 else {
             return nil
@@ -95,6 +112,12 @@ public class ExotischeZahlenFormatter{
         return suzhou.suzhou
     }
     
+    
+    /// Convert to a Japanese financial number
+    /// - Parameters:
+    ///   - Zahl: a number
+    ///   - einfach: if true, only common conversion to financial characters will be performed (e.g. 10: 十 to 拾). If false, all characters will be converted. The latter usage is archaic.
+    /// - Returns: A formatted japanese financial number
     public func macheJapanischeBankZahl(aus Zahl:Int, einfach:Bool)->String?{
         if Zahl == 0 {
             return "〇"
@@ -123,47 +146,83 @@ public class ExotischeZahlenFormatter{
         }
     }
     
+    /// Convert to Babylonian
+    /// - Parameter Zahl: a number > 0
+    /// - Returns: a babylonian number
     public func macheBabylonischeZahl(aus Zahl:Int)->String?{
         return BabylonischeZahl(Zahl: Zahl)?.babylonisch
     }
     
+    
+    /// Convert to Phoenician
+    /// - Parameter Zahl: a number between 1 and 1000
+    /// - Returns: a phoenician number or nil if the conversion fails
     public func machePhoenizischeZahl(aus Zahl:Int)->String?{
         return PhoenizianFormatter(number: Zahl)?.phoenician
     }
     
+    /// Convert to Aegean
+    /// - Parameter Zahl: a number between 1 and 100000
+    /// - Returns: a formatted Aegean number
     public func macheAegaeischeZahl(aus Zahl:Int)->String?{
         return AegeanZahl(number: Zahl)?.aegean
     }
     
+    /// Convert to Brahmi
+    /// - Parameters:
+    ///   - Zahl: a number > 0
+    ///   - positional: use positional notation (true) opr traditional notation (false)
+    /// - Returns: a formatted Brahmi number
     public func macheBrahmiZahl(aus Zahl:Int, positional:Bool)-> String?{
         return BrahmiNumber(number: Zahl, positional: positional)?.brahmi
     }
     
+    /// Convert to Sanghi (Counting Rods)
+    /// - Parameter Zahl: a number > 0
+    /// - Returns: a formatted Sanghi number
     public func macheSangiZahl(aus Zahl:Int)->String?{
         return SangiNumber(number: Zahl).sangi
     }
     
+    /// Convert to Egyptian Hieroglyphs
+    /// - Parameter Zahl: a number between 1 and 10,000,000
+    /// - Returns: a hieroglyph number
     public func macheHieroglyphenZahl(aus Zahl:Int)->String?{
         return HieroglyphenZahl(Zahl: Zahl)?.hieroglyph
     }
     
+    /// Convert to Glagolitic
+    /// - Parameter Zahl: a number between 1 and 4000
+    /// - Returns: a glagolitic numeral
     public func macheGlagolitischeZahl(aus Zahl:Int)->String?{
         return GlagoliticNumer(number: Zahl)?.glacolitic
     }
     
+    /// Convert to Sundanese
+    /// - Parameter Zahl: a number
+    /// - Returns: a Sundanese number
     public func macheSundaneseZahl(aus Zahl:Int)->String?{
         return SundaneseNumber(number: Zahl).sundanese
     }
     
+    /// Convert to Tibetan
+    /// - Parameter Zahl: a number
+    /// - Returns: a tibetan number
     public func macheTibetanischeZahl(aus Zahl:Int)->String?{
         return TibetanNumber(number: Zahl).tibetan
     }
     
+    /// Convert to Mongolian
+    /// - Parameter Zahl: a number
+    /// - Returns: a formatted mongolian number
     public func macheMongolischeZahl(aus Zahl:Int)->String?{
         return MongolianNumber(number: Zahl).mongolian
     }
     
     
+    /// Parse text to extract a number
+    /// - Parameter text: the input text
+    /// - Returns: `NumericalOutput`, a struct which contains the detected number (as `Int`) and the detected format. Returns `nil` if no number could be detected.
     public func macheZahl(aus text:String)->NumericalOutput?{
         switch text {
         case _ where text.potenzielleRömischeZahl:
@@ -232,6 +291,13 @@ public class ExotischeZahlenFormatter{
         return nil
     }
     
+    /// Convert to Cyrillic
+    /// - Parameters:
+    ///   - Zahl: a number
+    ///   - titlo: use a Titlo, a small overbar that indicates the numeral. This is often used to differentiate numerals from regular text, since both use the same characters
+    ///   - mitKreisen: for numbers > 10,000, use decorators to indicate multiplication (`true`). If `false`, use the thousands multiplier ҂. This limits the output range to < 1,000,000.
+    ///   - Großbuchstaben: use uppercase (true) or lowercase Cyrillic letters
+    /// - Returns: a fomatted Cyrillic number
     public func macheKyrillischeZahl(aus Zahl:Int, titlo:Bool, mitKreisen:Bool, Großbuchstaben:Bool)->String?{
         guard let parser=CyrillicNumber(number: Zahl, useMultiplicationModifiers: mitKreisen) else{
             return nil
@@ -248,6 +314,10 @@ public class ExotischeZahlenFormatter{
         }
     }
     
+    
+    /// Convert to Ge'ez
+    /// - Parameter Zahl: a number > 0
+    /// - Returns: a fomatted Ge'ez number
     public func macheGeezZahl(aus Zahl:Int)->String?{
         return GeezNumber(number: Zahl)?.geez
     }
@@ -324,6 +394,11 @@ public class ExotischeZahlenFormatter{
         return input.utterances + [u2] + output.utterances
     }
     
+    
+    /// Speak a number and its conversion
+    /// - Parameters:
+    ///   - input: The `SpeechInput` for the input number
+    ///   - output: The `SpeechInput` for the output number
     public func speak(input:SpeechOutput, output:SpeechOutput){
         self.synthesizer.stopSpeaking(at: .immediate)
         

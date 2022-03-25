@@ -10,6 +10,7 @@ import Algorithms
 import AVFoundation
 
 public extension Output{
+    ///Available spell-out outputs on the device
     static  var availableLocalizedOutputs:[Output]{
         let current=Locale.current
         return Locale.availableIdentifiers
@@ -58,18 +59,27 @@ extension Output{
     
 }
 
-
+/// Speech Output, allows the reading of numerals.
+///
+/// Mostly useful for spell-out, roman, Japanese.
 public struct SpeechOutput{
+    /// the desired output
     let format:Output
+    /// the textual value of the number
     let text:String
     
+    
+    /// Initialize the `SpeechOutput` struct.
+    /// - Parameters:
+    ///   - text: the textual value of the number
+    ///   - format: the desired output
     public init(text: String, format:Output) {
         self.text=text
         self.format=format
     }
     
-    
-    var utterances:[AVSpeechUtterance]{
+    /// The utterances to of `text` in `format`
+    public var utterances:[AVSpeechUtterance]{
         let outputUtterances: [AVSpeechUtterance]
         
         switch self.format {
@@ -105,6 +115,8 @@ public struct SpeechOutput{
 
 
 public extension Output{
+    
+    /// Explenatory URLs for the output types (from Wikipedia)
     var url:URL?{
         let tableName = "URLs.strings"
         switch self {

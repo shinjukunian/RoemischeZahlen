@@ -8,8 +8,10 @@
 import Foundation
 import SwiftUI
 
+/// A class that provides formatted output of an arabic numer in a given format.
 public class NumeralConversionHolder: Equatable{
     
+    /// Various options to customize output
     public struct ConversionContext:Equatable{
         public var convertAllToDaiji = false
         public var uppercaseCyrillic = true
@@ -51,6 +53,13 @@ public class NumeralConversionHolder: Equatable{
     let originalText:String
     let context:ConversionContext
     
+    
+    /// Initialize the NumericalConversionHolder
+    /// - Parameters:
+    ///   - input: the input number
+    ///   - output: the desired output
+    ///   - originalText: the underlying text (if the number was derived from user input)
+    ///   - context: formatting options
     public init(input:Int, output:Output, originalText:String, context:ConversionContext = ConversionContext()){
         self.input=input
         self.output=output
@@ -111,6 +120,7 @@ public class NumeralConversionHolder: Equatable{
         
     }
     
+    /// speak the number, mostly useful for spell-out or roman numerals
     public func speak(){
         formatter.speak(input: SpeechOutput(text: String(input), format: .arabisch), output: SpeechOutput(text: formattedOutput, format: output))
     }
