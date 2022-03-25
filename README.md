@@ -1,5 +1,7 @@
 ![Icon](artwork/macOS_new128.png)
 # XLII
+[![Swift](https://github.com/shinjukunian/XLII/actions/workflows/swift.yml/badge.svg)](https://github.com/shinjukunian/XLII/actions/workflows/swift.yml)
+
 
 A small iOS / macOS application that lets you explore numbers / numerals from around the world.
 Originally started as a toy project to gain familiarity with SwiftUI, the project quickly grew from converting between arabic and roman numerals to including most numerals / numbers found on Wikipedia.
