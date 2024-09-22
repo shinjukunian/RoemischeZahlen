@@ -20,20 +20,6 @@
                ReferencedContainer = "container:XLII.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "XLIICoreTests"
-               BuildableName = "XLIICoreTests"
-               BlueprintName = "XLIICoreTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -59,7 +45,7 @@
                BlueprintIdentifier = "XLIICoreTests"
                BuildableName = "XLIICoreTests"
                BlueprintName = "XLIICoreTests"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:XLIICore">
             </BuildableReference>
          </TestableReference>
       </Testables>
